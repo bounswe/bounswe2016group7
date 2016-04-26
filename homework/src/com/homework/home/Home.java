@@ -20,7 +20,7 @@ public class Home extends HttpServlet {
 		out.println("<html>"
 				+ "<head> <title> Homework Page </title> </head>"
 				+ "<body> "
-				+ "<a href=\"Home\"> Yunus Seker </a>     <br/>"
+				+ "<a href=\"http://ec2-52-37-74-4.us-west-2.compute.amazonaws.com:8080/homeworkYunus/search\"> Yunus Seker </a>     <br/>"
 				+ "<a href=\"Home\"> Aydin Aksoy </a>     <br/>"
 				+ "<a href=\"Home\"> Necil Albayrak </a>  <br/>"
 				+ "<a href=\"Home\"> Kubra Esmeli </a>    <br/>"
