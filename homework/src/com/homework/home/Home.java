@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/Home")
+@WebServlet("/")
 public class Home extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     public Home() {
@@ -20,13 +20,13 @@ public class Home extends HttpServlet {
 		out.println("<html>"
 				+ "<head> <title> Homework Page </title> </head>"
 				+ "<body> "
-				+ "<a href=\"http://ec2-52-37-74-4.us-west-2.compute.amazonaws.com:8080/homeworkYunus/search\"> Yunus Seker </a>     <br/>"
-				+ "<a href=\"Home\"> Aydin Aksoy </a>     <br/>"
-				+ "<a href=\"Home\"> Necil Albayrak </a>  <br/>"
-				+ "<a href=\"Home\"> Kubra Esmeli </a>    <br/>"
-				+ "<a href=\"Home\"> Yigit Alp Bildik </a><br/>"
-				+ "<a href=\"Home\"> Denizalp Kapisiz </a><br/>"
-				+ "<a href=\"Home\"> Salih Can Egin </a>  <br/>"
+				+ "<a href=\"Yunus\"> Yunus Seker </a>     <br/>"
+				+ "<a href=\"Aydin\"> Aydin Aksoy </a>     <br/>"
+				+ "<a href=\"Necil\"> Necil Albayrak </a>  <br/>"
+				+ "<a href=\"Kubra\"> Kubra Esmeli </a>    <br/>"
+				+ "<a href=\"Yigit\"> Yigit Alp Bildik </a><br/>"
+				+ "<a href=\"Denizalp\"> Denizalp Kapisiz </a><br/>"
+				+ "<a href=\"Salih\"> Salih Can Egin </a>  <br/>"
 				+ "</body>"
 				+ "</html>");
 	}
