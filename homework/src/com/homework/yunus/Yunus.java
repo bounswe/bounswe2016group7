@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class Yunus
+ * Servlet implementation class Yunus connects to database
  */
 @WebServlet("/Yunus")
 public class Yunus extends HttpServlet {
