@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['home',['Home',['../classcom_1_1homework_1_1home_1_1_home.html',1,'com::homework::home']]],
-  ['home',['Home',['../classcom_1_1homework_1_1home_1_1_home.html#ac5127b125cf55fbef4e84aaf0728fd72',1,'com::homework::home::Home']]],
-  ['home_2ejava',['Home.java',['../_home_8java.html',1,'']]]
+  ['getconnection',['getConnection',['../classcom_1_1homework_1_1yunus_1_1_db_yunus.html#a5cdbf15a8027a2d8ff2201d451e12297',1,'com::homework::yunus::DbYunus']]]
 ];
