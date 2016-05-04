@@ -43,7 +43,7 @@ public class Yunus extends HttpServlet {
     	} else {
     		out.println("Failed to make connection!</br>");
     	}
-    	out.println("</html>");
+        
     	
     	try {
 			Statement st = connection.createStatement();
@@ -58,6 +58,9 @@ public class Yunus extends HttpServlet {
 			out.print("Valla ulasamiyoz ki </br>");
 			e.printStackTrace();
 		}
+    	SparqlYunus sparql = new SparqlYunus();
+        out.println(sparql.getData());
+    	out.println("</html>");
 
 	}
 
