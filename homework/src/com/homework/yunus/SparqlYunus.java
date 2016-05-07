@@ -26,7 +26,7 @@ public class SparqlYunus {
 	
 	public SparqlYunus()
 	{
-        Query query = QueryFactory.create(squery); //s2 = the query above
+        Query query = QueryFactory.create(squery); 
         QueryExecution qExe = QueryExecutionFactory.sparqlService( "http://dbpedia.org/sparql", query );
         results = qExe.execSelect();
 	}
