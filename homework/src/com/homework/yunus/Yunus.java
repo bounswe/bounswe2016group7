@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/Yunus")
 public class Yunus extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	DbYunus dao = new DbYunus("yunus", "root", "");
+	DbYunus dao = new DbYunus("yunus", "root", "group7");
 	Vector<ModelYunus> data;   
     /**
      * @see HttpServlet#HttpServlet()
