@@ -20,7 +20,8 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/Yunus")
 public class Yunus extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+	DbYunus dao = new DbYunus("yunus", "root", "");
+	Vector<ModelYunus> data;   
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -36,9 +37,7 @@ public class Yunus extends HttpServlet {
         PrintWriter out = response.getWriter(); /**< Our writer to type html codes */
         out.println("<html>");
         
-		DbYunus dao = new DbYunus("test", "root", "group7");
-		Connection connection = dao.getConnection(); /**< database connection variable*/
-		
+		Connection connection = dao.getConnection();	
     	if (connection != null) {
     		out.println("You made it, take control your database now!</br>");
     	} else {
@@ -46,11 +45,40 @@ public class Yunus extends HttpServlet {
     	}
         
     	SparqlYunus sparql = new SparqlYunus();
-		Vector<ModelYunus> data = sparql.getData();
-		for(int i=0;i<data.size();i++)
-			out.println(data.elementAt(i).getCountry() + " " + data.elementAt(i).getCapital() + "</br>");
-    	out.println("</html>");
-
+		data = sparql.getData();
+		out.println("<form action=\"/homework/Yunus\" method=\"post\">"
+				+ "Please Type a Country Name (Ex: England)</br>"
+				+ "<input type=\"text\" name=\"inputTerm\">"
+				+ "<input type=\"submit\" name=\"search\" value=\"Search\" /></br>"
+    			+ "<input type=\"submit\" name=\"init\" value=\"Initialize the Database\" /></br>"
+    			+ "<input type=\"submit\" name=\"delete\" value=\"Delete the Database\" /></br>"
+    			+ "</form>");
+		out.println("</html>");
+	}
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		resp.setContentType("text/html");
+        PrintWriter out = resp.getWriter(); /**< Our writer to type html codes */
+        out.println("<html>");
+		if(req.getParameter("init") != null)
+		{
+			dao.init(data);
+			out.println("Database initialized.");
+		}
+		if(req.getParameter("delete") != null)
+		{
+			dao.delete();
+			out.println("Database deleted.");
+		}
+		if(req.getParameter("search") != null)
+		{
+			Vector<ModelYunus> searchResult = dao.search(req.getParameter("inputTerm"));
+			for(int i=0;i<searchResult.size();i++)
+			{
+				out.println(searchResult.elementAt(i).getCountry() + " " + searchResult.elementAt(i).getCapital() + "</br>");
+			}
+		}
+		out.println("</html>");
 	}
 
 }

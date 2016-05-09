@@ -34,7 +34,6 @@ public class SparqlYunus {
 			+ "WHERE"
 			+ "{"
 			+ "?country wdt:P31 wd:Q3624078 ."
-			+ "FILTER NOT EXISTS {?country wdt:P31 wd:Q3024240}"
 			+ "OPTIONAL { ?country wdt:P36 ?capital } ."
 			+ "SERVICE wikibase:label { bd:serviceParam wikibase:language \"en\" }"
 			+ "}"
@@ -67,6 +66,11 @@ public class SparqlYunus {
 				Element result = (Element) resultList.item(i);
 				NodeList current = result.getElementsByTagName("binding");
 				if(current.getLength() != 4) continue;
+				if(current.item(1).getTextContent().trim().equals("Chad")) continue;
+				if(current.item(1).getTextContent().trim().equals("Côte d'Ivoire")) continue;
+				if(current.item(1).getTextContent().trim().equals("People's Republic of China")) continue;
+				if(current.item(1).getTextContent().trim().equals("Tonga")) continue;
+				if(current.item(1).getTextContent().trim().equals("Mongolian People's Republic")) continue;
 				returnList.add(new ModelYunus(current.item(1).getTextContent().trim(),current.item(2).getTextContent().trim()));
 			}
 		} catch (Exception e) {
