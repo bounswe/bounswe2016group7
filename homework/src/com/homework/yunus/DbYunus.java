@@ -104,4 +104,40 @@ public class DbYunus {
 		}
 		return returnList;
 	}
+	/**
+	 * Inserts the saved data to database according to given string values
+	 * @param timestamp time that search is made
+	 * @param query query that is searched
+	 * @param selecteditems number of rows that selected
+	 */
+	public void saveSearch(String timestamp,String query,String selecteditems) {
+		try {
+			Statement stm = connection.createStatement();
+			String sql = "INSERT INTO yunussaves(timestamp,query,selecteditems) VALUES('"+timestamp+"\',\'"+query+"\',\'"+selecteditems+"\')";
+			stm.executeUpdate(sql);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	/**
+	 * Gets the saved history data from database and returns it as html formatted string
+	 * @return string that holds history data as html format
+	 */
+	public String getHistory() {
+		String returnString = "";
+		try {
+			Statement stm = connection.createStatement();
+			String sql = "SELECT * FROM yunussaves";
+			ResultSet rs = stm.executeQuery(sql);
+		    while(rs.next()){
+		    	returnString+=rs.getString("timestamp")+"&nbsp;"; 
+		    	returnString+=rs.getString("query")+"&nbsp;"; 
+		    	returnString+=rs.getString("selecteditems")+"</br>"; 
+		       }
+		    rs.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return returnString;
+	}
 }

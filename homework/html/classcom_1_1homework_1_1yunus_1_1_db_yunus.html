@@ -107,6 +107,10 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ac0f46ce9c1b762a530e4f19fae4e0f01"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3010b549e3a1b7b21d63c65f66d5a7eb"><td class="memItemLeft" align="right" valign="top">Vector&lt; <a class="el" href="classcom_1_1homework_1_1yunus_1_1_model_yunus.html">ModelYunus</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1homework_1_1yunus_1_1_db_yunus.html#a3010b549e3a1b7b21d63c65f66d5a7eb">search</a> (String str)</td></tr>
 <tr class="separator:a3010b549e3a1b7b21d63c65f66d5a7eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a36c0889028f98b4c5d823f17c3efbd71"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1homework_1_1yunus_1_1_db_yunus.html#a36c0889028f98b4c5d823f17c3efbd71">saveSearch</a> (String timestamp, String query, String selecteditems)</td></tr>
+<tr class="separator:a36c0889028f98b4c5d823f17c3efbd71"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a35f377c750efbe182daa17daaf9af672"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1homework_1_1yunus_1_1_db_yunus.html#a35f377c750efbe182daa17daaf9af672">getHistory</a> ()</td></tr>
+<tr class="separator:a35f377c750efbe182daa17daaf9af672"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Database implementation class for <a class="el" href="classcom_1_1homework_1_1yunus_1_1_yunus.html">Yunus</a> package. Uses jdbc to access mysql data </p><dl class="section author"><dt>Author</dt><dd><a class="el" href="classcom_1_1homework_1_1yunus_1_1_yunus.html">Yunus</a> </dd></dl>
@@ -184,6 +188,22 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a35f377c750efbe182daa17daaf9af672"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">String com.homework.yunus.DbYunus.getHistory </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Gets the saved history data from database and returns it as html formatted string </p><dl class="section return"><dt>Returns</dt><dd>string that holds history data as html format </dd></dl>
+
+</div>
+</div>
 <a class="anchor" id="af545ad91b2ddf224346cb4914bd36583"></a>
 <div class="memitem">
 <div class="memproto">
@@ -200,6 +220,46 @@ Public Member Functions</h2></td></tr>
 <p>Initializes the database to given data list from sparql query result. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">data</td><td>parsed and modeled data that comes from sparql query result </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a36c0889028f98b4c5d823f17c3efbd71"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void com.homework.yunus.DbYunus.saveSearch </td>
+          <td>(</td>
+          <td class="paramtype">String&#160;</td>
+          <td class="paramname"><em>timestamp</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">String&#160;</td>
+          <td class="paramname"><em>query</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">String&#160;</td>
+          <td class="paramname"><em>selecteditems</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Inserts the saved data to database according to given string values </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">timestamp</td><td>time that search is made </td></tr>
+    <tr><td class="paramname">query</td><td>query that is searched </td></tr>
+    <tr><td class="paramname">selecteditems</td><td>number of rows that selected </td></tr>
   </table>
   </dd>
 </dl>

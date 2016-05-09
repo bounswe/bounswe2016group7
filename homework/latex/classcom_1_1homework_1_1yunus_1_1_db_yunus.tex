@@ -12,6 +12,10 @@ void \hyperlink{classcom_1_1homework_1_1yunus_1_1_db_yunus_af545ad91b2ddf224346c
 void \hyperlink{classcom_1_1homework_1_1yunus_1_1_db_yunus_ac0f46ce9c1b762a530e4f19fae4e0f01}{delete} ()
 \item 
 Vector$<$ \hyperlink{classcom_1_1homework_1_1yunus_1_1_model_yunus}{Model\+Yunus} $>$ \hyperlink{classcom_1_1homework_1_1yunus_1_1_db_yunus_a3010b549e3a1b7b21d63c65f66d5a7eb}{search} (String str)
+\item 
+void \hyperlink{classcom_1_1homework_1_1yunus_1_1_db_yunus_a36c0889028f98b4c5d823f17c3efbd71}{save\+Search} (String timestamp, String query, String selecteditems)
+\item 
+String \hyperlink{classcom_1_1homework_1_1yunus_1_1_db_yunus_a35f377c750efbe182daa17daaf9af672}{get\+History} ()
 \end{DoxyCompactItemize}
 
 
@@ -60,6 +64,16 @@ Deletes all data on the table to reset the database. Initialization is usually u
 Gets the connection \begin{DoxyReturn}{Returns}
 connection 
 \end{DoxyReturn}
+\index{com\+::homework\+::yunus\+::\+Db\+Yunus@{com\+::homework\+::yunus\+::\+Db\+Yunus}!get\+History@{get\+History}}
+\index{get\+History@{get\+History}!com\+::homework\+::yunus\+::\+Db\+Yunus@{com\+::homework\+::yunus\+::\+Db\+Yunus}}
+\subsubsection[{\texorpdfstring{get\+History()}{getHistory()}}]{\setlength{\rightskip}{0pt plus 5cm}String com.\+homework.\+yunus.\+Db\+Yunus.\+get\+History (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classcom_1_1homework_1_1yunus_1_1_db_yunus_a35f377c750efbe182daa17daaf9af672}{}\label{classcom_1_1homework_1_1yunus_1_1_db_yunus_a35f377c750efbe182daa17daaf9af672}
+Gets the saved history data from database and returns it as html formatted string \begin{DoxyReturn}{Returns}
+string that holds history data as html format 
+\end{DoxyReturn}
 \index{com\+::homework\+::yunus\+::\+Db\+Yunus@{com\+::homework\+::yunus\+::\+Db\+Yunus}!init@{init}}
 \index{init@{init}!com\+::homework\+::yunus\+::\+Db\+Yunus@{com\+::homework\+::yunus\+::\+Db\+Yunus}}
 \subsubsection[{\texorpdfstring{init(\+Vector$<$ Model\+Yunus $>$ data)}{init(Vector< ModelYunus > data)}}]{\setlength{\rightskip}{0pt plus 5cm}void com.\+homework.\+yunus.\+Db\+Yunus.\+init (
@@ -70,6 +84,24 @@ connection
 Initializes the database to given data list from sparql query result. 
 \begin{DoxyParams}{Parameters}
 {\em data} & parsed and modeled data that comes from sparql query result \\
+\hline
+\end{DoxyParams}
+\index{com\+::homework\+::yunus\+::\+Db\+Yunus@{com\+::homework\+::yunus\+::\+Db\+Yunus}!save\+Search@{save\+Search}}
+\index{save\+Search@{save\+Search}!com\+::homework\+::yunus\+::\+Db\+Yunus@{com\+::homework\+::yunus\+::\+Db\+Yunus}}
+\subsubsection[{\texorpdfstring{save\+Search(\+String timestamp, String query, String selecteditems)}{saveSearch(String timestamp, String query, String selecteditems)}}]{\setlength{\rightskip}{0pt plus 5cm}void com.\+homework.\+yunus.\+Db\+Yunus.\+save\+Search (
+\begin{DoxyParamCaption}
+\item[{String}]{timestamp, }
+\item[{String}]{query, }
+\item[{String}]{selecteditems}
+\end{DoxyParamCaption}
+)}\hypertarget{classcom_1_1homework_1_1yunus_1_1_db_yunus_a36c0889028f98b4c5d823f17c3efbd71}{}\label{classcom_1_1homework_1_1yunus_1_1_db_yunus_a36c0889028f98b4c5d823f17c3efbd71}
+Inserts the saved data to database according to given string values 
+\begin{DoxyParams}{Parameters}
+{\em timestamp} & time that search is made \\
+\hline
+{\em query} & query that is searched \\
+\hline
+{\em selecteditems} & number of rows that selected \\
 \hline
 \end{DoxyParams}
 \index{com\+::homework\+::yunus\+::\+Db\+Yunus@{com\+::homework\+::yunus\+::\+Db\+Yunus}!search@{search}}
