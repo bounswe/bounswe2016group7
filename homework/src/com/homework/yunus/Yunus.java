@@ -21,7 +21,8 @@ import javax.servlet.http.HttpServletResponse;
 public class Yunus extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	DbYunus dao = new DbYunus("yunus", "root", "group7");
-	Vector<ModelYunus> data;   
+	Vector<ModelYunus> data; 
+	
     /**
      * @see HttpServlet#HttpServlet()
      */
