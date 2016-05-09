@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['necil',['Necil',['../classcom_1_1homework_1_1necil_1_1_necil.html',1,'com::homework::necil']]]
+  ['modelaydin',['ModelAydin',['../classcom_1_1homework_1_1aydin_1_1_model_aydin.html',1,'com::homework::aydin']]],
+  ['modelyunus',['ModelYunus',['../classcom_1_1homework_1_1yunus_1_1_model_yunus.html',1,'com::homework::yunus']]]
 ];

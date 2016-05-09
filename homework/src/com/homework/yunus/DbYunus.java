@@ -7,8 +7,20 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Vector;
 
+/**
+ * Database implementation class for Yunus package.
+ * Uses jdbc to access mysql data
+ * @author Yunus
+ *
+ */
 public class DbYunus {
 	Connection connection = null;
+	/**
+	 * 
+	 * @param dbName database name of the package user
+	 * @param username mysql username default "root"
+	 * @param password mysql password
+	 */
 	public DbYunus(String dbName,String username,String password)
 	{
     	try {
@@ -26,10 +38,18 @@ public class DbYunus {
     		return;
     	}
     }
+	/**
+	 * Gets the connection
+	 * @return connection
+	 */
 	public Connection getConnection()
 	{
 		return connection;
 	}
+	/**
+	 * Initializes the database to given data list from sparql query result.
+	 * @param data parsed and modeled data that comes from sparql query result
+	 */
 	public void init(Vector<ModelYunus> data) {
 		try {
 			Statement stm = connection.createStatement();
@@ -47,6 +67,10 @@ public class DbYunus {
 		}
 		
 	}
+	/**
+	 * Deletes all data on the table to reset the database.
+	 * Initialization is usually used after this method.
+	 */
 	public void delete() {
 		try {
 			Statement stm = connection.createStatement();
@@ -56,10 +80,15 @@ public class DbYunus {
 			e.printStackTrace();
 		}
 	}
+	/**
+	 * Searchs data on mysql database according to given input string
+	 * @param str Country name
+	 * @return data that is the result of the search
+	 */
 	public Vector<ModelYunus> search(String str) {
 		Vector<ModelYunus> returnList = new Vector<ModelYunus>();
 		str = str.replaceAll(" ", "%");
-		System.out.println(str);
+		//System.out.println(str);
 		try {
 			Statement stm = connection.createStatement();
 			String sql = "SELECT * FROM yunusitems WHERE country LIKE '%" + str + "%'";

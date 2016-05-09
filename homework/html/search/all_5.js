@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['kubra',['Kubra',['../classcom_1_1homework_1_1kubra_1_1_kubra.html',1,'com::homework::kubra']]],
-  ['kubra',['Kubra',['../classcom_1_1homework_1_1kubra_1_1_kubra.html#a426ba02e54e1b29f0faad26c3445c4f5',1,'com::homework::kubra::Kubra']]],
-  ['kubra_2ejava',['Kubra.java',['../_kubra_8java.html',1,'']]]
+  ['init',['init',['../classcom_1_1homework_1_1aydin_1_1_d_b_aydin.html#a285721a7c0b3ed8dbfc2086cf47e82b5',1,'com.homework.aydin.DBAydin.init()'],['../classcom_1_1homework_1_1yunus_1_1_db_yunus.html#af545ad91b2ddf224346cb4914bd36583',1,'com.homework.yunus.DbYunus.init()']]]
 ];

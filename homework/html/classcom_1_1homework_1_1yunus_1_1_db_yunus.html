@@ -101,8 +101,16 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a0471eb6b18272009f3bd3728510f4c6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5cdbf15a8027a2d8ff2201d451e12297"><td class="memItemLeft" align="right" valign="top">Connection&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1homework_1_1yunus_1_1_db_yunus.html#a5cdbf15a8027a2d8ff2201d451e12297">getConnection</a> ()</td></tr>
 <tr class="separator:a5cdbf15a8027a2d8ff2201d451e12297"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af545ad91b2ddf224346cb4914bd36583"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1homework_1_1yunus_1_1_db_yunus.html#af545ad91b2ddf224346cb4914bd36583">init</a> (Vector&lt; <a class="el" href="classcom_1_1homework_1_1yunus_1_1_model_yunus.html">ModelYunus</a> &gt; data)</td></tr>
+<tr class="separator:af545ad91b2ddf224346cb4914bd36583"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac0f46ce9c1b762a530e4f19fae4e0f01"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1homework_1_1yunus_1_1_db_yunus.html#ac0f46ce9c1b762a530e4f19fae4e0f01">delete</a> ()</td></tr>
+<tr class="separator:ac0f46ce9c1b762a530e4f19fae4e0f01"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3010b549e3a1b7b21d63c65f66d5a7eb"><td class="memItemLeft" align="right" valign="top">Vector&lt; <a class="el" href="classcom_1_1homework_1_1yunus_1_1_model_yunus.html">ModelYunus</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1homework_1_1yunus_1_1_db_yunus.html#a3010b549e3a1b7b21d63c65f66d5a7eb">search</a> (String str)</td></tr>
+<tr class="separator:a3010b549e3a1b7b21d63c65f66d5a7eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Database implementation class for <a class="el" href="classcom_1_1homework_1_1yunus_1_1_yunus.html">Yunus</a> package. Uses jdbc to access mysql data </p><dl class="section author"><dt>Author</dt><dd><a class="el" href="classcom_1_1homework_1_1yunus_1_1_yunus.html">Yunus</a> </dd></dl>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a0471eb6b18272009f3bd3728510f4c6c"></a>
 <div class="memitem">
 <div class="memproto">
@@ -132,10 +140,34 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dbName</td><td>database name of the package user </td></tr>
+    <tr><td class="paramname">username</td><td>mysql username default "root" </td></tr>
+    <tr><td class="paramname">password</td><td>mysql password </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="ac0f46ce9c1b762a530e4f19fae4e0f01"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void com.homework.yunus.DbYunus.delete </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Deletes all data on the table to reset the database. Initialization is usually used after this method. </p>
+
+</div>
+</div>
 <a class="anchor" id="a5cdbf15a8027a2d8ff2201d451e12297"></a>
 <div class="memitem">
 <div class="memproto">
@@ -148,6 +180,52 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Gets the connection </p><dl class="section return"><dt>Returns</dt><dd>connection </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="af545ad91b2ddf224346cb4914bd36583"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void com.homework.yunus.DbYunus.init </td>
+          <td>(</td>
+          <td class="paramtype">Vector&lt; <a class="el" href="classcom_1_1homework_1_1yunus_1_1_model_yunus.html">ModelYunus</a> &gt;&#160;</td>
+          <td class="paramname"><em>data</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Initializes the database to given data list from sparql query result. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">data</td><td>parsed and modeled data that comes from sparql query result </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a3010b549e3a1b7b21d63c65f66d5a7eb"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Vector&lt;<a class="el" href="classcom_1_1homework_1_1yunus_1_1_model_yunus.html">ModelYunus</a>&gt; com.homework.yunus.DbYunus.search </td>
+          <td>(</td>
+          <td class="paramtype">String&#160;</td>
+          <td class="paramname"><em>str</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Searchs data on mysql database according to given input string </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">str</td><td>Country name </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>data that is the result of the search </dd></dl>
 
 </div>
 </div>

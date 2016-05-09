@@ -19,6 +19,11 @@ import com.hp.hpl.jena.query.QueryFactory;
 import com.hp.hpl.jena.query.ResultSet;
 import com.hp.hpl.jena.query.ResultSetFormatter;
 
+/**
+ * Sparql implementation class of Yunus.
+ * @author Yunus
+ *
+ */
 public class SparqlYunus {
 	private ResultSet results;
 	
@@ -39,13 +44,22 @@ public class SparqlYunus {
 			+ "}"
 			+ "ORDER BY ?countryLabel" 
 			;  
-	
+	/**
+	 * Constructor of the Class.
+	 * Executes the sparql query and gives it to the results parameter.
+	 */
 	public SparqlYunus()
 	{
         Query query = QueryFactory.create(squery); 
         QueryExecution qExe = QueryExecutionFactory.sparqlService( "https://query.wikidata.org/sparql", query );
         results = qExe.execSelect();
 	}
+	/**
+	 * Converts String XML files to proper form that it can be parsed.
+	 * @param xml XML as String
+	 * @return document that is parsed.
+	 * @throws Exception
+	 */
 	public static Document loadXMLFromString(String xml) throws Exception
 	{
 	    DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -53,6 +67,10 @@ public class SparqlYunus {
 	    InputSource is = new InputSource(new StringReader(xml));
 	    return builder.parse(is);
 	}
+	/**
+	 * Parses the data and returns it to the servlet.
+	 * @return Model vector that holds the data.
+	 */
 	public Vector<ModelYunus> getData(){
 		Document dcmnt;
 		Vector<ModelYunus> returnList = new Vector<ModelYunus>();

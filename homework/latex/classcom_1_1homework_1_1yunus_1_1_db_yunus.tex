@@ -6,7 +6,19 @@
 \hyperlink{classcom_1_1homework_1_1yunus_1_1_db_yunus_a0471eb6b18272009f3bd3728510f4c6c}{Db\+Yunus} (String db\+Name, String username, String password)
 \item 
 Connection \hyperlink{classcom_1_1homework_1_1yunus_1_1_db_yunus_a5cdbf15a8027a2d8ff2201d451e12297}{get\+Connection} ()
+\item 
+void \hyperlink{classcom_1_1homework_1_1yunus_1_1_db_yunus_af545ad91b2ddf224346cb4914bd36583}{init} (Vector$<$ \hyperlink{classcom_1_1homework_1_1yunus_1_1_model_yunus}{Model\+Yunus} $>$ data)
+\item 
+void \hyperlink{classcom_1_1homework_1_1yunus_1_1_db_yunus_ac0f46ce9c1b762a530e4f19fae4e0f01}{delete} ()
+\item 
+Vector$<$ \hyperlink{classcom_1_1homework_1_1yunus_1_1_model_yunus}{Model\+Yunus} $>$ \hyperlink{classcom_1_1homework_1_1yunus_1_1_db_yunus_a3010b549e3a1b7b21d63c65f66d5a7eb}{search} (String str)
 \end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Database implementation class for \hyperlink{classcom_1_1homework_1_1yunus_1_1_yunus}{Yunus} package. Uses jdbc to access mysql data \begin{DoxyAuthor}{Author}
+\hyperlink{classcom_1_1homework_1_1yunus_1_1_yunus}{Yunus} 
+\end{DoxyAuthor}
 
 
 \subsection{Constructor \& Destructor Documentation}
@@ -20,15 +32,61 @@ Connection \hyperlink{classcom_1_1homework_1_1yunus_1_1_db_yunus_a5cdbf15a8027a2
 \end{DoxyParamCaption}
 )}\hypertarget{classcom_1_1homework_1_1yunus_1_1_db_yunus_a0471eb6b18272009f3bd3728510f4c6c}{}\label{classcom_1_1homework_1_1yunus_1_1_db_yunus_a0471eb6b18272009f3bd3728510f4c6c}
 
+\begin{DoxyParams}{Parameters}
+{\em db\+Name} & database name of the package user \\
+\hline
+{\em username} & mysql username default \char`\"{}root\char`\"{} \\
+\hline
+{\em password} & mysql password \\
+\hline
+\end{DoxyParams}
+
 
 \subsection{Member Function Documentation}
-\index{com\+::homework\+::yunus\+::\+Db\+Yunus@{com\+::homework\+::yunus\+::\+Db\+Yunus}!get\+Connection@{get\+Connection}}
+\index{com\+::homework\+::yunus\+::\+Db\+Yunus@{com\+::homework\+::yunus\+::\+Db\+Yunus}!delete@{delete}}
+\index{delete@{delete}!com\+::homework\+::yunus\+::\+Db\+Yunus@{com\+::homework\+::yunus\+::\+Db\+Yunus}}
+\subsubsection[{\texorpdfstring{delete()}{delete()}}]{\setlength{\rightskip}{0pt plus 5cm}void com.\+homework.\+yunus.\+Db\+Yunus.\+delete (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classcom_1_1homework_1_1yunus_1_1_db_yunus_ac0f46ce9c1b762a530e4f19fae4e0f01}{}\label{classcom_1_1homework_1_1yunus_1_1_db_yunus_ac0f46ce9c1b762a530e4f19fae4e0f01}
+Deletes all data on the table to reset the database. Initialization is usually used after this method. \index{com\+::homework\+::yunus\+::\+Db\+Yunus@{com\+::homework\+::yunus\+::\+Db\+Yunus}!get\+Connection@{get\+Connection}}
 \index{get\+Connection@{get\+Connection}!com\+::homework\+::yunus\+::\+Db\+Yunus@{com\+::homework\+::yunus\+::\+Db\+Yunus}}
 \subsubsection[{\texorpdfstring{get\+Connection()}{getConnection()}}]{\setlength{\rightskip}{0pt plus 5cm}Connection com.\+homework.\+yunus.\+Db\+Yunus.\+get\+Connection (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
 )}\hypertarget{classcom_1_1homework_1_1yunus_1_1_db_yunus_a5cdbf15a8027a2d8ff2201d451e12297}{}\label{classcom_1_1homework_1_1yunus_1_1_db_yunus_a5cdbf15a8027a2d8ff2201d451e12297}
+Gets the connection \begin{DoxyReturn}{Returns}
+connection 
+\end{DoxyReturn}
+\index{com\+::homework\+::yunus\+::\+Db\+Yunus@{com\+::homework\+::yunus\+::\+Db\+Yunus}!init@{init}}
+\index{init@{init}!com\+::homework\+::yunus\+::\+Db\+Yunus@{com\+::homework\+::yunus\+::\+Db\+Yunus}}
+\subsubsection[{\texorpdfstring{init(\+Vector$<$ Model\+Yunus $>$ data)}{init(Vector< ModelYunus > data)}}]{\setlength{\rightskip}{0pt plus 5cm}void com.\+homework.\+yunus.\+Db\+Yunus.\+init (
+\begin{DoxyParamCaption}
+\item[{Vector$<$ {\bf Model\+Yunus} $>$}]{data}
+\end{DoxyParamCaption}
+)}\hypertarget{classcom_1_1homework_1_1yunus_1_1_db_yunus_af545ad91b2ddf224346cb4914bd36583}{}\label{classcom_1_1homework_1_1yunus_1_1_db_yunus_af545ad91b2ddf224346cb4914bd36583}
+Initializes the database to given data list from sparql query result. 
+\begin{DoxyParams}{Parameters}
+{\em data} & parsed and modeled data that comes from sparql query result \\
+\hline
+\end{DoxyParams}
+\index{com\+::homework\+::yunus\+::\+Db\+Yunus@{com\+::homework\+::yunus\+::\+Db\+Yunus}!search@{search}}
+\index{search@{search}!com\+::homework\+::yunus\+::\+Db\+Yunus@{com\+::homework\+::yunus\+::\+Db\+Yunus}}
+\subsubsection[{\texorpdfstring{search(\+String str)}{search(String str)}}]{\setlength{\rightskip}{0pt plus 5cm}Vector$<${\bf Model\+Yunus}$>$ com.\+homework.\+yunus.\+Db\+Yunus.\+search (
+\begin{DoxyParamCaption}
+\item[{String}]{str}
+\end{DoxyParamCaption}
+)}\hypertarget{classcom_1_1homework_1_1yunus_1_1_db_yunus_a3010b549e3a1b7b21d63c65f66d5a7eb}{}\label{classcom_1_1homework_1_1yunus_1_1_db_yunus_a3010b549e3a1b7b21d63c65f66d5a7eb}
+Searchs data on mysql database according to given input string 
+\begin{DoxyParams}{Parameters}
+{\em str} & Country name \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+data that is the result of the search 
+\end{DoxyReturn}
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}

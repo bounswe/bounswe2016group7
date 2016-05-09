@@ -15,12 +15,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class Yunus connects to database
+ * Servlet implementation of Yunus.
+ * @author Yunus
+ *
  */
 @WebServlet("/Yunus")
 public class Yunus extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	DbYunus dao = new DbYunus("yunus", "root", "group7");
+	DbYunus dao = new DbYunus("yunus", "root", "");
 	Vector<ModelYunus> data; 
 	
     /**
@@ -31,7 +33,9 @@ public class Yunus extends HttpServlet {
     }
 
 	/**
+	 * Main page of the application.
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * 
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html");
@@ -56,6 +60,10 @@ public class Yunus extends HttpServlet {
     			+ "</form>");
 		out.println("</html>");
 	}
+	/**
+	 * Action controller of the servlet.
+	 * Make methods work when buttons are pressed.
+	 */
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setContentType("text/html");
