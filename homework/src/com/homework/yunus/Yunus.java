@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Vector;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -35,7 +36,7 @@ public class Yunus extends HttpServlet {
         PrintWriter out = response.getWriter(); /**< Our writer to type html codes */
         out.println("<html>");
         
-		DbYunus dao = new DbYunus("test", "root", "");
+		DbYunus dao = new DbYunus("test", "root", "group7");
 		Connection connection = dao.getConnection(); /**< database connection variable*/
 		
     	if (connection != null) {
@@ -44,22 +45,10 @@ public class Yunus extends HttpServlet {
     		out.println("Failed to make connection!</br>");
     	}
         
-    	
-    	try {
-			Statement st = connection.createStatement();
-			ResultSet rs = st.executeQuery("SELECT iduser,name,surname from users");
-			while (rs.next()) {
-				String userid = rs.getString("IDUSER");
-				String username = rs.getString("NAME");
-				String surname = rs.getString("SURNAME");	
-				out.println(userid+ " "+username + " " +surname + "</br>");
-			}
-		} catch (SQLException e) {
-			out.print("Valla ulasamiyoz ki </br>");
-			e.printStackTrace();
-		}
     	SparqlYunus sparql = new SparqlYunus();
-        out.println(sparql.getData());
+		Vector<ModelYunus> data = sparql.getData();
+		for(int i=0;i<data.size();i++)
+			out.println(data.elementAt(i).getCountry() + " " + data.elementAt(i).getCapital() + "</br>");
     	out.println("</html>");
 
 	}
