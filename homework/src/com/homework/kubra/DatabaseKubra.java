@@ -63,7 +63,6 @@ public class DatabaseKubra {
 
 	public Vector<Datas> search(String str) {
 		Vector<Datas> returnList = new Vector<Datas>();
-		str = str.replaceAll(" ", "%");
 		try {
 			Statement stm = connection.createStatement();
 			String sql = "SELECT * FROM kubraitems WHERE LIKE '%" + str + "%'";

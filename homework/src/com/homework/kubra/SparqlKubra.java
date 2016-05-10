@@ -1,6 +1,5 @@
 package com.homework.kubra;
 
-import java.io.PrintWriter;
 import java.io.StringReader;
 import java.util.Vector;
 
@@ -37,26 +36,14 @@ public class SparqlKubra {
 			+ "SERVICE wikibase:label { bd:serviceParam wikibase:language \"en\" }"
 			+"?discoverer rdfs:label ?discovererLabel ."
 			+"?planet rdfs:label ?planetLabel  "
-			+"}"
 			+ "} limit 1000" 
 			;  
-	/**
-	 * Constructor of the Class.
-	 * By using jena library functions, takes the squery string and 
-	 * takes the result as a ResultSet
-	 */
 	public SparqlKubra()
 	{
         Query query = QueryFactory.create(squery); 
         QueryExecution qExe = QueryExecutionFactory.sparqlService( "https://query.wikidata.org/sparql", query );
         results = qExe.execSelect();
 	}
-	/**
-	 * Converts String XML files to proper form that it can be parsed.
-	 * @param xml XML as String
-	 * @return document that is parsed.
-	 * @throws Exception
-	 */
 	public static Document loadXMLFromString(String xml) throws Exception
 	{
 	    DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -64,10 +51,6 @@ public class SparqlKubra {
 	    InputSource is = new InputSource(new StringReader(xml));
 	    return builder.parse(is);
 	}
-	/**
-	 * Parses the data and returns it to the servlet.
-	 * @return Model vector that holds the data.
-	 */
 	public Vector<Datas> getData(){
 		Document dcmnt;
 		Vector<Datas> returnList = new Vector<Datas>();
@@ -80,16 +63,9 @@ public class SparqlKubra {
 			{
 				Element result = (Element) resultList.item(i);
 				NodeList current = result.getElementsByTagName("binding");
-				if(current.getLength() != 4) continue;
-				if(current.item(1).getTextContent().trim().equals("Chad")) continue;
-				if(current.item(1).getTextContent().trim().equals("Côte d'Ivoire")) continue;
-				if(current.item(1).getTextContent().trim().equals("People's Republic of China")) continue;
-				if(current.item(1).getTextContent().trim().equals("Tonga")) continue;
-				if(current.item(1).getTextContent().trim().equals("Mongolian People's Republic")) continue;
 				returnList.add(new Datas(current.item(1).getTextContent().trim(),current.item(2).getTextContent().trim()));
 			}
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return returnList;
