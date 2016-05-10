@@ -46,7 +46,8 @@ public class SparqlYunus {
 			;  
 	/**
 	 * Constructor of the Class.
-	 * Executes the sparql query and gives it to the results parameter.
+	 * By using jena library functions, takes the squery string and 
+	 * takes the result as a ResultSet
 	 */
 	public SparqlYunus()
 	{

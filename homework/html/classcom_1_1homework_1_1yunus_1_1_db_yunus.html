@@ -113,7 +113,7 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a35f377c750efbe182daa17daaf9af672"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Database implementation class for <a class="el" href="classcom_1_1homework_1_1yunus_1_1_yunus.html">Yunus</a> package. Uses jdbc to access mysql data </p><dl class="section author"><dt>Author</dt><dd><a class="el" href="classcom_1_1homework_1_1yunus_1_1_yunus.html">Yunus</a> </dd></dl>
+<div class="textblock"><p>Database Layer of <a class="el" href="classcom_1_1homework_1_1yunus_1_1_yunus.html">Yunus</a> package. This class uses jdbc mysql connector library under webapp libs </p><dl class="section author"><dt>Author</dt><dd><a class="el" href="classcom_1_1homework_1_1yunus_1_1_yunus.html">Yunus</a> </dd></dl>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a0471eb6b18272009f3bd3728510f4c6c"></a>
 <div class="memitem">
@@ -146,9 +146,9 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">dbName</td><td>database name of the package user </td></tr>
-    <tr><td class="paramname">username</td><td>mysql username default "root" </td></tr>
-    <tr><td class="paramname">password</td><td>mysql password </td></tr>
+    <tr><td class="paramname">dbName</td><td>User's personal database name </td></tr>
+    <tr><td class="paramname">username</td><td>Mysql server username </td></tr>
+    <tr><td class="paramname">password</td><td>Mysql server password </td></tr>
   </table>
   </dd>
 </dl>
@@ -184,7 +184,7 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Gets the connection </p><dl class="section return"><dt>Returns</dt><dd>connection </dd></dl>
+<p>After constructing the connection, Servlet can get connection by this method </p><dl class="section return"><dt>Returns</dt><dd>Not Null connection </dd></dl>
 
 </div>
 </div>
@@ -200,7 +200,7 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Gets the saved history data from database and returns it as html formatted string </p><dl class="section return"><dt>Returns</dt><dd>string that holds history data as html format </dd></dl>
+<p>Selects the history from database Converts it to a html format that can be written as a string </p><dl class="section return"><dt>Returns</dt><dd>History data as String </dd></dl>
 
 </div>
 </div>
@@ -255,7 +255,7 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Inserts the saved data to database according to given string values </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Saves selected data to database with timestamp of the search and query </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">timestamp</td><td>time that search is made </td></tr>
     <tr><td class="paramname">query</td><td>query that is searched </td></tr>
@@ -279,7 +279,7 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Searchs data on mysql database according to given input string </p><dl class="params"><dt>Parameters</dt><dd>
+<p>According to given input string, searches the query on database on returns parsed Model data as a list </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">str</td><td>Country name </td></tr>
   </table>

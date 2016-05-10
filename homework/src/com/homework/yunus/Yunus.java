@@ -23,7 +23,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/Yunus")
 public class Yunus extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	DbYunus dao = new DbYunus("yunus", "root", "");
+	DbYunus dao = new DbYunus("yunus", "root", "group7");
 	Vector<ModelYunus> data; 
 	static String searchedTerm;
 	
@@ -35,7 +35,7 @@ public class Yunus extends HttpServlet {
     }
 
 	/**
-	 * Main page of the application.
+	 * Starting page of the application.
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 * 
 	 */
@@ -64,7 +64,7 @@ public class Yunus extends HttpServlet {
 		out.println("</html>");
 	}
 	/**
-	 * Action controller of the servlet.
+	 * Looks to the actions of the Servlet.
 	 * Make methods work when buttons are pressed.
 	 */
 	@Override

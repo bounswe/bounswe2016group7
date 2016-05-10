@@ -11,8 +11,18 @@ void \hyperlink{classcom_1_1homework_1_1aydin_1_1_d_b_aydin_a285721a7c0b3ed8dbfc
 \item 
 void \hyperlink{classcom_1_1homework_1_1aydin_1_1_d_b_aydin_a9aba7b406829dd700791d0c4399926be}{delete} ()
 \item 
-Vector$<$ \hyperlink{classcom_1_1homework_1_1aydin_1_1_model_aydin}{Model\+Aydin} $>$ \hyperlink{classcom_1_1homework_1_1aydin_1_1_d_b_aydin_aa7970348bbf02052742008b04cdf013e}{search} (String parameter)
+Vector$<$ \hyperlink{classcom_1_1homework_1_1aydin_1_1_model_aydin}{Model\+Aydin} $>$ \hyperlink{classcom_1_1homework_1_1aydin_1_1_d_b_aydin_a84b7ed5caff4edd908bae8dcd25710fa}{search} (String str)
+\item 
+void \hyperlink{classcom_1_1homework_1_1aydin_1_1_d_b_aydin_a23c6fc87afe0b7b3679a9f50bec53299}{save\+Search} (String timestamp, String query, String selecteditems)
+\item 
+String \hyperlink{classcom_1_1homework_1_1aydin_1_1_d_b_aydin_a1a347fce1988d8c112d148ea817ff2d6}{get\+History} ()
 \end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Database implementation class for \hyperlink{classcom_1_1homework_1_1aydin_1_1_aydin}{Aydin} package. Uses jdbc to acces mysql data. \begin{DoxyAuthor}{Author}
+The Formal Boogieman 
+\end{DoxyAuthor}
 
 
 \subsection{Constructor \& Destructor Documentation}
@@ -25,6 +35,15 @@ Vector$<$ \hyperlink{classcom_1_1homework_1_1aydin_1_1_model_aydin}{Model\+Aydin
 \item[{String}]{password}
 \end{DoxyParamCaption}
 )}\hypertarget{classcom_1_1homework_1_1aydin_1_1_d_b_aydin_a153864fa5798ba91fba168de198a797d}{}\label{classcom_1_1homework_1_1aydin_1_1_d_b_aydin_a153864fa5798ba91fba168de198a797d}
+Constructor. 
+\begin{DoxyParams}{Parameters}
+{\em db\+Name} & Database name of the package user. \\
+\hline
+{\em username} & Default mysql username\+: \char`\"{}root\char`\"{} \\
+\hline
+{\em password} & Default mysql password\+: null \\
+\hline
+\end{DoxyParams}
 
 
 \subsection{Member Function Documentation}
@@ -35,13 +54,26 @@ Vector$<$ \hyperlink{classcom_1_1homework_1_1aydin_1_1_model_aydin}{Model\+Aydin
 {}
 \end{DoxyParamCaption}
 )}\hypertarget{classcom_1_1homework_1_1aydin_1_1_d_b_aydin_a9aba7b406829dd700791d0c4399926be}{}\label{classcom_1_1homework_1_1aydin_1_1_d_b_aydin_a9aba7b406829dd700791d0c4399926be}
-\index{com\+::homework\+::aydin\+::\+D\+B\+Aydin@{com\+::homework\+::aydin\+::\+D\+B\+Aydin}!get\+Connection@{get\+Connection}}
+Deletes the table. Used for resetting the database. \index{com\+::homework\+::aydin\+::\+D\+B\+Aydin@{com\+::homework\+::aydin\+::\+D\+B\+Aydin}!get\+Connection@{get\+Connection}}
 \index{get\+Connection@{get\+Connection}!com\+::homework\+::aydin\+::\+D\+B\+Aydin@{com\+::homework\+::aydin\+::\+D\+B\+Aydin}}
 \subsubsection[{\texorpdfstring{get\+Connection()}{getConnection()}}]{\setlength{\rightskip}{0pt plus 5cm}Connection com.\+homework.\+aydin.\+D\+B\+Aydin.\+get\+Connection (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
 )}\hypertarget{classcom_1_1homework_1_1aydin_1_1_d_b_aydin_aa54ee4985e5a6b99af7606f829d438a9}{}\label{classcom_1_1homework_1_1aydin_1_1_d_b_aydin_aa54ee4985e5a6b99af7606f829d438a9}
+Returns connection. \begin{DoxyReturn}{Returns}
+Connection. 
+\end{DoxyReturn}
+\index{com\+::homework\+::aydin\+::\+D\+B\+Aydin@{com\+::homework\+::aydin\+::\+D\+B\+Aydin}!get\+History@{get\+History}}
+\index{get\+History@{get\+History}!com\+::homework\+::aydin\+::\+D\+B\+Aydin@{com\+::homework\+::aydin\+::\+D\+B\+Aydin}}
+\subsubsection[{\texorpdfstring{get\+History()}{getHistory()}}]{\setlength{\rightskip}{0pt plus 5cm}String com.\+homework.\+aydin.\+D\+B\+Aydin.\+get\+History (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classcom_1_1homework_1_1aydin_1_1_d_b_aydin_a1a347fce1988d8c112d148ea817ff2d6}{}\label{classcom_1_1homework_1_1aydin_1_1_d_b_aydin_a1a347fce1988d8c112d148ea817ff2d6}
+Gets the saved history data from database and returns it as html formatted string. \begin{DoxyReturn}{Returns}
+String that holds history data as html format. 
+\end{DoxyReturn}
 \index{com\+::homework\+::aydin\+::\+D\+B\+Aydin@{com\+::homework\+::aydin\+::\+D\+B\+Aydin}!init@{init}}
 \index{init@{init}!com\+::homework\+::aydin\+::\+D\+B\+Aydin@{com\+::homework\+::aydin\+::\+D\+B\+Aydin}}
 \subsubsection[{\texorpdfstring{init(\+Vector$<$ Model\+Aydin $>$ pre\+Data)}{init(Vector< ModelAydin > preData)}}]{\setlength{\rightskip}{0pt plus 5cm}void com.\+homework.\+aydin.\+D\+B\+Aydin.\+init (
@@ -49,13 +81,44 @@ Vector$<$ \hyperlink{classcom_1_1homework_1_1aydin_1_1_model_aydin}{Model\+Aydin
 \item[{Vector$<$ {\bf Model\+Aydin} $>$}]{pre\+Data}
 \end{DoxyParamCaption}
 )}\hypertarget{classcom_1_1homework_1_1aydin_1_1_d_b_aydin_a285721a7c0b3ed8dbfc2086cf47e82b5}{}\label{classcom_1_1homework_1_1aydin_1_1_d_b_aydin_a285721a7c0b3ed8dbfc2086cf47e82b5}
+Initializes the table with the parsed data returned from sparql query. 
+\begin{DoxyParams}{Parameters}
+{\em pre\+Data} & Sparql query result parsed as X\+ML format. \\
+\hline
+\end{DoxyParams}
+\index{com\+::homework\+::aydin\+::\+D\+B\+Aydin@{com\+::homework\+::aydin\+::\+D\+B\+Aydin}!save\+Search@{save\+Search}}
+\index{save\+Search@{save\+Search}!com\+::homework\+::aydin\+::\+D\+B\+Aydin@{com\+::homework\+::aydin\+::\+D\+B\+Aydin}}
+\subsubsection[{\texorpdfstring{save\+Search(\+String timestamp, String query, String selecteditems)}{saveSearch(String timestamp, String query, String selecteditems)}}]{\setlength{\rightskip}{0pt plus 5cm}void com.\+homework.\+aydin.\+D\+B\+Aydin.\+save\+Search (
+\begin{DoxyParamCaption}
+\item[{String}]{timestamp, }
+\item[{String}]{query, }
+\item[{String}]{selecteditems}
+\end{DoxyParamCaption}
+)}\hypertarget{classcom_1_1homework_1_1aydin_1_1_d_b_aydin_a23c6fc87afe0b7b3679a9f50bec53299}{}\label{classcom_1_1homework_1_1aydin_1_1_d_b_aydin_a23c6fc87afe0b7b3679a9f50bec53299}
+Inserts the saved data to database according to given string values. 
+\begin{DoxyParams}{Parameters}
+{\em timestamp} & Time that search is made. \\
+\hline
+{\em query} & Query that is searched. \\
+\hline
+{\em saveditems} & Number of rows that selected. \\
+\hline
+\end{DoxyParams}
 \index{com\+::homework\+::aydin\+::\+D\+B\+Aydin@{com\+::homework\+::aydin\+::\+D\+B\+Aydin}!search@{search}}
 \index{search@{search}!com\+::homework\+::aydin\+::\+D\+B\+Aydin@{com\+::homework\+::aydin\+::\+D\+B\+Aydin}}
-\subsubsection[{\texorpdfstring{search(\+String parameter)}{search(String parameter)}}]{\setlength{\rightskip}{0pt plus 5cm}Vector$<${\bf Model\+Aydin}$>$ com.\+homework.\+aydin.\+D\+B\+Aydin.\+search (
+\subsubsection[{\texorpdfstring{search(\+String str)}{search(String str)}}]{\setlength{\rightskip}{0pt plus 5cm}Vector$<${\bf Model\+Aydin}$>$ com.\+homework.\+aydin.\+D\+B\+Aydin.\+search (
 \begin{DoxyParamCaption}
-\item[{String}]{parameter}
+\item[{String}]{str}
 \end{DoxyParamCaption}
-)}\hypertarget{classcom_1_1homework_1_1aydin_1_1_d_b_aydin_aa7970348bbf02052742008b04cdf013e}{}\label{classcom_1_1homework_1_1aydin_1_1_d_b_aydin_aa7970348bbf02052742008b04cdf013e}
+)}\hypertarget{classcom_1_1homework_1_1aydin_1_1_d_b_aydin_a84b7ed5caff4edd908bae8dcd25710fa}{}\label{classcom_1_1homework_1_1aydin_1_1_d_b_aydin_a84b7ed5caff4edd908bae8dcd25710fa}
+Searches data on mysql database with the input string from search bar. 
+\begin{DoxyParams}{Parameters}
+{\em str} & President name. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Search result list. 
+\end{DoxyReturn}
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}

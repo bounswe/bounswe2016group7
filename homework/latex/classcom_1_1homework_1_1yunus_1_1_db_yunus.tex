@@ -20,7 +20,7 @@ String \hyperlink{classcom_1_1homework_1_1yunus_1_1_db_yunus_a35f377c750efbe182d
 
 
 \subsection{Detailed Description}
-Database implementation class for \hyperlink{classcom_1_1homework_1_1yunus_1_1_yunus}{Yunus} package. Uses jdbc to access mysql data \begin{DoxyAuthor}{Author}
+Database Layer of \hyperlink{classcom_1_1homework_1_1yunus_1_1_yunus}{Yunus} package. This class uses jdbc mysql connector library under webapp libs \begin{DoxyAuthor}{Author}
 \hyperlink{classcom_1_1homework_1_1yunus_1_1_yunus}{Yunus} 
 \end{DoxyAuthor}
 
@@ -37,11 +37,11 @@ Database implementation class for \hyperlink{classcom_1_1homework_1_1yunus_1_1_y
 )}\hypertarget{classcom_1_1homework_1_1yunus_1_1_db_yunus_a0471eb6b18272009f3bd3728510f4c6c}{}\label{classcom_1_1homework_1_1yunus_1_1_db_yunus_a0471eb6b18272009f3bd3728510f4c6c}
 
 \begin{DoxyParams}{Parameters}
-{\em db\+Name} & database name of the package user \\
+{\em db\+Name} & User\textquotesingle{}s personal database name \\
 \hline
-{\em username} & mysql username default \char`\"{}root\char`\"{} \\
+{\em username} & Mysql server username \\
 \hline
-{\em password} & mysql password \\
+{\em password} & Mysql server password \\
 \hline
 \end{DoxyParams}
 
@@ -61,8 +61,8 @@ Deletes all data on the table to reset the database. Initialization is usually u
 {}
 \end{DoxyParamCaption}
 )}\hypertarget{classcom_1_1homework_1_1yunus_1_1_db_yunus_a5cdbf15a8027a2d8ff2201d451e12297}{}\label{classcom_1_1homework_1_1yunus_1_1_db_yunus_a5cdbf15a8027a2d8ff2201d451e12297}
-Gets the connection \begin{DoxyReturn}{Returns}
-connection 
+After constructing the connection, Servlet can get connection by this method \begin{DoxyReturn}{Returns}
+Not Null connection 
 \end{DoxyReturn}
 \index{com\+::homework\+::yunus\+::\+Db\+Yunus@{com\+::homework\+::yunus\+::\+Db\+Yunus}!get\+History@{get\+History}}
 \index{get\+History@{get\+History}!com\+::homework\+::yunus\+::\+Db\+Yunus@{com\+::homework\+::yunus\+::\+Db\+Yunus}}
@@ -71,8 +71,8 @@ connection
 {}
 \end{DoxyParamCaption}
 )}\hypertarget{classcom_1_1homework_1_1yunus_1_1_db_yunus_a35f377c750efbe182daa17daaf9af672}{}\label{classcom_1_1homework_1_1yunus_1_1_db_yunus_a35f377c750efbe182daa17daaf9af672}
-Gets the saved history data from database and returns it as html formatted string \begin{DoxyReturn}{Returns}
-string that holds history data as html format 
+Selects the history from database Converts it to a html format that can be written as a string \begin{DoxyReturn}{Returns}
+History data as String 
 \end{DoxyReturn}
 \index{com\+::homework\+::yunus\+::\+Db\+Yunus@{com\+::homework\+::yunus\+::\+Db\+Yunus}!init@{init}}
 \index{init@{init}!com\+::homework\+::yunus\+::\+Db\+Yunus@{com\+::homework\+::yunus\+::\+Db\+Yunus}}
@@ -95,7 +95,7 @@ Initializes the database to given data list from sparql query result.
 \item[{String}]{selecteditems}
 \end{DoxyParamCaption}
 )}\hypertarget{classcom_1_1homework_1_1yunus_1_1_db_yunus_a36c0889028f98b4c5d823f17c3efbd71}{}\label{classcom_1_1homework_1_1yunus_1_1_db_yunus_a36c0889028f98b4c5d823f17c3efbd71}
-Inserts the saved data to database according to given string values 
+Saves selected data to database with timestamp of the search and query 
 \begin{DoxyParams}{Parameters}
 {\em timestamp} & time that search is made \\
 \hline
@@ -111,7 +111,7 @@ Inserts the saved data to database according to given string values
 \item[{String}]{str}
 \end{DoxyParamCaption}
 )}\hypertarget{classcom_1_1homework_1_1yunus_1_1_db_yunus_a3010b549e3a1b7b21d63c65f66d5a7eb}{}\label{classcom_1_1homework_1_1yunus_1_1_db_yunus_a3010b549e3a1b7b21d63c65f66d5a7eb}
-Searchs data on mysql database according to given input string 
+According to given input string, searches the query on database on returns parsed Model data as a list 
 \begin{DoxyParams}{Parameters}
 {\em str} & Country name \\
 \hline

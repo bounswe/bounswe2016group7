@@ -8,8 +8,8 @@ import java.sql.Statement;
 import java.util.Vector;
 
 /**
- * Database implementation class for Yunus package.
- * Uses jdbc to access mysql data
+ * Database Layer of Yunus package.
+ * This class uses jdbc mysql connector library under webapp libs
  * @author Yunus
  *
  */
@@ -17,9 +17,9 @@ public class DbYunus {
 	Connection connection = null;
 	/**
 	 * 
-	 * @param dbName database name of the package user
-	 * @param username mysql username default "root"
-	 * @param password mysql password
+	 * @param dbName User's personal database name
+	 * @param username Mysql server username
+	 * @param password Mysql server password
 	 */
 	public DbYunus(String dbName,String username,String password)
 	{
@@ -39,8 +39,8 @@ public class DbYunus {
     	}
     }
 	/**
-	 * Gets the connection
-	 * @return connection
+	 * After constructing the connection, Servlet can get connection by this method
+	 * @return Not Null connection
 	 */
 	public Connection getConnection()
 	{
@@ -81,7 +81,7 @@ public class DbYunus {
 		}
 	}
 	/**
-	 * Searchs data on mysql database according to given input string
+	 * According to given input string, searches the query on database on returns parsed Model data as a list
 	 * @param str Country name
 	 * @return data that is the result of the search
 	 */
@@ -105,7 +105,7 @@ public class DbYunus {
 		return returnList;
 	}
 	/**
-	 * Inserts the saved data to database according to given string values
+	 * Saves selected data to database with timestamp of the search and query
 	 * @param timestamp time that search is made
 	 * @param query query that is searched
 	 * @param selecteditems number of rows that selected
@@ -120,8 +120,9 @@ public class DbYunus {
 		}
 	}
 	/**
-	 * Gets the saved history data from database and returns it as html formatted string
-	 * @return string that holds history data as html format
+	 * Selects the history from database 
+	 * Converts it to a html format that can be written as a string
+	 * @return History data as String
 	 */
 	public String getHistory() {
 		String returnString = "";

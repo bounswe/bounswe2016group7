@@ -105,10 +105,16 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a285721a7c0b3ed8dbfc2086cf47e82b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9aba7b406829dd700791d0c4399926be"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1homework_1_1aydin_1_1_d_b_aydin.html#a9aba7b406829dd700791d0c4399926be">delete</a> ()</td></tr>
 <tr class="separator:a9aba7b406829dd700791d0c4399926be"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa7970348bbf02052742008b04cdf013e"><td class="memItemLeft" align="right" valign="top">Vector&lt; <a class="el" href="classcom_1_1homework_1_1aydin_1_1_model_aydin.html">ModelAydin</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1homework_1_1aydin_1_1_d_b_aydin.html#aa7970348bbf02052742008b04cdf013e">search</a> (String parameter)</td></tr>
-<tr class="separator:aa7970348bbf02052742008b04cdf013e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a84b7ed5caff4edd908bae8dcd25710fa"><td class="memItemLeft" align="right" valign="top">Vector&lt; <a class="el" href="classcom_1_1homework_1_1aydin_1_1_model_aydin.html">ModelAydin</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1homework_1_1aydin_1_1_d_b_aydin.html#a84b7ed5caff4edd908bae8dcd25710fa">search</a> (String str)</td></tr>
+<tr class="separator:a84b7ed5caff4edd908bae8dcd25710fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a23c6fc87afe0b7b3679a9f50bec53299"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1homework_1_1aydin_1_1_d_b_aydin.html#a23c6fc87afe0b7b3679a9f50bec53299">saveSearch</a> (String timestamp, String query, String selecteditems)</td></tr>
+<tr class="separator:a23c6fc87afe0b7b3679a9f50bec53299"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1a347fce1988d8c112d148ea817ff2d6"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1homework_1_1aydin_1_1_d_b_aydin.html#a1a347fce1988d8c112d148ea817ff2d6">getHistory</a> ()</td></tr>
+<tr class="separator:a1a347fce1988d8c112d148ea817ff2d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Database implementation class for <a class="el" href="classcom_1_1homework_1_1aydin_1_1_aydin.html">Aydin</a> package. Uses jdbc to acces mysql data. </p><dl class="section author"><dt>Author</dt><dd>The Formal Boogieman </dd></dl>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a153864fa5798ba91fba168de198a797d"></a>
 <div class="memitem">
 <div class="memproto">
@@ -138,6 +144,14 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Constructor. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dbName</td><td>Database name of the package user. </td></tr>
+    <tr><td class="paramname">username</td><td>Default mysql username: "root" </td></tr>
+    <tr><td class="paramname">password</td><td>Default mysql password: null </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -154,6 +168,7 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Deletes the table. Used for resetting the database. </p>
 
 </div>
 </div>
@@ -169,6 +184,23 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Returns connection. </p><dl class="section return"><dt>Returns</dt><dd>Connection. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a1a347fce1988d8c112d148ea817ff2d6"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">String com.homework.aydin.DBAydin.getHistory </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Gets the saved history data from database and returns it as html formatted string. </p><dl class="section return"><dt>Returns</dt><dd>String that holds history data as html format. </dd></dl>
 
 </div>
 </div>
@@ -185,10 +217,56 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Initializes the table with the parsed data returned from sparql query. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">preData</td><td>Sparql query result parsed as XML format. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
-<a class="anchor" id="aa7970348bbf02052742008b04cdf013e"></a>
+<a class="anchor" id="a23c6fc87afe0b7b3679a9f50bec53299"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void com.homework.aydin.DBAydin.saveSearch </td>
+          <td>(</td>
+          <td class="paramtype">String&#160;</td>
+          <td class="paramname"><em>timestamp</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">String&#160;</td>
+          <td class="paramname"><em>query</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">String&#160;</td>
+          <td class="paramname"><em>selecteditems</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Inserts the saved data to database according to given string values. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">timestamp</td><td>Time that search is made. </td></tr>
+    <tr><td class="paramname">query</td><td>Query that is searched. </td></tr>
+    <tr><td class="paramname">saveditems</td><td>Number of rows that selected. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a84b7ed5caff4edd908bae8dcd25710fa"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -196,11 +274,18 @@ Public Member Functions</h2></td></tr>
           <td class="memname">Vector&lt;<a class="el" href="classcom_1_1homework_1_1aydin_1_1_model_aydin.html">ModelAydin</a>&gt; com.homework.aydin.DBAydin.search </td>
           <td>(</td>
           <td class="paramtype">String&#160;</td>
-          <td class="paramname"><em>parameter</em></td><td>)</td>
+          <td class="paramname"><em>str</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Searches data on mysql database with the input string from search bar. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">str</td><td>President name. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Search result list. </dd></dl>
 
 </div>
 </div>

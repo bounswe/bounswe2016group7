@@ -25,7 +25,7 @@ import com.homework.aydin.DBAydin;
 @WebServlet("/Aydin")
 public class Aydin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	DBAydin d = new DBAydin("aydin", "root", "");
+	DBAydin d = new DBAydin("aydin", "root", "group7");
 	Vector<ModelAydin> preData;
 	Vector<ModelAydin> searchList;
 	static String searched;

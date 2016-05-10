@@ -1,6 +1,6 @@
 package com.homework.yunus;
 /**
- * Data model to represent database
+ * Data model to represent table on the database
  * @author Yunus
  *
  */
