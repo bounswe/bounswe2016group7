@@ -23,6 +23,11 @@ import com.hp.hpl.jena.query.QueryFactory;
 import com.hp.hpl.jena.query.ResultSet;
 import com.hp.hpl.jena.query.ResultSetFormatter;
 
+/**
+ * Sparql query processing implementation class of Aydin.
+ * @author The Formal Boogieman
+ *
+ */
 public class SparqlAydin {
 private ResultSet results;
 	
@@ -43,14 +48,21 @@ private ResultSet results;
 			+ "bd:serviceParam wikibase:language \"en\" ."
 			+ "}"
 			+ "}";
-	
+	/**
+	 * Constructor.
+	 * Executes sparql query and saves the results.
+	 * 
+	 */
 	public SparqlAydin()
 	{
         Query query = QueryFactory.create(squery); 
         QueryExecution qExe = QueryExecutionFactory.sparqlService( "https://query.wikidata.org/sparql", query );
         results = qExe.execSelect();
 	}
-
+	/**
+	 * Parses the sparql query result data into XML format.
+	 * @return XML formatted query data vector. 
+	 */
 	public Vector<ModelAydin> getData(){
 	    DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 	    DocumentBuilder builder;
