@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['kubra',['Kubra',['../classcom_1_1homework_1_1kubra_1_1_kubra.html',1,'com::homework::kubra']]],
-  ['kubra',['Kubra',['../classcom_1_1homework_1_1kubra_1_1_kubra.html#a426ba02e54e1b29f0faad26c3445c4f5',1,'com::homework::kubra::Kubra']]],
-  ['kubra_2ejava',['Kubra.java',['../_kubra_8java.html',1,'']]]
+  ['home',['Home',['../classcom_1_1homework_1_1home_1_1_home.html',1,'com::homework::home']]],
+  ['home',['Home',['../classcom_1_1homework_1_1home_1_1_home.html#ac5127b125cf55fbef4e84aaf0728fd72',1,'com::homework::home::Home']]],
+  ['home_2ejava',['Home.java',['../_home_8java.html',1,'']]]
 ];

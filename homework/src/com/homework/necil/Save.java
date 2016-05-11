@@ -68,7 +68,7 @@ public class Save  extends HttpServlet{
 	 * @throws SQLException
 	 */
 	protected void saveResults(List <Theater> saveList, String ip) throws SQLException{
-		DBNecil database = new DBNecil("assignment6","root","123456");
+		DBNecil database = new DBNecil("necil","root","group7");
 		Connection connection = database.getConnection();
 		for(int i = 0; i < saveList.size(); i++){
 			Statement st = connection.createStatement();

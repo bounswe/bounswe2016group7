@@ -1,9 +1,6 @@
 var searchData=
 [
-  ['modelaydin',['ModelAydin',['../classcom_1_1homework_1_1aydin_1_1_model_aydin.html',1,'com::homework::aydin']]],
-  ['modelaydin',['ModelAydin',['../classcom_1_1homework_1_1aydin_1_1_model_aydin.html#a2b5b3180f1ed08937aaf5026595dfb21',1,'com::homework::aydin::ModelAydin']]],
-  ['modelaydin_2ejava',['ModelAydin.java',['../_model_aydin_8java.html',1,'']]],
-  ['modelyunus',['ModelYunus',['../classcom_1_1homework_1_1yunus_1_1_model_yunus.html#a8892831477618db232c3e7e3dfbb83fc',1,'com::homework::yunus::ModelYunus']]],
-  ['modelyunus',['ModelYunus',['../classcom_1_1homework_1_1yunus_1_1_model_yunus.html',1,'com::homework::yunus']]],
-  ['modelyunus_2ejava',['ModelYunus.java',['../_model_yunus_8java.html',1,'']]]
+  ['kubra',['Kubra',['../classcom_1_1homework_1_1kubra_1_1_kubra.html',1,'com::homework::kubra']]],
+  ['kubra',['Kubra',['../classcom_1_1homework_1_1kubra_1_1_kubra.html#a426ba02e54e1b29f0faad26c3445c4f5',1,'com::homework::kubra::Kubra']]],
+  ['kubra_2ejava',['Kubra.java',['../_kubra_8java.html',1,'']]]
 ];

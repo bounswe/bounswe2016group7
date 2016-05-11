@@ -1,4 +1,7 @@
 var searchData=
 [
-  ['results',['results',['../classcom_1_1homework_1_1aydin_1_1_sparql_aydin.html#ac9dc7c9e7d107274e7034dc9448742b2',1,'com.homework.aydin.SparqlAydin.results()'],['../classcom_1_1homework_1_1yunus_1_1_sparql_yunus.html#a8501e4ed305ac8950893aa8b796a52ad',1,'com.homework.yunus.SparqlYunus.results()']]]
+  ['name',['Name',['../classcom_1_1homework_1_1necil_1_1_theater.html#aab1cd7ccbd3c65248fcde5846356e87c',1,'com::homework::necil::Theater']]],
+  ['necil',['Necil',['../classcom_1_1homework_1_1necil_1_1_necil.html#a1b53c7e47f81edf92d25150a2ecfba5b',1,'com::homework::necil::Necil']]],
+  ['necil',['Necil',['../classcom_1_1homework_1_1necil_1_1_necil.html',1,'com::homework::necil']]],
+  ['necil_2ejava',['Necil.java',['../_necil_8java.html',1,'']]]
 ];

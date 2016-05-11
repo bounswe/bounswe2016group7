@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['president',['President',['../classcom_1_1homework_1_1aydin_1_1_model_aydin.html#af742c233f87d59f308d1fb1dc08922c2',1,'com::homework::aydin::ModelAydin']]]
+  ['discoverer',['Discoverer',['../classcom_1_1homework_1_1kubra_1_1_datas.html#ae3051b78761183beab9a2eec3f21fa3d',1,'com::homework::kubra::Datas']]]
 ];
