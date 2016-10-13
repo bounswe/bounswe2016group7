@@ -1,0 +1,3 @@
+com\bounswe\group7\security\repository\AuthorityRepository.class
+com\bounswe\group7\security\repository\UsersRepository.class
+com\bounswe\group7\security\repository\UserAuthorityRepository.class

@@ -1,0 +1,16 @@
+com\bounswe\group7\rest\Person.class
+com\bounswe\group7\security\controller\AuthenticationRestController.class
+com\bounswe\group7\security\JwtAuthenticationEntryPoint.class
+com\bounswe\group7\security\JwtUserFactory.class
+com\bounswe\group7\security\controller\MethodProtectedRestController.class
+com\bounswe\group7\config\SimpleCORSFilter.class
+com\bounswe\group7\security\controller\UserRestController.class
+com\bounswe\group7\rest\PersonRestService.class
+com\bounswe\group7\security\JwtAuthenticationTokenFilter.class
+com\bounswe\group7\security\JwtUser.class
+com\bounswe\group7\security\JwtTokenUtil.class
+com\bounswe\group7\security\JwtAuthenticationRequest.class
+com\bounswe\group7\security\service\JwtAuthenticationResponse.class
+com\bounswe\group7\Application.class
+com\bounswe\group7\security\service\JwtUserDetailsServiceImpl.class
+com\bounswe\group7\config\WebSecurityConfig.class
