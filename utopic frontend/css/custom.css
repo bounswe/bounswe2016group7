@@ -1,0 +1,116 @@
+/**************************** General Attributes *******************************/
+
+*{
+  outline: none !important;
+}
+
+.clearfix{
+  clear: both;
+}
+
+.content{
+  margin-top: 60px;
+}
+
+.content.no-margin{
+  margin-top: 0;
+}
+
+/**************************** Navbar *******************************/
+
+.navbar-dark{
+  background: #0a6c8e;
+}
+.nav li{
+  display: inline-block;
+  margin-left: -5px;
+}
+.nav li a{
+  padding: 6.8px 10px;
+}
+
+div#search-container {
+  padding: 6px 0;
+  float: left;
+  margin-left: 20px;
+}
+
+#search-container input {
+    width: 250px;
+    padding: 3px 32px 3px 15px;
+    border: none;
+    border-radius: 3px;
+    background: rgba(0, 0, 0, 0.22);
+    color: #fff;
+}
+
+#search-container button {
+    background: none;
+    border: none;
+    position: absolute;
+    right: 2px;
+    top: 6px;
+    padding-left: 8px;
+    color: rgb(251, 251, 251);
+    line-height: 28px;
+    border-left: 1px solid rgba(0, 0, 0, 0.14);
+}
+div#search-container {
+    padding: 6px 0;
+    float: left;
+    margin-left: 20px;
+    position: relative;
+}
+
+/**************************** Buttons *******************************/
+
+.button {
+    border: none;
+    padding: 7px 25px;
+    color: #fff;
+    border-radius: 3px;
+}
+
+.button-green{
+  background: #7ab648;
+}
+
+.button-orange{
+  background: #fec400;
+  color: #fff !important;
+}
+
+.navbar .button-orange{
+  margin-left: 15px;
+}
+
+/**************************** Index Header *******************************/
+
+.header{
+  background-image: url(../images/header1.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh;
+  position: relative;
+}
+
+.header-action{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  color: #fff;
+  text-align: center;
+}
+
+.header-action h1{
+  margin-bottom: 15px;
+}
+.header-action h3{
+  margin-bottom: 35px;
+}
+
+.navbar-brand > img {
+    display: block;
+    max-height: 35px;
+}
