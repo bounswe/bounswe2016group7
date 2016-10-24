@@ -1,4 +1,4 @@
-<h2>Group 7 Software Engineering Project <a href="https://www.cmpe.boun.edu.tr/tr/courses/cmpe352">@Cmpe352 BOUN</a></h2>
+<h2>uTopic: An exploratory learning platform consisting of bite size information. <a href="https://www.cmpe.boun.edu.tr/tr/courses/cmpe352">@Cmpe352 BOUN</a></h2>
 <p>This is a group project developed by Boğaziçi University Computer Engineering students.</p>
 <p>You can check our <a href="https://github.com/bounswe/bounswe2016group7/wiki">Wiki Page </a> for more details and information.</p>
 <p>You can see our  <a href="https://github.com/bounswe/bounswe2016group7/wiki/Project-Description">Project Information </a>,<a href="https://github.com/bounswe/bounswe2016group7/wiki/Sequence-Diagrams">Sequence Diagrams</a>, <a href="https://github.com/bounswe/bounswe2016group7/wiki/>Activity-Diagrams">Activity Diagrams</a>, <a href="https://github.com/bounswe/bounswe2016group7/wiki/Class-Diagrams">Class Diagrams</a>, and <a href="https://github.com/bounswe/bounswe2016group7/wiki/Use-Case-Diagrams">Use Case Diagrams </a>here.</p>
