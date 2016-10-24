@@ -65,3 +65,4 @@ $RECYCLE.BIN/
 /model/target/
 /services-api/target/
 /web-application/target/
+/api-client/target/

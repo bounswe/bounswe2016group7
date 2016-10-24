@@ -22,7 +22,7 @@
     <dependencies>
         <dependency>
             <groupId>com.bounswe.group7</groupId>
-            <artifactId>services-api</artifactId>
+            <artifactId>api-client</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>
