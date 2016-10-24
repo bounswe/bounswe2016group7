@@ -1,4 +1,4 @@
-package com.bounswe.group7.security.repository;
+package com.bounswe.group7.repository;
 
 import org.springframework.data.repository.CrudRepository;
 import com.bounswe.group7.model.security.Users;

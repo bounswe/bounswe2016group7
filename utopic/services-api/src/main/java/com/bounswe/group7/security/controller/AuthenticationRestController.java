@@ -26,9 +26,8 @@ import com.bounswe.group7.model.security.Authority;
 import com.bounswe.group7.model.security.AuthorityName;
 import com.bounswe.group7.model.security.UserAuthority;
 import com.bounswe.group7.model.security.Users;
-import com.bounswe.group7.security.repository.AuthorityRepository;
-import com.bounswe.group7.security.repository.UserAuthorityRepository;
-import com.bounswe.group7.security.repository.UsersRepository;
+import com.bounswe.group7.repository.UserAuthorityRepository;
+import com.bounswe.group7.repository.UsersRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.password.PasswordEncoder;
 

@@ -7,7 +7,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import com.bounswe.group7.model.security.Users;
 import com.bounswe.group7.security.JwtUserFactory;
-import com.bounswe.group7.security.repository.UsersRepository;
+import com.bounswe.group7.repository.UsersRepository;
 
 /**
  * Created by stephan on 20.03.16.

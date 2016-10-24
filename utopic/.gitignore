@@ -61,3 +61,7 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+/repository/target/
+/model/target/
+/services-api/target/
+/web-application/target/
