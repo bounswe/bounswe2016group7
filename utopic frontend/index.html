@@ -6,12 +6,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <link rel="stylesheet" href="tether/css/tether.min.css"/>
+    <link rel="stylesheet" href="remodal/remodal-default-theme.css"/>
+    <link rel="stylesheet" href="remodal/remodal.css"/>
     <link rel="stylesheet" href="css/bootstrap.css"/>
     <link rel="stylesheet" href="devicon/devicon.min.css"/>
-    <link rel="stylesheet" href="css/custom.css"/>
     <link rel="stylesheet" href="font-awesome-4.6.3/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="css/custom.css"/>
   </head>
   <body>
+    <div class="remodal landing-modal" data-remodal-id="login-modal">
+      <button data-remodal-action="close" class="remodal-close"></button>
+      <form name="register">
+        <!-- buraya login formu doldurulacak -->
+      </form>
+      <button data-remodal-action="confirm" class="button button-green">SIGN UP</button>
+    </div>
+    <div class="remodal landing-modal" data-remodal-id="register-modal">
+      <button data-remodal-action="close" class="remodal-close"></button>
+      <form name="register">
+        <input class="form-control" type="text" placeholder="Username"/>
+        <input class="form-control" type="text" placeholder="Email"/>
+        <input class="form-control" type="password" placeholder="Password"/>
+        <input class="form-control" type="password" placeholder="Re-Password"/>
+        
+        <div class="form-group" id="register-status">
+          <span>I am a/an...</span>
+          <div class="status-container">
+            <label for="status2">Creator</label>
+            <input type="radio" class="form-control" name="status" id="status2">
+          </div>
+          <div class="status-container">
+            <label for="status1">Explorer</label>
+            <input type="radio" class="form-control" name="status" id="status1">
+          </div>
+          <div class="clearfix"></div>
+        </div>
+      </form>
+      <button data-remodal-action="confirm" class="button button-green">SIGN UP</button>
+    </div>
     <nav class="navbar navbar-fixed-top navbar-dark">
       <div class="container">
         <a class="navbar-brand" href="#"><img src="images/logo.png"/></a>
@@ -23,8 +55,8 @@
         </div>
         <ul class="nav navbar-nav pull-md-right">
           <li><a class="nav-item nav-link active" href="#about">HOME<span class="sr-only">(current)</span></a></li>
-          <li><a class="nav-item nav-link" href="#skills">LOGIN</a></li>
-          <li><a class="nav-item nav-link button button-orange" href="#portfolio">SIGNUP</a></li>
+          <li><a class="nav-item nav-link" href="#login-modal">LOGIN</a></li>
+          <li><a href="#register-modal" class="nav-item nav-link button button-orange">SIGNUP</a></li>
         </ul>
       </div>
     </nav>
@@ -33,12 +65,81 @@
         <div class="header-action">
           <h1>AWESOME WORDS CATCHES USER</h1>
           <h3>MORE AWESOME WORDS</h3>
-          <button class="button button-orange">SIGN UP NOW</button>
+          <button data-remodal-target="register-modal" class="button button-orange">SIGN UP NOW</button>
+        </div>
+      </div>
+      <div class="container" id="landing-content-container">
+        <div class="panel">
+          <div class="panel-header">
+            <span class="title">Trending Topics</span>
+            <a href="#">>> See all</a>
+          </div>
+          <div class="row">
+            <div class="col-xs-6 col-sm-4 col-md-3 panel-column">
+              <div class="topic-thumb">
+                <p class="topic-title">Topic 1</p>
+                <span>Discussions: 15</span>
+                <span>Comments: 12</span>
+                <span>Interested: 5</span>
+                <a href="#">Topic Page</a>
+                <div class="clearfix"></div>
+              </div>
+            </div>
+            <div class="col-xs-6 col-sm-4 col-md-3 panel-column">
+              <div class="topic-thumb">
+                <p class="topic-title">Topic 1</p>
+                <span>Discussions: 15</span>
+                <span>Comments: 12</span>
+                <span>Interested: 5</span>
+                <a href="#">Topic Page</a>
+                <div class="clearfix"></div>
+              </div>
+            </div>
+            <div class="col-xs-6 col-sm-4 col-md-3 panel-column">
+              <div class="topic-thumb">
+                <p class="topic-title">Topic 1</p>
+                <span>Discussions: 15</span>
+                <span>Comments: 12</span>
+                <span>Interested: 5</span>
+                <a href="#">Topic Page</a>
+                <div class="clearfix"></div>
+              </div>
+            </div>
+            <div class="col-xs-6 col-sm-4 col-md-3 panel-column">
+              <div class="topic-thumb">
+                <p class="topic-title">Topic 1</p>
+                <span>Discussions: 15</span>
+                <span>Comments: 12</span>
+                <span>Interested: 5</span>
+                <a href="#">Topic Page</a>
+                <div class="clearfix"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="panel-header centered">
+            <span class="title">Categories</span>
+          </div>
+          <ul class="categories">
+            <li><a href="#">Art</a></li>
+            <li><a href="#">Sports</a></li>
+            <li><a href="#">Technology</a></li>
+            <li><a href="#">Photography</a></li>
+            <li><a href="#">Music</a></li>
+            <li><a href="#">History</a></li>
+          </ul>
+          <div class="centered">
+            <input id="topic-search" type="text" class="form-control" placeholder="Search Other Topics">
+          </div>
+          <div class="row">
+          </div>
         </div>
       </div>
     </div>
     <script type="text/javascript" src="js/jquery-3.1.0.min.js"></script>
     <script type="text/javascript" src="tether/js/tether.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="remodal/remodal.min.js"></script>
   </body>
 </html>
