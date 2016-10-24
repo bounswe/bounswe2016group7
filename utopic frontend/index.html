@@ -16,10 +16,14 @@
   <body>
     <div class="remodal landing-modal" data-remodal-id="login-modal">
       <button data-remodal-action="close" class="remodal-close"></button>
+				<br/>
       <form name="register">
-        <!-- buraya login formu doldurulacak -->
-      </form>
-      <button data-remodal-action="confirm" class="button button-green">SIGN UP</button>
+        <button data-remodal-action="close" class="remodal-close"></button>
+      <form name="register">
+        <input class="form-control" type="text" placeholder="Username or Email"/>
+        <input class="form-control" type="password" placeholder="Password"/>
+        <button type="submit" data-remodal-action="confirm" class="button button-green">LOG IN</button>
+      </form>   
     </div>
     <div class="remodal landing-modal" data-remodal-id="register-modal">
       <button data-remodal-action="close" class="remodal-close"></button>
@@ -41,8 +45,9 @@
           </div>
           <div class="clearfix"></div>
         </div>
+        <button type="submit" data-remodal-action="confirm" class="button button-green">SIGN UP</button>
       </form>
-      <button data-remodal-action="confirm" class="button button-green">SIGN UP</button>
+
     </div>
     <nav class="navbar navbar-fixed-top navbar-dark">
       <div class="container">
@@ -54,7 +59,6 @@
           </form>
         </div>
         <ul class="nav navbar-nav pull-md-right">
-          <li><a class="nav-item nav-link active" href="#about">HOME<span class="sr-only">(current)</span></a></li>
           <li><a class="nav-item nav-link" href="#login-modal">LOGIN</a></li>
           <li><a href="#register-modal" class="nav-item nav-link button button-orange">SIGNUP</a></li>
         </ul>
