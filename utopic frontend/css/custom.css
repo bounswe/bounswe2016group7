@@ -216,6 +216,21 @@ ul.categories li{
   max-width: 300px;
   margin: 0 auto;
 }
+/**************************** Validation CSS *******************************/
+.valdr-message.ng-valid,
+.valdr-message.ng-untouched{
+	display: none;
+}
+.valdr-message {
+    font-family: inherit !important;
+    font-size: 15px;
+    font-weight: 400;
+    color: #d54343;
+	  text-align: center;
+}
+.ng-submitted .valdr-message{
+	display: block;
+}
 /**************************** Mobile CSS *******************************/
 @media only screen and (min-width: 641px){
   .remodal.landing-modal {
