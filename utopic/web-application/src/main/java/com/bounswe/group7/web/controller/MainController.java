@@ -27,5 +27,11 @@ public class MainController {
         hello.addObject("message", "Hello World!");
         return hello;
     }
+    
+    @RequestMapping("/")
+    public ModelAndView index(HttpServletRequest request, HttpServletResponse response){
+        ModelAndView index = new ModelAndView("index");
+        return index;
+    }
 
 }

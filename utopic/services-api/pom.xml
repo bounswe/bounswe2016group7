@@ -13,7 +13,7 @@
 
     <parent>
         <groupId>com.bounswe.group7</groupId>
-        <artifactId>twparent</artifactId>
+        <artifactId>utopic</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
 

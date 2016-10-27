@@ -59,6 +59,14 @@ public class Users {
     @Transient
     private String token;
 
+    public Users() {
+    }
+
+    public Users(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+
     public String getToken() {
         return token;
     }
@@ -157,7 +165,7 @@ public class Users {
 
     @Override
     public String toString() {
-        return "Users{" + "id=" + id + ", username=" + username + ", email=" + email + ", firstname=" + firstname + ", middlename=" + middlename + ", lastname=" + lastname + ", password=" + password + ", gender=" + gender + '}';
+        return "Users{" + "id=" + id + ", username=" + username + ", email=" + email + ", firstname=" + firstname + ", middlename=" + middlename + ", lastname=" + lastname + ", password=" + password + ", gender=" + gender + ", enabled=" + enabled + ", lastPasswordResetDate=" + lastPasswordResetDate + ", authorities=" + authorities + ", token=" + token + '}';
     }
 
 }
