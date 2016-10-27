@@ -13,8 +13,8 @@
     <link rel="stylesheet" href="font-awesome-4.6.3/css/font-awesome.min.css"/>
     <link rel="stylesheet" href="css/custom.css"/>
   </head>
-  <body ng-app="mainApp" ng-controller="indexController">
-    <div class="remodal landing-modal" data-remodal-id="login-modal">
+  <body ng-app="mainApp">
+    <div class="remodal landing-modal" ng-controller="indexController" data-remodal-id="login-modal">
       <button data-remodal-action="close" class="remodal-close"></button>
 				<br/>
         <button data-remodal-action="close" class="remodal-close"></button>
@@ -28,14 +28,21 @@
         <button type="submit" data-remodal-action="confirm" class="button button-green">LOG IN</button>
       </form>   
     </div>
-    <div class="remodal landing-modal" data-remodal-id="register-modal">
+    <div class="remodal landing-modal" ng-controller="indexController" data-remodal-id="register-modal">
       <button data-remodal-action="close" class="remodal-close"></button>
-      <form name="register">
-        <input class="form-control" type="text" placeholder="Username"/>
-        <input class="form-control" type="text" placeholder="Email"/>
-        <input class="form-control" type="password" placeholder="Password"/>
-        <input class="form-control" type="password" placeholder="Re-Password"/>
-        
+      <form name="register"  novalidate valdr-type="Register">
+				<div valdr-form-group>
+        	<input name="username" id="username" class="form-control" type="text" placeholder="Username" ng-model="user.username"/>
+				</div>
+				<div valdr-form-group>	
+        	<input name="email" id="email" class="form-control" type="text" placeholder="Email" ng-model="user.email"/>
+				</div>
+				<div valdr-form-group>	
+        	<input name="password" id="password" class="form-control" type="password" placeholder="Password" ng-model="user.password"/>
+				</div>
+				<div valdr-form-group>	
+        	<input name="password" id="password" class="form-control" type="password"  placeholder="Re-Password"/>
+        </div>
         <div class="form-group" id="register-status">
           <span>I am a/an...</span>
           <div class="status-container">
