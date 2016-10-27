@@ -6,7 +6,7 @@ mainModel.config(function(valdrProvider) {
         'size': {
           'min': 6,
           'max': 20,
-          'message': 'Password must be between 6 and 10 characters.'
+          'message': 'Password must be between 6 and 20 characters.'
         },
         'required': {
           'message': 'Password is required.'
@@ -23,7 +23,7 @@ mainModel.config(function(valdrProvider) {
         'size': {
           'min': 6,
           'max': 20,
-          'message': 'Password must be between 6 and 10 characters.'
+          'message': 'Password must be between 6 and 20 characters.'
         },
         'required': {
           'message': 'Password is required.'
