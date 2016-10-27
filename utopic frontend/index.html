@@ -41,7 +41,8 @@
         	<input name="password" id="password" class="form-control" type="password" placeholder="Password" ng-model="user.password"/>
 				</div>
 				<div valdr-form-group>	
-        	<input name="password" id="password" class="form-control" type="password"  placeholder="Re-Password"/>
+          <h1 id="selam" ng-bind="user.password"></h1>
+        	<input name="repassword" id="repassword" class="form-control" type="password" ng-model="repassword" placeholder="Re-Password"/>
         </div>
         <div class="form-group" id="register-status">
           <span>I am a/an...</span>
@@ -59,8 +60,11 @@
       </form>
 
     </div>
-    <nav class="navbar navbar-fixed-top navbar-dark">
+    <nav class="navbar navbar-fixed-top navbar-dark" ng-controller="indexController">
       <div class="container">
+        <div class="toggle" ng-click="toggleMenu()">
+          <i class="fa fa-bars" aria-hidden="true"></i>
+        </div>
         <a class="navbar-brand" href="#"><img src="images/logo.png"/></a>
         <div id="search-container">
           <form>
@@ -152,6 +156,7 @@
       </div>
     </div>
     <script type="text/javascript" src="js/jquery-3.1.0.min.js"></script>
+    <script type="text/javascript" src="js/jqueryUi/jquery-ui.js"></script>
     <script type="text/javascript" src="js/angular.js"></script>
     <script type="text/javascript" src="valdr/valdr.js"></script>
     <script type="text/javascript" src="valdr/valdr-message.min.js"></script>

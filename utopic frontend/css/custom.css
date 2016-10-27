@@ -2,6 +2,7 @@
 
 *{
   outline: none !important;
+  box-sizing: border-box !important;
 }
 
 a{
@@ -35,7 +36,6 @@ body{
 }
 .nav li{
   display: inline-block;
-  margin-left: -5px;
 }
 .nav li a{
   padding: 6.8px 10px;
@@ -123,6 +123,7 @@ div#search-container {
   transform: translate(-50%,-50%);
   color: #fff;
   text-align: center;
+  width: 100%;
 }
 
 .header-action h1{
@@ -231,9 +232,75 @@ ul.categories li{
 .ng-submitted .valdr-message{
 	display: block;
 }
+.toggle {
+  display: none;
+}
+#selam{
+  display: none;
+}
 /**************************** Mobile CSS *******************************/
 @media only screen and (min-width: 641px){
   .remodal.landing-modal {
     max-width: 500px;
+  }
+}
+
+
+@media only screen and (max-width: 767px){
+  .toggle {
+    position: fixed;
+    top: 10px;
+    font-size: 21px;
+    color: #fff;
+    display: block;
+    cursor: pointer;
+  }
+  .navbar .container {
+    width: 100%;
+    margin: 0;
+    max-width: 100%;
+    padding: 0;
+  }
+  a.navbar-brand {
+    float: none;
+    display: block;
+    margin: 0 80px;
+    margin-bottom: 10px;
+  }
+  .navbar-brand > img {
+    margin: 0 auto;
+  }
+  div#search-container {
+    padding: 0;
+    float: none;
+    display: block;
+    margin: 0;
+    margin-bottom: 10px;
+  }
+  #search-container input {
+    width: 100%;
+  }
+  #search-container button {
+    top: 0;
+  }
+  ul.nav{
+    display: none;
+  }
+  ul.nav li{
+    width: 100%;
+    display: block;
+    float: none !important;
+  }
+  .navbar-nav .nav-item {
+    width: 100%;
+    display: block;
+    margin-left: 0;
+    float: none;
+  }
+  .navbar .button-orange {
+    margin-left: 0;
+  }
+  .panel-column{
+    margin-bottom: 15px;
   }
 }

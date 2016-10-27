@@ -1,5 +1,16 @@
 var mainModel = angular.module('mainApp',['valdr']);
+mainModel.factory('passwordMatch', function () {
+  return {
+    name: 'passwordMatch',
+    validate: function (value, params) {
+      var element = document.getElementById(params.matchField);
+      console.log(element.innerHTML);
+      return element.innerHTML == value;
+    }
+  };
+});
 mainModel.config(function(valdrProvider) {
+  valdrProvider.addValidator('passwordMatch');
   valdrProvider.addConstraints({
     'Login': {
       'password': {
@@ -40,6 +51,13 @@ mainModel.config(function(valdrProvider) {
       'username': {
         'required': {
           'message': 'This field is required.'
+        }
+      },
+      'repassword': {
+        'passwordMatch':{
+          'message': 'passwords does not match',
+          'field':'user.repassword',
+          'matchField':'selam'
         }
       }
     }
