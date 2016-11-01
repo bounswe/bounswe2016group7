@@ -5,6 +5,7 @@
  */
 package com.bounswe.group7.rest;
 
+import com.bounswe.group7.model.TopicPacks;
 import com.bounswe.group7.model.Topics;
 import com.bounswe.group7.services.TopicsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,5 +31,12 @@ public class TopicsController {
     @PreAuthorize("hasAnyRole('CREATOR', 'ADMIN')")
     public Topics createTopic(@RequestBody Topics topic) {
         return topicsService.createTopic(topic);
+    }
+    
+    @RequestMapping(path = "/createTopicPack", method = RequestMethod.POST)
+    @ResponseBody
+    @PreAuthorize("hasAnyRole('CREATOR', 'ADMIN')")
+    public TopicPacks createTopicPack(@RequestBody TopicPacks topicPack) {
+        return topicsService.createTopicPack(topicPack);
     }
 }

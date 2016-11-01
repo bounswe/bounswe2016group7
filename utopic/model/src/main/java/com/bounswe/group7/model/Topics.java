@@ -5,6 +5,7 @@
  */
 package com.bounswe.group7.model;
 
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -28,11 +29,15 @@ public class Topics {
 
     @Column(name = "user_id", nullable = false)
     private Long userId;
+    
+    private Date createDate;
+    
+    private int orderBy;
 
     private String header;
     @Column(name = "content", nullable = false, columnDefinition = "TEXT")
     private String content;
-    @Column(name = "rate", nullable = false, columnDefinition = "Decimal(1,2) default '0.00'")
+    @Column(name = "rate", nullable = false, columnDefinition = "Decimal(3,2) default '0.00'")
     private Double rate;
 
     public Topics(Long topicId, Long topicPackId, Long userId, String header) {
@@ -43,6 +48,24 @@ public class Topics {
     }
 
     public Topics() {
+    }
+
+    public int getOrderBy() {
+        return orderBy;
+    }
+
+    public void setOrderBy(int orderBy) {
+        this.orderBy = orderBy;
+    }
+
+
+
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
     }
 
     public Long getTopicId() {

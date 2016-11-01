@@ -5,8 +5,11 @@
  */
 package com.bounswe.group7.services;
 
+import com.bounswe.group7.model.TopicPacks;
 import com.bounswe.group7.model.Topics;
+import com.bounswe.group7.repository.TopicPacksRepository;
 import com.bounswe.group7.repository.TopicsRepository;
+import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,14 +19,29 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class TopicsService {
+
     @Autowired
     TopicsRepository topicsRepository;
-    
+
+    @Autowired
+    TopicPacksRepository topicPacksRepository;
+
     @Autowired
     UsersService usersService;
-    
-    public Topics createTopic(Topics topic){
+
+    public Topics createTopic(Topics topic) {
         topic.setUserId(usersService.getLoggedInUserId());
+        topic.setCreateDate(new Date());
+        if (topic.getTopicPackId() == null) {
+            TopicPacks pack = createTopicPack(new TopicPacks(topic.getHeader()));
+            topic.setTopicPackId(pack.getTopicPackId());
+        }
         return topicsRepository.save(topic);
+    }
+
+    public TopicPacks createTopicPack(TopicPacks topicPack) {
+        topicPack.setUserId(usersService.getLoggedInUserId());
+        topicPack.setCreateDate(new Date());
+        return topicPacksRepository.save(topicPack);
     }
 }
