@@ -35,6 +35,14 @@ public class TopicsService {
         if (topic.getTopicPackId() == null) {
             TopicPacks pack = createTopicPack(new TopicPacks(topic.getHeader()));
             topic.setTopicPackId(pack.getTopicPackId());
+            topic.setOrderBy(1);
+        }
+        else
+        {
+            TopicPacks pack = topicPacksRepository.findByTopicPackId(topic.getTopicPackId());
+            pack.setCount(pack.getCount() + 1);
+            topic.setOrderBy(pack.getCount());
+            topicPacksRepository.save(pack);
         }
         return topicsRepository.save(topic);
     }

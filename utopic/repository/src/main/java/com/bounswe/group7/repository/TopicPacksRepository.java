@@ -15,4 +15,5 @@ import org.springframework.data.repository.CrudRepository;
  */
 public interface TopicPacksRepository extends CrudRepository<TopicPacks,Long>{
     public List<TopicPacks> findByUserId(Long userId);
+    public TopicPacks findByTopicPackId(Long topicPackId);
 }
