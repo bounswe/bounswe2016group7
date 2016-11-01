@@ -59,6 +59,16 @@ public class Users {
     private List<Authority> authorities;
     @Transient
     private String token;
+    @Transient
+    private String newPassReq;
+
+    public String getNewPassReq() {
+        return newPassReq;
+    }
+
+    public void setNewPassReq(String newPassReq) {
+        this.newPassReq = newPassReq;
+    }
 
     public Users() {
     }

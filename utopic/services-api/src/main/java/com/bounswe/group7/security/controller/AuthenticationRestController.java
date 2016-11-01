@@ -33,33 +33,38 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 @RestController
 public class AuthenticationRestController {
-
+    
     @Value("${jwt.header}")
     private String tokenHeader;
-
+    
     @Autowired
     private AuthenticationManager authenticationManager;
-
+    
     @Autowired
     private JwtTokenUtil jwtTokenUtil;
-
+    
     @Autowired
     private UserDetailsService userDetailsService;
-
+    
     @Autowired
     private UsersRepository usersRepository;
-
+    
     @Autowired
     private UserAuthorityRepository userAuthorityRepository;
-
+    
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-
+    
     @RequestMapping(value = "${jwt.route.authentication.path}", method = RequestMethod.POST)
     public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtAuthenticationRequest authenticationRequest, Device device) throws AuthenticationException {
-
+        Users user = usersRepository.findByEmailOrUsername(authenticationRequest.getUsername());
+        if (user == null) {
+            return ResponseEntity.ok(user);
+        }
+        
+        authenticationRequest.setUsername(user.getUsername());
         // Perform the security
         final Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
@@ -76,13 +81,13 @@ public class AuthenticationRestController {
         // Return the token
         return ResponseEntity.ok(new JwtAuthenticationResponse(token));
     }
-
+    
     @RequestMapping(value = "${jwt.route.authentication.refresh}", method = RequestMethod.GET)
     public ResponseEntity<?> refreshAndGetAuthenticationToken(HttpServletRequest request) {
         String token = request.getHeader(tokenHeader);
         String username = jwtTokenUtil.getUsernameFromToken(token);
         JwtUser user = (JwtUser) userDetailsService.loadUserByUsername(username);
-
+        
         if (jwtTokenUtil.canTokenBeRefreshed(token, user.getLastPasswordResetDate())) {
             String refreshedToken = jwtTokenUtil.refreshToken(token);
             return ResponseEntity.ok(new JwtAuthenticationResponse(refreshedToken));
@@ -90,11 +95,12 @@ public class AuthenticationRestController {
             return ResponseEntity.badRequest().body(null);
         }
     }
-
+    
     @RequestMapping(value = "register", method = RequestMethod.POST)
     public ResponseEntity<?> register(@RequestBody Users user) {
         final String encodedPassword = passwordEncoder().encode(user.getPassword());
         user.setPassword(encodedPassword);
+        user.setEnabled(true);
         Users userSaved = usersRepository.save(user);
         if (userSaved != null && userSaved.getId() != null) {
             userAuthorityRepository.save(new UserAuthority(userSaved.getId(), AuthorityName.ROLE_EXPLORER.getId()));

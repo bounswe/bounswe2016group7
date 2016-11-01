@@ -30,7 +30,9 @@ public class Topics {
     private Long userId;
 
     private String header;
+    @Column(name = "content", nullable = false, columnDefinition = "TEXT")
     private String content;
+    @Column(name = "rate", nullable = false, columnDefinition = "Decimal(1,2) default '0.00'")
     private Double rate;
 
     public Topics(Long topicId, Long topicPackId, Long userId, String header) {

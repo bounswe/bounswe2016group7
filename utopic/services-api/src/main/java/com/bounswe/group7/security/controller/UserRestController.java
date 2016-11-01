@@ -1,5 +1,6 @@
 package com.bounswe.group7.security.controller;
 
+import com.bounswe.group7.model.Users;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -8,11 +9,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import com.bounswe.group7.security.JwtTokenUtil;
 import com.bounswe.group7.security.JwtUser;
+import com.bounswe.group7.services.UsersService;
 
 import javax.servlet.http.HttpServletRequest;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @RestController
 public class UserRestController {
+
+    @Autowired
+    private UsersService usersService;
 
     @Value("${jwt.header}")
     private String tokenHeader;
@@ -29,6 +36,12 @@ public class UserRestController {
         String username = jwtTokenUtil.getUsernameFromToken(token);
         JwtUser user = (JwtUser) userDetailsService.loadUserByUsername(username);
         return user;
+    }
+
+    @RequestMapping(value = "changePassword", method = RequestMethod.POST)
+    @ResponseBody
+    public String changePassword(@RequestBody Users changePasswordReq) {
+        return usersService.changePassword(changePasswordReq);
     }
 
 }

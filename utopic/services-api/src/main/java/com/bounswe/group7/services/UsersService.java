@@ -12,7 +12,9 @@ import com.bounswe.group7.security.JwtUser;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 /**
@@ -34,6 +36,11 @@ public class UsersService {
     @Autowired
     private UsersRepository usersRepository;
 
+    @Bean
+    public BCryptPasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
     public Users getLoggedInUser() {
         String token = request.getHeader(tokenHeader);
         String username = jwtTokenUtil.getUsernameFromToken(token);
@@ -43,5 +50,16 @@ public class UsersService {
 
     public Long getLoggedInUserId() {
         return getLoggedInUser().getId();
+    }
+
+    public String changePassword(Users changePasswordReq) {
+        Users user = usersRepository.findOne(getLoggedInUserId());
+        if (passwordEncoder().matches(changePasswordReq.getPassword(), user.getPassword())) {
+            user.setPassword(passwordEncoder().encode(changePasswordReq.getNewPassReq()));
+            usersRepository.save(user);
+            return "password changed";
+        }
+
+        return "not changed";
     }
 }

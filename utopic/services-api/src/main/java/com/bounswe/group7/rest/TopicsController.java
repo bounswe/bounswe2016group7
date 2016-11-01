@@ -27,7 +27,7 @@ public class TopicsController {
 
     @RequestMapping(path = "/createTopic", method = RequestMethod.POST)
     @ResponseBody
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('CREATOR', 'ADMIN')")
     public Topics createTopic(@RequestBody Topics topic) {
         return topicsService.createTopic(topic);
     }
