@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import com.bounswe.group7.model.security.Authority;
-import com.bounswe.group7.model.security.Users;
+import com.bounswe.group7.model.Users;
 
 public final class JwtUserFactory {
 

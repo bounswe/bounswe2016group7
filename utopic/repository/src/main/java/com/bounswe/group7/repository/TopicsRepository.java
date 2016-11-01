@@ -5,9 +5,8 @@
  */
 package com.bounswe.group7.repository;
 
-import com.bounswe.group7.model.security.Topics;
+import com.bounswe.group7.model.Topics;
 import java.util.List;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
 /**

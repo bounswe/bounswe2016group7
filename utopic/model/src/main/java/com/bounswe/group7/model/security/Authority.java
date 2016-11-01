@@ -1,5 +1,6 @@
 package com.bounswe.group7.model.security;
 
+import com.bounswe.group7.model.Users;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.List;

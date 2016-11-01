@@ -5,7 +5,7 @@
  */
 package com.bounswe.group7.api.client;
 
-import com.bounswe.group7.model.security.Users;
+import com.bounswe.group7.model.Users;
 import com.sun.jersey.api.client.WebResource;
 import java.util.logging.Level;
 import java.util.logging.Logger;

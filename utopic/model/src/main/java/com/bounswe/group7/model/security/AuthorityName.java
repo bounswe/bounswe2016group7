@@ -1,7 +1,7 @@
 package com.bounswe.group7.model.security;
 
 public enum AuthorityName {
-    ROLE_USER(1, "ROLE_USER"), ROLE_ADMIN(2,"ROLE_ADMIN");
+    ROLE_EXPLORER(1, "ROLE_EXPLORER"), ROLE_CREATOR(1, "ROLE_CREATOR"), ROLE_ADMIN(2,"ROLE_ADMIN");
     private int id;
     private String name;
 
@@ -25,5 +25,5 @@ public enum AuthorityName {
     public void setName(String name) {
         this.name = name;
     }
-    
+
 }

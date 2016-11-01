@@ -5,12 +5,10 @@
  */
 package com.bounswe.group7.services;
 
-import com.bounswe.group7.model.security.Topics;
+import com.bounswe.group7.model.Topics;
 import com.bounswe.group7.repository.TopicsRepository;
-import com.bounswe.group7.repository.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 
 /**
  *
@@ -20,8 +18,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 public class TopicsService {
     @Autowired
     TopicsRepository topicsRepository;
-            
+    
+    @Autowired
+    UsersService usersService;
+    
     public Topics createTopic(Topics topic){
+        topic.setUserId(usersService.getLoggedInUserId());
         return topicsRepository.save(topic);
     }
 }

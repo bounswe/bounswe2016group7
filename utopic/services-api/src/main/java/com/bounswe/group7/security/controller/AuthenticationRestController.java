@@ -25,7 +25,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import com.bounswe.group7.model.security.Authority;
 import com.bounswe.group7.model.security.AuthorityName;
 import com.bounswe.group7.model.security.UserAuthority;
-import com.bounswe.group7.model.security.Users;
+import com.bounswe.group7.model.Users;
 import com.bounswe.group7.repository.UserAuthorityRepository;
 import com.bounswe.group7.repository.UsersRepository;
 import org.springframework.context.annotation.Bean;
@@ -97,7 +97,7 @@ public class AuthenticationRestController {
         user.setPassword(encodedPassword);
         Users userSaved = usersRepository.save(user);
         if (userSaved != null && userSaved.getId() != null) {
-            userAuthorityRepository.save(new UserAuthority(userSaved.getId(), AuthorityName.ROLE_USER.getId()));
+            userAuthorityRepository.save(new UserAuthority(userSaved.getId(), AuthorityName.ROLE_EXPLORER.getId()));
             userSaved.setPassword(null);
             return ResponseEntity.ok(userSaved);
         } else {

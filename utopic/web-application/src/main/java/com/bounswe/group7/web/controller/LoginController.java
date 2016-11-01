@@ -6,7 +6,7 @@
 package com.bounswe.group7.web.controller;
 
 import com.bounswe.group7.api.client.LoginServiceClient;
-import com.bounswe.group7.model.security.Users;
+import com.bounswe.group7.model.Users;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

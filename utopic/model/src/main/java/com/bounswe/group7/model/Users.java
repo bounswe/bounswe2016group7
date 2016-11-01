@@ -3,12 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.bounswe.group7.model.security;
+package com.bounswe.group7.model;
 
 /**
  *
  * @author ugurbor
  */
+import com.bounswe.group7.model.security.Authority;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.*;

@@ -5,10 +5,10 @@
  */
 package com.bounswe.group7.rest;
 
-import com.bounswe.group7.model.security.Topics;
+import com.bounswe.group7.model.Topics;
 import com.bounswe.group7.services.TopicsService;
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -27,6 +27,7 @@ public class TopicsController {
 
     @RequestMapping(path = "/createTopic", method = RequestMethod.POST)
     @ResponseBody
+    @PreAuthorize("hasRole('ADMIN')")
     public Topics createTopic(@RequestBody Topics topic) {
         return topicsService.createTopic(topic);
     }
