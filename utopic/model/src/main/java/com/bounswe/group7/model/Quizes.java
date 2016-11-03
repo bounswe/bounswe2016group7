@@ -26,6 +26,9 @@ public class Quizes {
     @Column(name = "user_id", nullable = false)
     private Long userId;
     
+    @Column(name = "topic_id", nullable = false)
+    private Long topicId;
+    
     @Column(name = "create_date", nullable = false)
     private Date createDate;
     
@@ -46,6 +49,14 @@ public class Quizes {
 
     public void setUserId(Long userId) {
         this.userId = userId;
+    }
+
+    public Long getTopicId() {
+        return topicId;
+    }
+
+    public void setTopicId(Long topicId) {
+        this.topicId = topicId;
     }
 
     public Date getCreateDate() {
