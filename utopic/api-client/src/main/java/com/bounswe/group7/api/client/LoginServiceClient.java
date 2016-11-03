@@ -7,8 +7,6 @@ package com.bounswe.group7.api.client;
 
 import com.bounswe.group7.model.Users;
 import com.sun.jersey.api.client.WebResource;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.codehaus.jackson.type.TypeReference;
 
 /**
@@ -30,6 +28,11 @@ public class LoginServiceClient extends BaseClient {
 
     public Users login(Users request) throws Exception {
         return post(getResource().path("auth"), new TypeReference<Users>() {
+        }, request);
+    }
+
+    public Users register(Users request) throws Exception {
+        return post(getResource().path("register"), new TypeReference<Users>() {
         }, request);
     }
 

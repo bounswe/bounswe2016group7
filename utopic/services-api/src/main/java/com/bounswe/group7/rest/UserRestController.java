@@ -1,4 +1,4 @@
-package com.bounswe.group7.security.controller;
+package com.bounswe.group7.rest;
 
 import com.bounswe.group7.model.Users;
 import org.springframework.beans.factory.annotation.Autowired;
