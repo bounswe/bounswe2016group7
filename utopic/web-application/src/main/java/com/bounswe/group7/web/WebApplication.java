@@ -1,9 +1,10 @@
 package com.bounswe.group7.web;
 
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.context.web.SpringBootServletInitializer;
+import org.springframework.context.annotation.ComponentScan;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -14,7 +15,8 @@ import org.springframework.boot.context.web.SpringBootServletInitializer;
  *
  * @author ugurbor
  */
-@SpringBootApplication
+@ComponentScan
+@EnableAutoConfiguration
 public class WebApplication extends SpringBootServletInitializer{
 
     public static void main(String[] args) throws Exception {
