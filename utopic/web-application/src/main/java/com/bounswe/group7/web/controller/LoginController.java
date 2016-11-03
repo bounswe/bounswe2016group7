@@ -19,20 +19,22 @@ import org.springframework.web.servlet.ModelAndView;
  *
  * @author ugurbor
  */
+
 @Controller
 public class LoginController {
-
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String login(HttpServletRequest request, HttpServletResponse response) {
-        String username = request.getParameter("uname");
-        String pwd = request.getParameter("pass");
+    public ModelAndView login(HttpServletRequest request, HttpServletResponse response) {
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
         LoginServiceClient client = new LoginServiceClient();
-        Users token = null;
+        Users user = null;
+        ModelAndView modelAndView = new ModelAndView("homePageLogged");
         try {
-            token = client.login(new Users(username, pwd));
+            user = client.login(new Users(username, password));
+            modelAndView.addObject("token", user.getToken());
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-        return (token == null ? "" : token.getToken());
+        return modelAndView;
     }
 }

@@ -33,5 +33,4 @@ public class MainController {
         ModelAndView index = new ModelAndView("index");
         return index;
     }
-
 }
