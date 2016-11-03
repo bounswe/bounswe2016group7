@@ -19,14 +19,6 @@ import org.springframework.web.servlet.ModelAndView;
  */
 @RestController
 public class MainController {
-
-    @RequestMapping(value = "hello", method = RequestMethod.GET)
-    public ModelAndView helloController(HttpServletRequest request, HttpServletResponse response) {
-        ModelAndView hello = new ModelAndView("hello");
-        hello.addObject("time", new Date());
-        hello.addObject("message", "Hello World!");
-        return hello;
-    }
     
     @RequestMapping("/")
     public ModelAndView index(HttpServletRequest request, HttpServletResponse response){
