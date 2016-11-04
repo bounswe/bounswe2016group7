@@ -1,0 +1,210 @@
+2016-11-03 17:11:11,085 DEBUG Starting configuration XmlConfiguration[location=jar:file:/home/necil/Desktop/cmpe451/bounswe2016group7/utopic/web-application/target/web-application-1.0-SNAPSHOT.jar!/log4j2.xml]
+2016-11-03 17:11:11,087 DEBUG PluginManager 'Core' found 69 plugins
+2016-11-03 17:11:11,087 DEBUG PluginManager 'Level' found 0 plugins
+2016-11-03 17:11:11,093 DEBUG Building Plugin[name=property, class=org.apache.logging.log4j.core.config.Property]. Searching for builder factory method...
+2016-11-03 17:11:11,096 DEBUG No builder factory method found in class org.apache.logging.log4j.core.config.Property. Going to try finding a factory method instead.
+2016-11-03 17:11:11,097 DEBUG Still building Plugin[name=property, class=org.apache.logging.log4j.core.config.Property]. Searching for factory method...
+2016-11-03 17:11:11,098 DEBUG Found factory method [createProperty]: public static org.apache.logging.log4j.core.config.Property org.apache.logging.log4j.core.config.Property.createProperty(java.lang.String,java.lang.String).
+2016-11-03 17:11:11,119 DEBUG TypeConverterRegistry initializing.
+2016-11-03 17:11:11,120 DEBUG PluginManager 'TypeConverter' found 21 plugins
+2016-11-03 17:11:11,131 DEBUG Calling createProperty on class org.apache.logging.log4j.core.config.Property for element property with params(name="fullPattern", value="%d{dd/MM/yyyy HH:mm:ss,SSS} [%-6p] %C{3}.%M(%F:%L) - %m  %xEx{full}%n")
+2016-11-03 17:11:11,132 DEBUG Built Plugin[name=property] OK from factory method.
+2016-11-03 17:11:11,133 DEBUG Building Plugin[name=property, class=org.apache.logging.log4j.core.config.Property]. Searching for builder factory method...
+2016-11-03 17:11:11,133 DEBUG No builder factory method found in class org.apache.logging.log4j.core.config.Property. Going to try finding a factory method instead.
+2016-11-03 17:11:11,134 DEBUG Still building Plugin[name=property, class=org.apache.logging.log4j.core.config.Property]. Searching for factory method...
+2016-11-03 17:11:11,135 DEBUG Found factory method [createProperty]: public static org.apache.logging.log4j.core.config.Property org.apache.logging.log4j.core.config.Property.createProperty(java.lang.String,java.lang.String).
+2016-11-03 17:11:11,136 DEBUG Calling createProperty on class org.apache.logging.log4j.core.config.Property for element property with params(name="fileName", value="utopic")
+2016-11-03 17:11:11,136 DEBUG Built Plugin[name=property] OK from factory method.
+2016-11-03 17:11:11,137 DEBUG Building Plugin[name=properties, class=org.apache.logging.log4j.core.config.PropertiesPlugin]. Searching for builder factory method...
+2016-11-03 17:11:11,137 DEBUG No builder factory method found in class org.apache.logging.log4j.core.config.PropertiesPlugin. Going to try finding a factory method instead.
+2016-11-03 17:11:11,138 DEBUG Still building Plugin[name=properties, class=org.apache.logging.log4j.core.config.PropertiesPlugin]. Searching for factory method...
+2016-11-03 17:11:11,138 DEBUG Found factory method [configureSubstitutor]: public static org.apache.logging.log4j.core.lookup.StrLookup org.apache.logging.log4j.core.config.PropertiesPlugin.configureSubstitutor(org.apache.logging.log4j.core.config.Property[],org.apache.logging.log4j.core.config.Configuration).
+2016-11-03 17:11:11,153 DEBUG Calling configureSubstitutor on class org.apache.logging.log4j.core.config.PropertiesPlugin for element properties with params(={fullPattern=%d{dd/MM/yyyy HH:mm:ss,SSS} [%-6p] %C{3}.%M(%F:%L) - %m  %xEx{full}%n, fileName=utopic}, Configuration(jar:file:/home/necil/Desktop/cmpe451/bounswe2016group7/utopic/web-application/target/web-application-1.0-SNAPSHOT.jar!/log4j2.xml))
+2016-11-03 17:11:11,154 DEBUG PluginManager 'Lookup' found 10 plugins
+2016-11-03 17:11:11,155 DEBUG Built Plugin[name=properties] OK from factory method.
+2016-11-03 17:11:11,156 DEBUG Building Plugin[name=layout, class=org.apache.logging.log4j.core.layout.PatternLayout]. Searching for builder factory method...
+2016-11-03 17:11:11,160 DEBUG Found builder factory method [newBuilder]: public static org.apache.logging.log4j.core.layout.PatternLayout$Builder org.apache.logging.log4j.core.layout.PatternLayout.newBuilder().
+2016-11-03 17:11:11,167 DEBUG Calling build() on class class org.apache.logging.log4j.core.layout.PatternLayout$Builder for element PatternLayout with params(pattern="%d{dd/MM/yyyy HH:mm:ss,SSS} [%-6p] %C{3}.%M(%F:%L) - %m  %xEx{full}%n", Configuration(jar:file:/home/necil/Desktop/cmpe451/bounswe2016group7/utopic/web-application/target/web-application-1.0-SNAPSHOT.jar!/log4j2.xml), null, charset="null", alwaysWriteExceptions="null", noConsoleNoAnsi="null", header="null", footer="null")
+2016-11-03 17:11:11,167 DEBUG PluginManager 'Converter' found 33 plugins
+2016-11-03 17:11:11,174 DEBUG Built Plugin[name=layout] OK from builder factory method.
+2016-11-03 17:11:11,179 DEBUG Building Plugin[name=appender, class=org.apache.logging.log4j.core.appender.ConsoleAppender]. Searching for builder factory method...
+2016-11-03 17:11:11,184 INFO Log4j appears to be running in a Servlet environment, but there's no log4j-web module available. If you want better web container support, please add the log4j-web JAR to your web archive or server lib directory.
+2016-11-03 17:11:11,185 DEBUG PluginManager 'Converter' found 33 plugins
+2016-11-03 17:11:11,188 DEBUG Found builder factory method [newBuilder]: public static org.apache.logging.log4j.core.appender.ConsoleAppender$Builder org.apache.logging.log4j.core.appender.ConsoleAppender.newBuilder().
+2016-11-03 17:11:11,198 DEBUG No PluginVisitorStrategy found on annotation [interface org.apache.logging.log4j.core.config.plugins.validation.constraints.Required]. Ignoring.
+2016-11-03 17:11:11,199 DEBUG Encountered type [org.apache.logging.log4j.core.layout.PatternLayout] which can only be checked for null.
+2016-11-03 17:11:11,204 DEBUG No PluginVisitorStrategy found on annotation [interface org.apache.logging.log4j.core.config.plugins.validation.constraints.Required]. Ignoring.
+2016-11-03 17:11:11,205 DEBUG Encountered type [org.apache.logging.log4j.core.appender.ConsoleAppender$Target] which can only be checked for null.
+2016-11-03 17:11:11,211 DEBUG No PluginVisitorStrategy found on annotation [interface org.apache.logging.log4j.core.config.plugins.validation.constraints.Required]. Ignoring.
+2016-11-03 17:11:11,212 DEBUG Calling build() on class class org.apache.logging.log4j.core.appender.ConsoleAppender$Builder for element Console with params(PatternLayout(%d{dd/MM/yyyy HH:mm:ss,SSS} [%-6p] %C{3}.%M(%F:%L) - %m  %xEx{full}%n), null, target="SYSTEM_OUT", name="Console", follow="null", ignoreExceptions="null")
+2016-11-03 17:11:11,213 DEBUG Built Plugin[name=appender] OK from builder factory method.
+2016-11-03 17:11:11,213 DEBUG Building Plugin[name=layout, class=org.apache.logging.log4j.core.layout.PatternLayout]. Searching for builder factory method...
+2016-11-03 17:11:11,213 DEBUG Found builder factory method [newBuilder]: public static org.apache.logging.log4j.core.layout.PatternLayout$Builder org.apache.logging.log4j.core.layout.PatternLayout.newBuilder().
+2016-11-03 17:11:11,215 DEBUG Calling build() on class class org.apache.logging.log4j.core.layout.PatternLayout$Builder for element PatternLayout with params(pattern="%d{dd/MM/yyyy HH:mm:ss,SSS} [%-6p] %C{3}.%M(%F:%L) - %m  %xEx{full}%n", Configuration(jar:file:/home/necil/Desktop/cmpe451/bounswe2016group7/utopic/web-application/target/web-application-1.0-SNAPSHOT.jar!/log4j2.xml), null, charset="null", alwaysWriteExceptions="null", noConsoleNoAnsi="null", header="null", footer="null")
+2016-11-03 17:11:11,216 DEBUG Built Plugin[name=layout] OK from builder factory method.
+2016-11-03 17:11:11,216 DEBUG Building Plugin[name=TimeBasedTriggeringPolicy, class=org.apache.logging.log4j.core.appender.rolling.TimeBasedTriggeringPolicy]. Searching for builder factory method...
+2016-11-03 17:11:11,219 DEBUG No builder factory method found in class org.apache.logging.log4j.core.appender.rolling.TimeBasedTriggeringPolicy. Going to try finding a factory method instead.
+2016-11-03 17:11:11,219 DEBUG Still building Plugin[name=TimeBasedTriggeringPolicy, class=org.apache.logging.log4j.core.appender.rolling.TimeBasedTriggeringPolicy]. Searching for factory method...
+2016-11-03 17:11:11,220 DEBUG Found factory method [createPolicy]: public static org.apache.logging.log4j.core.appender.rolling.TimeBasedTriggeringPolicy org.apache.logging.log4j.core.appender.rolling.TimeBasedTriggeringPolicy.createPolicy(java.lang.String,java.lang.String).
+2016-11-03 17:11:11,220 DEBUG Calling createPolicy on class org.apache.logging.log4j.core.appender.rolling.TimeBasedTriggeringPolicy for element TimeBasedTriggeringPolicy with params(interval="null", modulate="null")
+2016-11-03 17:11:11,223 DEBUG Built Plugin[name=TimeBasedTriggeringPolicy] OK from factory method.
+2016-11-03 17:11:11,223 DEBUG Building Plugin[name=SizeBasedTriggeringPolicy, class=org.apache.logging.log4j.core.appender.rolling.SizeBasedTriggeringPolicy]. Searching for builder factory method...
+2016-11-03 17:11:11,224 DEBUG No builder factory method found in class org.apache.logging.log4j.core.appender.rolling.SizeBasedTriggeringPolicy. Going to try finding a factory method instead.
+2016-11-03 17:11:11,225 DEBUG Still building Plugin[name=SizeBasedTriggeringPolicy, class=org.apache.logging.log4j.core.appender.rolling.SizeBasedTriggeringPolicy]. Searching for factory method...
+2016-11-03 17:11:11,225 DEBUG Found factory method [createPolicy]: public static org.apache.logging.log4j.core.appender.rolling.SizeBasedTriggeringPolicy org.apache.logging.log4j.core.appender.rolling.SizeBasedTriggeringPolicy.createPolicy(java.lang.String).
+2016-11-03 17:11:11,226 DEBUG Calling createPolicy on class org.apache.logging.log4j.core.appender.rolling.SizeBasedTriggeringPolicy for element SizeBasedTriggeringPolicy with params(size="100 MB")
+2016-11-03 17:11:11,232 DEBUG Built Plugin[name=SizeBasedTriggeringPolicy] OK from factory method.
+2016-11-03 17:11:11,232 DEBUG Building Plugin[name=Policies, class=org.apache.logging.log4j.core.appender.rolling.CompositeTriggeringPolicy]. Searching for builder factory method...
+2016-11-03 17:11:11,233 DEBUG No builder factory method found in class org.apache.logging.log4j.core.appender.rolling.CompositeTriggeringPolicy. Going to try finding a factory method instead.
+2016-11-03 17:11:11,233 DEBUG Still building Plugin[name=Policies, class=org.apache.logging.log4j.core.appender.rolling.CompositeTriggeringPolicy]. Searching for factory method...
+2016-11-03 17:11:11,234 DEBUG Found factory method [createPolicy]: public static org.apache.logging.log4j.core.appender.rolling.CompositeTriggeringPolicy org.apache.logging.log4j.core.appender.rolling.CompositeTriggeringPolicy.createPolicy(org.apache.logging.log4j.core.appender.rolling.TriggeringPolicy[]).
+2016-11-03 17:11:11,243 DEBUG Calling createPolicy on class org.apache.logging.log4j.core.appender.rolling.CompositeTriggeringPolicy for element Policies with params(={TimeBasedTriggeringPolicy, SizeBasedTriggeringPolicy(size=104857600)})
+2016-11-03 17:11:11,243 DEBUG Built Plugin[name=Policies] OK from factory method.
+2016-11-03 17:11:11,244 DEBUG Building Plugin[name=DefaultRolloverStrategy, class=org.apache.logging.log4j.core.appender.rolling.DefaultRolloverStrategy]. Searching for builder factory method...
+2016-11-03 17:11:11,246 DEBUG No builder factory method found in class org.apache.logging.log4j.core.appender.rolling.DefaultRolloverStrategy. Going to try finding a factory method instead.
+2016-11-03 17:11:11,247 DEBUG Still building Plugin[name=DefaultRolloverStrategy, class=org.apache.logging.log4j.core.appender.rolling.DefaultRolloverStrategy]. Searching for factory method...
+2016-11-03 17:11:11,247 DEBUG Found factory method [createStrategy]: public static org.apache.logging.log4j.core.appender.rolling.DefaultRolloverStrategy org.apache.logging.log4j.core.appender.rolling.DefaultRolloverStrategy.createStrategy(java.lang.String,java.lang.String,java.lang.String,java.lang.String,org.apache.logging.log4j.core.config.Configuration).
+2016-11-03 17:11:11,248 DEBUG Calling createStrategy on class org.apache.logging.log4j.core.appender.rolling.DefaultRolloverStrategy for element DefaultRolloverStrategy with params(max="50", min="null", fileIndex="null", compressionLevel="null", Configuration(jar:file:/home/necil/Desktop/cmpe451/bounswe2016group7/utopic/web-application/target/web-application-1.0-SNAPSHOT.jar!/log4j2.xml))
+2016-11-03 17:11:11,249 DEBUG Built Plugin[name=DefaultRolloverStrategy] OK from factory method.
+2016-11-03 17:11:11,249 DEBUG Building Plugin[name=appender, class=org.apache.logging.log4j.core.appender.RollingFileAppender]. Searching for builder factory method...
+2016-11-03 17:11:11,249 DEBUG No builder factory method found in class org.apache.logging.log4j.core.appender.RollingFileAppender. Going to try finding a factory method instead.
+2016-11-03 17:11:11,250 DEBUG Still building Plugin[name=appender, class=org.apache.logging.log4j.core.appender.RollingFileAppender]. Searching for factory method...
+2016-11-03 17:11:11,250 DEBUG Found factory method [createAppender]: public static org.apache.logging.log4j.core.appender.RollingFileAppender org.apache.logging.log4j.core.appender.RollingFileAppender.createAppender(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,org.apache.logging.log4j.core.appender.rolling.TriggeringPolicy,org.apache.logging.log4j.core.appender.rolling.RolloverStrategy,org.apache.logging.log4j.core.Layout,org.apache.logging.log4j.core.Filter,java.lang.String,java.lang.String,java.lang.String,org.apache.logging.log4j.core.config.Configuration).
+2016-11-03 17:11:11,254 DEBUG Calling createAppender on class org.apache.logging.log4j.core.appender.RollingFileAppender for element RollingFile with params(fileName="/opt/utopic/web/logs/utopic.log", filePattern="/opt/utopic/web/logs/${date:yyyyMMdd}/utopic-%d{yyyyMMdd}.log.%i", append="null", name="RollingFile", bufferedIO="null", bufferSize="null", immediateFlush="null", Policies(CompositeTriggeringPolicy{TimeBasedTriggeringPolicy, SizeBasedTriggeringPolicy(size=104857600)}), DefaultRolloverStrategy(DefaultRolloverStrategy(min=1, max=50)), PatternLayout(%d{dd/MM/yyyy HH:mm:ss,SSS} [%-6p] %C{3}.%M(%F:%L) - %m  %xEx{full}%n), null, ignoreExceptions="null", advertise="null", advertiseURI="null", Configuration(jar:file:/home/necil/Desktop/cmpe451/bounswe2016group7/utopic/web-application/target/web-application-1.0-SNAPSHOT.jar!/log4j2.xml))
+2016-11-03 17:11:11,257 ERROR Unable to create file /opt/utopic/web/logs/utopic.log java.io.IOException: No such file or directory
+	at java.io.UnixFileSystem.createFileExclusively(Native Method)
+	at java.io.File.createNewFile(File.java:1012)
+	at org.apache.logging.log4j.core.appender.rolling.RollingFileManager$RollingFileManagerFactory.createManager(RollingFileManager.java:306)
+	at org.apache.logging.log4j.core.appender.rolling.RollingFileManager$RollingFileManagerFactory.createManager(RollingFileManager.java:290)
+	at org.apache.logging.log4j.core.appender.AbstractManager.getManager(AbstractManager.java:71)
+	at org.apache.logging.log4j.core.appender.OutputStreamManager.getManager(OutputStreamManager.java:60)
+	at org.apache.logging.log4j.core.appender.rolling.RollingFileManager.getFileManager(RollingFileManager.java:79)
+	at org.apache.logging.log4j.core.appender.RollingFileAppender.createAppender(RollingFileAppender.java:184)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.logging.log4j.core.config.plugins.util.PluginBuilder.build(PluginBuilder.java:135)
+	at org.apache.logging.log4j.core.config.AbstractConfiguration.createPluginObject(AbstractConfiguration.java:766)
+	at org.apache.logging.log4j.core.config.AbstractConfiguration.createConfiguration(AbstractConfiguration.java:706)
+	at org.apache.logging.log4j.core.config.AbstractConfiguration.createConfiguration(AbstractConfiguration.java:698)
+	at org.apache.logging.log4j.core.config.AbstractConfiguration.doConfigure(AbstractConfiguration.java:358)
+	at org.apache.logging.log4j.core.config.AbstractConfiguration.start(AbstractConfiguration.java:161)
+	at org.apache.logging.log4j.core.LoggerContext.setConfiguration(LoggerContext.java:359)
+	at org.apache.logging.log4j.core.LoggerContext.reconfigure(LoggerContext.java:420)
+	at org.apache.logging.log4j.core.LoggerContext.start(LoggerContext.java:138)
+	at org.apache.logging.log4j.core.impl.Log4jContextFactory.getContext(Log4jContextFactory.java:147)
+	at org.apache.logging.log4j.core.impl.Log4jContextFactory.getContext(Log4jContextFactory.java:41)
+	at org.apache.logging.log4j.LogManager.getContext(LogManager.java:175)
+	at org.apache.logging.log4j.spi.AbstractLoggerAdapter.getContext(AbstractLoggerAdapter.java:102)
+	at org.apache.logging.slf4j.Log4jLoggerFactory.getContext(Log4jLoggerFactory.java:43)
+	at org.apache.logging.log4j.spi.AbstractLoggerAdapter.getLogger(AbstractLoggerAdapter.java:42)
+	at org.apache.logging.slf4j.Log4jLoggerFactory.getLogger(Log4jLoggerFactory.java:29)
+	at org.slf4j.LoggerFactory.getLogger(LoggerFactory.java:284)
+	at org.apache.commons.logging.impl.SLF4JLogFactory.getInstance(SLF4JLogFactory.java:155)
+	at org.apache.commons.logging.impl.SLF4JLogFactory.getInstance(SLF4JLogFactory.java:132)
+	at org.apache.commons.logging.LogFactory.getLog(LogFactory.java:273)
+	at org.springframework.boot.SpringApplication.<init>(SpringApplication.java:162)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:969)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:958)
+	at com.bounswe.group7.web.WebApplication.main(WebApplication.java:23)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.boot.loader.MainMethodRunner.run(MainMethodRunner.java:53)
+	at java.lang.Thread.run(Thread.java:745)
+
+2016-11-03 17:11:11,259 ERROR Unable to invoke factory method in class class org.apache.logging.log4j.core.appender.RollingFileAppender for element RollingFile. java.lang.reflect.InvocationTargetException
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.logging.log4j.core.config.plugins.util.PluginBuilder.build(PluginBuilder.java:135)
+	at org.apache.logging.log4j.core.config.AbstractConfiguration.createPluginObject(AbstractConfiguration.java:766)
+	at org.apache.logging.log4j.core.config.AbstractConfiguration.createConfiguration(AbstractConfiguration.java:706)
+	at org.apache.logging.log4j.core.config.AbstractConfiguration.createConfiguration(AbstractConfiguration.java:698)
+	at org.apache.logging.log4j.core.config.AbstractConfiguration.doConfigure(AbstractConfiguration.java:358)
+	at org.apache.logging.log4j.core.config.AbstractConfiguration.start(AbstractConfiguration.java:161)
+	at org.apache.logging.log4j.core.LoggerContext.setConfiguration(LoggerContext.java:359)
+	at org.apache.logging.log4j.core.LoggerContext.reconfigure(LoggerContext.java:420)
+	at org.apache.logging.log4j.core.LoggerContext.start(LoggerContext.java:138)
+	at org.apache.logging.log4j.core.impl.Log4jContextFactory.getContext(Log4jContextFactory.java:147)
+	at org.apache.logging.log4j.core.impl.Log4jContextFactory.getContext(Log4jContextFactory.java:41)
+	at org.apache.logging.log4j.LogManager.getContext(LogManager.java:175)
+	at org.apache.logging.log4j.spi.AbstractLoggerAdapter.getContext(AbstractLoggerAdapter.java:102)
+	at org.apache.logging.slf4j.Log4jLoggerFactory.getContext(Log4jLoggerFactory.java:43)
+	at org.apache.logging.log4j.spi.AbstractLoggerAdapter.getLogger(AbstractLoggerAdapter.java:42)
+	at org.apache.logging.slf4j.Log4jLoggerFactory.getLogger(Log4jLoggerFactory.java:29)
+	at org.slf4j.LoggerFactory.getLogger(LoggerFactory.java:284)
+	at org.apache.commons.logging.impl.SLF4JLogFactory.getInstance(SLF4JLogFactory.java:155)
+	at org.apache.commons.logging.impl.SLF4JLogFactory.getInstance(SLF4JLogFactory.java:132)
+	at org.apache.commons.logging.LogFactory.getLog(LogFactory.java:273)
+	at org.springframework.boot.SpringApplication.<init>(SpringApplication.java:162)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:969)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:958)
+	at com.bounswe.group7.web.WebApplication.main(WebApplication.java:23)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.boot.loader.MainMethodRunner.run(MainMethodRunner.java:53)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: java.lang.IllegalStateException: Unable to create a manager
+	at org.apache.logging.log4j.core.appender.AbstractManager.getManager(AbstractManager.java:73)
+	at org.apache.logging.log4j.core.appender.OutputStreamManager.getManager(OutputStreamManager.java:60)
+	at org.apache.logging.log4j.core.appender.rolling.RollingFileManager.getFileManager(RollingFileManager.java:79)
+	at org.apache.logging.log4j.core.appender.RollingFileAppender.createAppender(RollingFileAppender.java:184)
+	... 34 more
+
+2016-11-03 17:11:11,261 DEBUG Building Plugin[name=appenders, class=org.apache.logging.log4j.core.config.AppendersPlugin]. Searching for builder factory method...
+2016-11-03 17:11:11,261 DEBUG No builder factory method found in class org.apache.logging.log4j.core.config.AppendersPlugin. Going to try finding a factory method instead.
+2016-11-03 17:11:11,262 DEBUG Still building Plugin[name=appenders, class=org.apache.logging.log4j.core.config.AppendersPlugin]. Searching for factory method...
+2016-11-03 17:11:11,262 DEBUG Found factory method [createAppenders]: public static java.util.concurrent.ConcurrentMap org.apache.logging.log4j.core.config.AppendersPlugin.createAppenders(org.apache.logging.log4j.core.Appender[]).
+2016-11-03 17:11:11,263 ERROR Null object returned for RollingFile in Appenders.
+2016-11-03 17:11:11,263 DEBUG Calling createAppenders on class org.apache.logging.log4j.core.config.AppendersPlugin for element Appenders with params(={Console, })
+2016-11-03 17:11:11,264 DEBUG Built Plugin[name=appenders] OK from factory method.
+2016-11-03 17:11:11,264 DEBUG Building Plugin[name=AppenderRef, class=org.apache.logging.log4j.core.config.AppenderRef]. Searching for builder factory method...
+2016-11-03 17:11:11,265 DEBUG No builder factory method found in class org.apache.logging.log4j.core.config.AppenderRef. Going to try finding a factory method instead.
+2016-11-03 17:11:11,265 DEBUG Still building Plugin[name=AppenderRef, class=org.apache.logging.log4j.core.config.AppenderRef]. Searching for factory method...
+2016-11-03 17:11:11,265 DEBUG Found factory method [createAppenderRef]: public static org.apache.logging.log4j.core.config.AppenderRef org.apache.logging.log4j.core.config.AppenderRef.createAppenderRef(java.lang.String,org.apache.logging.log4j.Level,org.apache.logging.log4j.core.Filter).
+2016-11-03 17:11:11,266 DEBUG Calling createAppenderRef on class org.apache.logging.log4j.core.config.AppenderRef for element AppenderRef with params(ref="Console", level="null", null)
+2016-11-03 17:11:11,266 DEBUG Built Plugin[name=AppenderRef] OK from factory method.
+2016-11-03 17:11:11,267 DEBUG Building Plugin[name=AppenderRef, class=org.apache.logging.log4j.core.config.AppenderRef]. Searching for builder factory method...
+2016-11-03 17:11:11,267 DEBUG No builder factory method found in class org.apache.logging.log4j.core.config.AppenderRef. Going to try finding a factory method instead.
+2016-11-03 17:11:11,267 DEBUG Still building Plugin[name=AppenderRef, class=org.apache.logging.log4j.core.config.AppenderRef]. Searching for factory method...
+2016-11-03 17:11:11,268 DEBUG Found factory method [createAppenderRef]: public static org.apache.logging.log4j.core.config.AppenderRef org.apache.logging.log4j.core.config.AppenderRef.createAppenderRef(java.lang.String,org.apache.logging.log4j.Level,org.apache.logging.log4j.core.Filter).
+2016-11-03 17:11:11,268 DEBUG Calling createAppenderRef on class org.apache.logging.log4j.core.config.AppenderRef for element AppenderRef with params(ref="RollingFile", level="null", null)
+2016-11-03 17:11:11,269 DEBUG Built Plugin[name=AppenderRef] OK from factory method.
+2016-11-03 17:11:11,269 DEBUG Building Plugin[name=root, class=org.apache.logging.log4j.core.config.LoggerConfig$RootLogger]. Searching for builder factory method...
+2016-11-03 17:11:11,270 DEBUG No builder factory method found in class org.apache.logging.log4j.core.config.LoggerConfig$RootLogger. Going to try finding a factory method instead.
+2016-11-03 17:11:11,270 DEBUG Still building Plugin[name=root, class=org.apache.logging.log4j.core.config.LoggerConfig$RootLogger]. Searching for factory method...
+2016-11-03 17:11:11,270 DEBUG Found factory method [createLogger]: public static org.apache.logging.log4j.core.config.LoggerConfig org.apache.logging.log4j.core.config.LoggerConfig$RootLogger.createLogger(java.lang.String,org.apache.logging.log4j.Level,java.lang.String,org.apache.logging.log4j.core.config.AppenderRef[],org.apache.logging.log4j.core.config.Property[],org.apache.logging.log4j.core.config.Configuration,org.apache.logging.log4j.core.Filter).
+2016-11-03 17:11:11,272 DEBUG Calling createLogger on class org.apache.logging.log4j.core.config.LoggerConfig$RootLogger for element Root with params(additivity="null", level="DEBUG", includeLocation="null", ={Console, RollingFile}, ={}, Configuration(jar:file:/home/necil/Desktop/cmpe451/bounswe2016group7/utopic/web-application/target/web-application-1.0-SNAPSHOT.jar!/log4j2.xml), null)
+2016-11-03 17:11:11,273 DEBUG Built Plugin[name=root] OK from factory method.
+2016-11-03 17:11:11,274 DEBUG Building Plugin[name=loggers, class=org.apache.logging.log4j.core.config.LoggersPlugin]. Searching for builder factory method...
+2016-11-03 17:11:11,274 DEBUG No builder factory method found in class org.apache.logging.log4j.core.config.LoggersPlugin. Going to try finding a factory method instead.
+2016-11-03 17:11:11,275 DEBUG Still building Plugin[name=loggers, class=org.apache.logging.log4j.core.config.LoggersPlugin]. Searching for factory method...
+2016-11-03 17:11:11,275 DEBUG Found factory method [createLoggers]: public static org.apache.logging.log4j.core.config.Loggers org.apache.logging.log4j.core.config.LoggersPlugin.createLoggers(org.apache.logging.log4j.core.config.LoggerConfig[]).
+2016-11-03 17:11:11,276 DEBUG Calling createLoggers on class org.apache.logging.log4j.core.config.LoggersPlugin for element Loggers with params(={root})
+2016-11-03 17:11:11,277 DEBUG Built Plugin[name=loggers] OK from factory method.
+2016-11-03 17:11:11,278 ERROR Unable to locate appender RollingFile for logger 
+2016-11-03 17:11:11,278 DEBUG Started configuration XmlConfiguration[location=jar:file:/home/necil/Desktop/cmpe451/bounswe2016group7/utopic/web-application/target/web-application-1.0-SNAPSHOT.jar!/log4j2.xml] OK.
+2016-11-03 17:11:11,279 DEBUG Stopped org.apache.logging.log4j.core.config.DefaultConfiguration@35c8e8f0 OK
+2016-11-03 17:11:11,342 DEBUG Registering MBean org.apache.logging.log4j2:type=org.springframework.boot.loader.LaunchedURLClassLoader@85ede7b
+2016-11-03 17:11:11,346 DEBUG Registering MBean org.apache.logging.log4j2:type=org.springframework.boot.loader.LaunchedURLClassLoader@85ede7b,component=StatusLogger
+2016-11-03 17:11:11,348 DEBUG Registering MBean org.apache.logging.log4j2:type=org.springframework.boot.loader.LaunchedURLClassLoader@85ede7b,component=ContextSelector
+2016-11-03 17:11:11,351 DEBUG Registering MBean org.apache.logging.log4j2:type=org.springframework.boot.loader.LaunchedURLClassLoader@85ede7b,component=Loggers,name=
+2016-11-03 17:11:11,353 DEBUG Registering MBean org.apache.logging.log4j2:type=org.springframework.boot.loader.LaunchedURLClassLoader@85ede7b,component=Appenders,name=Console
+2016-11-03 17:11:11,354 DEBUG Reconfiguration complete for context[name=org.springframework.boot.loader.LaunchedURLClassLoader@85ede7b] at null (org.apache.logging.log4j.core.LoggerContext@2dda7737) with optional ClassLoader: null
+2016-11-03 17:11:11,355 DEBUG Shutdown hook enabled. Registering a new one.
+2016-11-03 17:11:11,356 DEBUG LoggerContext[name=org.springframework.boot.loader.LaunchedURLClassLoader@85ede7b, org.apache.logging.log4j.core.LoggerContext@314d22e5] started OK.
+2016-11-03 17:11:11,501 DEBUG Stopping LoggerContext[name=org.springframework.boot.loader.LaunchedURLClassLoader@85ede7b, org.apache.logging.log4j.core.LoggerContext@314d22e5]
+2016-11-03 17:11:11,502 DEBUG Stopping LoggerContext[name=org.springframework.boot.loader.LaunchedURLClassLoader@85ede7b, org.apache.logging.log4j.core.LoggerContext@314d22e5]...
+2016-11-03 17:11:11,502 DEBUG Unregistering MBean org.apache.logging.log4j2:type=org.springframework.boot.loader.LaunchedURLClassLoader@85ede7b
+2016-11-03 17:11:11,503 DEBUG Unregistering MBean org.apache.logging.log4j2:type=org.springframework.boot.loader.LaunchedURLClassLoader@85ede7b,component=StatusLogger
+2016-11-03 17:11:11,504 DEBUG Unregistering MBean org.apache.logging.log4j2:type=org.springframework.boot.loader.LaunchedURLClassLoader@85ede7b,component=ContextSelector
+2016-11-03 17:11:11,505 DEBUG Unregistering MBean org.apache.logging.log4j2:type=org.springframework.boot.loader.LaunchedURLClassLoader@85ede7b,component=Loggers,name=
+2016-11-03 17:11:11,505 DEBUG Unregistering MBean org.apache.logging.log4j2:type=org.springframework.boot.loader.LaunchedURLClassLoader@85ede7b,component=Appenders,name=Console
+2016-11-03 17:11:11,507 DEBUG Stopped XmlConfiguration[location=jar:file:/home/necil/Desktop/cmpe451/bounswe2016group7/utopic/web-application/target/web-application-1.0-SNAPSHOT.jar!/log4j2.xml] OK
+2016-11-03 17:11:11,508 DEBUG Stopped LoggerContext[name=org.springframework.boot.loader.LaunchedURLClassLoader@85ede7b, org.apache.logging.log4j.core.LoggerContext@35c8e8f0]...
