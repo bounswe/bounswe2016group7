@@ -51,14 +51,7 @@ public class MainController {
             user.setPassword(request.getParameter("password"));
             user.setEmail(request.getParameter("email"));
             user.setGender(request.getParameter("gender"));
-            String status = request.getParameter("status");
-            if(status.equals("explorer"))
-                userAuthority.setId((long)1);
-            else
-                userAuthority.setId((long)2);
-            List <Authority> authList = new ArrayList<Authority>();
-            authList.add(userAuthority);
-            user.setAuthorities(authList);
+            //String status = request.getParameter("status");
             client.register(user);
         } catch (Exception ex) {
             ex.printStackTrace();
