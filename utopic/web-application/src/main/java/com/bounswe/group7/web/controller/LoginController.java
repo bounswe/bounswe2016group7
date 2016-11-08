@@ -36,6 +36,7 @@ public class LoginController {
             HttpSession session = request.getSession();
             session.setAttribute("token", user.getToken());
             session.setAttribute("username", user.getUsername());
+            session.setAttribute("user_id", user.getId());
             ModelAndView prevPage = new ModelAndView("redirect:/");
             return prevPage;
         } catch (Exception ex) {
