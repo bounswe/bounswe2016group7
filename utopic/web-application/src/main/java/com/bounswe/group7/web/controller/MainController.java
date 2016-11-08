@@ -7,10 +7,6 @@ package com.bounswe.group7.web.controller;
 
 import com.bounswe.group7.api.client.LoginServiceClient;
 import com.bounswe.group7.model.Users;
-import com.bounswe.group7.model.security.Authority;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,18 +28,11 @@ public class MainController {
         return index;
     }
     
-    @RequestMapping("/home")
-    public ModelAndView home(HttpServletRequest request, HttpServletResponse response, RedirectAttributes attributes){
-        ModelAndView home = new ModelAndView("home");
-        return home;
-    }
-    
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public ModelAndView register(HttpServletRequest request, HttpServletResponse response)  throws NullPointerException{
+    public ModelAndView register(HttpServletRequest request, HttpServletResponse response, RedirectAttributes attributes)  throws NullPointerException{
         Users user = new Users();
         LoginServiceClient client = new LoginServiceClient();
-        ModelAndView modelAndView = new ModelAndView("index");
-        Authority userAuthority = new Authority();
+        ModelAndView modelAndView = new ModelAndView("redirect:/");
         try {
             user.setFirstname(request.getParameter("firstname"));
             user.setLastname(request.getParameter("lastname"));
@@ -51,10 +40,11 @@ public class MainController {
             user.setPassword(request.getParameter("password"));
             user.setEmail(request.getParameter("email"));
             user.setGender(request.getParameter("gender"));
-            //String status = request.getParameter("status");
             client.register(user);
+            //TODO mailing is needed after the registration
         } catch (Exception ex) {
             ex.printStackTrace();
+            attributes.addFlashAttribute("error", ex.getMessage());
         }
         return modelAndView;
     }

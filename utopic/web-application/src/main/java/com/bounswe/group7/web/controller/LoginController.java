@@ -11,11 +11,11 @@ import java.io.IOException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
@@ -33,15 +33,24 @@ public class LoginController {
         Users user = null;
         try {
             user = client.login(new Users(username, password));
-            redirectAttributes.addFlashAttribute("token", user.getToken());
-            //TODO: Session management: insert required information to session
-            ModelAndView home = new ModelAndView("redirect:/home");
-            return home;
+            HttpSession session = request.getSession();
+            session.setAttribute("token", user.getToken());
+            session.setAttribute("username", user.getUsername());
+            ModelAndView prevPage = new ModelAndView("redirect:/");
+            return prevPage;
         } catch (Exception ex) {
             ex.printStackTrace();
             redirectAttributes.addFlashAttribute("error", ex.getMessage());
             ModelAndView index = new ModelAndView("redirect:/");
             return index;
         }
+    }
+    
+    @RequestMapping(value="/logout", method = RequestMethod.GET)
+    public ModelAndView logout(HttpServletRequest request, HttpServletResponse response, RedirectAttributes redirectAttributes){
+        HttpSession session = request.getSession();
+        session.removeAttribute("token");
+        ModelAndView index = new ModelAndView("redirect:/");
+        return index;
     }
 }
