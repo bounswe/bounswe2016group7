@@ -2,7 +2,7 @@
 <Configuration status="DEBUG" monitorInterval="300"> <!-- monitorInterval 60 saniyede bir xmli tekrar okur -->>
     <properties>
         <property name="fullPattern">%d{dd/MM/yyyy HH:mm:ss,SSS} [%-6p] %C{3}.%M(%F:%L) - %m  %xEx{full}%n</property> <!--163 2015/07/26 15:46:12,072 679487 [DEBUG ] [main] worker.foo.MyClass worker.foo.MyClass.logDebug(MyClass.java:27) - This is a debug message.-->
-        <property name="fileName">utopic</property>
+        <property name="fileName">api</property>
     </properties>
   <Appenders>
     <Console name="Console" target="SYSTEM_OUT">

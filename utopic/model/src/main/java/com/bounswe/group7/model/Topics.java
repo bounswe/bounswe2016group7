@@ -11,6 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 
 /**
  *
@@ -20,7 +21,8 @@ import javax.persistence.Id;
 public class Topics {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "TOPICS_SEQ")
+    @SequenceGenerator(name = "TOPICS_SEQ", sequenceName = "TOPICS_SEQ", allocationSize = 1, initialValue = 1)
     @Column(name = "topic_id", nullable = false)
     private Long topicId;
 
