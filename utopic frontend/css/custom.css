@@ -19,10 +19,12 @@ body{
 
 .content{
   margin-top: 60px;
+  padding-top: 30px;
 }
 
 .content.no-margin{
   margin-top: 0;
+  padding-top: 0;
 }
 
 .centered{
