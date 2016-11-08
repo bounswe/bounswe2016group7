@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
  *
@@ -26,9 +27,15 @@ import org.springframework.web.servlet.ModelAndView;
 public class MainController {
     
     @RequestMapping("/")
-    public ModelAndView index(HttpServletRequest request, HttpServletResponse response){
+    public ModelAndView index(HttpServletRequest request, HttpServletResponse response, RedirectAttributes attributes){
         ModelAndView index = new ModelAndView("index");
         return index;
+    }
+    
+    @RequestMapping("/home")
+    public ModelAndView home(HttpServletRequest request, HttpServletResponse response, RedirectAttributes attributes){
+        ModelAndView home = new ModelAndView("home");
+        return home;
     }
     
     @RequestMapping(value = "/register", method = RequestMethod.POST)

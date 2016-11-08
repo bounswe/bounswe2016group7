@@ -89,6 +89,7 @@
         <div class="content no-margin">
             <div class="header">
                 <div class="header-action">
+                    <h1>${error}</h1>
                     <h1>AWESOME WORDS CATCHES USER</h1>
                     <h3>MORE AWESOME WORDS</h3>
                     <button data-remodal-target="register-modal" class="button button-orange">SIGN UP NOW</button>
