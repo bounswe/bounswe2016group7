@@ -6,13 +6,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author Batuhan
@@ -21,17 +21,18 @@ import javax.persistence.Id;
 public class TopicPacks {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "TOPICPACK_SEQ")
+    @SequenceGenerator(name = "TOPICPACK_SEQ", sequenceName = "TOPICPACK_SEQ", allocationSize = 1, initialValue = 1)
     @Column(name = "topic_pack_id", nullable = false)
     private Long topicPackId;
-    
+
     @Column(name = "user_id", nullable = false)
     private Long userId;
-    
+
     private String name;
-    
+
     private int count;
-    
+
     private Date createDate;
 
     public TopicPacks(String name) {
@@ -49,7 +50,6 @@ public class TopicPacks {
         this.createDate = createDate;
     }
 
-    
     public Long getTopicPackId() {
         return topicPackId;
     }
@@ -89,6 +89,5 @@ public class TopicPacks {
     public void setCreateDate(Date createDate) {
         this.createDate = createDate;
     }
-    
-    
+
 }

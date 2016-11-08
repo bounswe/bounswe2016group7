@@ -11,6 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 
 /**
  *
@@ -18,20 +19,22 @@ import javax.persistence.Id;
  */
 @Entity
 public class Quizes {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "QUIZ_SEQ")
+    @SequenceGenerator(name = "QUIZ_SEQ", sequenceName = "QUIZ_SEQ", allocationSize = 1, initialValue = 1)
     @Column(name = "question_id", nullable = false)
     private Long quizId;
-    
+
     @Column(name = "user_id", nullable = false)
     private Long userId;
-    
+
     @Column(name = "topic_id", nullable = false)
     private Long topicId;
-    
+
     @Column(name = "create_date", nullable = false)
     private Date createDate;
-    
+
     @Column(name = "name", nullable = false)
     private String name;
 
@@ -74,6 +77,5 @@ public class Quizes {
     public void setName(String name) {
         this.name = name;
     }
-    
-    
+
 }
