@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="jsPlugins/remodal/remodal.css"/>
     <link rel="stylesheet" href="css/bootstrap.css"/>
     <link rel="stylesheet" href="jsPlugins/font-awesome-4.6.3/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="jsPlugins/star-rating/css/star-rating-svg.css"/>
     <link rel="stylesheet" href="css/custom.css"/>
   </head>
   <body ng-app="mainApp">
@@ -40,11 +41,11 @@
                 <div class="col-xs-5 col-md-3">
                   <div class="title-picture" style="background-image: url(./images/header1.jpg);"></div>
                   <p>Creator: <a href="#">John Doe</a><br/>
-                      <a href="#">150 people are interested</a>
+                    <a href="#">150 people are interested</a>
                   <p>
                 </div>
                 <div class="col-xs-7 col-md-9">
-                  <h3>Improving rhyming skills <span>Stars</span></h3>
+                  <h3>Improving rhyming skills <div class="topic-rating"></div></h3>
                   <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent ac tortor nec leo egestas eleifend id ut lectus. In vel laoreet erat, ac cursus metus. Donec tempor luctus turpis, in consectetur felis. Nulla dolor ligula, tincidunt vel lorem at, pellentesque hendrerit justo. Aenean porttitor eleifend quam vitae rutrum. Pellentesque et dolor justo. Fusce nec ex nec erat placerat tincidunt et in nisi. Donec eros quam, sollicitudin et tincidunt eget, tincidunt non velit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae</p>
                   <div class="tags">
                     <div class="topic-tag">book</div>
@@ -57,13 +58,27 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-xs-12 col-sm-12 col-md-3">
+          <div class="col-xs-12 col-sm-12 col-md-4">
             <div class="panel">
-              Recommended topics and links to topic pack will be inserted here.
+              <div class="current-topic">
+                <a href="#" class="title">How to write?</a>
+                <a href="#" class="nav">
+                  <i style="margin-right:5px;" class="fa fa-chevron-left" aria-hidden="true"></i>
+                  Which fonts to use</a>
+                <a href="#" class="nav">
+                  Which fonts to use
+                  <i style="margin-left:5px;" class="fa fa-chevron-right" aria-hidden="true"></i>
+                </a>
+              </div>
+              <div class="recommended">
+                <span class="title">Recommended</span>
+                <a href="#" class="recommended-topic">Topic 1</a>
+                <a href="#" class="recommended-topic">Topic 2</a>
+              </div>
             </div>
           </div>
-          <div class="col-xs-12 col-sm-12 col-md-9">
-            <div class="panel">
+          <div class="col-xs-12 col-sm-12 col-md-8">
+            <div class="panel topic-panel">
               <ul class="nav nav-tabs" id="myTab" role="tablist">
                 <li class="nav-item">
                   <a class="nav-link active" data-toggle="tab" href="#home" role="tab" aria-controls="home">Materials</a>
@@ -81,7 +96,8 @@
                   <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent ac tortor nec leo egestas eleifend id ut lectus. In vel laoreet erat, ac cursus metus. Donec tempor luctus turpis, in consectetur felis. Nulla dolor ligula, tincidunt vel lorem at, pellentesque hendrerit justo. Aenean porttitor eleifend quam vitae rutrum. Pellentesque et dolor justo. Fusce nec ex nec erat placerat tincidunt et in nisi. Donec eros quam, sollicitudin et tincidunt eget, tincidunt non velit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Vivamus neque quam, vehicula non tincidunt sed, vestibulum at ex. Duis finibus sem convallis bibendum facilisis. Donec pellentesque pellentesque aliquam. In tempor sapien non neque faucibus, at rutrum lorem gravida. Suspendisse at vehicula odio.</p>
                 </div>
                 <div class="tab-pane message-tab" id="profile" role="tabpanel">
-                  <div class="message">
+                  <div class="message-container">
+                    <div class="message">
                     <div class="message-point">
                       <i class="fa fa-chevron-up" aria-hidden="true"></i>
                       <span>10</span>
@@ -98,150 +114,137 @@
                       </span>
                     </div>
                     <div class="clearfix"></div>
+</div>
+                    <div class="message">
+                    <div class="message-point">
+                      <i class="fa fa-chevron-up" aria-hidden="true"></i>
+                      <span>10</span>
+                      <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                    </div>
+                    <div class="message-content">
+                      <span class="title">
+                        Aydın Aksoy
+                      </span>
+                      <button type="button" class="float-button button-green" title="Reply"><i class="fa fa-reply" aria-hidden="true"></i></button>
+                      <p>İyi bir yazarda olması gereken özellikler nelerdir?</p>
+                      <span class="date">
+                        08.11.2016
+                      </span>
+                    </div>
+                    <div class="clearfix"></div>
+</div>
+                    <div class="message">
+                    <div class="message-point">
+                      <i class="fa fa-chevron-up" aria-hidden="true"></i>
+                      <span>10</span>
+                      <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                    </div>
+                    <div class="message-content">
+                      <span class="title">
+                        Aydın Aksoy
+                      </span>
+                      <button type="button" class="float-button button-green" title="Reply"><i class="fa fa-reply" aria-hidden="true"></i></button>
+                      <p>İyi bir yazarda olması gereken özellikler nelerdir?</p>
+                      <span class="date">
+                        08.11.2016
+                      </span>
+                    </div>
+                    <div class="clearfix"></div>
+</div>
+                    <div class="message">
+                    <div class="message-point">
+                      <i class="fa fa-chevron-up" aria-hidden="true"></i>
+                      <span>10</span>
+                      <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                    </div>
+                    <div class="message-content">
+                      <span class="title">
+                        Aydın Aksoy
+                      </span>
+                      <button type="button" class="float-button button-green" title="Reply"><i class="fa fa-reply" aria-hidden="true"></i></button>
+                      <p>İyi bir yazarda olması gereken özellikler nelerdir?</p>
+                      <span class="date">
+                        08.11.2016
+                      </span>
+                    </div>
+                    <div class="clearfix"></div>
+</div>
+                    <div class="message">
+                    <div class="message-point">
+                      <i class="fa fa-chevron-up" aria-hidden="true"></i>
+                      <span>10</span>
+                      <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                    </div>
+                    <div class="message-content">
+                      <span class="title">
+                        Aydın Aksoy
+                      </span>
+                      <button type="button" class="float-button button-green" title="Reply"><i class="fa fa-reply" aria-hidden="true"></i></button>
+                      <p>İyi bir yazarda olması gereken özellikler nelerdir?</p>
+                      <span class="date">
+                        08.11.2016
+                      </span>
+                    </div>
+                    <div class="clearfix"></div>
+</div>
+                    <div class="message">
+                    <div class="message-point">
+                      <i class="fa fa-chevron-up" aria-hidden="true"></i>
+                      <span>10</span>
+                      <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                    </div>
+                    <div class="message-content">
+                      <span class="title">
+                        Aydın Aksoy
+                      </span>
+                      <button type="button" class="float-button button-green" title="Reply"><i class="fa fa-reply" aria-hidden="true"></i></button>
+                      <p>İyi bir yazarda olması gereken özellikler nelerdir?</p>
+                      <span class="date">
+                        08.11.2016
+                      </span>
+                    </div>
+                    <div class="clearfix"></div>
+</div>
+                    <div class="message">
+                    <div class="message-point">
+                      <i class="fa fa-chevron-up" aria-hidden="true"></i>
+                      <span>10</span>
+                      <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                    </div>
+                    <div class="message-content">
+                      <span class="title">
+                        Aydın Aksoy
+                      </span>
+                      <button type="button" class="float-button button-green" title="Reply"><i class="fa fa-reply" aria-hidden="true"></i></button>
+                      <p>İyi bir yazarda olması gereken özellikler nelerdir?</p>
+                      <span class="date">
+                        08.11.2016
+                      </span>
+                    </div>
+                    <div class="clearfix"></div>
+</div>
+                    <div class="message">
+                    <div class="message-point">
+                      <i class="fa fa-chevron-up" aria-hidden="true"></i>
+                      <span>10</span>
+                      <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                    </div>
+                    <div class="message-content">
+                      <span class="title">
+                        Aydın Aksoy
+                      </span>
+                      <button type="button" class="float-button button-green" title="Reply"><i class="fa fa-reply" aria-hidden="true"></i></button>
+                      <p>İyi bir yazarda olması gereken özellikler nelerdir?</p>
+                      <span class="date">
+                        08.11.2016
+                      </span>
+                    </div>
+                    <div class="clearfix"></div>
+</div>
                   </div>
-                  <div class="message">
-                    <div class="message-point">
-                      <i class="fa fa-chevron-up" aria-hidden="true"></i>
-                      <span>10</span>
-                      <i class="fa fa-chevron-down" aria-hidden="true"></i>
-                    </div>
-                    <div class="message-content">
-                      <span class="title">
-                        Aydın Aksoy
-                      </span>
-                      <button type="button" class="float-button button-green" title="Reply"><i class="fa fa-reply" aria-hidden="true"></i></button>
-                      <p>İyi bir yazarda olması gereken özellikler nelerdir?</p>
-                      <span class="date">
-                        08.11.2016
-                      </span>
-                    </div>
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="message">
-                    <div class="message-point">
-                      <i class="fa fa-chevron-up" aria-hidden="true"></i>
-                      <span>10</span>
-                      <i class="fa fa-chevron-down" aria-hidden="true"></i>
-                    </div>
-                    <div class="message-content">
-                      <span class="title">
-                        Aydın Aksoy
-                      </span>
-                      <button type="button" class="float-button button-green" title="Reply"><i class="fa fa-reply" aria-hidden="true"></i></button>
-                      <p>İyi bir yazarda olması gereken özellikler nelerdir?</p>
-                      <span class="date">
-                        08.11.2016
-                      </span>
-                    </div>
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="message">
-                    <div class="message-point">
-                      <i class="fa fa-chevron-up" aria-hidden="true"></i>
-                      <span>10</span>
-                      <i class="fa fa-chevron-down" aria-hidden="true"></i>
-                    </div>
-                    <div class="message-content">
-                      <span class="title">
-                        Aydın Aksoy
-                      </span>
-                      <button type="button" class="float-button button-green" title="Reply"><i class="fa fa-reply" aria-hidden="true"></i></button>
-                      <p>İyi bir yazarda olması gereken özellikler nelerdir?</p>
-                      <span class="date">
-                        08.11.2016
-                      </span>
-                    </div>
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="message">
-                    <div class="message-point">
-                      <i class="fa fa-chevron-up" aria-hidden="true"></i>
-                      <span>10</span>
-                      <i class="fa fa-chevron-down" aria-hidden="true"></i>
-                    </div>
-                    <div class="message-content">
-                      <span class="title">
-                        Aydın Aksoy
-                      </span>
-                      <button type="button" class="float-button button-green" title="Reply"><i class="fa fa-reply" aria-hidden="true"></i></button>
-                      <p>İyi bir yazarda olması gereken özellikler nelerdir?</p>
-                      <span class="date">
-                        08.11.2016
-                      </span>
-                    </div>
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="message">
-                    <div class="message-point">
-                      <i class="fa fa-chevron-up" aria-hidden="true"></i>
-                      <span>10</span>
-                      <i class="fa fa-chevron-down" aria-hidden="true"></i>
-                    </div>
-                    <div class="message-content">
-                      <span class="title">
-                        Aydın Aksoy
-                      </span>
-                      <button type="button" class="float-button button-green" title="Reply"><i class="fa fa-reply" aria-hidden="true"></i></button>
-                      <p>İyi bir yazarda olması gereken özellikler nelerdir?</p>
-                      <span class="date">
-                        08.11.2016
-                      </span>
-                    </div>
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="message">
-                    <div class="message-point">
-                      <i class="fa fa-chevron-up" aria-hidden="true"></i>
-                      <span>10</span>
-                      <i class="fa fa-chevron-down" aria-hidden="true"></i>
-                    </div>
-                    <div class="message-content">
-                      <span class="title">
-                        Aydın Aksoy
-                      </span>
-                      <button type="button" class="float-button button-green" title="Reply"><i class="fa fa-reply" aria-hidden="true"></i></button>
-                      <p>İyi bir yazarda olması gereken özellikler nelerdir?</p>
-                      <span class="date">
-                        08.11.2016
-                      </span>
-                    </div>
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="message">
-                    <div class="message-point">
-                      <i class="fa fa-chevron-up" aria-hidden="true"></i>
-                      <span>10</span>
-                      <i class="fa fa-chevron-down" aria-hidden="true"></i>
-                    </div>
-                    <div class="message-content">
-                      <span class="title">
-                        Aydın Aksoy
-                      </span>
-                      <button type="button" class="float-button button-green" title="Reply"><i class="fa fa-reply" aria-hidden="true"></i></button>
-                      <p>İyi bir yazarda olması gereken özellikler nelerdir?</p>
-                      <span class="date">
-                        08.11.2016
-                      </span>
-                    </div>
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="message">
-                    <div class="message-point">
-                      <i class="fa fa-chevron-up" aria-hidden="true"></i>
-                      <span>10</span>
-                      <i class="fa fa-chevron-down" aria-hidden="true"></i>
-                    </div>
-                    <div class="message-content">
-                      <span class="title">
-                        Aydın Aksoy
-                      </span>
-                      <button type="button" class="float-button button-green" title="Reply"><i class="fa fa-reply" aria-hidden="true"></i></button>
-                      <p>İyi bir yazarda olması gereken özellikler nelerdir?</p>
-                      <span class="date">
-                        08.11.2016
-                      </span>
-                    </div>
-                    <div class="clearfix"></div>
+                  <div class="input-container">
+                    <input type="text" placeholder="Your message" class="form-control">
+                    <button class="button button-green send-button"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
                   </div>
                 </div>
                 <div class="tab-pane" id="messages" role="tabpanel">
@@ -250,54 +253,20 @@
                       <p><span class="question-number">Q1</span> Dayak nedir neden atılır ?</p>
                     </div>
                     <div class="options">
-                      <button class="button">option 1</button>
-                      <button class="button selected">option 2</button>
-                      <button class="button">option 3</button>
-                      <button class="button">option 4</button>
-                    </div>
-                  </div>
-                  <div class="message question">
-                    <div class="question-content">
-                      <p><span class="question-number">Q1</span> Dayak nedir neden atılır ?</p>
-                    </div>
-                    <div class="options">
-                      <button class="button">option 1</button>
-                      <button class="button selected">option 2</button>
-                      <button class="button">option 3</button>
-                      <button class="button">option 4</button>
-                    </div>
-                  </div>
-                  <div class="message question">
-                    <div class="question-content">
-                      <p><span class="question-number">Q1</span> Dayak nedir neden atılır ?</p>
-                    </div>
-                    <div class="options">
-                      <button class="button">option 1</button>
-                      <button class="button selected">option 2</button>
-                      <button class="button">option 3</button>
-                      <button class="button">option 4</button>
-                    </div>
-                  </div>
-                  <div class="message question">
-                    <div class="question-content">
-                      <p><span class="question-number">Q1</span> Dayak nedir neden atılır ?</p>
-                    </div>
-                    <div class="options">
-                      <button class="button">option 1</button>
-                      <button class="button selected">option 2</button>
-                      <button class="button">option 3</button>
-                      <button class="button">option 4</button>
-                    </div>
-                  </div>
-                  <div class="message question">
-                    <div class="question-content">
-                      <p><span class="question-number">Q1</span> Dayak nedir neden atılır ?</p>
-                    </div>
-                    <div class="options">
-                      <button class="button">option 1</button>
-                      <button class="button selected">option 2</button>
-                      <button class="button">option 3</button>
-                      <button class="button">option 4</button>
+                      <div class="row">
+                        <div class="col-xs-12 col-sm-6">
+                          <button class="button">option 1</button>
+                        </div>
+                        <div class="col-xs-12 col-sm-6">
+                          <button class="button selected">option 2</button>
+                        </div>
+                        <div class="col-xs-12 col-sm-6">
+                          <button class="button">option 3</button>
+                        </div>
+                        <div class="col-xs-12 col-sm-6">
+                          <button class="button">option 4</button>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -314,8 +283,19 @@
     <script type="text/javascript" src="jsPlugins/valdr/valdr-message.min.js"></script>
     <script type="text/javascript" src="js/model/mainModel.js"></script>
     <script type="text/javascript" src="js/controller/indexController.js"></script>
+    <script type="text/javascript" src="jsPlugins/star-rating/jquery.star-rating-svg.js"></script>
     <script type="text/javascript" src="jsPlugins/tether/js/tether.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <script type="text/javascript" src="jsPlugins/remodal/remodal.min.js"></script>
+    <script>
+      $(".topic-rating").starRating({
+        initialRating: 3.7,
+        hoverColor: "#0a6c8e",
+        useGradient: false,
+        activeColor: "#fec400",
+        readOnly: true,
+        starSize: 25
+      });
+    </script>
   </body>
 </html>

@@ -31,9 +31,9 @@ body{
   text-align: center;
 }
 
-.tab-pane.message-tab{
-  max-height: 80vh;
-  overflow-y: auto;
+.tab-pane.message-tab {
+  position: relative; 
+  padding-bottom: 50px;
 }
 
 span.question-number {
@@ -51,6 +51,44 @@ span.question-number {
 .options button.selected{
     background: #fec400;
     color: #fff !important;
+}
+
+
+.input-container{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.input-container input[type="text"].form-control {
+    margin-bottom: 0;
+    padding-right: 50px;
+}
+
+.message-container{
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.current-topic a,
+.recommended a{
+  display: block;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.current-topic .title,
+.recommended .title{
+  font-weight: bold;
+  font-size: 18px;
+  display: block;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.topic-rating {
+    float: right;
 }
 
 /**************************** Navbar *******************************/
@@ -98,6 +136,13 @@ div#search-container {
     position: relative;
 }
 
+.button.send-button {
+    line-height: 38px;
+    padding: 0 12px;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
 /**************************** Buttons *******************************/
 
 .button {
