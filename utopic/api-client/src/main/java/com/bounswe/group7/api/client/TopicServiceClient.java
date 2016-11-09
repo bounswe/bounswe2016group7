@@ -7,7 +7,7 @@ package com.bounswe.group7.api.client;
 
 import com.bounswe.group7.model.TopicPacks;
 import com.bounswe.group7.model.Topics;
-import org.codehaus.jackson.type.TypeReference;
+import com.google.gson.reflect.TypeToken;
 
 /**
  *
@@ -19,12 +19,12 @@ public class TopicServiceClient extends BaseClient {
     }
 
     public Topics createTopic(Topics request) throws Exception {
-        return post(getResource().path("createTopic"), new TypeReference<Topics>() {
+        return post(getResource().path("createTopic"), new TypeToken<Topics>() {
         }, request);
     }
 
     public TopicPacks createTopic(TopicPacks request) throws Exception {
-        return post(getResource().path("createTopicPack"), new TypeReference<TopicPacks>() {
+        return post(getResource().path("createTopicPack"), new TypeToken<TopicPacks>() {
         }, request);
     }
 }

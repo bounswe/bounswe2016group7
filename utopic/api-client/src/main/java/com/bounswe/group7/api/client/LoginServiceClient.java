@@ -6,8 +6,8 @@
 package com.bounswe.group7.api.client;
 
 import com.bounswe.group7.model.Users;
-import com.sun.jersey.api.client.WebResource;
-import org.codehaus.jackson.type.TypeReference;
+import com.google.gson.reflect.TypeToken;
+import javax.ws.rs.client.WebTarget;
 
 /**
  *
@@ -22,17 +22,17 @@ public class LoginServiceClient extends BaseClient {
     }
 
     @Override
-    public WebResource getResource() {
+    public WebTarget getResource() {
         return super.getResource().path(PATH);
     }
 
     public Users login(Users request) throws Exception {
-        return post(getResource().path("auth"), new TypeReference<Users>() {
+        return post(getResource().path("auth"), new TypeToken<Users>() {
         }, request);
     }
 
     public Users register(Users request) throws Exception {
-        return post(getResource().path("register"), new TypeReference<Users>() {
+        return post(getResource().path("register"), new TypeToken<Users>() {
         }, request);
     }
 

@@ -6,7 +6,7 @@
 package com.bounswe.group7.api.client;
 
 import com.bounswe.group7.model.Users;
-import org.codehaus.jackson.type.TypeReference;
+import com.google.gson.reflect.TypeToken;
 
 /**
  *
@@ -15,7 +15,7 @@ import org.codehaus.jackson.type.TypeReference;
 public class UserServiceClient extends BaseClient {
 
     public String changePassword(Users request) throws Exception {
-        return post(getResource().path("changePassword"), new TypeReference<String>() {
+        return post(getResource().path("changePassword"), new TypeToken<String>() {
         }, request);
     }
 
