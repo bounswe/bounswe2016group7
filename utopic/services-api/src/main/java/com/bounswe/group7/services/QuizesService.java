@@ -17,18 +17,20 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class QuizesService {
-    
+
     @Autowired
     QuizesRepository quizesRepository;
-    
+
     @Autowired
     UsersService usersService;
-    
-    public Quizes createQuiz(Quizes quiz)
-    {
+
+    public Quizes createQuiz(Quizes quiz) {
         quiz.setUserId(usersService.getLoggedInUserId());
         quiz.setCreateDate(new Date());
         return quizesRepository.save(quiz);
     }
-    
+
+    public Quizes getQuiz(Quizes quiz) {
+        return quizesRepository.findOne(quiz.getQuizId());
+    }
 }

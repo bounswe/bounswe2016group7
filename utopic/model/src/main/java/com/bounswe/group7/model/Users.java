@@ -50,7 +50,7 @@ public class Users {
     @Column(name = "lastPasswordResetDate")
     private Date lastPasswordResetDate;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "USER_AUTHORITY",
             joinColumns = {

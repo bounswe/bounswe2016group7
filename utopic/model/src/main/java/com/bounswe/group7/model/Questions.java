@@ -12,16 +12,17 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
 /**
  *
  * @author myunu
  */
 @Entity
+@Table(name = "QUESTIONS")
 public class Questions {
     
     @Id
-
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "QUESTION_SEQ")
     @SequenceGenerator(name = "QUESTION_SEQ", sequenceName = "QUESTION_SEQ", allocationSize = 1, initialValue = 1)
     @Column(name = "question_id", nullable = false)
@@ -29,9 +30,6 @@ public class Questions {
     
     @Column(name = "quiz_id", nullable = false)
     private Long quizId;
-    
-    @Column(name = "user_id", nullable = false)
-    private Long userId;
     
     @Column(name = "date_created", nullable = false)
     private Date dateCreated;
@@ -74,14 +72,6 @@ public class Questions {
 
     public void setQuizId(Long quizId) {
         this.quizId = quizId;
-    }
-
-    public Long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
     }
 
     public Date getDateCreated() {

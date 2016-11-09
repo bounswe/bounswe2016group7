@@ -21,16 +21,22 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 public class QuizesController {
-    
+
     @Autowired
     QuizesService quizesService;
-    
+
     @RequestMapping(path = "/createQuiz", method = RequestMethod.POST)
     @ResponseBody
     @PreAuthorize("hasAnyRole('CREATOR', 'ADMIN')")
-    public Quizes createQuiz(@RequestBody Quizes quiz)
-    {
+    public Quizes createQuiz(@RequestBody Quizes quiz) {
         return quizesService.createQuiz(quiz);
     }
-    
+
+    @RequestMapping(path = "/getQuiz", method = RequestMethod.POST)
+    @ResponseBody
+    @PreAuthorize("hasAnyRole('CREATOR', 'ADMIN', 'EXPLORER')")
+    public Quizes getQuiz(@RequestBody Quizes quiz) {
+        return quizesService.getQuiz(quiz);
+    }
+
 }

@@ -14,6 +14,4 @@ import org.springframework.data.repository.CrudRepository;
  * @author myunu
  */
 public interface QuestionsRepository extends CrudRepository<Questions, Long> {
-    public List<Questions> findByQuizId(Long quizId);
-    public List<Questions> findByUserId(Long userId);
 }

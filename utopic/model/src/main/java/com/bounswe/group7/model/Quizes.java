@@ -5,12 +5,19 @@
  */
 package com.bounswe.group7.model;
 
+import com.bounswe.group7.model.security.Authority;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
+import javax.persistence.JoinTable;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
 /**
@@ -23,7 +30,7 @@ public class Quizes {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "QUIZ_SEQ")
     @SequenceGenerator(name = "QUIZ_SEQ", sequenceName = "QUIZ_SEQ", allocationSize = 1, initialValue = 1)
-    @Column(name = "question_id", nullable = false)
+    @Column(name = "quiz_id", nullable = false)
     private Long quizId;
 
     @Column(name = "user_id", nullable = false)
@@ -37,6 +44,19 @@ public class Quizes {
 
     @Column(name = "name", nullable = false)
     private String name;
+
+    @OneToMany(fetch = FetchType.EAGER)
+    @JoinColumns({
+        @JoinColumn(name = "quiz_id", referencedColumnName = "quiz_id"),})
+    private List<Questions> questions;
+
+    public List<Questions> getQuestions() {
+        return questions;
+    }
+
+    public void setQuestions(List<Questions> questions) {
+        this.questions = questions;
+    }
 
     public Long getQuizId() {
         return quizId;

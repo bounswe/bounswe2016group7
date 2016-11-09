@@ -33,37 +33,37 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 @RestController
 public class AuthenticationRestController {
-    
+
     @Value("${jwt.header}")
     private String tokenHeader;
-    
+
     @Autowired
     private AuthenticationManager authenticationManager;
-    
+
     @Autowired
     private JwtTokenUtil jwtTokenUtil;
-    
+
     @Autowired
     private UserDetailsService userDetailsService;
-    
+
     @Autowired
     private UsersRepository usersRepository;
-    
+
     @Autowired
     private UserAuthorityRepository userAuthorityRepository;
-    
+
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-    
+
     @RequestMapping(value = "${jwt.route.authentication.path}", method = RequestMethod.POST)
-    public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtAuthenticationRequest authenticationRequest, Device device) throws AuthenticationException {
+    public Users createAuthenticationToken(@RequestBody Users authenticationRequest, Device device) throws AuthenticationException {
         Users user = usersRepository.findByEmailOrUsername(authenticationRequest.getUsername());
         if (user == null) {
-            return ResponseEntity.ok(user);
+            return user;
         }
-        
+
         authenticationRequest.setUsername(user.getUsername());
         // Perform the security
         final Authentication authentication = authenticationManager.authenticate(
@@ -77,17 +77,18 @@ public class AuthenticationRestController {
         // Reload password post-security so we can generate token
         final UserDetails userDetails = userDetailsService.loadUserByUsername(authenticationRequest.getUsername());
         final String token = jwtTokenUtil.generateToken(userDetails, device);
-
+        user.setToken(token);
+        user.setPassword(null);
         // Return the token
-        return ResponseEntity.ok(new JwtAuthenticationResponse(token));
+        return user;
     }
-    
+
     @RequestMapping(value = "${jwt.route.authentication.refresh}", method = RequestMethod.GET)
     public ResponseEntity<?> refreshAndGetAuthenticationToken(HttpServletRequest request) {
         String token = request.getHeader(tokenHeader);
         String username = jwtTokenUtil.getUsernameFromToken(token);
         JwtUser user = (JwtUser) userDetailsService.loadUserByUsername(username);
-        
+
         if (jwtTokenUtil.canTokenBeRefreshed(token, user.getLastPasswordResetDate())) {
             String refreshedToken = jwtTokenUtil.refreshToken(token);
             return ResponseEntity.ok(new JwtAuthenticationResponse(refreshedToken));
@@ -95,7 +96,7 @@ public class AuthenticationRestController {
             return ResponseEntity.badRequest().body(null);
         }
     }
-    
+
     @RequestMapping(value = "register", method = RequestMethod.POST)
     public ResponseEntity<?> register(@RequestBody Users user) {
         final String encodedPassword = passwordEncoder().encode(user.getPassword());

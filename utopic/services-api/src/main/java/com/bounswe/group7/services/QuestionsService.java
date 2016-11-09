@@ -26,7 +26,6 @@ public class QuestionsService {
     
     public Questions addQuestion(Questions question)
     {
-        question.setUserId(usersService.getLoggedInUserId());
         question.setDateCreated(new Date());
         return questionsRepository.save(question);
     }
