@@ -5,11 +5,13 @@ import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 
 import com.bounswe.group7.api.client.LoginServiceClient;
 import com.bounswe.group7.model.Users;
 
 public class MainActivity extends AppCompatActivity {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,18 +22,23 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void getInfo(View view){
-        //Intent intent = new Intent(this, ObtainInfo.class);
-        //startActivity(intent);
-
+        Intent intent = new Intent(this, UserPage.class);
         try {
             LoginServiceClient loginservice = new LoginServiceClient();
-            //put username - password here
-            Users user = new Users("ugurbor", "password");
+            EditText editText1 = (EditText) findViewById(R.id.username);
+            EditText editText2 = (EditText) findViewById(R.id.password);
+            String username = editText1.getText().toString();
+            String password = editText2.getText().toString();
+
+            Users user = new Users(username, password);
 
             Users token = new Users();
             try {
                 token = loginservice.login(user);
-                System.out.println("successful " + token.getToken());
+                intent.putExtra("nameKey", token.getFirstname());
+                intent.putExtra("surnameKey", token.getLastname());
+                System.out.println(token.getFirstname() + " " + token.getLastname());
+                startActivity(intent);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -40,5 +47,7 @@ public class MainActivity extends AppCompatActivity {
         catch (Exception e) {
             e.printStackTrace();
         }
+        //startActivity(intent);
     }
+
 }
