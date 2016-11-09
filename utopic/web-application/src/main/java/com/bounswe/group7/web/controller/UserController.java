@@ -7,7 +7,6 @@ import com.bounswe.group7.model.Users;
 import javax.servlet.http.HttpSession;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -36,7 +35,7 @@ public class UserController {
     }
     
     @RequestMapping(value = "/profile", method = RequestMethod.GET)
-    public ModelAndView showProfile(@RequestParam(value = "user_id") int user_id, HttpServletRequest request, HttpServletResponse response, RedirectAttributes attributes){
+    public ModelAndView showProfile(HttpServletRequest request, HttpServletResponse response, RedirectAttributes attributes){
         ModelAndView modelAndView = new ModelAndView("profile");
         // TODO client for getting profile page contents should be implemented
         return modelAndView;
