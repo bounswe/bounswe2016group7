@@ -15,7 +15,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -36,7 +35,7 @@ public class LoginController {
             user = client.login(new Users(username, password));
             HttpSession session = request.getSession();
             session.setAttribute("token", user.getToken());
-            session.setAttribute("username", username);
+            session.setAttribute("username", user.getUsername());
             session.setAttribute("user_id", user.getId());
             ModelAndView prevPage = new ModelAndView("redirect:/home");
             return prevPage;
