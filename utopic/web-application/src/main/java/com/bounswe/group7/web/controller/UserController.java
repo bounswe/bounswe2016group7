@@ -34,6 +34,13 @@ public class UserController {
         return modelAndView;
     }
     
+    
+    @RequestMapping("/home")
+    public ModelAndView home(HttpServletRequest request, HttpServletResponse response, RedirectAttributes attributes){
+        ModelAndView home = new ModelAndView("home");
+        return home;
+    }
+    
     @RequestMapping(value = "/profile", method = RequestMethod.GET)
     public ModelAndView showProfile(HttpServletRequest request, HttpServletResponse response, RedirectAttributes attributes){
         ModelAndView modelAndView = new ModelAndView("profile");

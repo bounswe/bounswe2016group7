@@ -1,4 +1,4 @@
-<nav class="navbar navbar-fixed-top navbar-dark" ng-controller="indexController">
+<nav class="navbar navbar-fixed-top navbar-dark">
     <div class="container">
         <div class="toggle" ng-click="toggleMenu()">
             <i class="fa fa-bars" aria-hidden="true"></i>
@@ -11,9 +11,9 @@
             </form>
         </div>
         <ul class="nav navbar-nav pull-md-right">
-            <li><a class="nav-item nav-link" href="#login-modal">HOME</a></li>
-            <li><a class="nav-item nav-link button">PROFILE</a></li>
-            <li><a class="nav-item nav-link button">LOG OUT</a></li>
+            <li><a href="/home" class="nav-item nav-link">HOME</a></li>
+            <li><a href="/profile" class="nav-item nav-link button">PROFILE</a></li>
+            <li><a href="/logout" class="nav-item nav-link button">LOG OUT</a></li>
         </ul>
     </div>
 </nav>
