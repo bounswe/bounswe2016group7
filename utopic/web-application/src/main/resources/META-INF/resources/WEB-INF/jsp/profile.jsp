@@ -30,7 +30,7 @@
 									
 								</div>
 								<div class="col-xs-7 col-md-9">
-									<h3>ROB BOSS<span></span></h3>
+									<h3>${profiledUser.firstname} ${profiledUser.lastname}<span></span></h3>
 									<p>American Painters Association</p>
 									<div class="badges"></div>
 										<div class="topic-tag">Wizard</div>

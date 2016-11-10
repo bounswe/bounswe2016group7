@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.bounswe.group7.model.Users;
 import javax.servlet.http.HttpSession;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,7 +21,7 @@ public class UserController {
     
     @RequestMapping(value = "/changePassword", method = RequestMethod.POST)
     public ModelAndView changePassword(HttpServletRequest request, HttpServletResponse response, RedirectAttributes attributes){
-        UserServiceClient userClient = new UserServiceClient();
+        UserServiceClient userClient = new UserServiceClient((String) request.getSession().getAttribute("token"));
         HttpSession session = request.getSession();
         try{
             Users user = new Users(session.getAttribute("username").toString(), request.getParameter("password"));
@@ -41,9 +42,16 @@ public class UserController {
         return home;
     }
     
-    @RequestMapping(value = "/profile", method = RequestMethod.GET)
-    public ModelAndView showProfile(HttpServletRequest request, HttpServletResponse response, RedirectAttributes attributes){
+    @RequestMapping(value = "/profile/{id}", method = RequestMethod.GET)
+    public ModelAndView showProfile(@PathVariable Long id, HttpServletRequest request, HttpServletResponse response, RedirectAttributes attributes){
         ModelAndView modelAndView = new ModelAndView("profile");
+        UserServiceClient client = new UserServiceClient((String) request.getSession().getAttribute("token"));
+        try{
+            Users profiledUser = client.getUser(id);
+            modelAndView.addObject("profiledUser", profiledUser);
+        }catch(Exception ex){
+            ex.printStackTrace();
+        }
         // TODO client for getting profile page contents should be implemented
         return modelAndView;
     }
