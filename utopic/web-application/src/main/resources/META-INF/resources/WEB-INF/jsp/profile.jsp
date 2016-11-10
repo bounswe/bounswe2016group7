@@ -3,36 +3,21 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <!-- Required meta tags always come first -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <link rel="stylesheet" href="jsPlugins/tether/css/tether.min.css"/>
-    <link rel="stylesheet" href="jsPlugins/remodal/remodal-default-theme.css"/>
-    <link rel="stylesheet" href="jsPlugins/remodal/remodal.css"/>
-    <link rel="stylesheet" href="css/bootstrap.css"/>
-    <link rel="stylesheet" href="jsPlugins/font-awesome-4.6.3/css/font-awesome.min.css"/>
-    <link rel="stylesheet" href="css/custom.css"/>
+    <jsp:include page="partial/cssFiles.jsp" />
   </head>
   <body ng-app="mainApp">
-    <nav class="navbar navbar-fixed-top navbar-dark" ng-controller="indexController">
-      <div class="container">
-        <div class="toggle" ng-click="toggleMenu()">
-          <i class="fa fa-bars" aria-hidden="true"></i>
-        </div>
-        <a class="navbar-brand" href="#"><img src="images/logo.png"/></a>
-        <div id="search-container">
-          <form>
-            <input type="text" placeholder="Search"/>
-            <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
-          </form>
-        </div>
-        <ul class="nav navbar-nav pull-md-right">
-          <li><a class="nav-item nav-link" href="#login-modal">LOG IN</a></li>
-          <li><a href="#register-modal" class="nav-item nav-link button button-orange">SIGN UP</a></li>
-        </ul>
-      </div>
-    </nav>
+    <% if(session.getAttribute("username") != null){
+    %><script type="text/javascript">
+        var activeUsername = "${sessionScope.username}";
+        var activeId = "${sessionScope.id}";
+        var activeToken = "${sessionScope.token}";
+    </script><%
+        }else{
+        response.setStatus(response.SC_MOVED_TEMPORARILY);
+        response.setHeader("Location", "/"); 
+       }    
+    %>
+    <jsp:include page="partial/getToolbar.jsp"/>
     <div class="content">
 			<div class="container-fluid">
 				<div class ="row">

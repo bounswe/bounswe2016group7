@@ -2,6 +2,7 @@
     <script src="/js/angular.js" type="text/javascript"></script>
     <script src="/jsPlugins/valdr/valdr.min.js" type="text/javascript"></script>
     <script src="/jsPlugins/valdr/valdr-message.min.js" type="text/javascript"></script>
+    <script src="/jsPlugins/star-rating/jquery.star-rating-svg.js" type="text/javascript"></script>
     <script src="/js/model/mainModel.js" type="text/javascript"></script>
     <script src="/jsPlugins/tether/js/tether.min.js" type="text/javascript"></script>
     <script src="/js/bootstrap.min.js" type="text/javascript"></script>

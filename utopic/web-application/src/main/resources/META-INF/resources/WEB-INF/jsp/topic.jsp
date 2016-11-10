@@ -6,18 +6,18 @@
         <jsp:include page="partial/cssFiles.jsp" />
     </head>
     <body ng-app="mainApp">
-        <% if(session.getAttribute("username") != null){
-        %><script type="text/javascript">
-            var activeUsername = "${sessionScope.username}";
-            var activeId = "${sessionScope.id}";
-            var activeToken = "${sessionScope.token}";
-        </script><%
-            }else{
-            response.setStatus(response.SC_MOVED_TEMPORARILY);
-            response.setHeader("Location", "/"); 
-           }    
-        %>
-        <jsp:include page="partial/getToolbar.jsp"/>
+    <% if(session.getAttribute("username") != null){
+    %><script type="text/javascript">
+        var activeUsername = "${sessionScope.username}";
+        var activeId = "${sessionScope.id}";
+        var activeToken = "${sessionScope.token}";
+    </script><%
+        }else{
+        response.setStatus(response.SC_MOVED_TEMPORARILY);
+        response.setHeader("Location", "/"); 
+       }    
+    %>
+    <jsp:include page="partial/getToolbar.jsp"/>
     <div class="content">
       <div class="container-fluid">
         <div class="row">
