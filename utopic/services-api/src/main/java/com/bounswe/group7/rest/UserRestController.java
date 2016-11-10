@@ -39,6 +39,7 @@ public class UserRestController {
     }
 
     @RequestMapping(value = "getLoggedInUser", method = RequestMethod.GET)
+    @ResponseBody
     public Users getLoggedInUser(HttpServletRequest request) {
         return usersService.getLoggedInUser();
     }
@@ -47,6 +48,12 @@ public class UserRestController {
     @ResponseBody
     public String changePassword(@RequestBody Users changePasswordReq) {
         return usersService.changePassword(changePasswordReq);
+    }
+
+    @RequestMapping(value = "getUser", method = RequestMethod.POST)
+    @ResponseBody
+    public Users getUser(@RequestBody Long userId) {
+        return usersService.getUser(userId);
     }
 
 }

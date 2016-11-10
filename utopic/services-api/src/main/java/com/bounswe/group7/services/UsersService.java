@@ -52,6 +52,10 @@ public class UsersService {
         return getLoggedInUser().getId();
     }
 
+    public Users getUser(Long userId) {
+        return usersRepository.findOne(userId);
+    }
+
     public String changePassword(Users changePasswordReq) {
         Users user = usersRepository.findOne(getLoggedInUserId());
         if (passwordEncoder().matches(changePasswordReq.getPassword(), user.getPassword())) {

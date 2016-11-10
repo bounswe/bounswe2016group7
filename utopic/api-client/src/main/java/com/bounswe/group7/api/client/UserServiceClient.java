@@ -14,6 +14,10 @@ import com.google.gson.reflect.TypeToken;
  */
 public class UserServiceClient extends BaseClient {
 
+    public UserServiceClient(String token) {
+        super(token);
+    }
+
     public String changePassword(Users request) throws Exception {
         return post(getResource().path("changePassword"), new TypeToken<String>() {
         }, request);
@@ -24,4 +28,8 @@ public class UserServiceClient extends BaseClient {
         });
     }
 
+    public Users getUser(Long userId) throws Exception {
+        return post(getResource().path("getUser"), new TypeToken<Users>() {
+        }, userId);
+    }
 }
