@@ -29,17 +29,24 @@ public class TopicsService {
     @Autowired
     UsersService usersService;
 
+    public Topics getTopic(Long id) {
+        return topicsRepository.findOne(id);
+    }
+
+    public TopicPacks getTopicPack(Long id) {
+        return topicPacksRepository.findOne(id);
+    }
+
     public Topics createTopic(Topics topic) {
         topic.setUserId(usersService.getLoggedInUserId());
         topic.setCreateDate(new Date());
+        topic.setRate(0.00);
         if (topic.getTopicPackId() == null) {
             TopicPacks pack = createTopicPack(new TopicPacks(topic.getHeader()));
             topic.setTopicPackId(pack.getTopicPackId());
             topic.setOrderBy(1);
-        }
-        else
-        {
-            TopicPacks pack = topicPacksRepository.findByTopicPackId(topic.getTopicPackId());
+        } else {
+            TopicPacks pack = topicPacksRepository.findOne(topic.getTopicPackId());
             pack.setCount(pack.getCount() + 1);
             topic.setOrderBy(pack.getCount());
             topicPacksRepository.save(pack);

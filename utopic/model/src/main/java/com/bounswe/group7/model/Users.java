@@ -53,6 +53,7 @@ public class Users {
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "USER_AUTHORITY",
+            uniqueConstraints = @UniqueConstraint(columnNames = {"USER_ID", "AUTHORITY_ID"}),
             joinColumns = {
                 @JoinColumn(name = "USER_ID", referencedColumnName = "ID")},
             inverseJoinColumns = {

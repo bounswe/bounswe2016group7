@@ -32,11 +32,23 @@ public class TopicsController {
     public Topics createTopic(@RequestBody Topics topic) {
         return topicsService.createTopic(topic);
     }
-    
+
     @RequestMapping(path = "/createTopicPack", method = RequestMethod.POST)
     @ResponseBody
     @PreAuthorize("hasAnyRole('CREATOR', 'ADMIN')")
     public TopicPacks createTopicPack(@RequestBody TopicPacks topicPack) {
         return topicsService.createTopicPack(topicPack);
+    }
+
+    @RequestMapping(path = "/getTopic", method = RequestMethod.POST)
+    @ResponseBody
+    public Topics getTopic(@RequestBody Long topicId) {
+        return topicsService.getTopic(topicId);
+    }
+
+    @RequestMapping(path = "/getTopicPack", method = RequestMethod.POST)
+    @ResponseBody
+    public TopicPacks getTopicPack(@RequestBody Long topicPackId) {
+        return topicsService.getTopicPack(topicPackId);
     }
 }

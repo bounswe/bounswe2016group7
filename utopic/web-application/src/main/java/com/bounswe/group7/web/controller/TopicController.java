@@ -5,6 +5,7 @@ import com.bounswe.group7.model.Topics;
 import java.util.Date;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -28,13 +29,12 @@ public class TopicController {
     
     @RequestMapping(value = "/createTopic", method = RequestMethod.POST)
     public ModelAndView createTopic(HttpServletRequest request, HttpServletResponse response, RedirectAttributes attributes){
-        TopicServiceClient client = new TopicServiceClient();
+        HttpSession session = request.getSession();
+        TopicServiceClient client = new TopicServiceClient((String) session.getAttribute("token"));
         Topics topic = new Topics();
         try{
             topic.setContent(request.getParameter("content"));
-            topic.setCreateDate(new Date());
             topic.setHeader(request.getParameter("header"));
-            topic.setUserId((Long) request.getSession().getAttribute("user_id"));
             topic.setTopicPackId(Long.parseLong(request.getParameter("topic_pack_id")));
             Topics topicCreated = client.createTopic(topic);
             attributes.addAttribute("topic_id", topicCreated.getTopicId());

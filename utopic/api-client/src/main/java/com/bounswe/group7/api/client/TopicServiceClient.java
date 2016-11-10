@@ -18,6 +18,10 @@ public class TopicServiceClient extends BaseClient {
     public TopicServiceClient() {
     }
 
+    public TopicServiceClient(String token) {
+        super(token);
+    }
+
     public Topics createTopic(Topics request) throws Exception {
         return post(getResource().path("createTopic"), new TypeToken<Topics>() {
         }, request);
@@ -26,5 +30,15 @@ public class TopicServiceClient extends BaseClient {
     public TopicPacks createTopic(TopicPacks request) throws Exception {
         return post(getResource().path("createTopicPack"), new TypeToken<TopicPacks>() {
         }, request);
+    }
+
+    public Topics getTopic(Long topicId) throws Exception {
+        return post(getResource().path("getTopic"), new TypeToken<Topics>() {
+        }, topicId);
+    }
+    
+    public TopicPacks getTopicPack(Long topicPackId) throws Exception {
+        return post(getResource().path("getTopicPack"), new TypeToken<TopicPacks>() {
+        }, topicPackId);
     }
 }

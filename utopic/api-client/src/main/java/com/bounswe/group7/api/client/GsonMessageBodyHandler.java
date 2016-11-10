@@ -23,6 +23,14 @@ import javax.ws.rs.ext.MessageBodyWriter;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParseException;
+import com.google.gson.JsonPrimitive;
+import com.google.gson.JsonSerializationContext;
+import com.google.gson.JsonSerializer;
+import java.util.Date;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.Produces;
 
@@ -39,6 +47,25 @@ public class GsonMessageBodyHandler implements MessageBodyWriter<Object>,
     private Gson getGson() {
         if (gson == null) {
             final GsonBuilder gsonBuilder = new GsonBuilder();
+            gsonBuilder.registerTypeAdapter(Date.class, new JsonSerializer<Date>() {
+                @Override
+                public JsonElement serialize(Date src, Type typeOfSrc, JsonSerializationContext context) {
+                    return new JsonPrimitive(src.getTime());
+                }
+            }).registerTypeAdapter(Date.class, new JsonDeserializer<Date>() {
+                @Override
+                public Date deserialize(final JsonElement json, final Type typeOfT, final JsonDeserializationContext context) throws JsonParseException {
+                    try {
+                        long timeStamp = json.getAsLong();
+                        java.sql.Date sqlDate = new java.sql.Date(timeStamp);
+                        java.util.Date utilDate = new java.util.Date(sqlDate.getTime());
+                        return utilDate;
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
+                    return null;
+                }
+            });
             gson = gsonBuilder.disableHtmlEscaping()
                     .setFieldNamingPolicy(FieldNamingPolicy.IDENTITY)
                     .setPrettyPrinting()
