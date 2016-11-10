@@ -31,6 +31,66 @@ body{
   text-align: center;
 }
 
+.tab-pane.message-tab {
+  position: relative; 
+  padding-bottom: 50px;
+}
+
+span.question-number {
+    font-weight: bold;
+}
+
+.options button{
+  background: #0a6c8e;
+  display: block;
+  width: 100%;
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+.options button.selected{
+    background: #fec400;
+    color: #fff !important;
+}
+
+
+.input-container{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.input-container input[type="text"].form-control {
+    margin-bottom: 0;
+    padding-right: 50px;
+}
+
+.message-container{
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.current-topic a,
+.recommended a{
+  display: block;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.current-topic .title,
+.recommended .title{
+  font-weight: bold;
+  font-size: 18px;
+  display: block;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.topic-rating {
+    float: right;
+}
+
 /**************************** Navbar *******************************/
 
 .navbar-dark{
@@ -76,6 +136,13 @@ div#search-container {
     position: relative;
 }
 
+.button.send-button {
+    line-height: 38px;
+    padding: 0 12px;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
 /**************************** Buttons *******************************/
 
 .button {
@@ -218,6 +285,105 @@ ul.categories li{
 #topic-search{
   max-width: 300px;
   margin: 0 auto;
+}
+
+.row .panel{
+  margin-bottom: 30px;
+}
+
+.title-picture{
+  height: 200px;
+  width: 100%;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  margin-bottom: 15px;
+}
+
+.tags > .topic-tag {
+  padding: 3px 8px;
+  border-radius: 3px;
+  display: inline-block;
+  background: #0a6c8e;
+  margin-right: 15px;
+  color: #fff;
+}
+
+.nav-tabs .nav-item {
+  width: 33.333333%;
+  display: block;
+  margin: 0 !important;
+  text-align: center;
+  border-radius: 0;
+  border:none;
+}
+
+.nav-tabs .nav-link {
+    border: none;
+}
+
+.nav-tabs .nav-link{
+    color: #0a6c8e !important;
+}
+.nav-tabs {
+  margin-bottom: 15px;
+}
+.nav-tabs .nav-link.active, .nav-tabs .nav-link.active:focus, .nav-tabs .nav-link.active:hover, .nav-tabs .nav-item.open .nav-link, .nav-tabs .nav-item.open .nav-link:focus, .nav-tabs .nav-item.open .nav-link:hover {
+  border-bottom: 2px solid #0a6c8e;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  font-weight: bold;
+}
+
+.nav-tabs .nav-link:focus, .nav-tabs .nav-link:hover {
+    border:none;
+}
+
+.message-point{
+  float: left;
+  margin-right: 15px;
+}
+
+.message{
+  margin-bottom: 15px;
+  background: #f5f5f5;
+  padding: 15px;
+  border-radius: 3px;
+}
+
+.message-point > * {
+    display: block;
+    text-align: center;
+    color: #0a6c8e;
+}
+
+.message-point > span{
+  font-weight: bold;
+} 
+
+.message-content .title{
+  font-weight: bold;
+}
+
+.float-button{
+  border: none;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  border-radius: 30px;
+  float: right;
+  color: #fff;
+}
+
+.message-content p{
+  margin-bottom: 5px;
+}
+.message-content .date{
+  font-size: 11px;
+  color: #b1b1b1; 
+  float: right;
 }
 /**************************** Validation CSS *******************************/
 .valdr-message.ng-valid,

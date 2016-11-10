@@ -34,9 +34,9 @@ public class LoginController {
         try {
             user = client.login(new Users(username, password));
             HttpSession session = request.getSession();
+            session.setAttribute("user", user);
             session.setAttribute("token", user.getToken());
             session.setAttribute("username", user.getUsername());
-            session.setAttribute("user_id", user.getId());
             ModelAndView prevPage = new ModelAndView("redirect:/home");
             return prevPage;
         } catch (Exception ex) {
@@ -50,9 +50,9 @@ public class LoginController {
     @RequestMapping(value="/logout", method = RequestMethod.GET)
     public ModelAndView logout(HttpServletRequest request, HttpServletResponse response, RedirectAttributes redirectAttributes){
         HttpSession session = request.getSession();
-        session.removeAttribute("username");
-        session.removeAttribute("user_id");
+        session.removeAttribute("user");
         session.removeAttribute("token");
+        session.removeAttribute("username");
         ModelAndView index = new ModelAndView("redirect:/");
         return index;
     }
