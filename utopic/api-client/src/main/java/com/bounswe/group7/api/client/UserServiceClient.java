@@ -19,4 +19,9 @@ public class UserServiceClient extends BaseClient {
         }, request);
     }
 
+    public Users getLoggedInUser() throws Exception {
+        return get(getResource().path("getLoggedInUser"), new TypeToken<Users>() {
+        });
+    }
+
 }

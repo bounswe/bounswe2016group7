@@ -38,6 +38,11 @@ public class UserRestController {
         return user;
     }
 
+    @RequestMapping(value = "getLoggedInUser", method = RequestMethod.GET)
+    public Users getLoggedInUser(HttpServletRequest request) {
+        return usersService.getLoggedInUser();
+    }
+
     @RequestMapping(value = "changePassword", method = RequestMethod.POST)
     @ResponseBody
     public String changePassword(@RequestBody Users changePasswordReq) {
