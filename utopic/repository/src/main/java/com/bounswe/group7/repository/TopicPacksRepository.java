@@ -6,6 +6,7 @@
 package com.bounswe.group7.repository;
 
 import com.bounswe.group7.model.TopicPacks;
+import java.util.Date;
 import java.util.List;
 import org.springframework.data.repository.CrudRepository;
 
@@ -13,7 +14,9 @@ import org.springframework.data.repository.CrudRepository;
  *
  * @author Batuhan
  */
-public interface TopicPacksRepository extends CrudRepository<TopicPacks,Long>{
+public interface TopicPacksRepository extends CrudRepository<TopicPacks, Long> {
+
     public List<TopicPacks> findByUserId(Long userId);
+
     public TopicPacks findByTopicPackId(Long topicPackId);
 }

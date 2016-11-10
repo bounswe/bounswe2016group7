@@ -9,7 +9,9 @@ import com.bounswe.group7.model.TopicPacks;
 import com.bounswe.group7.model.Topics;
 import com.bounswe.group7.repository.TopicPacksRepository;
 import com.bounswe.group7.repository.TopicsRepository;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -58,5 +60,9 @@ public class TopicsService {
         topicPack.setUserId(usersService.getLoggedInUserId());
         topicPack.setCreateDate(new Date());
         return topicPacksRepository.save(topicPack);
+    }
+    
+    public List<Topics> getRecentTopics(){
+        return topicsRepository.findTop10ByOrderByCreateDateDesc();
     }
 }

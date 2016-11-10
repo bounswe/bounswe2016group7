@@ -8,6 +8,7 @@ package com.bounswe.group7.api.client;
 import com.bounswe.group7.model.TopicPacks;
 import com.bounswe.group7.model.Topics;
 import com.google.gson.reflect.TypeToken;
+import java.util.List;
 
 /**
  *
@@ -40,5 +41,9 @@ public class TopicServiceClient extends BaseClient {
     public TopicPacks getTopicPack(Long topicPackId) throws Exception {
         return post(getResource().path("getTopicPack"), new TypeToken<TopicPacks>() {
         }, topicPackId);
+    }
+    
+    public List<Topics> getRecentTopics() throws Exception {
+        return get(getResource().path("getRecentTopics"), new TypeToken<List<Topics>>() {});
     }
 }

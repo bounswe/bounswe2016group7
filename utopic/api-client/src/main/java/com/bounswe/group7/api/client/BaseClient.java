@@ -47,26 +47,7 @@ public class BaseClient {
     private String token;
 
     public BaseClient() {
-        client = ClientBuilder.newClient().register(AndroidFriendlyFeature.class).register(GsonMessageBodyHandler.class);
-        gson = new GsonBuilder().registerTypeAdapter(Date.class, new JsonSerializer<Date>() {
-            @Override
-            public JsonElement serialize(Date src, Type typeOfSrc, JsonSerializationContext context) {
-                return new JsonPrimitive(src.getTime());
-            }
-        }).registerTypeAdapter(Date.class, new JsonDeserializer<Date>() {
-            @Override
-            public Date deserialize(final JsonElement json, final Type typeOfT, final JsonDeserializationContext context) throws JsonParseException {
-                try {
-                    long timeStamp = json.getAsLong();
-                    java.sql.Date sqlDate = new java.sql.Date(timeStamp);
-                    java.util.Date utilDate = new java.util.Date(sqlDate.getTime());
-                    return utilDate;
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                }
-                return null;
-            }
-        }).create();
+        this(null);
     }
 
     public BaseClient(String token) {

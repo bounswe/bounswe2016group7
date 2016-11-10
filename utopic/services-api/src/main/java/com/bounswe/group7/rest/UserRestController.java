@@ -12,6 +12,7 @@ import com.bounswe.group7.security.JwtUser;
 import com.bounswe.group7.services.UsersService;
 
 import javax.servlet.http.HttpServletRequest;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -46,6 +47,7 @@ public class UserRestController {
 
     @RequestMapping(value = "changePassword", method = RequestMethod.POST)
     @ResponseBody
+    @PreAuthorize("hasAnyRole('EXPLORER', 'CREATOR', 'ADMIN')")
     public String changePassword(@RequestBody Users changePasswordReq) {
         return usersService.changePassword(changePasswordReq);
     }

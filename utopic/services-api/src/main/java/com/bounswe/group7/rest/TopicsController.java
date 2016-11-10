@@ -8,6 +8,7 @@ package com.bounswe.group7.rest;
 import com.bounswe.group7.model.TopicPacks;
 import com.bounswe.group7.model.Topics;
 import com.bounswe.group7.services.TopicsService;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -51,4 +52,11 @@ public class TopicsController {
     public TopicPacks getTopicPack(@RequestBody Long topicPackId) {
         return topicsService.getTopicPack(topicPackId);
     }
+
+    @RequestMapping(path = "/getRecentTopics", method = RequestMethod.GET)
+    @ResponseBody
+    public List<Topics> getRecentTopics() {
+        return topicsService.getRecentTopics();
+    }
+
 }
