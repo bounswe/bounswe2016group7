@@ -5,7 +5,7 @@
  */
 package com.bounswe.group7.repository;
 
-import com.bounswe.group7.model.Quizes;
+import com.bounswe.group7.model.Comments;
 import java.io.Serializable;
 import java.util.List;
 import org.springframework.data.repository.CrudRepository;
@@ -14,8 +14,9 @@ import org.springframework.data.repository.CrudRepository;
  *
  * @author myunu
  */
-public interface QuizesRepository extends CrudRepository<Quizes, Long>{
+public interface CommentsRepository extends CrudRepository<Comments, Long>{
     
-    public List<Quizes> findByUserId(Long userId);
+    public List<Comments> findByUserId(Long userId);
     
+    public List<Comments> findByTopicId(Long topicId);
 }
