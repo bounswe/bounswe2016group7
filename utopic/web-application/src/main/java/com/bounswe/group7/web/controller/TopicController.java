@@ -1,8 +1,11 @@
 package com.bounswe.group7.web.controller;
 
+import com.bounswe.group7.api.client.CommentServiceClient;
 import com.bounswe.group7.api.client.TopicServiceClient;
+import com.bounswe.group7.model.Comments;
 import com.bounswe.group7.model.Topics;
 import java.util.Date;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
@@ -11,7 +14,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -27,10 +29,14 @@ public class TopicController {
     public ModelAndView showTopic(@PathVariable Long id, HttpServletRequest request, HttpServletResponse response, RedirectAttributes attributes){
         ModelAndView modelAndView = new ModelAndView("topic");
         HttpSession session = request.getSession();
-        TopicServiceClient client = new TopicServiceClient((String) session.getAttribute("token"));
+        TopicServiceClient topicClient = new TopicServiceClient((String) session.getAttribute("token"));
+        CommentServiceClient commentClient = new CommentServiceClient((String) session.getAttribute("token"));
+        
         try {
-            Topics topic = client.getTopic(id);
+            Topics topic = topicClient.getTopic(id);
+            List<Comments> comments = commentClient.getTopicComments(id);
             modelAndView.addObject("topic", topic);
+            modelAndView.addObject("comments", comments);
         } catch (Exception ex) {
             ex.printStackTrace();
             attributes.addAttribute("error", ex.getMessage());
