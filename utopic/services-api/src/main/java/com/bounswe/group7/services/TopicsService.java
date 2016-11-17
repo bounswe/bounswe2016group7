@@ -72,6 +72,6 @@ public class TopicsService {
     }
     
     public List<Topics> getTopTopics() {
-        return topicsRepository.fintTop10ByOrderByRateDesc();
+        return topicsRepository.findTop10ByOrderByRateDesc();
     }
 }
