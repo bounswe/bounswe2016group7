@@ -44,6 +44,6 @@ public class TopicServiceClient extends BaseClient {
     }
     
     public List<Topics> getRecentTopics() throws Exception {
-        return get(getResource().path("getRecentTopics"), new TypeToken<List<Topics>>() {});
+        return get(getResource().path("public/getRecentTopics"), new TypeToken<List<Topics>>() {});
     }
 }

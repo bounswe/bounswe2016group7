@@ -1,5 +1,6 @@
 package com.bounswe.group7.security;
 
+import com.bounswe.group7.model.security.AuthorityName;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

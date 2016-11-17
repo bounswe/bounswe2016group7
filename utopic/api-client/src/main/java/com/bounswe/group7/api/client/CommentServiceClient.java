@@ -29,7 +29,7 @@ public class CommentServiceClient extends BaseClient{
     }
     
     public List<Comments> getTopicComments(Long topicId) throws Exception {
-        return post(getResource().path("getTopicComments"), new TypeToken<List<Comments>>() {
+        return post(getResource().path("public/getTopicComments"), new TypeToken<List<Comments>>() {
         }, topicId);
     }
 }

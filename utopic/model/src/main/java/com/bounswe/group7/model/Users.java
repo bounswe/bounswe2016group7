@@ -10,12 +10,13 @@ package com.bounswe.group7.model;
  * @author ugurbor
  */
 import com.bounswe.group7.model.security.Authority;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.*;
 
 @Entity
-public class Users {
+public class Users implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="USERS_SEQ")

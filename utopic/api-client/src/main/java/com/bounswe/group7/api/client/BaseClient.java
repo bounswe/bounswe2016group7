@@ -80,7 +80,12 @@ public class BaseClient {
     }
 
     public <T> T get(WebTarget resource, TypeToken<T> type) throws Exception {
-        Response response = resource.request(MediaType.APPLICATION_JSON).header("Authorization", token).get();
+        Response response;
+        if (token != null) {
+            response = resource.request(MediaType.APPLICATION_JSON).header("Authorization", token).get();
+        } else {
+            response = resource.request(MediaType.APPLICATION_JSON).get();
+        }
         if (response.getStatus() != 200) {
             throw new RuntimeException("Failed : HTTP error code : "
                     + response.getStatus());
@@ -92,7 +97,12 @@ public class BaseClient {
     }
 
     public <T> T post(WebTarget resource, TypeToken<T> type, Object requestEntity) throws Exception {
-        Response response = resource.request(MediaType.APPLICATION_JSON).header("Authorization", token).post(Entity.entity(requestEntity, MediaType.APPLICATION_JSON));
+        Response response;
+        if (token != null) {
+            response = resource.request(MediaType.APPLICATION_JSON).header("Authorization", token).post(Entity.entity(requestEntity, MediaType.APPLICATION_JSON));
+        } else {
+            response = resource.request(MediaType.APPLICATION_JSON).post(Entity.entity(requestEntity, MediaType.APPLICATION_JSON));
+        }
         if (response.getStatus() != 200) {
             throw new RuntimeException("Failed : HTTP error code : "
                     + response.getStatus());

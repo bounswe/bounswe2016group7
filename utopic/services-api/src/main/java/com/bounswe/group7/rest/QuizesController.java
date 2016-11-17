@@ -32,7 +32,7 @@ public class QuizesController {
         return quizesService.createQuiz(quiz);
     }
 
-    @RequestMapping(path = "/getQuiz", method = RequestMethod.POST)
+    @RequestMapping(path = "public/getQuiz", method = RequestMethod.POST)
     @ResponseBody
     @PreAuthorize("hasAnyRole('CREATOR', 'ADMIN', 'EXPLORER')")
     public Quizes getQuiz(@RequestBody Quizes quiz) {

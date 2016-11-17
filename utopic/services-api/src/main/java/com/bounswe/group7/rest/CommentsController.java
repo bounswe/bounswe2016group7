@@ -33,9 +33,8 @@ public class CommentsController {
         return commentsService.createComment(comment);
     }
     
-    @RequestMapping(path = "/getTopicComments", method = RequestMethod.POST)
+    @RequestMapping(path = "public/getTopicComments", method = RequestMethod.POST)
     @ResponseBody
-    @PreAuthorize("hasAnyRole('CREATOR', 'ADMIN', 'EXPLORER')")
     public List<Comments> getTopicComments(@RequestBody Long topicId)
     {
         return commentsService.getTopicComments(topicId);

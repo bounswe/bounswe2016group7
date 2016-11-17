@@ -41,19 +41,19 @@ public class TopicsController {
         return topicsService.createTopicPack(topicPack);
     }
 
-    @RequestMapping(path = "/getTopic", method = RequestMethod.POST)
+    @RequestMapping(path = "public/getTopic", method = RequestMethod.POST)
     @ResponseBody
     public Topics getTopic(@RequestBody Long topicId) {
         return topicsService.getTopic(topicId);
     }
 
-    @RequestMapping(path = "/getTopicPack", method = RequestMethod.POST)
+    @RequestMapping(path = "public/getTopicPack", method = RequestMethod.POST)
     @ResponseBody
     public TopicPacks getTopicPack(@RequestBody Long topicPackId) {
         return topicsService.getTopicPack(topicPackId);
     }
 
-    @RequestMapping(path = "/getRecentTopics", method = RequestMethod.GET)
+    @RequestMapping(path = "public/getRecentTopics", method = RequestMethod.GET)
     @ResponseBody
     public List<Topics> getRecentTopics() {
         return topicsService.getRecentTopics();

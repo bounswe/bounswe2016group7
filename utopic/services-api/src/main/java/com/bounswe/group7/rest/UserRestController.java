@@ -12,6 +12,7 @@ import com.bounswe.group7.security.JwtUser;
 import com.bounswe.group7.services.UsersService;
 
 import javax.servlet.http.HttpServletRequest;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -52,8 +53,7 @@ public class UserRestController {
         return usersService.changePassword(changePasswordReq);
     }
 
-    @RequestMapping(value = "getUser", method = RequestMethod.POST)
-    @ResponseBody
+    @RequestMapping(value = "public/getUser", method = RequestMethod.POST)
     public Users getUser(@RequestBody Long userId) {
         return usersService.getUser(userId);
     }

@@ -29,7 +29,7 @@ public class UserServiceClient extends BaseClient {
     }
 
     public Users getUser(Long userId) throws Exception {
-        return post(getResource().path("getUser"), new TypeToken<Users>() {
+        return post(getResource().path("public/getUser"), new TypeToken<Users>() {
         }, userId);
     }
 }
