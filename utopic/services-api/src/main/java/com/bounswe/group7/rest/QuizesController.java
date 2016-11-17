@@ -6,6 +6,7 @@
 package com.bounswe.group7.rest;
 
 import com.bounswe.group7.model.Quizes;
+import com.bounswe.group7.model.SolvedQuizes;
 import com.bounswe.group7.services.QuizesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -32,11 +33,18 @@ public class QuizesController {
         return quizesService.createQuiz(quiz);
     }
 
-    @RequestMapping(path = "public/getQuiz", method = RequestMethod.POST)
+    @RequestMapping(path = "getQuiz", method = RequestMethod.POST)
     @ResponseBody
     @PreAuthorize("hasAnyRole('CREATOR', 'ADMIN', 'EXPLORER')")
     public Quizes getQuiz(@RequestBody Quizes quiz) {
         return quizesService.getQuiz(quiz);
+    }
+    
+    @RequestMapping(path = "solveQuız", method = RequestMethod.POST)
+    @ResponseBody
+    @PreAuthorize("hasAnyRole('CREATOR', 'ADMIN', 'EXPLORER')")
+    public SolvedQuizes solveQuiz(@RequestBody Quizes quiz) {
+        return quizesService.solveQuiz(quiz);
     }
 
 }

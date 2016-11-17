@@ -13,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 /**
  *
@@ -46,10 +47,23 @@ public class Questions {
     
     @Column(name = "right_answer", nullable = false)
     private char rightAnswer;
+    
+    @Transient
+    private char chosenAnswer;
 
     public Questions() {
     }
 
+    public char getChosenAnswer() {
+        return chosenAnswer;
+    }
+
+    public void setChosenAnswer(char chosenAnswer) {
+        this.chosenAnswer = chosenAnswer;
+    }
+    
+    
+    
     public Long getQuestionId() {
         return questionId;
     }
@@ -122,6 +136,11 @@ public class Questions {
         this.rightAnswer = rightAnswer;
     }
     
+    public int compareTo(Questions q){
+        return (int) (this.questionId - q.getQuestionId());
+    }
     
-    
+    public int compare(Questions a, Questions b){
+        return (int) (a.getQuestionId() - b.getQuestionId());
+    }
 }
