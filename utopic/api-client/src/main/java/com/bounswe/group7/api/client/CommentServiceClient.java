@@ -32,4 +32,9 @@ public class CommentServiceClient extends BaseClient{
         return post(getResource().path("public/getTopicComments"), new TypeToken<List<Comments>>() {
         }, topicId);
     }
+    
+    public boolean deleteComment(Long commentId) throws Exception {
+        return post(getResource().path("deleteComment"), new TypeToken<Boolean>() {
+        }, commentId);
+    }
 }
