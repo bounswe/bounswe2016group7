@@ -13,13 +13,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 /**
  *
  * @author ugurbor
  */
 @Entity
-@Table(name = "USER_AUTHORITY")
+@Table(name = "USER_AUTHORITY", uniqueConstraints = @UniqueConstraint(columnNames = {"USER_ID", "AUTHORITY_ID"}))
 public class UserAuthority {
 
     @Id

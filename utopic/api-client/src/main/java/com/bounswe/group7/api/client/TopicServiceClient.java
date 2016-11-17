@@ -37,18 +37,25 @@ public class TopicServiceClient extends BaseClient {
         return post(getResource().path("getTopic"), new TypeToken<Topics>() {
         }, topicId);
     }
-    
+
     public List<Topics> getUserTopics(Long userId) throws Exception {
         return post(getResource().path("public/getUserTopics"), new TypeToken<List<Topics>>() {
         }, userId);
     }
-    
+
     public TopicPacks getTopicPack(Long topicPackId) throws Exception {
         return post(getResource().path("getTopicPack"), new TypeToken<TopicPacks>() {
         }, topicPackId);
     }
-    
+
     public List<Topics> getRecentTopics() throws Exception {
-        return get(getResource().path("public/getRecentTopics"), new TypeToken<List<Topics>>() {});
+        return get(getResource().path("public/getRecentTopics"), new TypeToken<List<Topics>>() {
+        });
     }
+
+    public List<Topics> getTopTopics() throws Exception {
+        return get(getResource().path("public/getTopTopics"), new TypeToken<List<Topics>>() {
+        });
+    }
+
 }

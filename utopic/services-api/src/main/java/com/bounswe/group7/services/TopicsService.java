@@ -70,4 +70,8 @@ public class TopicsService {
     public List<Topics> getRecentTopics(){
         return topicsRepository.findTop10ByOrderByCreateDateDesc();
     }
+    
+    public List<Topics> getTopTopics() {
+        return topicsRepository.fintTop10ByOrderByRateDesc();
+    }
 }
