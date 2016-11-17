@@ -38,7 +38,7 @@ public class Comments {
     
     private String text;
     
-    private Double rate;
+    private Integer rate;
     
     public Comments() {
     }
@@ -83,11 +83,11 @@ public class Comments {
         this.text = text;
     }
 
-    public Double getRate() {
+    public Integer getRate() {
         return rate;
     }
 
-    public void setRate(Double rate) {
+    public void setRate(Integer rate) {
         this.rate = rate;
     }
     

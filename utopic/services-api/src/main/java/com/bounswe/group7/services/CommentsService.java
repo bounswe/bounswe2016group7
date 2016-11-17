@@ -29,7 +29,7 @@ public class CommentsService {
     {
         comment.setUserId(usersService.getLoggedInUserId());
         comment.setDateCreated(new Date());
-        comment.setRate(0.0);
+        comment.setRate(0);
         return commentsRepository.save(comment);
     }
     
