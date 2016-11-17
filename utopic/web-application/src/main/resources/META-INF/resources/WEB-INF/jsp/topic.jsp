@@ -5,12 +5,15 @@
   <head>
         <jsp:include page="partial/cssFiles.jsp" />
     </head>
-    <body ng-app="mainApp">
+    <body ng-app="mainApp" ng-controller="topicController">
     <% if(session.getAttribute("username") != null){
     %><script type="text/javascript">
         var activeUsername = "${sessionScope.username}";
         var activeId = "${sessionScope.id}";
         var activeToken = "${sessionScope.token}";
+        var comments = ${comments};
+        var ownerId = ${owner.id};
+        var topicId = ${topic.topicId};
     </script><%
         }else{
         response.setStatus(response.SC_MOVED_TEMPORARILY);
@@ -26,13 +29,13 @@
               <div class="row">
                 <div class="col-xs-5 col-md-3">
                   <div class="title-picture" style="background-image: url(/images/header1.jpg);"></div>
-                  <p>Creator: <a href="#">John Doe</a><br/>
+                  <p>Creator: <a href="#">${owner.username}</a><br/>
                     <a href="#">150 people are interested</a>
                   <p>
                 </div>
                 <div class="col-xs-7 col-md-9">
                   <h3>${topic.header} <div class="topic-rating"></div></h3>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent ac tortor nec leo egestas eleifend id ut lectus. In vel laoreet erat, ac cursus metus. Donec tempor luctus turpis, in consectetur felis. Nulla dolor ligula, tincidunt vel lorem at, pellentesque hendrerit justo. Aenean porttitor eleifend quam vitae rutrum. Pellentesque et dolor justo. Fusce nec ex nec erat placerat tincidunt et in nisi. Donec eros quam, sollicitudin et tincidunt eget, tincidunt non velit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae</p>
+                  <p>${topic.content}</p>
                   <div class="tags">
                     <div class="topic-tag">book</div>
                     <div class="topic-tag">write</div>
@@ -47,7 +50,7 @@
           <div class="col-xs-12 col-sm-12 col-md-4">
             <div class="panel">
               <div class="current-topic">
-                <a href="#" class="title">${topic.header}</a>
+                <a href="#" class="title">${pack.name}</a>
                 <a href="#" class="nav">
                   <i style="margin-right:5px;" class="fa fa-chevron-left" aria-hidden="true"></i>
                   Which fonts to use</a>
@@ -83,154 +86,31 @@
                 </div>
                 <div class="tab-pane message-tab" id="profile" role="tabpanel">
                   <div class="message-container">
-                    <div class="message">
+                      <div ng-if="!comments" class="centered">
+                          <p>There is no comments yet<br/>Be the first</p>
+                      </div>
+                      <div ng-repeat="comment in comments" class="message" id="comment{{comment.Id}}">
                     <div class="message-point">
                       <i class="fa fa-chevron-up" aria-hidden="true"></i>
-                      <span>10</span>
+                      <span>{{comment.Rating}}</span>
                       <i class="fa fa-chevron-down" aria-hidden="true"></i>
                     </div>
                     <div class="message-content">
-                      <span class="title">
-                        AydÄ±n Aksoy
-                      </span>
-                      <button type="button" class="float-button button-green" title="Reply"><i class="fa fa-reply" aria-hidden="true"></i></button>
-                      <p>Ä°yi bir yazarda olmasÄ± gereken Ã¶zellikler nelerdir?</p>
+                        <a href="/profile/{{comment.UserId}}" class="title">
+                          {{comment.Username}}
+                      </a>
+                        <button type="button" class="float-button button-green" name='{{comment.Username}}' slideid="comment{{comment.Id}}"  ng-click="reply($event)" title="Reply"><i class="fa fa-reply" aria-hidden="true"></i></button>
+                        <p ng-bind-html="comment.Content | to_trusted"></p>
                       <span class="date">
-                        08.11.2016
-                      </span>
-                    </div>
-                    <div class="clearfix"></div>
-</div>
-                    <div class="message">
-                    <div class="message-point">
-                      <i class="fa fa-chevron-up" aria-hidden="true"></i>
-                      <span>10</span>
-                      <i class="fa fa-chevron-down" aria-hidden="true"></i>
-                    </div>
-                    <div class="message-content">
-                      <span class="title">
-                        AydÄ±n Aksoy
-                      </span>
-                      <button type="button" class="float-button button-green" title="Reply"><i class="fa fa-reply" aria-hidden="true"></i></button>
-                      <p>Ä°yi bir yazarda olmasÄ± gereken Ã¶zellikler nelerdir?</p>
-                      <span class="date">
-                        08.11.2016
-                      </span>
-                    </div>
-                    <div class="clearfix"></div>
-</div>
-                    <div class="message">
-                    <div class="message-point">
-                      <i class="fa fa-chevron-up" aria-hidden="true"></i>
-                      <span>10</span>
-                      <i class="fa fa-chevron-down" aria-hidden="true"></i>
-                    </div>
-                    <div class="message-content">
-                      <span class="title">
-                        AydÄ±n Aksoy
-                      </span>
-                      <button type="button" class="float-button button-green" title="Reply"><i class="fa fa-reply" aria-hidden="true"></i></button>
-                      <p>Ä°yi bir yazarda olmasÄ± gereken Ã¶zellikler nelerdir?</p>
-                      <span class="date">
-                        08.11.2016
-                      </span>
-                    </div>
-                    <div class="clearfix"></div>
-</div>
-                    <div class="message">
-                    <div class="message-point">
-                      <i class="fa fa-chevron-up" aria-hidden="true"></i>
-                      <span>10</span>
-                      <i class="fa fa-chevron-down" aria-hidden="true"></i>
-                    </div>
-                    <div class="message-content">
-                      <span class="title">
-                        AydÄ±n Aksoy
-                      </span>
-                      <button type="button" class="float-button button-green" title="Reply"><i class="fa fa-reply" aria-hidden="true"></i></button>
-                      <p>Ä°yi bir yazarda olmasÄ± gereken Ã¶zellikler nelerdir?</p>
-                      <span class="date">
-                        08.11.2016
-                      </span>
-                    </div>
-                    <div class="clearfix"></div>
-</div>
-                    <div class="message">
-                    <div class="message-point">
-                      <i class="fa fa-chevron-up" aria-hidden="true"></i>
-                      <span>10</span>
-                      <i class="fa fa-chevron-down" aria-hidden="true"></i>
-                    </div>
-                    <div class="message-content">
-                      <span class="title">
-                        AydÄ±n Aksoy
-                      </span>
-                      <button type="button" class="float-button button-green" title="Reply"><i class="fa fa-reply" aria-hidden="true"></i></button>
-                      <p>Ä°yi bir yazarda olmasÄ± gereken Ã¶zellikler nelerdir?</p>
-                      <span class="date">
-                        08.11.2016
-                      </span>
-                    </div>
-                    <div class="clearfix"></div>
-</div>
-                    <div class="message">
-                    <div class="message-point">
-                      <i class="fa fa-chevron-up" aria-hidden="true"></i>
-                      <span>10</span>
-                      <i class="fa fa-chevron-down" aria-hidden="true"></i>
-                    </div>
-                    <div class="message-content">
-                      <span class="title">
-                        AydÄ±n Aksoy
-                      </span>
-                      <button type="button" class="float-button button-green" title="Reply"><i class="fa fa-reply" aria-hidden="true"></i></button>
-                      <p>Ä°yi bir yazarda olmasÄ± gereken Ã¶zellikler nelerdir?</p>
-                      <span class="date">
-                        08.11.2016
-                      </span>
-                    </div>
-                    <div class="clearfix"></div>
-</div>
-                    <div class="message">
-                    <div class="message-point">
-                      <i class="fa fa-chevron-up" aria-hidden="true"></i>
-                      <span>10</span>
-                      <i class="fa fa-chevron-down" aria-hidden="true"></i>
-                    </div>
-                    <div class="message-content">
-                      <span class="title">
-                        AydÄ±n Aksoy
-                      </span>
-                      <button type="button" class="float-button button-green" title="Reply"><i class="fa fa-reply" aria-hidden="true"></i></button>
-                      <p>Ä°yi bir yazarda olmasÄ± gereken Ã¶zellikler nelerdir?</p>
-                      <span class="date">
-                        08.11.2016
-                      </span>
-                    </div>
-                    <div class="clearfix"></div>
-</div>
-                    <div class="message">
-                    <div class="message-point">
-                      <i class="fa fa-chevron-up" aria-hidden="true"></i>
-                      <span>10</span>
-                      <i class="fa fa-chevron-down" aria-hidden="true"></i>
-                    </div>
-                    <div class="message-content">
-                      <span class="title">
-                        AydÄ±n Aksoy
-                      </span>
-                      <button type="button" class="float-button button-green" title="Reply"><i class="fa fa-reply" aria-hidden="true"></i></button>
-                      <p>Ä°yi bir yazarda olmasÄ± gereken Ã¶zellikler nelerdir?</p>
-                      <span class="date">
-                        08.11.2016
+                        {{comment.CreateDate}}
                       </span>
                     </div>
                     <div class="clearfix"></div>
 </div>
                   </div>
                   <div class="input-container">
-                    <input type="text" placeholder="Your message" class="form-control">
-                    <button class="button button-green send-button"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+                    <input type="text" ng-model="commentToAdd" placeholder="Your message" class="form-control">
+                    <button class="button button-green send-button" ng-click="addComment()"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
                   </div>
                 </div>
                 <div class="tab-pane" id="messages" role="tabpanel">
@@ -263,6 +143,7 @@
       </div>
     </div>
     <jsp:include page="partial/footer.jsp" />
+    <script type="text/javascript" src="/js/controller/topicController.js"></script>
     <script>
       $(".topic-rating").starRating({
         initialRating: 3.7,

@@ -1,4 +1,9 @@
 var mainModel = angular.module('mainApp',['valdr']);
+mainModel.filter('to_trusted', ['$sce', function($sce){
+    return function(text) {
+        return $sce.trustAsHtml(text);
+    };
+}]);
 mainModel.factory('passwordMatch', function () {
   return {
     name: 'passwordMatch',
