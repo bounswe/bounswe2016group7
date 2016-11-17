@@ -31,9 +31,12 @@ public class Topics {
 
     @Column(name = "user_id", nullable = false)
     private Long userId;
-    
+
+    @Column(name = "description", nullable = false)
+    private String description;
+
     private Date createDate;
-    
+
     private int orderBy;
 
     private String header;
@@ -52,6 +55,14 @@ public class Topics {
     public Topics() {
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public int getOrderBy() {
         return orderBy;
     }
@@ -59,8 +70,6 @@ public class Topics {
     public void setOrderBy(int orderBy) {
         this.orderBy = orderBy;
     }
-
-
 
     public Date getCreateDate() {
         return createDate;

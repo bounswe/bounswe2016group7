@@ -19,13 +19,16 @@ import javax.persistence.*;
 public class Users implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="USERS_SEQ")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "USERS_SEQ")
     @SequenceGenerator(name = "USERS_SEQ", sequenceName = "USERS_SEQ", allocationSize = 1, initialValue = 1)
     @Column(name = "id", nullable = false)
     private Long id;
 
     @Column(name = "username", nullable = false, unique = true)
     private String username;
+
+    @Column(name = "association", nullable = true)
+    private String association;
 
     @Column(name = "email", nullable = false, unique = true)
     private String email;
@@ -74,6 +77,14 @@ public class Users implements Serializable {
     }
 
     public Users() {
+    }
+
+    public String getAssociation() {
+        return association;
+    }
+
+    public void setAssociation(String association) {
+        this.association = association;
     }
 
     public Users(String username, String password) {
