@@ -58,5 +58,11 @@ public class TopicsController {
     public List<Topics> getRecentTopics() {
         return topicsService.getRecentTopics();
     }
+    
+    @RequestMapping(path = "public/getUserTopics", method = RequestMethod.POST)
+    @ResponseBody
+    public List<Topics> getUserTopics(@RequestBody Long userId) {
+        return topicsService.getUserTopics(userId);
+    }
 
 }

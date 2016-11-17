@@ -38,6 +38,11 @@ public class TopicServiceClient extends BaseClient {
         }, topicId);
     }
     
+    public List<Topics> getUserTopics(Long userId) throws Exception {
+        return post(getResource().path("public/getUserTopics"), new TypeToken<List<Topics>>() {
+        }, userId);
+    }
+    
     public TopicPacks getTopicPack(Long topicPackId) throws Exception {
         return post(getResource().path("getTopicPack"), new TypeToken<TopicPacks>() {
         }, topicPackId);
