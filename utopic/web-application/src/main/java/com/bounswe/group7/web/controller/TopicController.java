@@ -68,20 +68,15 @@ public class TopicController {
             ex.printStackTrace();
             attributes.addAttribute("error", ex.getMessage());
         }
-        // TODO client must be implemented for getting topic contents
         return modelAndView;
     }
     
     @RequestMapping(value = "/createTopic", method = RequestMethod.POST)
-    public ModelAndView createTopic(HttpServletRequest request, HttpServletResponse response, RedirectAttributes attributes){
+    public ModelAndView createTopic(HttpServletRequest request, @RequestBody Topics topic, RedirectAttributes attributes){
         HttpSession session = request.getSession();
         TopicServiceClient client = new TopicServiceClient((String) session.getAttribute("token"));
-        Topics topic = new Topics();
         ModelAndView modelAndView;
         try{
-            topic.setContent(request.getParameter("content"));
-            topic.setHeader(request.getParameter("header"));
-            topic.setTopicPackId(Long.parseLong(request.getParameter("topic_pack_id")));
             Topics topicCreated = client.createTopic(topic);
             modelAndView = new ModelAndView("redirect:/topic/"+topicCreated.getTopicId()+"/");
         }catch(Exception ex){

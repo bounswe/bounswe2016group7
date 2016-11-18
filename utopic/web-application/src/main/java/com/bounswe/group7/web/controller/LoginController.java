@@ -31,20 +31,19 @@ public class LoginController {
         String password = request.getParameter("password");
         LoginServiceClient client = new LoginServiceClient();
         Users user = null;
+        ModelAndView index = new ModelAndView("redirect:/");
         try {
             user = client.login(new Users(username, password));
             HttpSession session = request.getSession();
             session.setAttribute("user", user);
             session.setAttribute("token", user.getToken());
             session.setAttribute("username", user.getUsername());
-            ModelAndView prevPage = new ModelAndView("redirect:/home");
-            return prevPage;
+            session.setAttribute("authorities", user.getAuthorities());
         } catch (Exception ex) {
             ex.printStackTrace();
             redirectAttributes.addFlashAttribute("error", ex.getMessage());
-            ModelAndView index = new ModelAndView("redirect:/");
-            return index;
         }
+        return index;
     }
     
     @RequestMapping(value="/logout", method = RequestMethod.GET)
@@ -53,6 +52,7 @@ public class LoginController {
         session.removeAttribute("user");
         session.removeAttribute("token");
         session.removeAttribute("username");
+        session.removeAttribute("authorities");
         ModelAndView index = new ModelAndView("redirect:/");
         return index;
     }
