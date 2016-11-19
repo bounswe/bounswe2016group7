@@ -6,6 +6,7 @@
 package com.bounswe.group7.rest;
 
 import com.bounswe.group7.model.Comments;
+import com.bounswe.group7.model.VotedComments;
 import com.bounswe.group7.services.CommentsService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,4 +48,13 @@ public class CommentsController {
     {
         return commentsService.deleteComment(commentId);
     }
+    
+    @RequestMapping(path = "/voteComment", method = RequestMethod.POST)
+    @ResponseBody
+    @PreAuthorize("hasAnyRole('CREATOR', 'ADMIN', 'EXPLORER')")
+    public boolean voteComment(@RequestBody VotedComments votedComment)
+    {
+        return commentsService.voteComment(votedComment);
+    }
+    
 }
