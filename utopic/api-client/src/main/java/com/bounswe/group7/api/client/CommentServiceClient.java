@@ -6,6 +6,7 @@
 package com.bounswe.group7.api.client;
 
 import com.bounswe.group7.model.Comments;
+import com.bounswe.group7.model.VotedComments;
 import com.google.gson.reflect.TypeToken;
 import java.util.List;
 
@@ -36,5 +37,10 @@ public class CommentServiceClient extends BaseClient{
     public boolean deleteComment(Long commentId) throws Exception {
         return post(getResource().path("deleteComment"), new TypeToken<Boolean>() {
         }, commentId);
+    }
+    
+    public boolean voteComment(VotedComments votedComment) throws Exception {
+        return post(getResource().path("voteComment"), new TypeToken<Boolean>() {
+        }, votedComment);
     }
 }

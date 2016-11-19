@@ -5,6 +5,7 @@
  */
 package com.bounswe.group7.api.client;
 
+import com.bounswe.group7.model.RatedTopics;
 import com.bounswe.group7.model.TopicPacks;
 import com.bounswe.group7.model.Topics;
 import com.google.gson.reflect.TypeToken;
@@ -56,6 +57,11 @@ public class TopicServiceClient extends BaseClient {
     public List<Topics> getTopTopics() throws Exception {
         return get(getResource().path("public/getTopTopics"), new TypeToken<List<Topics>>() {
         });
+    }
+    
+    public boolean rateTopic(RatedTopics ratedTopic) throws Exception {
+        return post(getResource().path("rateTopic"), new TypeToken<Boolean>() {
+        }, ratedTopic);
     }
 
 }
