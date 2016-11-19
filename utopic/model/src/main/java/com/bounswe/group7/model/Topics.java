@@ -44,6 +44,8 @@ public class Topics {
     private String content;
     @Column(name = "rate", nullable = false, columnDefinition = "Decimal(3,2) default '0.00'")
     private Double rate;
+    
+    private Integer rateCounter;
 
     public Topics(Long topicId, Long topicPackId, Long userId, String header) {
         this.topicId = topicId;
@@ -53,6 +55,14 @@ public class Topics {
     }
 
     public Topics() {
+    }
+
+    public Integer getRateCounter() {
+        return rateCounter;
+    }
+
+    public void setRateCounter(Integer rateCounter) {
+        this.rateCounter = rateCounter;
     }
 
     public String getDescription() {
