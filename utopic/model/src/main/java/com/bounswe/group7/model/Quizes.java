@@ -6,6 +6,7 @@
 package com.bounswe.group7.model;
 
 import com.bounswe.group7.model.security.Authority;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Column;
@@ -25,7 +26,7 @@ import javax.persistence.SequenceGenerator;
  * @author myunu
  */
 @Entity
-public class Quizes {
+public class Quizes implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "QUIZ_SEQ")

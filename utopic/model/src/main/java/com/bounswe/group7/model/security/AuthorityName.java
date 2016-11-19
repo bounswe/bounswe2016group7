@@ -1,6 +1,8 @@
 package com.bounswe.group7.model.security;
 
-public enum AuthorityName {
+import java.io.Serializable;
+
+public enum AuthorityName implements Serializable{
     ROLE_EXPLORER(1, "ROLE_EXPLORER"), ROLE_CREATOR(2, "ROLE_CREATOR"), ROLE_ADMIN(3,"ROLE_ADMIN");
     private int id;
     private String name;

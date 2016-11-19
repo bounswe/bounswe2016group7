@@ -5,6 +5,7 @@
  */
 package com.bounswe.group7.model.security;
 
+import java.io.Serializable;
 import javax.annotation.Generated;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -21,7 +22,7 @@ import javax.persistence.UniqueConstraint;
  */
 @Entity
 @Table(name = "USER_AUTHORITY", uniqueConstraints = @UniqueConstraint(columnNames = {"USER_ID", "AUTHORITY_ID"}))
-public class UserAuthority {
+public class UserAuthority implements Serializable{
 
     @Id
     @Column(name = "RECORD_ID")

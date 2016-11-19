@@ -5,6 +5,7 @@
  */
 package com.bounswe.group7.model;
 
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,7 +18,7 @@ import javax.persistence.SequenceGenerator;
  * @author myunu
  */
 @Entity
-public class VotedComments {
+public class VotedComments implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "VOTEDCOMMENT_SEQ")

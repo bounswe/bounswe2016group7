@@ -5,6 +5,7 @@
  */
 package com.bounswe.group7.model;
 
+import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,7 +19,7 @@ import javax.persistence.SequenceGenerator;
  * @author myunu
  */
 @Entity
-public class Topics {
+public class Topics implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "TOPICS_SEQ")

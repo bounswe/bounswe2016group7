@@ -1,11 +1,12 @@
 package com.bounswe.group7.model.security;
 
+import java.io.Serializable;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "AUTHORITY")
-public class Authority {
+public class Authority implements Serializable{
 
     @Id
     @Column(name = "ID")
