@@ -5,8 +5,10 @@
  */
 package com.bounswe.group7.services;
 
+import com.bounswe.group7.model.RatedTopics;
 import com.bounswe.group7.model.TopicPacks;
 import com.bounswe.group7.model.Topics;
+import com.bounswe.group7.repository.RatedTopicsRepository;
 import com.bounswe.group7.repository.TopicPacksRepository;
 import com.bounswe.group7.repository.TopicsRepository;
 import java.util.Calendar;
@@ -30,6 +32,9 @@ public class TopicsService {
 
     @Autowired
     UsersService usersService;
+    
+    @Autowired
+    RatedTopicsRepository ratedTopicsRepository;
 
     public Topics getTopic(Long id) {
         return topicsRepository.findOne(id);
@@ -43,6 +48,7 @@ public class TopicsService {
         topic.setUserId(usersService.getLoggedInUserId());
         topic.setCreateDate(new Date());
         topic.setRate(0.00);
+        topic.setRateCounter(0);
         if (topic.getTopicPackId() == null) {
             TopicPacks pack = createTopicPack(new TopicPacks(topic.getHeader()));
             topic.setTopicPackId(pack.getTopicPackId());
@@ -73,5 +79,35 @@ public class TopicsService {
     
     public List<Topics> getTopTopics() {
         return topicsRepository.findTop10ByOrderByRateDesc();
+    }
+    
+    public boolean rateTopic(RatedTopics ratedTopic)
+    {
+        RatedTopics temp = ratedTopicsRepository.findByUserIdAndTopicId(
+                usersService.getLoggedInUserId(), ratedTopic.getTopicId());
+        if(temp != null)
+        {
+            if(temp.getRate() == ratedTopic.getRate())
+                return false;
+            Topics topic = topicsRepository.findOne(ratedTopic.getTopicId());
+            Double rate = topic.getRate()*topic.getRateCounter();
+            rate = rate - temp.getRate() + ratedTopic.getRate();
+            topic.setRate(rate/topic.getRateCounter());
+            temp.setRate(ratedTopic.getRate());
+            topicsRepository.save(topic);
+            ratedTopicsRepository.save(temp);
+            return true;
+        }
+        else{
+            ratedTopic.setUserId(usersService.getLoggedInUserId());
+            Topics topic = topicsRepository.findOne(ratedTopic.getTopicId());
+            Double rate = topic.getRate()*topic.getRateCounter();
+            rate+=ratedTopic.getRate();
+            topic.setRateCounter(topic.getRateCounter()+1);
+            topic.setRate(rate/topic.getRateCounter());
+            topicsRepository.save(topic);
+            ratedTopicsRepository.save(ratedTopic);
+            return true;
+        }
     }
 }

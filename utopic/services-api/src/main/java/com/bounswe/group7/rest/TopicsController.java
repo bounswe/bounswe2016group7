@@ -5,6 +5,7 @@
  */
 package com.bounswe.group7.rest;
 
+import com.bounswe.group7.model.RatedTopics;
 import com.bounswe.group7.model.TopicPacks;
 import com.bounswe.group7.model.Topics;
 import com.bounswe.group7.services.TopicsService;
@@ -69,6 +70,12 @@ public class TopicsController {
     @ResponseBody
     public List<Topics> getUserTopics(@RequestBody Long userId) {
         return topicsService.getUserTopics(userId);
+    }
+    
+    @RequestMapping(path = "rateTopic", method = RequestMethod.POST)
+    @ResponseBody
+    public boolean rateTopic(@RequestBody RatedTopics ratedTopic) {
+        return topicsService.rateTopic(ratedTopic);
     }
 
 }
