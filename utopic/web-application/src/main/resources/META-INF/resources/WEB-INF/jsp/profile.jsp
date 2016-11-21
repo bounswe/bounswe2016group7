@@ -58,7 +58,7 @@
                                 <a class="nav-link active" data-toggle="tab" href="#home" role="tab" aria-controls="home">Quiz Progress</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" data-toggle="tab" href="#profile" role="tab" aria-controls="profile">My Topics</a>
+                                <a class="nav-link" data-toggle="tab" href="#profile" role="tab" aria-controls="profile">Topics</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" data-toggle="tab" href="#messages" role="tab" aria-controls="messages">Reviews</a>
