@@ -31,6 +31,7 @@ public class LoginController {
         String password = request.getParameter("password");
         LoginServiceClient client = new LoginServiceClient();
         Users user = null;
+        ModelAndView index;
         try {
             user = client.login(new Users(username, password));
             HttpSession session = request.getSession();
@@ -38,11 +39,11 @@ public class LoginController {
             session.setAttribute("token", user.getToken());
             session.setAttribute("username", user.getUsername());
             session.setAttribute("authorities", user.getAuthorities());
-            ModelAndView index = new ModelAndView("redirect:/home");
+            index = new ModelAndView("redirect:/home");
         } catch (Exception ex) {
             ex.printStackTrace();
             redirectAttributes.addFlashAttribute("error", ex.getMessage());
-            ModelAndView index = new ModelAndView("redirect:/");
+            index = new ModelAndView("redirect:/");
         }
         return index;
     }
