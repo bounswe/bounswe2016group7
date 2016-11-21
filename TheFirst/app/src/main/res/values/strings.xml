@@ -2,9 +2,17 @@
     <string name="app_name">TheFirst</string>
     <string name="username">Username</string>
     <string name="password">Password</string>
+    <string name="repassword">Re-Password</string>
     <string name="email">E-Mail</string>
     <string name="creator">Creator</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
     <string name="explorer">Explorer</string>
     <string name="login">Login</string>
     <string name="signup">Sign Up</string>
+    <string name="firstname">Firstname</string>
+    <string name="middlename">Middlename</string>
+    <string name="lastname">Lastname</string>
+    <string name="companyName">Company Name</string>
+    <string name="userBio">Bio</string>
 </resources>

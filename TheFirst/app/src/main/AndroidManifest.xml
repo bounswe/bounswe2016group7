@@ -20,7 +20,11 @@
         <activity android:name=".ObtainInfo" />
         <activity android:name=".UserPage" />
         <activity android:name=".TopicPage" />
-        <activity android:name=".TopicAddMaterialQuiz"></activity>
+        <activity android:name=".TopicAddMaterialQuiz" />
+        <activity android:name=".EditUserInformationPage" />
+        <activity android:name=".ShowTopicPage" />
+        <activity android:name=".HomePage" />
+        <activity android:name=".TopicListPage"></activity>
     </application>
 
 </manifest>
