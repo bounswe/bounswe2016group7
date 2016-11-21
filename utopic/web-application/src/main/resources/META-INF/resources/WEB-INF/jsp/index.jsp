@@ -4,9 +4,17 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <% if(session.getAttribute("username") != null){
+            response.setStatus(response.SC_MOVED_TEMPORARILY);
+            response.setHeader("Location", "/home"); 
+            }   
+        %>
         <jsp:include page="partial/cssFiles.jsp" />
     </head>
     <body ng-app="mainApp">
+        <script type="text/javascript">
+            var recentTopics = ${recentTopics}
+        </script>
         <jsp:include page="partial/getToolbar.jsp" />
         <div class="content no-margin">
       <div class="header">
@@ -22,44 +30,13 @@
             <span class="title">Trending Topics</span>
             <a href="#">>> See all</a>
           </div>
-          <div class="row">
-            <div class="col-xs-6 col-sm-4 col-md-3 panel-column">
+          <div class="row" ng-controller="indexController">
+            <div ng-repeat="topic in recentTopics" class="col-xs-6 col-sm-4 col-md-3 panel-column">
               <div class="topic-thumb">
-                <p class="topic-title">Lions vs. Buffalos</p>
-                <span>Discussions: 29</span>
-                <span>Comments: 10</span>
-                <span>Interested: 673</span>
-                <a href="#">Topic Page</a>
-                <div class="clearfix"></div>
-              </div>
-            </div>
-            <div class="col-xs-6 col-sm-4 col-md-3 panel-column">
-              <div class="topic-thumb">
-                <p class="topic-title">How to Shoot Deer</p>
-                <span>Discussions: 15</span>
-                <span>Comments: 120</span>
-                <span>Interested: 65</span>
-                <a href="#">Topic Page</a>
-                <div class="clearfix"></div>
-              </div>
-            </div>
-            <div class="col-xs-6 col-sm-4 col-md-3 panel-column">
-              <div class="topic-thumb">
-                <p class="topic-title">How to Meditate</p>
-                <span>Discussions: 115</span>
-                <span>Comments: 132</span>
-                <span>Interested: 432</span>
-                <a href="#">Topic Page</a>
-                <div class="clearfix"></div>
-              </div>
-            </div>
-            <div class="col-xs-6 col-sm-4 col-md-3 panel-column">
-              <div class="topic-thumb">
-                <p class="topic-title">How to be in the Moment</p>
-                <span>Discussions: 11</span>
-                <span>Comments: 42</span>
-                <span>Interested: 85</span>
-                <a href="#">Topic Page</a>
+                <p class="topic-title">{{topic.topic_name}}</p>
+                <span>Comments: {{topic.commentNumber}}</span>
+                <span>Interested: 15</span>
+                <a href="/topic/{{topic.topic_id}}">Topic Page</a>
                 <div class="clearfix"></div>
               </div>
             </div>

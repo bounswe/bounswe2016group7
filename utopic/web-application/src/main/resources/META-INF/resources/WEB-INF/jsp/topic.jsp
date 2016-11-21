@@ -8,6 +8,10 @@
     <body ng-app="mainApp" ng-controller="topicController">
     <% if(session.getAttribute("username") != null){
     %><script type="text/javascript">
+        var auth = [];
+        <c:forEach items="${authorities}" var="stdn" varStatus="status">
+            auth.push('${stdn.name}');
+        </c:forEach>
         var activeUsername = "${sessionScope.username}";
         var activeId = "${sessionScope.id}";
         var activeToken = "${sessionScope.token}";

@@ -9,6 +9,12 @@ a{
   text-decoration: none !important;
 }
 
+.align-right{
+    text-align: right;
+}
+.margin-bottom{
+    margin-bottom: 15px;
+}
 body{
   background: #efefef;
 }
@@ -155,12 +161,15 @@ div#search-container {
 .button-green{
   background: #7ab648;
 }
-
+.button-red{
+  background: #d2343c;
+  color: #fff !important;
+}
 .button-orange{
   background: #fec400;
-	color: #fff !important;
+  color: #fff !important;
 }
-
+d2343c
 .navbar .button-orange{
   margin-left: 15px;
 }
@@ -405,6 +414,10 @@ ul.categories li{
 }
 #selam{
   display: none;
+}
+
+.question-create-table input[type="text"]{
+    margin-bottom: 0;
 }
 /**************************** Mobile CSS *******************************/
 @media only screen and (min-width: 641px){

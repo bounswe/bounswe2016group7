@@ -1,4 +1,4 @@
-var mainModel = angular.module('mainApp',['valdr']);
+var mainModel = angular.module('mainApp',['valdr','textAngular']);
 mainModel.filter('to_trusted', ['$sce', function($sce){
     return function(text) {
         return $sce.trustAsHtml(text);
@@ -14,6 +14,8 @@ mainModel.factory('passwordMatch', function () {
     }
   };
 });
+
+
 mainModel.config(function(valdrProvider) {
   valdrProvider.addValidator('passwordMatch');
   valdrProvider.addConstraints({

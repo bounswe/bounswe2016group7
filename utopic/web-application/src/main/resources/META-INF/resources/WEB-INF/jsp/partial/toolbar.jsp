@@ -10,9 +10,10 @@
                 <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
             </form>
         </div>
-        <ul class="nav navbar-nav pull-md-right">
+        <ul class="nav navbar-nav pull-md-right" ng-controller="indexController">
+            <li ng-if="auths.indexOf('ROLE_CREATOR')!=-1"><a href="#create-topic-modal" class="nav-item nav-link  button button-orange">NEW TOPIC</a></li>
             <li><a href="/home" class="nav-item nav-link">HOME</a></li>
-            <li><a href="/profile" class="nav-item nav-link button">PROFILE</a></li>
+            <li><a href="/profile/${user.id}" class="nav-item nav-link button">PROFILE</a></li>
             <li><a href="/logout" class="nav-item nav-link button">LOG OUT</a></li>
         </ul>
     </div>

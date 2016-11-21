@@ -2,8 +2,13 @@
     <script src="/js/angular.js" type="text/javascript"></script>
     <script src="/jsPlugins/valdr/valdr.min.js" type="text/javascript"></script>
     <script src="/jsPlugins/valdr/valdr-message.min.js" type="text/javascript"></script>
+    <script src="/jsPlugins/angularwysiwyg/textAngular-rangy.min.js" type="text/javascript"></script>
+    <script src="/jsPlugins/angularwysiwyg/textAngular-sanitize.js" type="text/javascript"></script>
+    <script src="/jsPlugins/angularwysiwyg/textAngularSetup.js" type="text/javascript"></script>
+    <script src="/jsPlugins/angularwysiwyg/textAngular.js" type="text/javascript"></script>
     <script src="/jsPlugins/star-rating/jquery.star-rating-svg.js" type="text/javascript"></script>
     <script src="/js/model/mainModel.js" type="text/javascript"></script>
     <script src="/jsPlugins/tether/js/tether.min.js" type="text/javascript"></script>
     <script src="/js/bootstrap.min.js" type="text/javascript"></script>
     <script src="/jsPlugins/remodal/remodal.min.js" type="text/javascript"></script>
+    <script src="/js/controller/indexController.js" type="text/javascript"></script>

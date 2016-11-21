@@ -8,9 +8,14 @@
     <body ng-app="mainApp">
         <% if(session.getAttribute("username") != null){
         %><script type="text/javascript">
+            var auth = [];
+            <c:forEach items="${authorities}" var="stdn" varStatus="status">
+                auth.push('${stdn.name}');
+            </c:forEach>
             var activeUsername = "${sessionScope.username}";
             var activeId = "${sessionScope.id}";
             var activeToken = "${sessionScope.token}";
+            var recentTopics = "${sessionScope.recentTopics}"
         </script><%
             }else{
             response.setStatus(response.SC_MOVED_TEMPORARILY);
@@ -18,12 +23,15 @@
            }    
         %>
         <jsp:include page="partial/getToolbar.jsp"/>
+        <jsp:include page="partial/creatorModal.jsp"/>
         <div class="content">
             <div class="container">
                 <div class="panel">
                     <div class="panel-header">
                         <span class="title">Trending Topics</span>
-                        
+                        <c:forEach items="${authorities}" var="stdn" varStatus="status">  
+                            ${stdn.name}
+                        </c:forEach>
                         <a href="#">>> See all</a>
                     </div>
                     <div class="row">
