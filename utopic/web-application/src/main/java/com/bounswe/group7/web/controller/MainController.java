@@ -5,11 +5,14 @@
  */
 package com.bounswe.group7.web.controller;
 
+import com.bounswe.group7.api.client.CommentServiceClient;
 import com.bounswe.group7.api.client.LoginServiceClient;
 import com.bounswe.group7.api.client.TopicServiceClient;
 import com.bounswe.group7.model.Topics;
 import com.bounswe.group7.model.Users;
+import com.bounswe.group7.web.domain.TopicWithStatistics;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -32,10 +35,41 @@ public class MainController {
         ModelAndView index = new ModelAndView("index");
         HttpSession session = request.getSession();
         TopicServiceClient client = new TopicServiceClient((String) session.getAttribute("token"));
+        CommentServiceClient commentClient = new CommentServiceClient((String) session.getAttribute("token"));
         try {
             List<Topics> recentTopicsList = client.getRecentTopics();
+            List<TopicWithStatistics> recentTopicStatisticsList = new ArrayList<TopicWithStatistics>();
+            for(Topics temp : recentTopicsList){
+                Long topicId = temp.getTopicId();
+                int commentNumber = commentClient.getTopicComments(topicId).size();
+                recentTopicStatisticsList.add(new TopicWithStatistics(temp.getTopicId(), temp.getHeader(), commentNumber));
+            }
             ObjectMapper mapper = new ObjectMapper();
-            String recentTopics = mapper.writeValueAsString(recentTopicsList);
+            String recentTopics = mapper.writeValueAsString(recentTopicStatisticsList);
+            index.addObject("recentTopics", recentTopics);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            attributes.addFlashAttribute("error", ex.getMessage());
+        }
+        return index;
+    }
+    
+    @RequestMapping("/home")
+    public ModelAndView home(HttpServletRequest request, HttpServletResponse response, RedirectAttributes attributes){
+        ModelAndView index = new ModelAndView("home");
+        HttpSession session = request.getSession();
+        TopicServiceClient client = new TopicServiceClient((String) session.getAttribute("token"));
+        CommentServiceClient commentClient = new CommentServiceClient((String) session.getAttribute("token"));
+        try {
+            List<Topics> recentTopicsList = client.getRecentTopics();
+            List<TopicWithStatistics> recentTopicStatisticsList = new ArrayList<TopicWithStatistics>();
+            for(Topics temp : recentTopicsList){
+                Long topicId = temp.getTopicId();
+                int commentNumber = commentClient.getTopicComments(topicId).size();
+                recentTopicStatisticsList.add(new TopicWithStatistics(temp.getTopicId(), temp.getHeader(), commentNumber));
+            }
+            ObjectMapper mapper = new ObjectMapper();
+            String recentTopics = mapper.writeValueAsString(recentTopicStatisticsList);
             index.addObject("recentTopics", recentTopics);
         } catch (Exception ex) {
             ex.printStackTrace();
