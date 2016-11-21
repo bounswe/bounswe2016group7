@@ -9,6 +9,7 @@ import com.bounswe.group7.api.client.LoginServiceClient;
 import com.bounswe.group7.api.client.TopicServiceClient;
 import com.bounswe.group7.model.Topics;
 import com.bounswe.group7.model.Users;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -32,7 +33,9 @@ public class MainController {
         HttpSession session = request.getSession();
         TopicServiceClient client = new TopicServiceClient((String) session.getAttribute("token"));
         try {
-            List<Topics> recentTopics = client.getRecentTopics();
+            List<Topics> recentTopicsList = client.getRecentTopics();
+            ObjectMapper mapper = new ObjectMapper();
+            String recentTopics = mapper.writeValueAsString(recentTopicsList);
             index.addObject("recentTopics", recentTopics);
         } catch (Exception ex) {
             ex.printStackTrace();
