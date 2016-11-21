@@ -11,6 +11,8 @@
         var activeUsername = "${sessionScope.username}";
         var activeId = "${sessionScope.id}";
         var activeToken = "${sessionScope.token}";
+				var reviews = ${reviewList};
+        var topics = ${topicList};
     </script><%
         }else{
         response.setStatus(response.SC_MOVED_TEMPORARILY);
@@ -73,7 +75,29 @@
                                 <P>TOPIC LIST</P>
                             </div>
                             <div class="tab-pane" id="messages" role="tabpanel">
-                                <p>REVIEWS</p>
+																<div class="message-container">
+																		<div ng-if="!reviews" class="centered">
+																				<p>There is no reviews yet<br/>Be the first</p>
+																		</div>
+																	<div ng-repeat="review in reviews" class="message" id="review{{review.Id}}">
+																		<div class="message-point">
+																			<i class="fa fa-chevron-up" aria-hidden="true"></i>
+																			<span>{{reviews.Rating}}</span>
+																			<i class="fa fa-chevron-down" aria-hidden="true"></i>
+																		</div>
+																		<div class="message-content">
+																				<a href="/profile/{{review.UserId}}" class="title">{{reviews.Username}}</a>
+																				<button type="button" class="float-button button-green" name='{{review.Username}}' slideid="review{{review.Id}}"  ng-click="reply($event)" title="Reply"><i class="fa fa-reply" aria-hidden="true"></i></button>
+																				<p ng-bind-html="review.Content | to_trusted"></p>
+																			<span class="date">{{review.CreateDate}}</span>
+																		</div>
+																		<div class="clearfix"></div>
+																	</div>
+																</div>
+																<div class="input-container">
+																	<input type="text" ng-model="commentToAdd" placeholder="Your review" class="form-control">
+																	<button class="button button-green send-button" ng-click="addComment()"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+																</div>
                             </div>
                         </div>
                     </div>
