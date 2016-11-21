@@ -62,8 +62,9 @@ public class UserController {
                 profileReviewList.add(new ProfileReview(temp.getReviewId(), username, temp.getDateCreated(), temp.getText()));
             }
             String profileReviews = mapper.writeValueAsString(profileReviewList);
+            String listOfTopics = mapper.writeValueAsString(topicList);
             modelAndView.addObject("profiledUser", profiledUser);
-            modelAndView.addObject("topicList", topicList);
+            modelAndView.addObject("topicList", listOfTopics);
             modelAndView.addObject("reviewList", profileReviews);
         }catch(Exception ex){
             ex.printStackTrace();
