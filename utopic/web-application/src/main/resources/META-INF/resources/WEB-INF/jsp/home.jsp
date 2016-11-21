@@ -29,9 +29,6 @@
                 <div class="panel">
                     <div class="panel-header">
                         <span class="title">Trending Topics</span>
-                        <c:forEach items="${authorities}" var="stdn" varStatus="status">  
-                            ${stdn.name}
-                        </c:forEach>
                         <a href="#">>> See all</a>
                     </div>
                     <div class="row">
