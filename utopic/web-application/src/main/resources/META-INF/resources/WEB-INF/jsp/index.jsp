@@ -11,8 +11,8 @@
         <div class="content no-margin">
       <div class="header">
         <div class="header-action">
-          <h1>LEARNING NEW THINGS MADE EASY</h1>
-          <h3>EXPERINCE IT NOW.</h3>
+          <h1>LEARNING NEW THINGS MADE EASY.</h1>
+          <h3>EXPERIENCE IT NOW.</h3>
           <button data-remodal-target="register-modal" class="button button-orange">SIGN UP NOW</button>
         </div>
       </div>
