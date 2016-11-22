@@ -3,7 +3,7 @@
         <div class="toggle" ng-click="toggleMenu()">
             <i class="fa fa-bars" aria-hidden="true"></i>
         </div>
-        <a class="navbar-brand" href="#"><img src="/images/logo.png"/></a>
+        <a class="navbar-brand" href="/home"><img src="/images/logo.png"/></a>
         <div id="search-container">
             <form>
                 <input type="text" placeholder="Search"/>
