@@ -16,6 +16,7 @@
             var activeId = "${sessionScope.id}";
             var activeToken = "${sessionScope.token}";
             var recentTopics = ${recentTopics};
+				  	var topTopics = ${topTopics};
         </script><%
             }else{
             response.setStatus(response.SC_MOVED_TEMPORARILY);
@@ -40,8 +41,24 @@
 													<div class="clearfix"></div>
 												</div>
 											</div>
-										</div>								
-                </div>
+										</div>
+									</div>
+									<div class="panel">
+										<div class="panel-header">
+											<span class="title">Trending Topics</span>
+											<a href="#">>> See all</a>
+										</div>
+										<div class="row" ng-controller="indexController">
+											<div ng-repeat="topic in topTopics" class="col-xs-6 col-sm-4 col-md-3 panel-column">
+												<div class="topic-thumb">
+													<p class="topic-title">{{topic.topic_name}}</p>
+													<span>Comments: {{topic.commentNumber}}</span>
+													<a href="/topic/{{topic.topic_id}}">Topic Page</a>
+													<div class="clearfix"></div>
+												</div>
+											</div>
+										</div>
+									</div>									
                 <div class="panel">
                     <div class="panel-header centered">
                         <span class="title">Categories</span>

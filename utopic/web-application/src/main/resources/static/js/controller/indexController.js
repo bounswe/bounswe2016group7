@@ -62,5 +62,7 @@ mainModel.controller('indexController',function indexController($scope) {
   };
 	if(typeof recentTopics != 'undefined')
     $scope.recentTopics = recentTopics.slice(0,4);
+	if(typeof topTopics != 'undefined')
+    $scope.topTopics = topTopics.slice(0,4);
 });
 
