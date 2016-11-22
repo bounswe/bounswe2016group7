@@ -27,7 +27,7 @@
                         <div class="panel">
                             <div class="row">
                                 <div class="col-xs-5 col-md-3">
-                                    <div class="title-picture" style="background-image: url('./images/header1.jpeg');"></div>
+                                    <div class="title-picture" style="background-image: url(/images/user.png);"></div>
                                 </div>
                                 <div class="col-xs-7 col-md-9">
                                     <h3>${profiledUser.firstname} ${profiledUser.lastname}<span></span></h3>
