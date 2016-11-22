@@ -1,27 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
-    <EditText android:id="@+id/username"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="@string/username" />
-    <EditText android:id="@+id/password"
-        android:inputType="textPassword"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="@string/password" />
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/login"
-        android:onClick="loginUser"/>
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/signup"
-        android:onClick="getInfo" />
-</LinearLayout>
+    android:orientation="vertical"
+    >
+
+    <RelativeLayout
+        android:layout_width="292dp"
+        android:layout_height="274dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:background="#773F51B5">
+
+
+        <EditText android:id="@+id/username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/username"
+            android:textColorHint="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
+
+
+        <EditText android:id="@+id/password"
+            android:inputType="textPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/password"
+            android:textColorHint="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/username"
+
+
+            />
+        <Button android:id="@+id/Button_Login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/login"
+            android:onClick="loginUser"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/password"
+            android:background="@color/blue"
+            android:textColor="@color/white"
+
+            />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/signup"
+            android:onClick="getInfo"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/Button_Login"
+            android:background="@color/yellow"
+            android:textColor="@color/white"
+            android:layout_marginTop="2sp"/>
+
+
+        </RelativeLayout>
+</RelativeLayout>
