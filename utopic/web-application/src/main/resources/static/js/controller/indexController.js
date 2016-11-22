@@ -60,5 +60,7 @@ mainModel.controller('indexController',function indexController($scope) {
       menuFlag = 0;
     }
   };
+	if(typeof recentTopics != 'undefined')
+    $scope.recentTopics = recentTopics.slice(0,4);
 });
 

@@ -13,7 +13,8 @@
     </head>
     <body ng-app="mainApp">
         <script type="text/javascript">
-            var recentTopics = ${recentTopics}
+            var recentTopics = ${recentTopics};
+						var auth = [];
         </script>
         <jsp:include page="partial/getToolbar.jsp" />
         <div class="content no-margin">

@@ -15,7 +15,7 @@
             var activeUsername = "${sessionScope.username}";
             var activeId = "${sessionScope.id}";
             var activeToken = "${sessionScope.token}";
-            var recentTopics = "${sessionScope.recentTopics}"
+            var recentTopics = ${recentTopics};
         </script><%
             }else{
             response.setStatus(response.SC_MOVED_TEMPORARILY);
