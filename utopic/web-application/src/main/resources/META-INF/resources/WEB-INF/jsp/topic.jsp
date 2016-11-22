@@ -18,6 +18,7 @@
         var comments = ${comments};
         var ownerId = ${owner.id};
         var topicId = ${topic.topicId};
+				var tags = ${tags};
     </script><%
         }else{
         response.setStatus(response.SC_MOVED_TEMPORARILY);
@@ -41,10 +42,10 @@
                   <h3>${topic.header} <div class="topic-rating"></div></h3>
                   <p>${topic.description}</p>
                   <div class="tags">
-                    <div class="topic-tag">Tag 1</div>
-                    <div class="topic-tag">Tag 2</div>
-                    <div class="topic-tag">Tag 3</div>
-                  </div>
+											<div ng-repeat="tag in tags" class="topic-tag" id="tag{{tag.tagId}}">
+ 										{{tag.label}} ({{tag.category}})
+                     </div>
+									</div>
                 </div>  
               </div>
             </div>
