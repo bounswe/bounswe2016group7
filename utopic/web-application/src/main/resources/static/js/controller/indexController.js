@@ -39,7 +39,7 @@ mainModel.controller('indexController',function indexController($scope) {
         $.ajax({
             type: "PUT",
             contentType: "application/json; charset=utf-8",
-            url: "http://localhost:8080/createTopic",
+            url: "/createTopic",
             data: JSON.stringify(data),
         }).fail(function(data){
             console.log(data);
@@ -57,8 +57,6 @@ mainModel.controller('indexController',function indexController($scope) {
       menuFlag = 0;
     }
   };
-  
-  if(typeof recentTopics != 'undefined')
     $scope.recentTopics = recentTopics.slice(0,4);
 });
 

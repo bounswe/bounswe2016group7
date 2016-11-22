@@ -29,7 +29,7 @@ mainModel.controller('topicController',function indexController($scope) {
         $.ajax({
             type: "PUT",
             contentType: "application/json; charset=utf-8",
-            url: "http://localhost:8080/addcomment",
+            url: "/addcomment",
             data: JSON.stringify(data),
         }).done(function(data) {
             $scope.$apply(function (){
