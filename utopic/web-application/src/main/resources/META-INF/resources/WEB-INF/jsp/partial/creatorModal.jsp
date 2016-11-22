@@ -70,7 +70,7 @@
         </div>
         
         <div class="align-right">
-            <button ng-click="saveTopic" class="button button-green">SAVE</button>
+            <button ng-click="saveTopic()" class="button button-green" >SAVE</button>
         </div>
         
 </div>

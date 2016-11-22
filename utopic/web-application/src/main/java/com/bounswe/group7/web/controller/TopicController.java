@@ -71,12 +71,15 @@ public class TopicController {
         return modelAndView;
     }
     
-    @RequestMapping(value = "/createTopic", method = RequestMethod.POST)
+    @RequestMapping(value = "/createTopic", method = RequestMethod.PUT,
+           produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
     public ModelAndView createTopic(HttpServletRequest request, @RequestBody Topics topic, RedirectAttributes attributes){
         HttpSession session = request.getSession();
         TopicServiceClient client = new TopicServiceClient((String) session.getAttribute("token"));
         ModelAndView modelAndView;
         try{
+            topic.setDescription("Description");
             Topics topicCreated = client.createTopic(topic);
             modelAndView = new ModelAndView("redirect:/topic/"+topicCreated.getTopicId()+"/");
         }catch(Exception ex){
