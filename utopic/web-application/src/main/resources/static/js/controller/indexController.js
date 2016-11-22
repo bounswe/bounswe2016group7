@@ -2,6 +2,7 @@ mainModel.controller('indexController',function indexController($scope) {
   $scope.tagInput = '';
   $scope.titleInput = '';
   $scope.tags = [];
+  $scope.description = '';
   $scope.htmlContent = '';
   $scope.questions = [];
   $scope.createdTopicId = 0;
@@ -35,7 +36,7 @@ mainModel.controller('indexController',function indexController($scope) {
   };
   
   $scope.saveTopic = function(){
-      var data = {"content": $scope.htmlContent,"header": $scope.titleInput, "tags": $scope.tags, "questions": $scope.questions};
+      var data = {"content": $scope.htmlContent,"header": $scope.titleInput, "tags": $scope.tags, "description": $scope.descriptionInput, "questions": $scope.questions};
         $.ajax({
             type: "PUT",
             contentType: "application/json; charset=utf-8",
@@ -57,6 +58,5 @@ mainModel.controller('indexController',function indexController($scope) {
       menuFlag = 0;
     }
   };
-    $scope.recentTopics = recentTopics.slice(0,4);
 });
 

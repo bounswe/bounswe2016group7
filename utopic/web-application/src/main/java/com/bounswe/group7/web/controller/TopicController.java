@@ -79,7 +79,6 @@ public class TopicController {
         TopicServiceClient client = new TopicServiceClient((String) session.getAttribute("token"));
         ModelAndView modelAndView;
         try{
-            topic.setDescription("Description");
             Topics topicCreated = client.createTopic(topic);
             modelAndView = new ModelAndView("redirect:/topic/"+topicCreated.getTopicId()+"/");
         }catch(Exception ex){

@@ -16,6 +16,7 @@
                 <button type="button" ng-click="addTag()"  class="button button-orange">ADD</button>
             </div>
         </div>
+        <input ng-model="descriptionInput" name="description" id="description" class="form-control" type="text" placeholder="Description" ng-model="createTopic.description"/>
         <div class="tags margin-bottom">
             <div ng-repeat="tag in tags" class="topic-tag">{{tag}}</div>
         </div>
