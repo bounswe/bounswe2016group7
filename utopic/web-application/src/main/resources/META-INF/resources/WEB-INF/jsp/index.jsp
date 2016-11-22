@@ -36,6 +36,7 @@
             <div ng-repeat="topic in recentTopics" class="col-xs-6 col-sm-4 col-md-3 panel-column">
               <div class="topic-thumb">
                 <p class="topic-title">{{topic.topic_name}}</p>
+								<span>Rating: {{topic.rate}}</span>
                 <span>Comments: {{topic.commentNumber}}</span>
                 <a href="/topic/{{topic.topic_id}}">Topic Page</a>
                 <div class="clearfix"></div>
@@ -52,7 +53,8 @@
             <div ng-repeat="topic in topTopics" class="col-xs-6 col-sm-4 col-md-3 panel-column">
               <div class="topic-thumb">
                 <p class="topic-title">{{topic.topic_name}}</p>
-                <span>Comments: {{topic.commentNumber}}</span>
+                <span>Rating: {{topic.rate}}</span>
+								<span>Comments: {{topic.commentNumber}}</span>
                 <a href="/topic/{{topic.topic_id}}">Topic Page</a>
                 <div class="clearfix"></div>
               </div>
