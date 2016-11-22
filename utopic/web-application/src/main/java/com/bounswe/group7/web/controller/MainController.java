@@ -40,15 +40,24 @@ public class MainController {
         CommentServiceClient commentClient = new CommentServiceClient((String) session.getAttribute("token"));
         try {
             List<Topics> recentTopicsList = client.getRecentTopics();
+            List<Topics> topTopicsList = client.getTopTopics();
             List<TopicWithStatistics> recentTopicStatisticsList = new ArrayList<TopicWithStatistics>();
             for (Topics temp : recentTopicsList) {
                 Long topicId = temp.getTopicId();
                 int commentNumber = commentClient.getTopicComments(topicId).size();
                 recentTopicStatisticsList.add(new TopicWithStatistics(temp.getTopicId(), temp.getHeader(), commentNumber));
             }
+            List<TopicWithStatistics> topTopicStatisticsList = new ArrayList<TopicWithStatistics>();
+            for (Topics temp : topTopicsList) {
+                Long topicId = temp.getTopicId();
+                int commentNumber = commentClient.getTopicComments(topicId).size();
+                recentTopicStatisticsList.add(new TopicWithStatistics(temp.getTopicId(), temp.getHeader(), commentNumber));
+            }
             ObjectMapper mapper = new ObjectMapper();
             String recentTopics = mapper.writeValueAsString(recentTopicStatisticsList);
+            String topTopics = mapper.writeValueAsString(topTopicStatisticsList);
             index.addObject("recentTopics", recentTopics);
+            index.addObject("topTopics", topTopics);
         } catch (Exception ex) {
             ex.printStackTrace();
             attributes.addFlashAttribute("error", ex.getMessage());
@@ -64,15 +73,24 @@ public class MainController {
         CommentServiceClient commentClient = new CommentServiceClient((String) session.getAttribute("token"));
         try {
             List<Topics> recentTopicsList = client.getRecentTopics();
+            List<Topics> topTopicsList = client.getTopTopics();
             List<TopicWithStatistics> recentTopicStatisticsList = new ArrayList<TopicWithStatistics>();
             for (Topics temp : recentTopicsList) {
                 Long topicId = temp.getTopicId();
                 int commentNumber = commentClient.getTopicComments(topicId).size();
                 recentTopicStatisticsList.add(new TopicWithStatistics(temp.getTopicId(), temp.getHeader(), commentNumber));
             }
+            List<TopicWithStatistics> topTopicStatisticsList = new ArrayList<TopicWithStatistics>();
+            for (Topics temp : topTopicsList) {
+                Long topicId = temp.getTopicId();
+                int commentNumber = commentClient.getTopicComments(topicId).size();
+                recentTopicStatisticsList.add(new TopicWithStatistics(temp.getTopicId(), temp.getHeader(), commentNumber));
+            }
             ObjectMapper mapper = new ObjectMapper();
             String recentTopics = mapper.writeValueAsString(recentTopicStatisticsList);
+            String topTopics = mapper.writeValueAsString(topTopicStatisticsList);
             index.addObject("recentTopics", recentTopics);
+            index.addObject("topTopics", topTopics);
         } catch (Exception ex) {
             ex.printStackTrace();
             attributes.addFlashAttribute("error", ex.getMessage());
