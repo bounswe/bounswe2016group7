@@ -1,9 +1,11 @@
 package com.bounswe.group7.web.controller;
 
 import com.bounswe.group7.api.client.CommentServiceClient;
+import com.bounswe.group7.api.client.TagServiceClient;
 import com.bounswe.group7.api.client.TopicServiceClient;
 import com.bounswe.group7.api.client.UserServiceClient;
 import com.bounswe.group7.model.Comments;
+import com.bounswe.group7.model.Tags;
 import com.bounswe.group7.model.TopicPacks;
 import com.bounswe.group7.model.Topics;
 import com.bounswe.group7.model.Users;
@@ -77,18 +79,30 @@ public class TopicController {
     public Long createTopic(HttpServletRequest request, @RequestBody Topics topic, RedirectAttributes attributes){
         HttpSession session = request.getSession();
         TopicServiceClient client = new TopicServiceClient((String) session.getAttribute("token"));
-        //ModelAndView modelAndView;
         Topics topicCreated = new Topics();
         try{
             topicCreated = client.createTopic(topic);
-            //modelAndView = new ModelAndView("redirect:/topic/"+topicCreated.getTopicId()+"/");
-            //modelAndView.addObject("createdTopicId", topicCreated.getTopicId());
         }catch(Exception ex){
             ex.printStackTrace();
             attributes.addAttribute("error", ex.getMessage());
-            //modelAndView = new ModelAndView("redirect:/");
         }
         return topicCreated.getTopicId();
+    }
+    
+    @RequestMapping(value = "/createTag", method = RequestMethod.PUT,
+            produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public Long createTag(HttpServletRequest request, @RequestBody Tags tag, RedirectAttributes attributes) {
+        HttpSession session = request.getSession();
+        TagServiceClient client = new TagServiceClient((String) session.getAttribute("token"));
+        Tags tagCreated = new Tags();
+        try {
+            tagCreated = client.createTag(tag);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            attributes.addAttribute("error", ex.getMessage());
+        }
+        return tagCreated.getTagId();
     }
     
     @RequestMapping(value = "/addcomment", method = RequestMethod.PUT,

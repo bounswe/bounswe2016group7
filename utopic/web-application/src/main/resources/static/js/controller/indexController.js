@@ -2,6 +2,7 @@ mainModel.controller('indexController',function indexController($scope) {
   $scope.tagInput = '';
   $scope.titleInput = '';
   $scope.tags = [];
+  $scope.jsonTags = [];
   $scope.description = '';
   $scope.htmlContent = '';
   $scope.questions = [];
@@ -10,8 +11,21 @@ mainModel.controller('indexController',function indexController($scope) {
   questionNum = 0;
   
   $scope.addTag = function(){
-    $scope.tags.push($scope.tagInput);
-    $scope.tagInput = "";
+      $.ajax({
+            type: "PUT",
+            contentType: "application/json; charset=utf-8",
+            url: "/createTag",
+            data: JSON.stringify({"label": $scope.tagInput}),
+        }).done(function(data)
+        {
+            $scope.tags.push($scope.tagInput);
+            $scope.jsonTags.push({"tagId": data});
+            $scope.tagInput = "";    
+        })
+            .fail(function(data){
+            console.log(data);
+        });
+
   };
   
   
@@ -36,7 +50,7 @@ mainModel.controller('indexController',function indexController($scope) {
   };
   
   $scope.saveTopic = function(){
-      var data = {"content": $scope.htmlContent,"header": $scope.titleInput, "tags": $scope.tags, "description": $scope.descriptionInput, "questions": $scope.questions};
+      var data = {"content": $scope.htmlContent,"header": $scope.titleInput, "tags": $scope.jsonTags, "description": $scope.descriptionInput, "questions": $scope.questions};
         $.ajax({
             type: "PUT",
             contentType: "application/json; charset=utf-8",
@@ -60,9 +74,9 @@ mainModel.controller('indexController',function indexController($scope) {
       menuFlag = 0;
     }
   };
-	if(typeof recentTopics != 'undefined')
+    if(typeof recentTopics != 'undefined')
     $scope.recentTopics = recentTopics.slice(0,4);
-	if(typeof topTopics != 'undefined')
+    if(typeof topTopics != 'undefined')
     $scope.topTopics = topTopics.slice(0,4);
 });
 
