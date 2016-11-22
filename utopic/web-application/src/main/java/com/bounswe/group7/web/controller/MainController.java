@@ -51,7 +51,7 @@ public class MainController {
             for (Topics temp : topTopicsList) {
                 Long topicId = temp.getTopicId();
                 int commentNumber = commentClient.getTopicComments(topicId).size();
-                recentTopicStatisticsList.add(new TopicWithStatistics(temp.getTopicId(), temp.getHeader(), commentNumber));
+                topTopicStatisticsList.add(new TopicWithStatistics(temp.getTopicId(), temp.getHeader(), commentNumber));
             }
             ObjectMapper mapper = new ObjectMapper();
             String recentTopics = mapper.writeValueAsString(recentTopicStatisticsList);
