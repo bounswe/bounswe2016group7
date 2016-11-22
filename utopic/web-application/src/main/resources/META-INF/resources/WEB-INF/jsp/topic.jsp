@@ -33,13 +33,13 @@
               <div class="row">
                 <div class="col-xs-5 col-md-3">
                   <div class="title-picture" style="background-image: url(/images/header1.jpg);"></div>
-                  <p>Creator: <a href="#">${owner.username}</a><br/>
+                  <p>Creator: <a href="/profile/${owner.id}">${owner.username}</a><br/>
                     <a href="#">Interested people will be shown here.</a>
                   <p>
                 </div>
                 <div class="col-xs-7 col-md-9">
                   <h3>${topic.header} <div class="topic-rating"></div></h3>
-                  <p>Topic summary will be shown here.</p>
+                  <p>${topic.description}</p>
                   <div class="tags">
                     <div class="topic-tag">Tag 1</div>
                     <div class="topic-tag">Tag 2</div>
