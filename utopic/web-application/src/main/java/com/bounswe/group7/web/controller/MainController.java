@@ -78,13 +78,13 @@ public class MainController {
             for (Topics temp : recentTopicsList) {
                 Long topicId = temp.getTopicId();
                 int commentNumber = commentClient.getTopicComments(topicId).size();
-                recentTopicStatisticsList.add(new TopicWithStatistics(temp.getTopicId(), temp.getHeader(), commentNumber));
+                recentTopicStatisticsList.add(new TopicWithStatistics(temp.getTopicId(), temp.getHeader(), commentNumber, temp.getRate()));
             }
             List<TopicWithStatistics> topTopicStatisticsList = new ArrayList<TopicWithStatistics>();
             for (Topics temp : topTopicsList) {
                 Long topicId = temp.getTopicId();
                 int commentNumber = commentClient.getTopicComments(topicId).size();
-                recentTopicStatisticsList.add(new TopicWithStatistics(temp.getTopicId(), temp.getHeader(), commentNumber));
+                topTopicStatisticsList.add(new TopicWithStatistics(temp.getTopicId(), temp.getHeader(), commentNumber, temp.getRate()));
             }
             ObjectMapper mapper = new ObjectMapper();
             String recentTopics = mapper.writeValueAsString(recentTopicStatisticsList);
