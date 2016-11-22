@@ -21,13 +21,13 @@ import javax.persistence.UniqueConstraint;
  */
 @Entity
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = {"label", "category"}))
-public class Tags implements Serializable{
+public class Tags implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "TAG_SEQ")
     @SequenceGenerator(name = "TAG_SEQ", sequenceName = "TAG_SEQ", allocationSize = 1, initialValue = 1)
     @Column(name = "tag_id", nullable = false)
-    private Long tadId;
+    private Long tagId;
 
     @Column(name = "label", nullable = false)
     private String label;
@@ -38,12 +38,12 @@ public class Tags implements Serializable{
     @Column(name = "category", nullable = false)
     private String category;
 
-    public Long getTadId() {
-        return tadId;
+    public Long getTagId() {
+        return tagId;
     }
 
-    public void setTadId(Long tadId) {
-        this.tadId = tadId;
+    public void setTagId(Long tagId) {
+        this.tagId = tagId;
     }
 
     public String getLabel() {

@@ -8,7 +8,7 @@ import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;
 
 @Generated("org.jsonschema2pojo")
-public class Result implements Serializable{
+public class Result implements Serializable {
 
     @SerializedName("uri")
     @Expose
@@ -28,7 +28,7 @@ public class Result implements Serializable{
 
     @SerializedName("classes")
     @Expose
-    private List<Class> classes = new ArrayList<Class>();
+    private List<Klaz> classes = new ArrayList<Klaz>();
 
     /**
      *
@@ -94,19 +94,11 @@ public class Result implements Serializable{
         this.refCount = refCount;
     }
 
-    /**
-     *
-     * @return The classes
-     */
-    public List<Class> getClasses() {
+    public List<Klaz> getClasses() {
         return classes;
     }
 
-    /**
-     *
-     * @param classes The classes
-     */
-    public void setClasses(List<Class> classes) {
+    public void setClasses(List<Klaz> classes) {
         this.classes = classes;
     }
 

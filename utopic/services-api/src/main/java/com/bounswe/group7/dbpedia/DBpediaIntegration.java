@@ -28,7 +28,7 @@ public class DBpediaIntegration {
 
     public static void main(String[] args) {
         DBpediaIntegration integ = new DBpediaIntegration();
-        Results res = integ.keywordSearch("berl");
+        Results res = integ.keywordSearch("apple");
         System.out.println();
     }
 
@@ -59,7 +59,7 @@ public class DBpediaIntegration {
         Results results = new Results();
         StringBuilder str = new StringBuilder();
         try {
-            URL url = new URL(API_URL + "KeywordSearch?QueryClass=&MaxHits=5&QueryString=" + keyword);
+            URL url = new URL(API_URL + "KeywordSearch?QueryClass=&QueryString=" + keyword);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.addRequestProperty("Accept", "application/json");
             conn.setDoOutput(true);

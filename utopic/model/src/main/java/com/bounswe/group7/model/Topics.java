@@ -7,19 +7,27 @@ package com.bounswe.group7.model;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.UniqueConstraint;
 
 /**
  *
  * @author myunu
  */
 @Entity
-public class Topics implements Serializable{
+public class Topics implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "TOPICS_SEQ")
@@ -45,8 +53,18 @@ public class Topics implements Serializable{
     private String content;
     @Column(name = "rate", nullable = false, columnDefinition = "Decimal(3,2) default '0.00'")
     private Double rate;
-    
+
     private Integer rateCounter;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "TOPIC_TAGS",
+            uniqueConstraints = @UniqueConstraint(columnNames = {"topic_id", "tag_id"}),
+            joinColumns = {
+                @JoinColumn(name = "topic_id", referencedColumnName = "topic_id")},
+            inverseJoinColumns = {
+                @JoinColumn(name = "tag_id", referencedColumnName = "tag_id")})
+    private List<Tags> tags;
 
     public Topics(Long topicId, Long topicPackId, Long userId, String header) {
         this.topicId = topicId;
@@ -56,6 +74,14 @@ public class Topics implements Serializable{
     }
 
     public Topics() {
+    }
+
+    public List<Tags> getTags() {
+        return tags;
+    }
+
+    public void setTags(List<Tags> tags) {
+        this.tags = tags;
     }
 
     public Integer getRateCounter() {
