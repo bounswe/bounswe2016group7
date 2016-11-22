@@ -73,6 +73,10 @@ public class TopicsService {
         return topicsRepository.findByUserId(userId);
     }
     
+    public List<TopicPacks> getUserTopicPacks(Long userId) {
+        return topicPacksRepository.findByUserId(userId);
+    }
+
     public List<Topics> getRecentTopics(){
         return topicsRepository.findTop10ByOrderByCreateDateDesc();
     }

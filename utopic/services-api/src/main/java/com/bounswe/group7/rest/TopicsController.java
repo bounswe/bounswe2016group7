@@ -59,19 +59,25 @@ public class TopicsController {
     public List<Topics> getRecentTopics() {
         return topicsService.getRecentTopics();
     }
-    
+
     @RequestMapping(path = "public/getTopTopics", method = RequestMethod.GET)
     @ResponseBody
     public List<Topics> getTopTopics() {
         return topicsService.getTopTopics();
     }
-    
+
     @RequestMapping(path = "public/getUserTopics", method = RequestMethod.POST)
     @ResponseBody
     public List<Topics> getUserTopics(@RequestBody Long userId) {
         return topicsService.getUserTopics(userId);
     }
-    
+
+    @RequestMapping(path = "getUserTopicPacks", method = RequestMethod.POST)
+    @ResponseBody
+    public List<TopicPacks> getUserTopicPacks(@RequestBody Long userId) {
+        return topicsService.getUserTopicPacks(userId);
+    }
+
     @RequestMapping(path = "rateTopic", method = RequestMethod.POST)
     @ResponseBody
     public boolean rateTopic(@RequestBody RatedTopics ratedTopic) {
