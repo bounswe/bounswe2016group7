@@ -10,6 +10,8 @@ import com.bounswe.group7.api.client.LoginServiceClient;
 import com.bounswe.group7.api.client.TopicServiceClient;
 import com.bounswe.group7.model.Topics;
 import com.bounswe.group7.model.Users;
+import com.bounswe.group7.model.security.Authority;
+import com.bounswe.group7.model.security.AuthorityName;
 import com.bounswe.group7.web.domain.TopicWithStatistics;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.ArrayList;
@@ -29,9 +31,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
  */
 @RestController
 public class MainController {
-    
+
     @RequestMapping("/")
-    public ModelAndView index(HttpServletRequest request, HttpServletResponse response, RedirectAttributes attributes){
+    public ModelAndView index(HttpServletRequest request, HttpServletResponse response, RedirectAttributes attributes) {
         ModelAndView index = new ModelAndView("index");
         HttpSession session = request.getSession();
         TopicServiceClient client = new TopicServiceClient((String) session.getAttribute("token"));
@@ -39,7 +41,7 @@ public class MainController {
         try {
             List<Topics> recentTopicsList = client.getRecentTopics();
             List<TopicWithStatistics> recentTopicStatisticsList = new ArrayList<TopicWithStatistics>();
-            for(Topics temp : recentTopicsList){
+            for (Topics temp : recentTopicsList) {
                 Long topicId = temp.getTopicId();
                 int commentNumber = commentClient.getTopicComments(topicId).size();
                 recentTopicStatisticsList.add(new TopicWithStatistics(temp.getTopicId(), temp.getHeader(), commentNumber));
@@ -53,9 +55,9 @@ public class MainController {
         }
         return index;
     }
-    
+
     @RequestMapping("/home")
-    public ModelAndView home(HttpServletRequest request, HttpServletResponse response, RedirectAttributes attributes){
+    public ModelAndView home(HttpServletRequest request, HttpServletResponse response, RedirectAttributes attributes) {
         ModelAndView index = new ModelAndView("home");
         HttpSession session = request.getSession();
         TopicServiceClient client = new TopicServiceClient((String) session.getAttribute("token"));
@@ -63,7 +65,7 @@ public class MainController {
         try {
             List<Topics> recentTopicsList = client.getRecentTopics();
             List<TopicWithStatistics> recentTopicStatisticsList = new ArrayList<TopicWithStatistics>();
-            for(Topics temp : recentTopicsList){
+            for (Topics temp : recentTopicsList) {
                 Long topicId = temp.getTopicId();
                 int commentNumber = commentClient.getTopicComments(topicId).size();
                 recentTopicStatisticsList.add(new TopicWithStatistics(temp.getTopicId(), temp.getHeader(), commentNumber));
@@ -77,9 +79,9 @@ public class MainController {
         }
         return index;
     }
-    
+
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public ModelAndView register(HttpServletRequest request, RedirectAttributes attributes)  throws NullPointerException{
+    public ModelAndView register(HttpServletRequest request, RedirectAttributes attributes) throws NullPointerException {
         Users user = new Users();
         LoginServiceClient client = new LoginServiceClient();
         ModelAndView modelAndView = new ModelAndView("redirect:/");
@@ -90,6 +92,16 @@ public class MainController {
             user.setPassword(request.getParameter("password"));
             user.setEmail(request.getParameter("email"));
             user.setGender(request.getParameter("gender"));
+            String level = request.getParameter("status");
+            List<Authority> authorityList = new ArrayList<Authority>();
+            if (level.equals("creator")) {
+                authorityList.add(new Authority(new Long(AuthorityName.ROLE_CREATOR.getId()), AuthorityName.ROLE_CREATOR));
+                authorityList.add(new Authority(new Long(AuthorityName.ROLE_EXPLORER.getId()), AuthorityName.ROLE_EXPLORER));
+
+            } else if (level.equals("explorer")) {
+                authorityList.add(new Authority(new Long(AuthorityName.ROLE_EXPLORER.getId()), AuthorityName.ROLE_EXPLORER));
+            }
+            user.setAuthorities(authorityList);
             client.register(user);
             //TODO mailing is needed after the registration
         } catch (Exception ex) {
