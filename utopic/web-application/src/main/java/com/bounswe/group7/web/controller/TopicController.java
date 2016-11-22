@@ -60,10 +60,14 @@ public class TopicController {
                 topicCommentList.add(topicComment);
             }
             
+            List<Tags> tags = topic.getTags();
+            
+            String tagsJson = mapper.writeValueAsString(tags);
             String commentsJson = mapper.writeValueAsString(topicCommentList);
             
             modelAndView.addObject("pack",topicPack);
             modelAndView.addObject("topic", topic);
+            modelAndView.addObject("tags", tagsJson);
             modelAndView.addObject("owner", owner);
             modelAndView.addObject("comments", commentsJson);
         } catch (Exception ex) {
