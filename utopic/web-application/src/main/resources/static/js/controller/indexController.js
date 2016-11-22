@@ -35,11 +35,11 @@ mainModel.controller('indexController',function indexController($scope) {
   };
   
   $scope.saveTopic = function(){
-      var data = {"content": $scope.htmlContent,"title": $scope.titleInput, "tags": $scope.tags, "questions": $scope.questions};
+      var data = {"content": $scope.htmlContent,"header": $scope.titleInput, "tags": $scope.tags, "questions": $scope.questions};
         $.ajax({
             type: "PUT",
             contentType: "application/json; charset=utf-8",
-            url: "http://localhost:8080/addcomment",
+            url: "http://localhost:8080/createTopic",
             data: JSON.stringify(data),
         }).fail(function(data){
             console.log(data);

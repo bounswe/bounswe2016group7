@@ -28,7 +28,7 @@
             <div class="container">
                 <div class="panel">
                     <div class="panel-header">
-                        <span class="title">Trending Topics</span>
+                        <span class="title">Recent Topics</span>
                         <a href="#">>> See all</a>
                     </div>
 										<div class="row" ng-controller="indexController">
