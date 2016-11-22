@@ -16,7 +16,6 @@
         var activeId = "${sessionScope.id}";
         var activeToken = "${sessionScope.token}";
         var comments = ${comments};
-				var tags = ${tags};
         var ownerId = ${owner.id};
         var topicId = ${topic.topicId};
     </script><%
@@ -42,9 +41,9 @@
                   <h3>${topic.header} <div class="topic-rating"></div></h3>
                   <p>${topic.description}</p>
                   <div class="tags">
-										<div ng-repeat="tag in tags" class="topic-tag" id="tag{{tag.tagId}}">
-										{{tag.label}} ({{tag.category}})
-										</div>
+                    <div class="topic-tag">Tag 1</div>
+                    <div class="topic-tag">Tag 2</div>
+                    <div class="topic-tag">Tag 3</div>
                   </div>
                 </div>  
               </div>
@@ -111,7 +110,7 @@
                       </span>
                     </div>
                     <div class="clearfix"></div>
-										</div>
+</div>
                   </div>
                   <div class="input-container">
                     <input type="text" ng-model="commentToAdd" placeholder="Your message" class="form-control">
