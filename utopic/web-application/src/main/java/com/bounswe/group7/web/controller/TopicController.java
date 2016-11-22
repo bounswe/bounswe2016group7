@@ -74,19 +74,21 @@ public class TopicController {
     @RequestMapping(value = "/createTopic", method = RequestMethod.PUT,
            produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public ModelAndView createTopic(HttpServletRequest request, @RequestBody Topics topic, RedirectAttributes attributes){
+    public Long createTopic(HttpServletRequest request, @RequestBody Topics topic, RedirectAttributes attributes){
         HttpSession session = request.getSession();
         TopicServiceClient client = new TopicServiceClient((String) session.getAttribute("token"));
-        ModelAndView modelAndView;
+        //ModelAndView modelAndView;
+        Topics topicCreated = new Topics();
         try{
-            Topics topicCreated = client.createTopic(topic);
-            modelAndView = new ModelAndView("redirect:/topic/"+topicCreated.getTopicId()+"/");
+            topicCreated = client.createTopic(topic);
+            //modelAndView = new ModelAndView("redirect:/topic/"+topicCreated.getTopicId()+"/");
+            //modelAndView.addObject("createdTopicId", topicCreated.getTopicId());
         }catch(Exception ex){
             ex.printStackTrace();
             attributes.addAttribute("error", ex.getMessage());
-            modelAndView = new ModelAndView("redirect:/");
+            //modelAndView = new ModelAndView("redirect:/");
         }
-        return modelAndView;
+        return topicCreated.getTopicId();
     }
     
     @RequestMapping(value = "/addcomment", method = RequestMethod.PUT,

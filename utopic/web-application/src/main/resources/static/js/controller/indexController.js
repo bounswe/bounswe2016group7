@@ -42,7 +42,9 @@ mainModel.controller('indexController',function indexController($scope) {
             contentType: "application/json; charset=utf-8",
             url: "/createTopic",
             data: JSON.stringify(data),
-        }).fail(function(data){
+        }).done(function(data)
+        {window.location.replace('/topic/'.concat(data))})
+                .fail(function(data){
             console.log(data);
         });
   };
