@@ -27,7 +27,7 @@
       <div class="container" id="landing-content-container">
         <div class="panel">
           <div class="panel-header">
-            <span class="title">Trending Topics</span>
+            <span class="title">Recent Topics</span>
             <a href="#">>> See all</a>
           </div>
           <div class="row" ng-controller="indexController">
@@ -35,7 +35,6 @@
               <div class="topic-thumb">
                 <p class="topic-title">{{topic.topic_name}}</p>
                 <span>Comments: {{topic.commentNumber}}</span>
-                <span>Interested: 15</span>
                 <a href="/topic/{{topic.topic_id}}">Topic Page</a>
                 <div class="clearfix"></div>
               </div>

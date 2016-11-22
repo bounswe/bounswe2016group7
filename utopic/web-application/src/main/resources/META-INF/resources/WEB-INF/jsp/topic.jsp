@@ -34,16 +34,16 @@
                 <div class="col-xs-5 col-md-3">
                   <div class="title-picture" style="background-image: url(/images/header1.jpg);"></div>
                   <p>Creator: <a href="#">${owner.username}</a><br/>
-                    <a href="#">150 people are interested</a>
+                    <a href="#">Interested people will be shown here.</a>
                   <p>
                 </div>
                 <div class="col-xs-7 col-md-9">
                   <h3>${topic.header} <div class="topic-rating"></div></h3>
-                  <p>${topic.content}</p>
+                  <p>Topic summary will be shown here.</p>
                   <div class="tags">
-                    <div class="topic-tag">book</div>
-                    <div class="topic-tag">write</div>
-                    <div class="topic-tag">how to write</div>
+                    <div class="topic-tag">Tag 1</div>
+                    <div class="topic-tag">Tag 2</div>
+                    <div class="topic-tag">Tag 3</div>
                   </div>
                 </div>  
               </div>
@@ -57,9 +57,9 @@
                 <a href="#" class="title">${pack.name}</a>
                 <a href="#" class="nav">
                   <i style="margin-right:5px;" class="fa fa-chevron-left" aria-hidden="true"></i>
-                  Which fonts to use</a>
+                  Previous Topic in Pack</a>
                 <a href="#" class="nav">
-                  Which fonts to use
+                  Next Topic in Pack
                   <i style="margin-left:5px;" class="fa fa-chevron-right" aria-hidden="true"></i>
                 </a>
               </div>
@@ -86,7 +86,7 @@
 
               <div class="tab-content">
                 <div class="tab-pane active" id="home" role="tabpanel">
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent ac tortor nec leo egestas eleifend id ut lectus. In vel laoreet erat, ac cursus metus. Donec tempor luctus turpis, in consectetur felis. Nulla dolor ligula, tincidunt vel lorem at, pellentesque hendrerit justo. Aenean porttitor eleifend quam vitae rutrum. Pellentesque et dolor justo. Fusce nec ex nec erat placerat tincidunt et in nisi. Donec eros quam, sollicitudin et tincidunt eget, tincidunt non velit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Vivamus neque quam, vehicula non tincidunt sed, vestibulum at ex. Duis finibus sem convallis bibendum facilisis. Donec pellentesque pellentesque aliquam. In tempor sapien non neque faucibus, at rutrum lorem gravida. Suspendisse at vehicula odio.</p>
+                  <p>${topic.content}</p>
                 </div>
                 <div class="tab-pane message-tab" id="profile" role="tabpanel">
                   <div class="message-container">
@@ -120,7 +120,7 @@
                 <div class="tab-pane" id="messages" role="tabpanel">
                   <div class="message question">
                     <div class="question-content">
-                      <p><span class="question-number">Q1</span> Dayak nedir neden atÄ±lÄ±r ?</p>
+                      <p><span class="question-number">Q1</span> Sample Question</p>
                     </div>
                     <div class="options">
                       <div class="row">

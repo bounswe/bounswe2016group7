@@ -28,15 +28,15 @@
                             <div class="row">
                                 <div class="col-xs-5 col-md-3">
                                     <div class="title-picture" style="background-image: url('./images/header1.jpeg');"></div>
-                                    <p></p>
                                 </div>
                                 <div class="col-xs-7 col-md-9">
                                     <h3>${profiledUser.firstname} ${profiledUser.lastname}<span></span></h3>
-                                    <p>American Painters Association</p>
-                                    <div class="badges"></div>
-                                    <div class="topic-tag">Wizard</div>
-                                    <div class="topic-tag">Adept Creator</div>
-                                    <div class="topic-tag">Unmarked</div>
+                                    <p>Association will be shown here.</p>
+                                    <div class="tags">
+																			<div class="topic-tag">Badge 1</div>
+																			<div class="topic-tag">Badge 2</div>
+																			<div class="topic-tag">Badge 3</div>		
+																	</div>
                                 </div>
                             </div>
                         </div>
@@ -46,11 +46,7 @@
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-3">
                     <div class="panel">
-                        I am an American painter and a registered art instructor at American Painters Association. I am 52 years old. I am painting for 30+ yeards and my motto is "There is no mistakes, there is only happy accidents.".
-                            
-                        Email: roboss@art.info
-                        Phone: +987 65 58
-                        Website: roboss.art.net
+													User information will be shown here.
                     </div>	
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-9">
