@@ -150,7 +150,7 @@
     <script type="text/javascript" src="/js/controller/topicController.js"></script>
     <script>
       $(".topic-rating").starRating({
-        initialRating: 3.7,
+        initialRating: ${topic.rate},
         hoverColor: "#0a6c8e",
         useGradient: false,
         activeColor: "#fec400",
