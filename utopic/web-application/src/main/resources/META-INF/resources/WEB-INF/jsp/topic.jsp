@@ -26,6 +26,7 @@
            }    
         %>
         <jsp:include page="partial/getToolbar.jsp"/>
+        <jsp:include page="partial/creatorModal.jsp"/>
         <div class="content">
             <div class="container-fluid">
                 <div class="row">

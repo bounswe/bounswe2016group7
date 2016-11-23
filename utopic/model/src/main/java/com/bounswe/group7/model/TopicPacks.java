@@ -38,7 +38,7 @@ public class TopicPacks implements Serializable{
 
     public TopicPacks(String name) {
         this.name = name;
-        this.count = 1;
+        this.count = 0;
     }
 
     public TopicPacks() {
