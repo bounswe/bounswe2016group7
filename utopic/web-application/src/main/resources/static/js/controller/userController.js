@@ -2,6 +2,7 @@ mainModel.controller('userController',function indexController($scope) {
     $scope.reviews = reviews;
     $scope.topics = topics;
     $scope.reviewToAdd = '';
+    $scope.profiledAuths = profiledUserAuth;
     var scrollToBottom = function(selector){
         $(selector).scrollTop($(selector)[0].scrollHeight);
     };
