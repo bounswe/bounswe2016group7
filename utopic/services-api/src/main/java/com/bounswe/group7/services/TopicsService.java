@@ -68,6 +68,15 @@ public class TopicsService {
         return topicPacksRepository.save(topicPack);
     }
     
+    public TopicPacks createTopicPackByName(String name)
+    {
+        TopicPacks topicPack = topicPacksRepository.findByUserIdAndName(usersService.getLoggedInUserId(), name);
+        if(topicPack != null) 
+            return topicPack;
+        topicPack = new TopicPacks(name);
+        return createTopicPack(topicPack);
+    }
+    
     public List<Topics> getUserTopics(Long userId)
     {
         return topicsRepository.findByUserId(userId);

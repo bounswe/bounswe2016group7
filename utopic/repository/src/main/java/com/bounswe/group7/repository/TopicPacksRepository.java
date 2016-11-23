@@ -19,4 +19,6 @@ public interface TopicPacksRepository extends CrudRepository<TopicPacks, Long> {
     public List<TopicPacks> findByUserId(Long userId);
 
     public TopicPacks findByTopicPackId(Long topicPackId);
+    
+    public TopicPacks findByUserIdAndName(Long userId, String name);
 }

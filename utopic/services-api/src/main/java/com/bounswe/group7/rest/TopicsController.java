@@ -41,6 +41,13 @@ public class TopicsController {
     public TopicPacks createTopicPack(@RequestBody TopicPacks topicPack) {
         return topicsService.createTopicPack(topicPack);
     }
+    
+    @RequestMapping(path = "/createTopicPackByName", method = RequestMethod.POST)
+    @ResponseBody
+    @PreAuthorize("hasAnyRole('CREATOR', 'ADMIN')")
+    public TopicPacks createTopicPackByName(@RequestBody String name) {
+        return topicsService.createTopicPackByName(name);
+    }
 
     @RequestMapping(path = "getTopic", method = RequestMethod.POST)
     @ResponseBody

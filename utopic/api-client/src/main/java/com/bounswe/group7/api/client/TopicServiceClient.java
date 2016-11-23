@@ -29,9 +29,14 @@ public class TopicServiceClient extends BaseClient {
         }, request);
     }
 
-    public TopicPacks createTopic(TopicPacks request) throws Exception {
+    public TopicPacks createTopicPack(TopicPacks request) throws Exception {
         return post(getResource().path("createTopicPack"), new TypeToken<TopicPacks>() {
         }, request);
+    }
+    
+    public TopicPacks createTopickPackByName(String name) throws Exception {
+        return post(getResource().path("createTopicPackByName"), new TypeToken<TopicPacks>() {
+        }, name);
     }
 
     public Topics getTopic(Long topicId) throws Exception {

@@ -9,6 +9,7 @@ import com.bounswe.group7.model.Tags;
 import com.bounswe.group7.model.TopicPacks;
 import com.bounswe.group7.model.Topics;
 import com.bounswe.group7.model.Users;
+import com.bounswe.group7.web.domain.CreateTopicTemp;
 import com.bounswe.group7.web.domain.TopicComment;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.ArrayList;
@@ -80,12 +81,19 @@ public class TopicController {
     @RequestMapping(value = "/createTopic", method = RequestMethod.PUT,
            produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public Long createTopic(HttpServletRequest request, @RequestBody Topics topic, RedirectAttributes attributes){
+    public Long createTopic(HttpServletRequest request, @RequestBody CreateTopicTemp topic, RedirectAttributes attributes){
         HttpSession session = request.getSession();
         TopicServiceClient client = new TopicServiceClient((String) session.getAttribute("token"));
         Topics topicCreated = new Topics();
         try{
-            topicCreated = client.createTopic(topic);
+            Long topicPackId = client.createTopickPackByName(topic.topicPackName).getTopicPackId();
+            Topics toCreate = new Topics();
+            toCreate.setContent(topic.content);
+            toCreate.setDescription(topic.description);
+            toCreate.setHeader(topic.header);
+            toCreate.setTags(topic.tags);
+            toCreate.setTopicPackId(topicPackId);
+            topicCreated = client.createTopic(toCreate);
         }catch(Exception ex){
             ex.printStackTrace();
             attributes.addAttribute("error", ex.getMessage());

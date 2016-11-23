@@ -8,6 +8,7 @@
     <button  ng-if="auths.indexOf('ROLE_CREATOR')!=-1" data-remodal-action="close" class="remodal-close"></button>
     <br/>
         <input ng-model="titleInput" name="title" id="title" class="form-control" type="text" placeholder="Title" ng-model="createTopic.title"/>
+        <input ng-model="topicPackInput" name="topicpackname" id="topicpackname" class="form-control" type="text" placeholder="Topic Pack Name" ng-model="createTopic.topickPackName"/>
         <div class="row">
             <div class="col-xs-10">
                 <input ng-model="tagInput" name="tag" id="add-tag" class="form-control" type="text" placeholder="Add a Tag"/>
