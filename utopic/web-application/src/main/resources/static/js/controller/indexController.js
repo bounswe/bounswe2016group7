@@ -11,21 +11,8 @@ mainModel.controller('indexController',function indexController($scope) {
   questionNum = 0;
   
   $scope.addTag = function(){
-      $.ajax({
-            type: "PUT",
-            contentType: "application/json; charset=utf-8",
-            url: "/createTag",
-            data: JSON.stringify({"label": $scope.tagInput}),
-        }).done(function(data)
-        {
-            $scope.tags.push($scope.tagInput);
-            $scope.jsonTags.push({"tagId": data});
-            $scope.tagInput = "";    
-        })
-            .fail(function(data){
-            console.log(data);
-        });
-
+    $scope.tags.push($scope.tagInput);
+    $scope.tagInput = "";
   };
   
   
@@ -50,15 +37,17 @@ mainModel.controller('indexController',function indexController($scope) {
   };
   
   $scope.saveTopic = function(){
-      var data = {"content": $scope.htmlContent, "topicPackName": $scope.topicPackInput, "header": $scope.titleInput, "tags": $scope.jsonTags, "description": $scope.descriptionInput, "questions": $scope.questions};
+      var data = {"content": $scope.htmlContent, "header": $scope.titleInput, "tags": $scope.tags, "description": $scope.description, "questions": $scope.questions};
         $.ajax({
             type: "PUT",
             contentType: "application/json; charset=utf-8",
             url: "/createTopic",
             data: JSON.stringify(data),
         }).done(function(data)
-        {window.location.replace('/topic/'.concat(data))})
-                .fail(function(data){
+        {
+            console.log(data);
+            window.location.replace('/topic/'.concat(data))
+        }).fail(function(data){
             console.log(data);
         });
   };

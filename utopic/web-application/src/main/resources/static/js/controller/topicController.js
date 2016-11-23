@@ -2,7 +2,7 @@ mainModel.controller('topicController',function indexController($scope) {
     $scope.comments = comments;
     $scope.commentToAdd = '';
     $scope.repliedId = '';
-		$scope.tags = tags;
+    $scope.tags = topicTags;
     var scrollToBottom = function(selector){
         $(selector).scrollTop($(selector)[0].scrollHeight);
     };
@@ -64,7 +64,6 @@ mainModel.controller('topicController',function indexController($scope) {
             scrollTop: $('.message-container').offset().top -100
          });
     });
-	if(typeof tags != 'undefined')
-     $scope.tags = tags.slice(0,4);
+    console.log($scope.tags);
 });
 

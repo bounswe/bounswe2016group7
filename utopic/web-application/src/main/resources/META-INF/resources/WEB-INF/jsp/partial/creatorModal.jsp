@@ -21,7 +21,7 @@
             <div ng-repeat="tag in tags" class="topic-tag">{{tag}}</div>
         </div>
         
-        <input ng-model="descriptionInput" name="description" id="description" class="form-control" type="text" placeholder="Description" ng-model="createTopic.description"/>
+        <input ng-model="description" name="description" id="description" class="form-control" type="text" placeholder="Description" ng-model="createTopic.description"/>
         <div class="material-container margin-bottom">
             <div text-angular ta-toolbar="[['h4', 'p', 'ul', 'insertImage','insertLink', 'insertVideo']]" ng-model="htmlContent"></div>
         </div>

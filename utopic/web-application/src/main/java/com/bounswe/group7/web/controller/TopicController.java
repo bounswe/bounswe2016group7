@@ -10,6 +10,7 @@ import com.bounswe.group7.model.TopicPacks;
 import com.bounswe.group7.model.Topics;
 import com.bounswe.group7.model.Users;
 import com.bounswe.group7.web.domain.CreateTopicTemp;
+import com.bounswe.group7.web.domain.SaveTopic;
 import com.bounswe.group7.web.domain.TopicComment;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.ArrayList;
@@ -81,19 +82,27 @@ public class TopicController {
     @RequestMapping(value = "/createTopic", method = RequestMethod.PUT,
            produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public Long createTopic(HttpServletRequest request, @RequestBody CreateTopicTemp topic, RedirectAttributes attributes){
+    public Long createTopic(HttpServletRequest request, @RequestBody SaveTopic topic, RedirectAttributes attributes){
         HttpSession session = request.getSession();
-        TopicServiceClient client = new TopicServiceClient((String) session.getAttribute("token"));
+        TopicServiceClient topicClient = new TopicServiceClient((String) session.getAttribute("token"));
+        TagServiceClient tagClient = new TagServiceClient((String) session.getAttribute("token"));
         Topics topicCreated = new Topics();
         try{
-            Long topicPackId = client.createTopickPackByName(topic.topicPackName).getTopicPackId();
-            Topics toCreate = new Topics();
-            toCreate.setContent(topic.content);
-            toCreate.setDescription(topic.description);
-            toCreate.setHeader(topic.header);
-            toCreate.setTags(topic.tags);
-            toCreate.setTopicPackId(topicPackId);
-            topicCreated = client.createTopic(toCreate);
+            List <Tags> tagsCreated = new ArrayList <Tags>();
+            for(String tag : topic.tags){
+                Tags temp = new Tags();
+                temp.setLabel(tag);
+                temp.setRefCount(0);
+                temp.setCategory("zaa");
+                Tags tagCreated = tagClient.createTag(temp);
+                tagsCreated.add(tagCreated);
+            }
+            Topics temp = new Topics();
+            temp.setContent(topic.content);
+            temp.setDescription(topic.description);
+            temp.setTags(tagsCreated);
+            temp.setHeader(topic.header);
+            topicCreated = topicClient.createTopic(temp);
         }catch(Exception ex){
             ex.printStackTrace();
             attributes.addAttribute("error", ex.getMessage());

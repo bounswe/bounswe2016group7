@@ -18,7 +18,7 @@
                     var comments = ${comments};
                     var ownerId = ${owner.id};
                     var topicId = ${topic.topicId};
-                    var tags = ${tags};
+                    var topicTags = ${tags};
         </script><%
             }else{
             response.setStatus(response.SC_MOVED_TEMPORARILY);
