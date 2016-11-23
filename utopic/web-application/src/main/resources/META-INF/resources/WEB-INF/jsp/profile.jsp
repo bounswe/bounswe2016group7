@@ -8,16 +8,16 @@
     <body ng-app="mainApp" ng-controller="userController">
         <% if(session.getAttribute("username") != null){
         %><script type="text/javascript">
-            var auth = [];
+                    var auth = [];
             <c:forEach items="${authorities}" var="stdn" varStatus="status">
                     auth.push('${stdn.name}');
             </c:forEach>
-            var activeUsername = "${sessionScope.username}";
-            var activeId = "${sessionScope.id}";
-            var activeToken = "${sessionScope.token}";
-            var reviews = ${reviews};
-            var ownerId = ${profiledUser.id};
-            var topics = ${topicList};
+                    var activeUsername = "${sessionScope.username}";
+                    var activeId = "${sessionScope.id}";
+                    var activeToken = "${sessionScope.token}";
+                    var reviews = ${reviews};
+                    var ownerId = ${profiledUser.id};
+                    var topics = ${topics};
         </script><%
             }else{
             response.setStatus(response.SC_MOVED_TEMPORARILY);
@@ -71,8 +71,27 @@
                                 <div class="tab-pane active" id="home" role="tabpanel">
                                     <p>QUIZ PROGRESS</p>
                                 </div>
-                                <div class="tab-pane" id="profile" role="tabpanel">
-                                    <P>TOPIC LIST</P>
+                                <div class="tab-pane message-tab" id="profile" role="tabpanel">
+                                    <div class="message-container">
+                                        <div ng-if="!topics" class="centered">
+                                            <p>There is no topics yet<br/>Create one!</p>
+                                        </div>
+                                        <div ng-repeat="topic in topics" class="message" id="topic{{topic.id}}">
+                                            <div class="message-point">
+                                                <i class="fa fa-picture-o fa-4x" aria-hidden="true"></i>
+                                            </div>
+                                            <div class="message-content">
+                                                <a href="/topic/{{topic.topicId}}" class="title">
+                                                    {{topic.header}}
+                                                </a>
+                                                <p ng-bind-html="topic.description | to_trusted"></p>
+                                                <span class="date">
+                                                    {{topic.createDate}}
+                                                </span>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="tab-pane message-tab" id="messages" role="tabpanel">
                                     <div class="message-container">

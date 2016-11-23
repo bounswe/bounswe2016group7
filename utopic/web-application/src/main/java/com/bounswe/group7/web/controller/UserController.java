@@ -64,7 +64,7 @@ public class UserController {
             String profileReviews = mapper.writeValueAsString(profileReviewList);
             String listOfTopics = mapper.writeValueAsString(topicList);
             modelAndView.addObject("profiledUser", profiledUser);
-            modelAndView.addObject("topicList", listOfTopics);
+            modelAndView.addObject("topics", listOfTopics);
             modelAndView.addObject("reviews", profileReviews);
         }catch(Exception ex){
             ex.printStackTrace();
