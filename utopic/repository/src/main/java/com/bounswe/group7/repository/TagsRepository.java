@@ -13,5 +13,5 @@ import org.springframework.data.repository.CrudRepository;
  * @author ugurbor
  */
 public interface TagsRepository extends CrudRepository<Tags, Long>{
-    
+    public Tags findByLabelAndCategory(String label, String Category);
 }

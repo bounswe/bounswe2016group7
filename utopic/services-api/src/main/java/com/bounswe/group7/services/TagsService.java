@@ -22,7 +22,10 @@ public class TagsService {
     public Tags createTag(Tags toBeCreated){
         toBeCreated.setRefCount(0);
         toBeCreated.setCategory("manual");
-        return tagRepository.save(toBeCreated);
+        if(tagRepository.findByLabelAndCategory(toBeCreated.getLabel(), toBeCreated.getCategory()) == null)
+            return tagRepository.save(toBeCreated);
+        else
+            return tagRepository.findByLabelAndCategory(toBeCreated.getLabel(), toBeCreated.getCategory());
     }
    
 }
