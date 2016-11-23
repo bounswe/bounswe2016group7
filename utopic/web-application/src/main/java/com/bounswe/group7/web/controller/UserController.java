@@ -59,13 +59,13 @@ public class UserController {
             ObjectMapper mapper = new ObjectMapper();
             for(Reviews temp: reviewList){
                 String username = userClient.getUser(temp.getReviewerId()).getUsername();
-                profileReviewList.add(new ProfileReview(temp.getReviewId(), username, temp.getDateCreated(), temp.getText()));
+                profileReviewList.add(new ProfileReview(temp.getReviewId(), temp.getReviewerId(), username, temp.getDateCreated(), temp.getText()));
             }
             String profileReviews = mapper.writeValueAsString(profileReviewList);
             String listOfTopics = mapper.writeValueAsString(topicList);
             modelAndView.addObject("profiledUser", profiledUser);
             modelAndView.addObject("topicList", listOfTopics);
-            modelAndView.addObject("reviewList", profileReviews);
+            modelAndView.addObject("reviews", profileReviews);
         }catch(Exception ex){
             ex.printStackTrace();
         }
@@ -84,7 +84,7 @@ public class UserController {
             List <Reviews> reviewList = reviewClient.getUserReviews(review.getUserId());
             for(Reviews temp: reviewList){
                 String username = userClient.getUser(temp.getReviewerId()).getUsername();
-                profileReviewList.add(new ProfileReview(temp.getReviewId(), username, temp.getDateCreated(), temp.getText()));
+                profileReviewList.add(new ProfileReview(temp.getReviewId(), temp.getReviewerId(), username, temp.getDateCreated(), temp.getText()));
             }
             String profileReviews = mapper.writeValueAsString(profileReviewList);
             return profileReviews;

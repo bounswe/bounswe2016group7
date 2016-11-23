@@ -13,12 +13,14 @@ import java.util.Date;
  */
 public class ProfileReview {
     public Long id;
+    public Long reviewerId;
     public String reviewerName;
     public Date dateCreated;
     public String text;
 
-    public ProfileReview(Long id, String reviewerName, Date dateCreated, String text) {
+    public ProfileReview(Long id, Long reviewerId, String reviewerName, Date dateCreated, String text) {
         this.id = id;
+        this.reviewerId = reviewerId;
         this.reviewerName = reviewerName;
         this.dateCreated = dateCreated;
         this.text = text;
