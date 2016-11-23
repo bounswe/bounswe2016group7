@@ -52,7 +52,7 @@ public class ObtainInfo extends AppCompatActivity {
         RadioButton genderButton = (RadioButton) radioGender.findViewById(genderButtonID);
         String gender = genderButton.getText().toString().substring(0,1);
 
-       /* int autButtonID = radioAuthority.getCheckedRadioButtonId();
+        int autButtonID = radioAuthority.getCheckedRadioButtonId();
         RadioButton autButton = (RadioButton) radioAuthority.findViewById(autButtonID);
         String author = autButton.getText().toString();
         AuthorityName authorityName = AuthorityName.ROLE_EXPLORER;
@@ -63,7 +63,7 @@ public class ObtainInfo extends AppCompatActivity {
             authorityName = AuthorityName.ROLE_CREATOR;
             authority = new Authority((long) authorityName.getId(), authorityName);
             authorityList.add(authority);
-        }*/
+        }
 
         if(password.equals(repassword)) {
             LoginServiceClient logClient = new LoginServiceClient();
@@ -74,7 +74,7 @@ public class ObtainInfo extends AppCompatActivity {
                 newUser.setFirstname(firstname);
                 newUser.setLastname(lastname);
                 newUser.setGender(gender);
-                //newUser.setAuthorities(authorityList);
+                newUser.setAuthorities(authorityList);
                 //System.out.println(authorityList.get(0).getName().getName()+","+authorityList.get(1).getName().getName());
                 System.out.println(newUser.toString());
                 token = logClient.register(newUser);

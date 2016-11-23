@@ -28,4 +28,18 @@ public class HomePage extends AppCompatActivity {
         intent.putExtra("recentOrTop",2);
         startActivity(intent);
     }
+
+    public void goUserPage(View v){
+        Intent intent = new Intent(this, UserPage.class);
+        startActivity(intent);
+    }
+
+    public void logouT(View v){
+        SharedPreferences sharedPref = getSharedPreferences("tokenInfo",MODE_PRIVATE);
+        SharedPreferences.Editor prefEditor = sharedPref.edit();
+        prefEditor.clear();
+        prefEditor.apply();
+        Intent intent = new Intent(this,MainActivity.class);
+        startActivity(intent);
+    }
 }

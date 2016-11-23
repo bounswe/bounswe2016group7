@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -75,6 +76,25 @@ public class ShowTopicPage extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
+    }
+
+    public void goHOme(View v) {
+        Intent intent = new Intent(this, HomePage.class);
+        startActivity(intent);
+    }
+
+    public void logOut(View v){
+        SharedPreferences sharedPref = getSharedPreferences("tokenInfo",MODE_PRIVATE);
+        SharedPreferences.Editor prefEditor = sharedPref.edit();
+        prefEditor.clear();
+        prefEditor.apply();
+        Intent intent = new Intent(this,MainActivity.class);
+        startActivity(intent);
+    }
+
+    public void goUSerPage(View v){
+        Intent intent = new Intent(this, UserPage.class);
+        startActivity(intent);
     }
 
 }

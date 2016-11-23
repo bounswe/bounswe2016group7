@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">TheFirst</string>
+    <string name="app_name">uTopic</string>
     <string name="username">Username</string>
     <string name="password">Password</string>
     <string name="repassword">Re-Password</string>

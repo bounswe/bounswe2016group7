@@ -10,7 +10,10 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.bounswe.group7.api.client.LoginServiceClient;
+import com.bounswe.group7.api.client.UserServiceClient;
 import com.bounswe.group7.model.Users;
+
+import org.w3c.dom.Text;
 //import com.example.denizalp.UtopicApplication;
 
 public class UserPage extends AppCompatActivity {
@@ -21,23 +24,41 @@ public class UserPage extends AppCompatActivity {
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
         super.onCreate(savedInstanceState);
-        Intent intent = getIntent();
-        String username = intent.getStringExtra("username");
-        String password = intent.getStringExtra("password");
+        SharedPreferences sharedPref = getSharedPreferences("tokenInfo",MODE_PRIVATE);
+        String currentToken = sharedPref.getString("currentToken","");
+        String username = "";
+        String password = "";
+        if(currentToken.equals(""))
+        {
+            Intent intent = getIntent();
+            username = intent.getStringExtra("username");
+            password = intent.getStringExtra("password");
+        }
         LoginServiceClient loginServiceClient = new LoginServiceClient();
+        UserServiceClient userServiceClient = null;
 
         try {
-            Users user = new Users(username, password);
-            token = loginServiceClient.login(user);
-            SharedPreferences sharedPref = getSharedPreferences("tokenInfo",MODE_PRIVATE);
-            SharedPreferences.Editor prefEditor = sharedPref.edit();
-            prefEditor.putString("currentToken",token.getToken());
-            prefEditor.commit();
-            System.out.println(token.getToken());
+            if(currentToken.equals(""))
+            {
+                Users user = new Users(username, password);
+                token = loginServiceClient.login(user);
+                // SharedPreferences sharedPref = getSharedPreferences("tokenInfo",MODE_PRIVATE);
+                SharedPreferences.Editor prefEditor = sharedPref.edit();
+                prefEditor.putString("currentToken", token.getToken());
+                prefEditor.commit();
+            }
+            else {
+                userServiceClient = new UserServiceClient(currentToken);
+                token = userServiceClient.getLoggedInUser();
+            }
+            System.out.println(currentToken);
             //System.out.println(firstname+" "+lastname);
             setContentView(R.layout.activity_user_page);
             TextView textView = (TextView) findViewById(R.id.textView4);
+            TextView authority = (TextView) findViewById(R.id.textView6);
+            //String author = token.getAuthorities().get(0).getName().getName();
             System.out.println(token.getUsername());
+            System.out.println(token.toString());
             textView.setText(token.getFirstname() + " " + token.getLastname());
         }
         catch (Exception e) {

@@ -99,7 +99,8 @@
         android:layout_below="@+id/button21"
         android:layout_alignParentStart="true"
         android:layout_marginTop="57dp"
-        android:id="@+id/button24" />
+        android:id="@+id/button24"
+        android:onClick="goHOme"/>
 
     <Button
         android:text="Profile"
@@ -108,7 +109,8 @@
         android:id="@+id/button25"
         android:layout_alignBaseline="@+id/button24"
         android:layout_alignBottom="@+id/button24"
-        android:layout_alignStart="@+id/button22" />
+        android:layout_alignStart="@+id/button22"
+        android:onClick="goUSerPage"/>
 
     <Button
         android:text="Logout"
@@ -117,6 +119,7 @@
         android:id="@+id/button26"
         android:layout_alignBaseline="@+id/button25"
         android:layout_alignBottom="@+id/button25"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:onClick="logOut"/>
 
 </RelativeLayout>

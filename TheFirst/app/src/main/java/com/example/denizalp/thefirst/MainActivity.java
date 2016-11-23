@@ -1,6 +1,7 @@
 package com.example.denizalp.thefirst;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.ObbInfo;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
@@ -21,6 +22,10 @@ public class MainActivity extends AppCompatActivity {
         StrictMode.setThreadPolicy(policy);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        SharedPreferences sharedPref = getSharedPreferences("tokenInfo",MODE_PRIVATE);
+        SharedPreferences.Editor prefEditor = sharedPref.edit();
+        prefEditor.clear();
+        prefEditor.apply();
         TopicServiceClient tsc = new TopicServiceClient();
         try {
             System.out.println(tsc.getRecentTopics().size());
