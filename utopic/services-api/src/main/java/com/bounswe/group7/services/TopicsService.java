@@ -51,6 +51,7 @@ public class TopicsService {
         topic.setRateCounter(0);
         if (topic.getTopicPackId() == null) {
             TopicPacks pack = createTopicPack(new TopicPacks(topic.getHeader()));
+            pack.setCount(1);
             topic.setTopicPackId(pack.getTopicPackId());
             topic.setOrderBy(1);
         } else {
