@@ -17,6 +17,10 @@
                     var activeToken = "${sessionScope.token}";
                     var reviews = ${reviews};
                     var ownerId = ${profiledUser.id};
+                    var profiledUserAuth =  [];
+                    <c:forEach items="${profiledUser.authorities}" var="stdn" varStatus="status">
+                        profiledUserAuth.push('${stdn.name}');
+                    </c:forEach>
                     var topics = ${topics};
         </script><%
             }else{
@@ -48,7 +52,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="row" ng-controller="indexController">
+                <div class="row" ng-controller="userController">
                     <div class="col-xs-12 col-sm-12 col-md-3">
                         <div class="panel">
                             User information will be shown here.
@@ -60,10 +64,10 @@
                                 <li class="nav-item">
                                     <a class="nav-link active" data-toggle="tab" href="#home" role="tab" aria-controls="home">Quiz Progress</a>
                                 </li>
-                                <li  ng-if="auths.indexOf('ROLE_CREATOR')!=-1" class="nav-item">
+                                <li  ng-if="profiledAuths.indexOf('ROLE_CREATOR')!=-1" class="nav-item">
                                     <a class="nav-link" data-toggle="tab" href="#profile" role="tab" aria-controls="profile">Topics</a>
                                 </li>
-                                <li  ng-if="auths.indexOf('ROLE_CREATOR')!=-1" class="nav-item">
+                                <li  ng-if="profiledAuths.indexOf('ROLE_CREATOR')!=-1" class="nav-item">
                                     <a class="nav-link" data-toggle="tab" href="#messages" role="tab" aria-controls="messages">Reviews</a>
                                 </li>
                             </ul>
@@ -72,7 +76,7 @@
                                 <div class="tab-pane active" id="home" role="tabpanel">
                                     <p>QUIZ PROGRESS</p>
                                 </div>
-                                <div  ng-if="auths.indexOf('ROLE_CREATOR')!=-1" class="tab-pane message-tab" id="profile" role="tabpanel">
+                                <div  ng-if="profiledAuths.indexOf('ROLE_CREATOR')!=-1" class="tab-pane message-tab" id="profile" role="tabpanel">
                                     <div class="message-container">
                                         <div ng-if="!topics" class="centered">
                                             <p>There is no topics yet<br/>Create one!</p>
@@ -94,7 +98,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div  ng-if="auths.indexOf('ROLE_CREATOR')!=-1" class="tab-pane message-tab" id="messages" role="tabpanel">
+                                <div  ng-if="profiledAuths.indexOf('ROLE_CREATOR')!=-1" class="tab-pane message-tab" ng-controller="userController" id="messages" role="tabpanel">
                                     <div class="message-container">
                                         <div ng-if="!reviews" class="centered">
                                             <p>There is no reviews yet<br/>Be the first</p>
