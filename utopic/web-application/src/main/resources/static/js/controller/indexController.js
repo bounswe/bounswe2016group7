@@ -55,11 +55,11 @@ mainModel.controller('indexController',function indexController($scope) {
   var menuFlag = 0;
   $scope.toggleMenu = function(){
     if(menuFlag==0){
-      $('ul.nav').slideDown();
+      $('.navbar-dark ul.nav').slideDown();
       menuFlag = 1;
     }
     else{
-      $('ul.nav').slideUp();
+      $('.navbar-dark ul.nav').slideUp();
       menuFlag = 0;
     }
   };

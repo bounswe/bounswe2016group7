@@ -428,6 +428,9 @@ ul.categories li{
 
 
 @media only screen and (max-width: 767px){
+    .content{
+        margin-top:100px;
+    }
   .toggle {
     position: fixed;
     top: 10px;

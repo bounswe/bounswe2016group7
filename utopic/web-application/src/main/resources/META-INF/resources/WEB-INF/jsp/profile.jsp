@@ -48,7 +48,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row" ng-controller="indexController">
                     <div class="col-xs-12 col-sm-12 col-md-3">
                         <div class="panel">
                             User information will be shown here.
@@ -60,10 +60,10 @@
                                 <li class="nav-item">
                                     <a class="nav-link active" data-toggle="tab" href="#home" role="tab" aria-controls="home">Quiz Progress</a>
                                 </li>
-                                <li class="nav-item">
+                                <li  ng-if="auths.indexOf('ROLE_CREATOR')!=-1" class="nav-item">
                                     <a class="nav-link" data-toggle="tab" href="#profile" role="tab" aria-controls="profile">Topics</a>
                                 </li>
-                                <li class="nav-item">
+                                <li  ng-if="auths.indexOf('ROLE_CREATOR')!=-1" class="nav-item">
                                     <a class="nav-link" data-toggle="tab" href="#messages" role="tab" aria-controls="messages">Reviews</a>
                                 </li>
                             </ul>
@@ -72,7 +72,7 @@
                                 <div class="tab-pane active" id="home" role="tabpanel">
                                     <p>QUIZ PROGRESS</p>
                                 </div>
-                                <div class="tab-pane message-tab" id="profile" role="tabpanel">
+                                <div  ng-if="auths.indexOf('ROLE_CREATOR')!=-1" class="tab-pane message-tab" id="profile" role="tabpanel">
                                     <div class="message-container">
                                         <div ng-if="!topics" class="centered">
                                             <p>There is no topics yet<br/>Create one!</p>
@@ -94,7 +94,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="tab-pane message-tab" id="messages" role="tabpanel">
+                                <div  ng-if="auths.indexOf('ROLE_CREATOR')!=-1" class="tab-pane message-tab" id="messages" role="tabpanel">
                                     <div class="message-container">
                                         <div ng-if="!reviews" class="centered">
                                             <p>There is no reviews yet<br/>Be the first</p>

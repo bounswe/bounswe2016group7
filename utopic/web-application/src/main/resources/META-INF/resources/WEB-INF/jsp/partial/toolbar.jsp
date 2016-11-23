@@ -1,4 +1,4 @@
-<nav class="navbar navbar-fixed-top navbar-dark">
+<nav class="navbar navbar-fixed-top navbar-dark" ng-controller="indexController">
     <div class="container">
         <div class="toggle" ng-click="toggleMenu()">
             <i class="fa fa-bars" aria-hidden="true"></i>
