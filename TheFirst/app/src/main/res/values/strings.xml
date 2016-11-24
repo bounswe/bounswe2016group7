@@ -15,4 +15,13 @@
     <string name="lastname">Lastname</string>
     <string name="companyName">Company Name</string>
     <string name="userBio">Bio</string>
+    <string name="trendingTopics">Trending Topics</string>
+    <string name="recentTopics">Recent Topics</string>
+    <string name="Art">Art</string>
+    <string name="Sports">Sports</string>
+    <string name="Technology">Technology</string>
+    <string name="Photography">Photography</string>
+    <string name="Music">Music</string>
+    <string name="History">History</string>
+
 </resources>
