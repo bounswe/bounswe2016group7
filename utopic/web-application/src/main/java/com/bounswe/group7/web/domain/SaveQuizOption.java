@@ -14,12 +14,12 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 @JsonDeserialize(as = SaveQuizOption.class)
 public class SaveQuizOption {
     public String text;
-    public boolean isCorrect;
+    public int isValid;
     
     public SaveQuizOption(){}
     
-    public SaveQuizOption(String text, boolean isCorrect){
+    public SaveQuizOption(String text, int isValid){
         this.text = text;
-        this.isCorrect = isCorrect;
+        this.isValid = isValid;
     }
 }
