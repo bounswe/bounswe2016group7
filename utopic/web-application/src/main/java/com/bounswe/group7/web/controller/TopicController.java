@@ -12,27 +12,22 @@ import com.bounswe.group7.model.Tags;
 import com.bounswe.group7.model.TopicPacks;
 import com.bounswe.group7.model.Topics;
 import com.bounswe.group7.model.Users;
-import com.bounswe.group7.web.domain.CreateTopicTemp;
 import com.bounswe.group7.web.domain.SaveQuizOption;
 import com.bounswe.group7.web.domain.SaveQuizQuestion;
 import com.bounswe.group7.web.domain.SaveTopic;
 import com.bounswe.group7.web.domain.TopicComment;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import org.springframework.http.HttpRequest;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
@@ -103,37 +98,38 @@ public class TopicController {
                 Tags tagCreated = tagClient.createTag(temp);
                 tagsCreated.add(tagCreated);
             }
-            Topics temp = new Topics();
-            temp.setContent(topic.content);
-            temp.setDescription(topic.description);
-            temp.setTags(tagsCreated);
-            temp.setHeader(topic.header);
-            topicCreated = topicClient.createTopic(temp);
+            
+            Topics topicToBeAdded = new Topics();
+            topicToBeAdded.setContent(topic.content);
+            topicToBeAdded.setDescription(topic.description);
+            topicToBeAdded.setTags(tagsCreated);
+            topicToBeAdded.setHeader(topic.header);
+            topicCreated = topicClient.createTopic(topicToBeAdded);
             
             Quizes quiz = new Quizes();
-            quiz.setName(topicCreated.getHeader()+" Quiz");
+            quiz.setName(topicCreated.getHeader());
             quiz.setTopicId(topicCreated.getTopicId());
             quiz = quizClient.createQuiz(quiz);
             List<Questions> questions = new ArrayList(); 
-            for(SaveQuizQuestion sQuestion : topic.questions)
-            {
+            for(SaveQuizQuestion saveQuestion : topic.questions) {
                 Questions question = new Questions();
                 question.setQuizId(quiz.getQuizId());
-                question.setQuestion(sQuestion.text);
-                if(sQuestion.options.size() >= 1)
-                    question.setChoiceA(sQuestion.options.get(0).text);
-                if(sQuestion.options.size() >= 2)
-                    question.setChoiceB(sQuestion.options.get(1).text);
-                if(sQuestion.options.size() >= 3)
-                    question.setChoiceC(sQuestion.options.get(2).text);
-                if(sQuestion.options.size() >= 4)
-                    question.setChoiceD(sQuestion.options.get(3).text);
-                for(int i=0 ;i < sQuestion.options.size();i++)
-                    if(sQuestion.options.get(i).isValid == 1)
-                        question.setRightAnswer((char)('A'+i));
-                questions.add(quizClient.addQuestion(question));
+                question.setQuestion(saveQuestion.text);
+                List<SaveQuizOption> options = saveQuestion.options;
+                for(int i=0; i<options.size(); i++){
+                    char optionLetter = (char) ('A' + i);
+                    String methodName = "setChoice" + optionLetter; 
+                    Method method = question.getClass().getMethod(methodName, String.class);
+                    SaveQuizOption option = options.get(i);
+                    method.invoke(question, option.text);
+                    if(option.isValid == 1){
+                        question.setRightAnswer(optionLetter);
+                    }
+                }
+                quizClient.addQuestion(question);
+                questions.add(question);
             }
-            quiz.setQuestions(questions);
+          
         }catch(Exception ex){
             ex.printStackTrace();
             attributes.addAttribute("error", ex.getMessage());
