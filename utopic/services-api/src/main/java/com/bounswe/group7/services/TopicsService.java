@@ -5,12 +5,15 @@
  */
 package com.bounswe.group7.services;
 
+import com.bounswe.group7.model.FollowedTopics;
 import com.bounswe.group7.model.RatedTopics;
 import com.bounswe.group7.model.TopicPacks;
 import com.bounswe.group7.model.Topics;
+import com.bounswe.group7.repository.FollowedTopicsRepository;
 import com.bounswe.group7.repository.RatedTopicsRepository;
 import com.bounswe.group7.repository.TopicPacksRepository;
 import com.bounswe.group7.repository.TopicsRepository;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -35,6 +38,9 @@ public class TopicsService {
     
     @Autowired
     RatedTopicsRepository ratedTopicsRepository;
+    
+    @Autowired
+    FollowedTopicsRepository followedTopicsRepository;
 
     public Topics getTopic(Long id) {
         return topicsRepository.findOne(id);
@@ -123,5 +129,40 @@ public class TopicsService {
             ratedTopicsRepository.save(ratedTopic);
             return true;
         }
+    }
+    
+    public List<Topics> getUserFollowedTopics()
+    {
+        List<FollowedTopics> fList = followedTopicsRepository.findAllByUserId(usersService.getLoggedInUserId());
+        List<Topics> followedTopics = new ArrayList<>();
+        for(FollowedTopics topic : fList)
+            followedTopics.add(topicsRepository.findOne(topic.getTopicId()));
+        return followedTopics;
+    }
+    
+    public boolean followTopic(Long topicId)
+    {
+        FollowedTopics followedTopic = followedTopicsRepository.findByUserIdAndTopicId(usersService.getLoggedInUserId(),topicId);
+        if(followedTopic != null) return false;
+        followedTopic = new FollowedTopics(usersService.getLoggedInUserId(), topicId);
+        followedTopicsRepository.save(followedTopic);
+        return true;
+    }
+    
+    public boolean unfollowTopic(Long topicId)
+    {
+        FollowedTopics followedTopic = followedTopicsRepository.findByUserIdAndTopicId(usersService.getLoggedInUserId(),topicId);
+        if(followedTopic != null){
+            followedTopicsRepository.delete(followedTopic);
+            return true;
+        }
+        return false;
+    }
+    
+    public boolean checkFollowedTopic(Long topicId)
+    {
+           FollowedTopics followedTopic = followedTopicsRepository.findByUserIdAndTopicId(usersService.getLoggedInUserId(),topicId);
+           if(followedTopic != null) return true;
+           else return false;
     }
 }

@@ -5,6 +5,7 @@
  */
 package com.bounswe.group7.rest;
 
+import com.bounswe.group7.model.FollowedTopics;
 import com.bounswe.group7.model.RatedTopics;
 import com.bounswe.group7.model.TopicPacks;
 import com.bounswe.group7.model.Topics;
@@ -89,6 +90,30 @@ public class TopicsController {
     @ResponseBody
     public boolean rateTopic(@RequestBody RatedTopics ratedTopic) {
         return topicsService.rateTopic(ratedTopic);
+    }
+    
+    @RequestMapping(path = "getUserFollowedTopics", method = RequestMethod.GET)
+    @ResponseBody
+    public List<Topics> getUserFollowedTopics() {
+        return topicsService.getUserFollowedTopics();
+    }
+    
+    @RequestMapping(path = "followTopic", method = RequestMethod.POST)
+    @ResponseBody
+    public boolean followTopic(@RequestBody Long topicId) {
+        return topicsService.followTopic(topicId);
+    }
+    
+    @RequestMapping(path = "unfollowTopic", method = RequestMethod.POST)
+    @ResponseBody
+    public boolean unfollowTopic(@RequestBody Long topicId) {
+        return topicsService.unfollowTopic(topicId);
+    }
+    
+    @RequestMapping(path = "checkFollowedTopic", method = RequestMethod.POST)
+    @ResponseBody
+    public boolean checkFollowedTopic(@RequestBody Long topicId) {
+        return topicsService.checkFollowedTopic(topicId);
     }
 
 }
