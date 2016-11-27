@@ -1,15 +1,20 @@
 package com.bounswe.group7.web.controller;
 
 import com.bounswe.group7.api.client.CommentServiceClient;
+import com.bounswe.group7.api.client.QuizServiceClient;
 import com.bounswe.group7.api.client.TagServiceClient;
 import com.bounswe.group7.api.client.TopicServiceClient;
 import com.bounswe.group7.api.client.UserServiceClient;
 import com.bounswe.group7.model.Comments;
+import com.bounswe.group7.model.Questions;
+import com.bounswe.group7.model.Quizes;
 import com.bounswe.group7.model.Tags;
 import com.bounswe.group7.model.TopicPacks;
 import com.bounswe.group7.model.Topics;
 import com.bounswe.group7.model.Users;
 import com.bounswe.group7.web.domain.CreateTopicTemp;
+import com.bounswe.group7.web.domain.SaveQuizOption;
+import com.bounswe.group7.web.domain.SaveQuizQuestion;
 import com.bounswe.group7.web.domain.SaveTopic;
 import com.bounswe.group7.web.domain.TopicComment;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -86,6 +91,7 @@ public class TopicController {
         HttpSession session = request.getSession();
         TopicServiceClient topicClient = new TopicServiceClient((String) session.getAttribute("token"));
         TagServiceClient tagClient = new TagServiceClient((String) session.getAttribute("token"));
+        QuizServiceClient quizClient = new QuizServiceClient((String) session.getAttribute("token"));
         Topics topicCreated = new Topics();
         try{
             List <Tags> tagsCreated = new ArrayList <Tags>();
@@ -103,6 +109,31 @@ public class TopicController {
             temp.setTags(tagsCreated);
             temp.setHeader(topic.header);
             topicCreated = topicClient.createTopic(temp);
+            
+            Quizes quiz = new Quizes();
+            quiz.setName(topicCreated.getHeader()+" Quiz");
+            quiz.setTopicId(topicCreated.getTopicId());
+            quiz = quizClient.createQuiz(quiz);
+            List<Questions> questions = new ArrayList(); 
+            for(SaveQuizQuestion sQuestion : topic.questions)
+            {
+                Questions question = new Questions();
+                question.setQuizId(quiz.getQuizId());
+                question.setQuestion(sQuestion.text);
+                if(sQuestion.options.size() >= 1)
+                    question.setChoiceA(sQuestion.options.get(0).text);
+                if(sQuestion.options.size() >= 2)
+                    question.setChoiceB(sQuestion.options.get(1).text);
+                if(sQuestion.options.size() >= 3)
+                    question.setChoiceC(sQuestion.options.get(2).text);
+                if(sQuestion.options.size() >= 4)
+                    question.setChoiceD(sQuestion.options.get(3).text);
+                for(int i=0 ;i < sQuestion.options.size();i++)
+                    if(sQuestion.options.get(i).isValid == 1)
+                        question.setRightAnswer((char)('A'+i));
+                questions.add(quizClient.addQuestion(question));
+            }
+            quiz.setQuestions(questions);
         }catch(Exception ex){
             ex.printStackTrace();
             attributes.addAttribute("error", ex.getMessage());
