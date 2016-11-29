@@ -26,9 +26,9 @@ public class QuizServiceClient extends BaseClient{
         }, quiz);
     }
     
-    public Quizes getQuiz(Quizes quiz) throws Exception {
+    public Quizes getQuiz(Long quizId) throws Exception {
         return post(getResource().path("getQuiz"), new TypeToken<Quizes>() {
-        }, quiz);
+        }, quizId);
     }
     
     public Quizes solveQuiz(Quizes quiz) throws Exception {

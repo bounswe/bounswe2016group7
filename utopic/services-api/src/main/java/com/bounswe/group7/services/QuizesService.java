@@ -39,12 +39,12 @@ public class QuizesService {
         return quizesRepository.save(quiz);
     }
 
-    public Quizes getQuiz(Quizes quiz) {
-        return quizesRepository.findOne(quiz.getQuizId());
+    public Quizes getQuiz(Long quizId) {
+        return quizesRepository.findOne(quizId);
     }
 
     public SolvedQuizes solveQuiz(Quizes quiz) {
-        List<Questions> trueAnswers = getQuiz(quiz).getQuestions();
+        List<Questions> trueAnswers = getQuiz(quiz.getQuizId()).getQuestions();
         List<Questions> userAnswers = quiz.getQuestions();
         Collections.sort(userAnswers, new Comparator<Questions>() {
             public int compare(Questions a, Questions b) {
