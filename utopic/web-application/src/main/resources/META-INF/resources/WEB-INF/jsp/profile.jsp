@@ -15,7 +15,6 @@
                     var activeUsername = "${sessionScope.username}";
                     var activeId = "${sessionScope.id}";
                     var activeToken = "${sessionScope.token}";
-<<<<<<< Updated upstream
                     var reviews = ${reviews};
                     var ownerId = ${profiledUser.id};
                     var profiledUserAuth =  [];
@@ -23,11 +22,6 @@
                         profiledUserAuth.push('${stdn.name}');
                     </c:forEach>
                     var topics = ${topics};
-=======
-                    //var reviews = ${reviews};
-                    //var ownerId = ${profiledUser.id};
-                    //var topics = ${topics};
->>>>>>> Stashed changes
         </script><%
             }else{
             response.setStatus(response.SC_MOVED_TEMPORARILY);
