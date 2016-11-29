@@ -18,4 +18,6 @@ public interface QuizesRepository extends CrudRepository<Quizes, Long>{
     
     public List<Quizes> findByUserId(Long userId);
     
+    public Quizes findByTopicId(Long topicId);
+    
 }

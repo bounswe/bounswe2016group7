@@ -36,8 +36,8 @@ public class QuizesController {
     @RequestMapping(path = "getQuiz", method = RequestMethod.POST)
     @ResponseBody
     @PreAuthorize("hasAnyRole('CREATOR', 'ADMIN', 'EXPLORER')")
-    public Quizes getQuiz(@RequestBody Long quizId) {
-        return quizesService.getQuiz(quizId);
+    public Quizes getQuiz(@RequestBody Long topicId) {
+        return quizesService.getQuiz(topicId);
     }
     
     @RequestMapping(path = "solveQuiz", method = RequestMethod.POST)
