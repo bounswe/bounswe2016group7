@@ -7,6 +7,7 @@ package com.bounswe.group7.services;
 
 import com.bounswe.group7.model.FollowedTopics;
 import com.bounswe.group7.model.RatedTopics;
+import com.bounswe.group7.model.Tags;
 import com.bounswe.group7.model.TopicPacks;
 import com.bounswe.group7.model.Topics;
 import com.bounswe.group7.repository.FollowedTopicsRepository;
@@ -41,6 +42,9 @@ public class TopicsService {
     
     @Autowired
     FollowedTopicsRepository followedTopicsRepository;
+    
+    @Autowired
+    TagsService tagsService;
 
     public Topics getTopic(Long id) {
         return topicsRepository.findOne(id);
@@ -65,6 +69,12 @@ public class TopicsService {
             pack.setCount(pack.getCount() + 1);
             topic.setOrderBy(pack.getCount());
             topicPacksRepository.save(pack);
+        }
+        for(Tags tag: topic.getTags())
+        {
+            Tags createdTag = tagsService.createTag(tag);
+            tag.setRefCount(createdTag.getRefCount());
+            tag.setTagId(createdTag.getTagId());
         }
         return topicsRepository.save(topic);
     }

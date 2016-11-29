@@ -20,11 +20,18 @@ public class TagsService {
     TagsRepository tagRepository;
     
     public Tags createTag(Tags toBeCreated){
-        toBeCreated.setRefCount(0);
-        if(tagRepository.findByLabelAndCategory(toBeCreated.getLabel(), toBeCreated.getCategory()) == null)
+        Tags tag = tagRepository.findByLabelAndCategory(toBeCreated.getLabel(), toBeCreated.getCategory());
+        
+        if(tag == null)
+        {
+            toBeCreated.setRefCount(1);
             return tagRepository.save(toBeCreated);
+        }
         else
-            return tagRepository.findByLabelAndCategory(toBeCreated.getLabel(), toBeCreated.getCategory());
+        {
+            tag.setRefCount(tag.getRefCount()+1);
+            return tagRepository.save(tag);
+        }
     }
    
 }
