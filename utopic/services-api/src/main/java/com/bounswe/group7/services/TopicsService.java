@@ -77,11 +77,7 @@ public class TopicsService {
     
     public TopicPacks createTopicPackByName(String name)
     {
-        TopicPacks topicPack = topicPacksRepository.findByUserIdAndName(usersService.getLoggedInUserId(), name);
-        if(topicPack != null) 
-            return topicPack;
-        topicPack = new TopicPacks(name);
-        return createTopicPack(topicPack);
+        return createTopicPack(new TopicPacks(name));
     }
     
     public List<Topics> getUserTopics(Long userId)
