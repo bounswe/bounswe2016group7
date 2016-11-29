@@ -7,6 +7,7 @@ package com.bounswe.group7.api.client;
 
 import com.bounswe.group7.model.Questions;
 import com.bounswe.group7.model.Quizes;
+import com.bounswe.group7.model.SolvedQuizes;
 import com.google.gson.reflect.TypeToken;
 
 /**
@@ -31,8 +32,8 @@ public class QuizServiceClient extends BaseClient{
         }, topicId);
     }
     
-    public Quizes solveQuiz(Quizes quiz) throws Exception {
-        return post(getResource().path("solveQuiz"), new TypeToken<Quizes>() {
+    public SolvedQuizes solveQuiz(Quizes quiz) throws Exception {
+        return post(getResource().path("solveQuiz"), new TypeToken<SolvedQuizes>() {
         }, quiz);
     }
     
