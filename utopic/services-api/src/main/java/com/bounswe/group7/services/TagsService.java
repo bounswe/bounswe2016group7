@@ -21,7 +21,6 @@ public class TagsService {
     
     public Tags createTag(Tags toBeCreated){
         toBeCreated.setRefCount(0);
-        toBeCreated.setCategory("manual");
         if(tagRepository.findByLabelAndCategory(toBeCreated.getLabel(), toBeCreated.getCategory()) == null)
             return tagRepository.save(toBeCreated);
         else

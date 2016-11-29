@@ -16,6 +16,8 @@ import org.springframework.data.repository.CrudRepository;
 public interface TopicsRepository extends CrudRepository<Topics, Long> {
 
     public List<Topics> findByUserId(Long userId);
+    
+    public List<Topics> findByUserIdOrderByCreateDateDesc(Long userId);
 
     public List<Topics> findTop10ByOrderByCreateDateDesc();
     

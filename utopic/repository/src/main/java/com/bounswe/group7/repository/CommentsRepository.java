@@ -16,7 +16,7 @@ import org.springframework.data.repository.CrudRepository;
  */
 public interface CommentsRepository extends CrudRepository<Comments, Long>{
     
-    public List<Comments> findByUserId(Long userId);
+    public List<Comments> findByUserIdOrderByCreateDateDesc(Long userId);
     
-    public List<Comments> findByTopicId(Long topicId);
+    public List<Comments> findByTopicIdOrderByCreateDateDesc(Long topicId);
 }

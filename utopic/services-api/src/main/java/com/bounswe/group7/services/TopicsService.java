@@ -86,11 +86,11 @@ public class TopicsService {
     
     public List<Topics> getUserTopics(Long userId)
     {
-        return topicsRepository.findByUserId(userId);
+        return topicsRepository.findByUserIdOrderByCreateDateDesc(userId);
     }
     
     public List<TopicPacks> getUserTopicPacks(Long userId) {
-        return topicPacksRepository.findByUserId(userId);
+        return topicPacksRepository.findByUserIdOrderByCreateDateDesc(userId);
     }
 
     public List<Topics> getRecentTopics(){
