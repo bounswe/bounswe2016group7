@@ -1,4 +1,4 @@
-mainModel.controller('indexController',function indexController($scope) {
+mainModel.controller('indexController',function indexController($scope,$filter) {
   $scope.tagInput = '';
   $scope.titleInput = '';
   $scope.tags = [];
@@ -8,10 +8,22 @@ mainModel.controller('indexController',function indexController($scope) {
   $scope.questions = [];
   $scope.createdTopicId = 0;
   $scope.auths = auth;
+  $scope.tagList = [];
+  $scope.tagSelected = {};
   questionNum = 0;
   
   $scope.addTag = function(){
-    $scope.tags.push($scope.tagInput);
+    console.log($scope.tagSelected);
+    console.log($scope.tags);
+    for(var i = 0; i < $scope.tags.length; i++){
+        console.log($scope.tags[i].id + "-"+ $scope.tagSelected.id);
+        if($scope.tags[i].id == $scope.tagSelected.id){
+            $scope.tagInput = "";
+            return;
+        }
+    }
+    if($scope.tagSelected.text)
+        $scope.tags.push($scope.tagSelected);
     $scope.tagInput = "";
   };
   
@@ -63,9 +75,45 @@ mainModel.controller('indexController',function indexController($scope) {
       menuFlag = 0;
     }
   };
-    if(typeof recentTopics != 'undefined')
+  if(typeof recentTopics != 'undefined')
     $scope.recentTopics = recentTopics.slice(0,4);
-    if(typeof topTopics != 'undefined')
+  if(typeof topTopics != 'undefined')
     $scope.topTopics = topTopics.slice(0,4);
+  
+  /*$scope.inputChanged = function(changed){
+      console.log(changed);
+      $.getJSON('https://www.wikidata.org/w/api.php?action=wbsearchentities&search=' +  changed + '&language=en&format=json&callback=?', function(data){
+        $scope.tagList = data.search;
+        for(var i = 0; i < $scope.tagList.length; i++){
+            $scope.tagList[i].text = $scope.tagList[i].label + " (" + $scope.tagList[i].description + ")";
+        }
+        $scope.$digest(
+       
+        console.log($scope.tagList);
+      });
+  };*/
+ 
+    $scope.selectTag = function(tag){
+        $scope.tagSelected = tag;
+        $scope.tagInput = tag.text;
+    };
+  
+    $scope.$watch('tagInput', function(){
+        $.getJSON('https://www.wikidata.org/w/api.php?action=wbsearchentities&search=' +  $scope.tagInput + '&language=en&format=json&callback=?', function(data){
+          $scope.tagList = data.search.slice(0,10);
+          /*for(var i = 0; i < $scope.tags.length; i++){
+              for(var j = 0; j < $scope.tagList.length; j++){
+                  if($scope.tags[i].id == $scope.tagList[j].id)
+                      $scope.tagList.splice(j,1);
+              }
+          }*/
+          for(var i = 0; i < $scope.tagList.length; i++){
+              $scope.tagList[i].text = $scope.tagList[i].label + " (" + $scope.tagList[i].description + ")";
+          }
+          $scope.$digest();
+
+          console.log($scope.tagList);
+        });
+    });
 });
 

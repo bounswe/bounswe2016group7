@@ -316,6 +316,7 @@ ul.categories li{
   background: #0a6c8e;
   margin-right: 15px;
   color: #fff;
+  margin-bottom: 10px;
 }
 
 .nav-tabs .nav-item {
@@ -393,6 +394,35 @@ ul.categories li{
   font-size: 11px;
   color: #b1b1b1; 
   float: right;
+}
+
+.auto-complete {
+    position: relative;
+}
+
+.auto-complete ul{
+    position: absolute;
+    top: 35px;
+    background: #fff;
+    width: calc(100% - 30px);
+    padding-left: 0;
+    list-style: none;
+    border-radius: 3px;
+    border: 1px solid rgba(0,0,0,.15);
+    z-index: 100;
+}
+
+.auto-complete ul > li{
+    border-bottom: 1px solid rgba(0,0,0,.15);
+    cursor: pointer;
+    border-radius: 3px;
+}
+.auto-complete ul > li > a {
+    padding: 5px 10px;
+    display: block;
+}
+.auto-complete ul > li:hover{
+    background: #efefef;
 }
 /**************************** Validation CSS *******************************/
 .valdr-message.ng-valid,

@@ -1,4 +1,4 @@
-var mainModel = angular.module('mainApp',['valdr','textAngular']);
+var mainModel = angular.module('mainApp',['valdr','textAngular',"angucomplete-alt"]);
 mainModel.filter('to_trusted', ['$sce', function($sce){
     return function(text) {
         return $sce.trustAsHtml(text);

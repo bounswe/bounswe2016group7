@@ -7,6 +7,7 @@
     <script src="/jsPlugins/angularwysiwyg/textAngularSetup.js" type="text/javascript"></script>
     <script src="/jsPlugins/angularwysiwyg/textAngular.js" type="text/javascript"></script>
     <script src="/jsPlugins/star-rating/jquery.star-rating-svg.js" type="text/javascript"></script>
+    <script src="/js/angucomplete-alt.min.js" type="text/javascript"></script>
     <script src="/js/model/mainModel.js" type="text/javascript"></script>
     <script src="/jsPlugins/tether/js/tether.min.js" type="text/javascript"></script>
     <script src="/js/bootstrap.min.js" type="text/javascript"></script>

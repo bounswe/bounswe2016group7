@@ -10,15 +10,18 @@
         <input ng-model="titleInput" name="title" id="title" class="form-control" type="text" placeholder="Title" ng-model="createTopic.title"/>
         <input ng-model="topicPackInput" name="topicpackname" id="topicpackname" class="form-control" type="text" placeholder="Topic Pack Name" ng-model="createTopic.topickPackName"/>
         <div class="row">
-            <div class="col-xs-10">
+            <div class="col-xs-10 auto-complete">
                 <input ng-model="tagInput" name="tag" id="add-tag" class="form-control" type="text" placeholder="Add a Tag"/>
+                <ul ng-show="tagList.length > 1">
+                    <li ng-repeat="tag in tagList"><a ng-click="selectTag(tag)"><span ng-bind="tag.text"></span></li>
+                </ul>
             </div>
             <div class="col-xs-2">
                 <button type="button" ng-click="addTag()"  class="button button-orange">ADD</button>
             </div>
         </div>
         <div class="tags margin-bottom">
-            <div ng-repeat="tag in tags" class="topic-tag">{{tag}}</div>
+            <div ng-repeat="tag in tags" class="topic-tag"><a title="{{tag.text}}"><span ng-bind="tag.label"></span></a></div>
         </div>
         
         <input ng-model="description" name="description" id="description" class="form-control" type="text" placeholder="Description" ng-model="createTopic.description"/>
