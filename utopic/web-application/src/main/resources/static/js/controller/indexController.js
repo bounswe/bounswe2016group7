@@ -79,19 +79,6 @@ mainModel.controller('indexController',function indexController($scope,$filter) 
     $scope.recentTopics = recentTopics.slice(0,4);
   if(typeof topTopics != 'undefined')
     $scope.topTopics = topTopics.slice(0,4);
-  
-  /*$scope.inputChanged = function(changed){
-      console.log(changed);
-      $.getJSON('https://www.wikidata.org/w/api.php?action=wbsearchentities&search=' +  changed + '&language=en&format=json&callback=?', function(data){
-        $scope.tagList = data.search;
-        for(var i = 0; i < $scope.tagList.length; i++){
-            $scope.tagList[i].text = $scope.tagList[i].label + " (" + $scope.tagList[i].description + ")";
-        }
-        $scope.$digest(
-       
-        console.log($scope.tagList);
-      });
-  };*/
  
     $scope.selectTag = function(tag){
         $scope.tagSelected = tag;
@@ -109,6 +96,7 @@ mainModel.controller('indexController',function indexController($scope,$filter) 
           }*/
           for(var i = 0; i < $scope.tagList.length; i++){
               $scope.tagList[i].text = $scope.tagList[i].label + " (" + $scope.tagList[i].description + ")";
+              $scope.tagList[i].category = $scope.tagList[i].description;
           }
           $scope.$digest();
 
