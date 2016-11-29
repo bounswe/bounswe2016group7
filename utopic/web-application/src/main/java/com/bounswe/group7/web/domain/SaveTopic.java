@@ -5,6 +5,7 @@
  */
 package com.bounswe.group7.web.domain;
 
+import com.bounswe.group7.model.Tags;
 import java.util.List;
 
 /**
@@ -15,12 +16,12 @@ public class SaveTopic {
     public String content;
     public String description;
     public String header;
-    public List <String> tags;
+    public List <Tags> tags;
     public List <SaveQuizQuestion> questions;
     
     public SaveTopic(){}
     
-    public SaveTopic(String content, String description, String header, List <String> tags, List <SaveQuizQuestion> questions){
+    public SaveTopic(String content, String description, String header, List <Tags> tags, List <SaveQuizQuestion> questions){
         this.content = content;
         this.description = description;
         this.header = header;

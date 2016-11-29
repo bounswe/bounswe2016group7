@@ -114,20 +114,10 @@ public class TopicController {
         QuizServiceClient quizClient = new QuizServiceClient((String) session.getAttribute("token"));
         Topics topicCreated = new Topics();
         try{
-            List <Tags> tagsCreated = new ArrayList <Tags>();
-            for(String tag : topic.tags){
-                Tags temp = new Tags();
-                temp.setLabel(tag);
-                temp.setRefCount(0);
-                temp.setCategory("zaa");
-                Tags tagCreated = tagClient.createTag(temp);
-                tagsCreated.add(tagCreated);
-            }
-            
             Topics topicToBeAdded = new Topics();
             topicToBeAdded.setContent(topic.content);
             topicToBeAdded.setDescription(topic.description);
-            topicToBeAdded.setTags(tagsCreated);
+            topicToBeAdded.setTags(topic.tags);
             topicToBeAdded.setHeader(topic.header);
             topicCreated = topicClient.createTopic(topicToBeAdded);
             
