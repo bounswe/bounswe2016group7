@@ -47,6 +47,7 @@ public class TopicController {
         TopicServiceClient topicClient = new TopicServiceClient((String) session.getAttribute("token"));
         CommentServiceClient commentClient = new CommentServiceClient((String) session.getAttribute("token"));
         UserServiceClient userClient = new UserServiceClient((String) session.getAttribute("token"));
+        QuizServiceClient quizClient = new QuizServiceClient((String) session.getAttribute("token"));
         ObjectMapper mapper = new ObjectMapper();
         List <TopicComment> topicCommentList = new ArrayList<TopicComment>();
         
@@ -64,13 +65,37 @@ public class TopicController {
             
             List<Tags> tags = topic.getTags();
             
+            Quizes quizBack = quizClient.getQuiz(id);
+          
+            List<SaveQuizQuestion> quiz = new ArrayList<SaveQuizQuestion>();
+            
+            if(quizBack != null){
+                for(Questions question : quizBack.getQuestions()){
+                    SaveQuizQuestion quizQuestion = new SaveQuizQuestion();
+                    quizQuestion.text = question.getQuestion();
+                    quizQuestion.options = new ArrayList<SaveQuizOption>();
+                    for(int i=0; i<4; i++){
+                        SaveQuizOption option = new SaveQuizOption();
+                        char optionLetter = (char) ('A' + i);
+                        String methodName = "getChoice" + optionLetter; 
+                        Method method = question.getClass().getMethod(methodName);
+                        Object temp = method.invoke(question);
+                        option.text = (String) temp;
+                        quizQuestion.options.add(option);
+                    }
+                    quiz.add(quizQuestion);
+                }
+            }
+            
             String tagsJson = mapper.writeValueAsString(tags);
             String commentsJson = mapper.writeValueAsString(topicCommentList);
+            String quizJson = mapper.writeValueAsString(quiz);
             
             modelAndView.addObject("pack",topicPack);
             modelAndView.addObject("topic", topic);
             modelAndView.addObject("tags", tagsJson);
             modelAndView.addObject("owner", owner);
+            modelAndView.addObject("quiz", quizJson);
             modelAndView.addObject("comments", commentsJson);
         } catch (Exception ex) {
             ex.printStackTrace();
