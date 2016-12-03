@@ -158,25 +158,13 @@
         android:layout_toEndOf="@+id/editText8" />
 
     <Button
-        android:text="Another Topic"
+        android:text="Finish"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:id="@+id/button9"
-        android:layout_toLeftOf="@+id/editText11"
-        android:layout_toStartOf="@+id/editText11" />
-
-    <Button
-        android:text="Done Package"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/button17"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_alignLeft="@+id/textView16"
-        android:layout_alignStart="@+id/textView16" />
+        android:onClick="createTopic"/>
 
 </RelativeLayout>

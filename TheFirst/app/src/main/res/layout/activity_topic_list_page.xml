@@ -38,7 +38,7 @@
         android:layout_below="@id/Button_Trending"
         android:layout_marginTop="2sp"
         android:textColor="@color/blue"
-        android: android:textStyle="bold"/>
+        android:textStyle="bold"/>
 
     <Button android:id="@+id/Button_Art"
         android:layout_width="wrap_content"

@@ -24,7 +24,13 @@
         <activity android:name=".EditUserInformationPage" />
         <activity android:name=".ShowTopicPage" />
         <activity android:name=".HomePage" />
-        <activity android:name=".TopicListPage"></activity>
+        <activity android:name=".TopicListPage" />
+        <activity android:name=".ReviewPage" />
+        <activity android:name=".QuizViewPage" />
+        <activity android:name=".MakeReviewPage" />
+        <activity android:name=".EmptyQuizPage" />
+        <activity android:name=".QuizCreatePage" />
+        <activity android:name=".RateTopicPage"></activity>
     </application>
 
 </manifest>

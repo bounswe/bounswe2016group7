@@ -19,13 +19,18 @@ public class HomePage extends AppCompatActivity {
 
     public void showRecentTopics(View view){
         Intent intent = new Intent(this, TopicListPage.class);
-        intent.putExtra("recentOrTop",1);
+        intent.putExtra("option",1);
         startActivity(intent);
     }
 
     public void showTopTopics(View view){
         Intent intent = new Intent(this, TopicListPage.class);
-        intent.putExtra("recentOrTop",2);
+        intent.putExtra("option",2);
+        startActivity(intent);
+    }
+
+    public void goToCreateTopic(View view){
+        Intent intent = new Intent(this,TopicPage.class);
         startActivity(intent);
     }
 

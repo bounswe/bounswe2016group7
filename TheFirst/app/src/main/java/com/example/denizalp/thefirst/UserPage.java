@@ -12,8 +12,12 @@ import android.widget.TextView;
 import com.bounswe.group7.api.client.LoginServiceClient;
 import com.bounswe.group7.api.client.UserServiceClient;
 import com.bounswe.group7.model.Users;
+import com.bounswe.group7.model.security.Authority;
 
 import org.w3c.dom.Text;
+
+import java.util.ArrayList;
+import java.util.List;
 //import com.example.denizalp.UtopicApplication;
 
 public class UserPage extends AppCompatActivity {
@@ -49,17 +53,34 @@ public class UserPage extends AppCompatActivity {
             }
             else {
                 userServiceClient = new UserServiceClient(currentToken);
-                token = userServiceClient.getLoggedInUser();
+                Intent intent = getIntent();
+                Long creatorId = intent.getLongExtra("creatorID",-1);
+                if(creatorId != -1){
+                    token = userServiceClient.getUser(creatorId);
+                }
+                else token = userServiceClient.getLoggedInUser();
             }
-            System.out.println(currentToken);
+            System.out.println(token.getToken());
             //System.out.println(firstname+" "+lastname);
             setContentView(R.layout.activity_user_page);
             TextView textView = (TextView) findViewById(R.id.textView4);
             TextView authority = (TextView) findViewById(R.id.textView6);
-            //String author = token.getAuthorities().get(0).getName().getName();
+            String author = "";
+            List<Authority> userAuthorities = token.getAuthorities();
+            List<String> authorityNames = new ArrayList<String>();
+            for(Authority a:userAuthorities){
+                authorityNames.add(a.getName().getName());
+            }
+            if(!authorityNames.contains("ROLE_CREATOR")) {
+                author = "Explorer";
+            }
+            else{
+                author = "Creator";
+            }
             System.out.println(token.getUsername());
             System.out.println(token.toString());
             textView.setText(token.getFirstname() + " " + token.getLastname());
+            authority.setText(author);
         }
         catch (Exception e) {
             e.printStackTrace();
@@ -109,6 +130,24 @@ public class UserPage extends AppCompatActivity {
         prefEditor.clear();
         prefEditor.apply();
         Intent intent = new Intent(this,MainActivity.class);
+        startActivity(intent);
+    }
+
+    public void goLoggedInUserPage(View v){
+        Intent intent = new Intent(this,UserPage.class);
+        startActivity(intent);
+    }
+
+    public void listTopics(View v){
+        Intent intent = new Intent(this, TopicListPage.class);
+        intent.putExtra("option",3);
+        intent.putExtra("creatorID",token.getId());
+        startActivity(intent);
+    }
+
+    public void goToReviews(View v){
+        Intent intent = new Intent(this, ReviewPage.class);
+        intent.putExtra("reviewedID",token.getId());
         startActivity(intent);
     }
 }

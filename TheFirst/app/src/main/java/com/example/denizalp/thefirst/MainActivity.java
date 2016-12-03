@@ -1,9 +1,11 @@
 package com.example.denizalp.thefirst;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.ObbInfo;
 import android.os.StrictMode;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -45,17 +47,33 @@ public class MainActivity extends AppCompatActivity {
             String username = editText1.getText().toString();
             String password = editText2.getText().toString();
 
-            //Users user = new Users(username, password);
+            Users user = new Users(username, password);
 
-            //Users token = new Users();
+            Users token = new Users();
             try {
-              //  token = loginservice.login(user);
+                token = loginservice.login(user);
 
-                intent.putExtra("username", username);
-                intent.putExtra("password", password);
-               // System.out.println(token.getFirstname() + " " + token.getLastname());
-                startActivity(intent);
+                if(token != null) {
+                    intent.putExtra("username", username);
+                    intent.putExtra("password", password);
+                    // System.out.println(token.getFirstname() + " " + token.getLastname());
+                    startActivity(intent);
+                }
+                else {
+                    System.out.println("Username or password is incorrect!!!");
+                }
             } catch (Exception e) {
+                //System.out.println("Username or password is incorrect!!!");
+                AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+                alertDialog.setTitle("Error");
+                alertDialog.setMessage("Username or password is incorrect!!!");
+                alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
+                alertDialog.show();
                 e.printStackTrace();
             }
             //token.getToken();

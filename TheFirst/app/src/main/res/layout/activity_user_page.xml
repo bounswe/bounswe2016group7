@@ -52,7 +52,8 @@
         android:layout_toRightOf="@+id/button2"
         android:layout_toEndOf="@+id/button2"
         android:layout_marginLeft="22dp"
-        android:layout_marginStart="22dp" />
+        android:layout_marginStart="22dp"
+        android:onClick="goLoggedInUserPage"/>
 
     <Button
         android:text="Logout"
@@ -132,7 +133,8 @@
         android:id="@+id/button7"
         android:layout_alignParentBottom="true"
         android:layout_alignLeft="@+id/textView6"
-        android:layout_alignStart="@+id/textView6" />
+        android:layout_alignStart="@+id/textView6"
+        android:onClick="listTopics"/>
 
     <Button
         android:text="Reviews"
@@ -141,7 +143,8 @@
         android:id="@+id/button5"
         android:layout_alignParentBottom="true"
         android:layout_alignRight="@+id/textView4"
-        android:layout_alignEnd="@+id/textView4" />
+        android:layout_alignEnd="@+id/textView4"
+        android:onClick="goToReviews"/>
 
     <TextView
         android:text="TextView"

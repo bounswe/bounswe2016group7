@@ -51,10 +51,21 @@
         android:text="Top Topics"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="21dp"
         android:id="@+id/button29"
+        android:onClick="showTopTopics"
         android:layout_below="@+id/button28"
         android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:text="New Topic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="26dp"
+        android:id="@+id/button30"
+        android:layout_below="@+id/button29"
+        android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:onClick="showTopTopics"/>
+        android:onClick="goToCreateTopic"/>
 </RelativeLayout>

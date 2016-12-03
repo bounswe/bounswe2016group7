@@ -9,7 +9,10 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 
 import com.bounswe.group7.api.client.TopicServiceClient;
+import com.bounswe.group7.api.client.UserServiceClient;
 import com.bounswe.group7.model.Topics;
+import com.bounswe.group7.model.Users;
+
 import android.support.v7.app.ActionBar.*;
 import org.glassfish.hk2.api.messaging.Topic;
 
@@ -23,11 +26,12 @@ public class TopicListPage extends AppCompatActivity {
         SharedPreferences sharPref = getSharedPreferences("tokenInfo",MODE_PRIVATE);
         String token = sharPref.getString("currentToken","boşHocamBu");
         TopicServiceClient topicServiceClient = new TopicServiceClient(token);
+        UserServiceClient userServiceClient = new UserServiceClient(token);
         LinearLayout linearLayout = new LinearLayout(this);
         linearLayout.setOrientation(LinearLayout.VERTICAL);
         Intent intent = getIntent();
         Intent toTopic = new Intent(this,ShowTopicPage.class);
-        int recentOrTop = intent.getIntExtra("recentOrTop",1);
+        int recentOrTop = intent.getIntExtra("option",1);
         List<Topics> topicList = null;
         if(recentOrTop == 1) {
             try {
@@ -37,9 +41,20 @@ public class TopicListPage extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
-        else {
+        else if(recentOrTop == 2){
             try {
                 topicList = topicServiceClient.getTopTopics();
+            }
+            catch(Exception e){
+                e.printStackTrace();
+            }
+        }
+        else if(recentOrTop == 3){
+            try{
+                Intent intent1 = getIntent();
+                Long creatorID = intent1.getLongExtra("creatorID",0);
+                Users theCreator = userServiceClient.getUser(creatorID);
+                topicList = topicServiceClient.getUserTopics(theCreator.getId());
             }
             catch(Exception e){
                 e.printStackTrace();

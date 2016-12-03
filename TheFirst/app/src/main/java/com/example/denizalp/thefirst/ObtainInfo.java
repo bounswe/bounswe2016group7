@@ -64,6 +64,9 @@ public class ObtainInfo extends AppCompatActivity {
             authority = new Authority((long) authorityName.getId(), authorityName);
             authorityList.add(authority);
         }
+        else {
+            System.out.println("girmiyor ki zaa");
+        }
 
         if(password.equals(repassword)) {
             LoginServiceClient logClient = new LoginServiceClient();
@@ -76,8 +79,10 @@ public class ObtainInfo extends AppCompatActivity {
                 newUser.setGender(gender);
                 newUser.setAuthorities(authorityList);
                 //System.out.println(authorityList.get(0).getName().getName()+","+authorityList.get(1).getName().getName());
-                System.out.println(newUser.toString());
+                //System.out.println(newUser.toString());
                 token = logClient.register(newUser);
+                //token.setGender(gender);
+                //token.setAuthorities(authorityList);
                 //alert box to show login successful and divert to login page
                 AlertDialog alertDialog = new AlertDialog.Builder(this).create();
                 alertDialog.setTitle("Approval");
