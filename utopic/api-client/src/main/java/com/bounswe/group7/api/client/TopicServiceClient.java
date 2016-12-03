@@ -73,5 +73,25 @@ public class TopicServiceClient extends BaseClient {
         return post(getResource().path("rateTopic"), new TypeToken<Boolean>() {
         }, ratedTopic);
     }
+    
+    public List<Topics> getUserFollowedTopics() throws Exception {
+        return get(getResource().path("getUserFollowedTopics"), new TypeToken<List<Topics>>() {
+        });
+    }
+    
+    public boolean followTopic(Long topicId) throws Exception {
+        return post(getResource().path("followTopic"), new TypeToken<Boolean>() {
+        }, topicId);
+    }
+    
+    public boolean unfollowTopic(Long topicId) throws Exception {
+        return post(getResource().path("unfollowTopic"), new TypeToken<Boolean>() {
+        }, topicId);
+    }
+    
+    public boolean checkFollowedTopic(Long topicId) throws Exception {
+        return post(getResource().path("checkFollowedTopic"), new TypeToken<Boolean>() {
+        }, topicId);
+    }
 
 }

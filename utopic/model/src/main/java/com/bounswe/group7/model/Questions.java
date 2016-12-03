@@ -53,6 +53,10 @@ public class Questions implements Serializable{
     private char chosenAnswer;
 
     public Questions() {
+        choiceA = "Default_Choice";
+        choiceB = "Default_Choice";
+        choiceC = "Default_Choice";
+        choiceD = "Default_Choice";
     }
 
     public char getChosenAnswer() {

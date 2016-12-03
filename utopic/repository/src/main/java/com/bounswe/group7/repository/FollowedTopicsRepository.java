@@ -5,7 +5,7 @@
  */
 package com.bounswe.group7.repository;
 
-import com.bounswe.group7.model.Quizes;
+import com.bounswe.group7.model.FollowedTopics;
 import java.io.Serializable;
 import java.util.List;
 import org.springframework.data.repository.CrudRepository;
@@ -14,10 +14,10 @@ import org.springframework.data.repository.CrudRepository;
  *
  * @author myunu
  */
-public interface QuizesRepository extends CrudRepository<Quizes, Long>{
+public interface FollowedTopicsRepository extends CrudRepository<FollowedTopics, Long>{
+    public FollowedTopics findByUserIdAndTopicId(Long userId, Long topicId);
     
-    public List<Quizes> findByUserId(Long userId);
+    public List<FollowedTopics> findAllByUserId(Long userId);
     
-    public Quizes findByTopicId(Long topicId);
-    
+    public List<FollowedTopics> findAllByTopicId(Long topicId);
 }

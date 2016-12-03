@@ -1,33 +1,33 @@
 package com.bounswe.group7.web.controller;
 
 import com.bounswe.group7.api.client.CommentServiceClient;
+import com.bounswe.group7.api.client.QuizServiceClient;
 import com.bounswe.group7.api.client.TagServiceClient;
 import com.bounswe.group7.api.client.TopicServiceClient;
 import com.bounswe.group7.api.client.UserServiceClient;
 import com.bounswe.group7.model.Comments;
+import com.bounswe.group7.model.Questions;
+import com.bounswe.group7.model.Quizes;
 import com.bounswe.group7.model.Tags;
 import com.bounswe.group7.model.TopicPacks;
 import com.bounswe.group7.model.Topics;
 import com.bounswe.group7.model.Users;
-import com.bounswe.group7.web.domain.CreateTopicTemp;
+import com.bounswe.group7.web.domain.SaveQuizOption;
+import com.bounswe.group7.web.domain.SaveQuizQuestion;
 import com.bounswe.group7.web.domain.SaveTopic;
 import com.bounswe.group7.web.domain.TopicComment;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import org.springframework.http.HttpRequest;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
@@ -47,6 +47,7 @@ public class TopicController {
         TopicServiceClient topicClient = new TopicServiceClient((String) session.getAttribute("token"));
         CommentServiceClient commentClient = new CommentServiceClient((String) session.getAttribute("token"));
         UserServiceClient userClient = new UserServiceClient((String) session.getAttribute("token"));
+        QuizServiceClient quizClient = new QuizServiceClient((String) session.getAttribute("token"));
         ObjectMapper mapper = new ObjectMapper();
         List <TopicComment> topicCommentList = new ArrayList<TopicComment>();
         
@@ -64,13 +65,37 @@ public class TopicController {
             
             List<Tags> tags = topic.getTags();
             
+            Quizes quizBack = quizClient.getQuiz(id);
+          
+            List<SaveQuizQuestion> quiz = new ArrayList<SaveQuizQuestion>();
+            
+            if(quizBack != null){
+                for(Questions question : quizBack.getQuestions()){
+                    SaveQuizQuestion quizQuestion = new SaveQuizQuestion();
+                    quizQuestion.text = question.getQuestion();
+                    quizQuestion.options = new ArrayList<SaveQuizOption>();
+                    for(int i=0; i<4; i++){
+                        SaveQuizOption option = new SaveQuizOption();
+                        char optionLetter = (char) ('A' + i);
+                        String methodName = "getChoice" + optionLetter; 
+                        Method method = question.getClass().getMethod(methodName);
+                        Object temp = method.invoke(question);
+                        option.text = (String) temp;
+                        quizQuestion.options.add(option);
+                    }
+                    quiz.add(quizQuestion);
+                }
+            }
+            
             String tagsJson = mapper.writeValueAsString(tags);
             String commentsJson = mapper.writeValueAsString(topicCommentList);
+            String quizJson = mapper.writeValueAsString(quiz);
             
             modelAndView.addObject("pack",topicPack);
             modelAndView.addObject("topic", topic);
             modelAndView.addObject("tags", tagsJson);
             modelAndView.addObject("owner", owner);
+            modelAndView.addObject("quiz", quizJson);
             modelAndView.addObject("comments", commentsJson);
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -86,23 +111,40 @@ public class TopicController {
         HttpSession session = request.getSession();
         TopicServiceClient topicClient = new TopicServiceClient((String) session.getAttribute("token"));
         TagServiceClient tagClient = new TagServiceClient((String) session.getAttribute("token"));
+        QuizServiceClient quizClient = new QuizServiceClient((String) session.getAttribute("token"));
         Topics topicCreated = new Topics();
         try{
-            List <Tags> tagsCreated = new ArrayList <Tags>();
-            for(String tag : topic.tags){
-                Tags temp = new Tags();
-                temp.setLabel(tag);
-                temp.setRefCount(0);
-                temp.setCategory("zaa");
-                Tags tagCreated = tagClient.createTag(temp);
-                tagsCreated.add(tagCreated);
+            Topics topicToBeAdded = new Topics();
+            topicToBeAdded.setContent(topic.content);
+            topicToBeAdded.setDescription(topic.description);
+            topicToBeAdded.setTags(topic.tags);
+            topicToBeAdded.setHeader(topic.header);
+            topicCreated = topicClient.createTopic(topicToBeAdded);
+            
+            Quizes quiz = new Quizes();
+            quiz.setName(topicCreated.getHeader());
+            quiz.setTopicId(topicCreated.getTopicId());
+            quiz = quizClient.createQuiz(quiz);
+            List<Questions> questions = new ArrayList(); 
+            for(SaveQuizQuestion saveQuestion : topic.questions) {
+                Questions question = new Questions();
+                question.setQuizId(quiz.getQuizId());
+                question.setQuestion(saveQuestion.text);
+                List<SaveQuizOption> options = saveQuestion.options;
+                for(int i=0; i<options.size(); i++){
+                    char optionLetter = (char) ('A' + i);
+                    String methodName = "setChoice" + optionLetter; 
+                    Method method = question.getClass().getMethod(methodName, String.class);
+                    SaveQuizOption option = options.get(i);
+                    method.invoke(question, option.text);
+                    if(option.isValid == 1){
+                        question.setRightAnswer(optionLetter);
+                    }
+                }
+                quizClient.addQuestion(question);
+                questions.add(question);
             }
-            Topics temp = new Topics();
-            temp.setContent(topic.content);
-            temp.setDescription(topic.description);
-            temp.setTags(tagsCreated);
-            temp.setHeader(topic.header);
-            topicCreated = topicClient.createTopic(temp);
+          
         }catch(Exception ex){
             ex.printStackTrace();
             attributes.addAttribute("error", ex.getMessage());

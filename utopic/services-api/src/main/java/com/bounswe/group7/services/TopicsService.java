@@ -5,12 +5,16 @@
  */
 package com.bounswe.group7.services;
 
+import com.bounswe.group7.model.FollowedTopics;
 import com.bounswe.group7.model.RatedTopics;
+import com.bounswe.group7.model.Tags;
 import com.bounswe.group7.model.TopicPacks;
 import com.bounswe.group7.model.Topics;
+import com.bounswe.group7.repository.FollowedTopicsRepository;
 import com.bounswe.group7.repository.RatedTopicsRepository;
 import com.bounswe.group7.repository.TopicPacksRepository;
 import com.bounswe.group7.repository.TopicsRepository;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -35,6 +39,12 @@ public class TopicsService {
     
     @Autowired
     RatedTopicsRepository ratedTopicsRepository;
+    
+    @Autowired
+    FollowedTopicsRepository followedTopicsRepository;
+    
+    @Autowired
+    TagsService tagsService;
 
     public Topics getTopic(Long id) {
         return topicsRepository.findOne(id);
@@ -60,6 +70,12 @@ public class TopicsService {
             topic.setOrderBy(pack.getCount());
             topicPacksRepository.save(pack);
         }
+        for(Tags tag: topic.getTags())
+        {
+            Tags createdTag = tagsService.createTag(tag);
+            tag.setRefCount(createdTag.getRefCount());
+            tag.setTagId(createdTag.getTagId());
+        }
         return topicsRepository.save(topic);
     }
 
@@ -71,20 +87,16 @@ public class TopicsService {
     
     public TopicPacks createTopicPackByName(String name)
     {
-        TopicPacks topicPack = topicPacksRepository.findByUserIdAndName(usersService.getLoggedInUserId(), name);
-        if(topicPack != null) 
-            return topicPack;
-        topicPack = new TopicPacks(name);
-        return createTopicPack(topicPack);
+        return createTopicPack(new TopicPacks(name));
     }
     
     public List<Topics> getUserTopics(Long userId)
     {
-        return topicsRepository.findByUserId(userId);
+        return topicsRepository.findByUserIdOrderByCreateDateDesc(userId);
     }
     
     public List<TopicPacks> getUserTopicPacks(Long userId) {
-        return topicPacksRepository.findByUserId(userId);
+        return topicPacksRepository.findByUserIdOrderByCreateDateDesc(userId);
     }
 
     public List<Topics> getRecentTopics(){
@@ -123,5 +135,40 @@ public class TopicsService {
             ratedTopicsRepository.save(ratedTopic);
             return true;
         }
+    }
+    
+    public List<Topics> getUserFollowedTopics()
+    {
+        List<FollowedTopics> fList = followedTopicsRepository.findAllByUserId(usersService.getLoggedInUserId());
+        List<Topics> followedTopics = new ArrayList<>();
+        for(FollowedTopics topic : fList)
+            followedTopics.add(topicsRepository.findOne(topic.getTopicId()));
+        return followedTopics;
+    }
+    
+    public boolean followTopic(Long topicId)
+    {
+        FollowedTopics followedTopic = followedTopicsRepository.findByUserIdAndTopicId(usersService.getLoggedInUserId(),topicId);
+        if(followedTopic != null) return false;
+        followedTopic = new FollowedTopics(usersService.getLoggedInUserId(), topicId);
+        followedTopicsRepository.save(followedTopic);
+        return true;
+    }
+    
+    public boolean unfollowTopic(Long topicId)
+    {
+        FollowedTopics followedTopic = followedTopicsRepository.findByUserIdAndTopicId(usersService.getLoggedInUserId(),topicId);
+        if(followedTopic != null){
+            followedTopicsRepository.delete(followedTopic);
+            return true;
+        }
+        return false;
+    }
+    
+    public boolean checkFollowedTopic(Long topicId)
+    {
+           FollowedTopics followedTopic = followedTopicsRepository.findByUserIdAndTopicId(usersService.getLoggedInUserId(),topicId);
+           if(followedTopic != null) return true;
+           else return false;
     }
 }

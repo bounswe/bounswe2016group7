@@ -40,7 +40,7 @@ public class CommentsService {
     
     public List<Comments> getTopicComments(Long topicId)
     {
-        return commentsRepository.findByTopicId(topicId);
+        return commentsRepository.findByTopicIdOrderByDateCreatedDesc(topicId);
     }
     
     public boolean deleteComment(Long commentId)
