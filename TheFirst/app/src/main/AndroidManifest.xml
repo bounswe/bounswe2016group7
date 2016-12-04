@@ -30,7 +30,9 @@
         <activity android:name=".MakeReviewPage" />
         <activity android:name=".EmptyQuizPage" />
         <activity android:name=".QuizCreatePage" />
-        <activity android:name=".RateTopicPage"></activity>
+        <activity android:name=".RateTopicPage" />
+        <activity android:name=".CommentViewPage" />
+        <activity android:name=".CommentCreatePage"></activity>
     </application>
 
 </manifest>

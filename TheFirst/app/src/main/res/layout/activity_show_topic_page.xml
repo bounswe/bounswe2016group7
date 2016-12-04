@@ -74,7 +74,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/button21"
         android:layout_below="@+id/topicContent"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:onClick="showDiscussion"/>
 
     <Button
         android:text="Rate"

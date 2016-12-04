@@ -8,12 +8,16 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.bounswe.group7.api.client.CommentServiceClient;
 import com.bounswe.group7.api.client.QuizServiceClient;
 import com.bounswe.group7.api.client.TopicServiceClient;
 import com.bounswe.group7.api.client.UserServiceClient;
+import com.bounswe.group7.model.Comments;
 import com.bounswe.group7.model.Quizes;
 import com.bounswe.group7.model.Topics;
 import com.bounswe.group7.model.Users;
+
+import java.util.List;
 
 public class ShowTopicPage extends AppCompatActivity {
 
@@ -151,6 +155,31 @@ public class ShowTopicPage extends AppCompatActivity {
         Intent intent = new Intent(this, RateTopicPage.class);
         intent.putExtra("topicId",topicId);
         startActivity(intent);
+    }
+
+    public void showDiscussion(View v) throws Exception{
+        SharedPreferences sharPref = getSharedPreferences("tokenInfo",MODE_PRIVATE);
+        String token = sharPref.getString("currentToken","boşHocamBu");
+        CommentServiceClient commentServiceClient = new CommentServiceClient(token);
+        Intent getTopicID = getIntent();
+        Long topicId = getTopicID.getLongExtra("topicId",0);
+        List<Comments> commentList = commentServiceClient.getTopicComments(topicId);
+        if(commentList != null)
+        {
+            Intent intent = new Intent(this, CommentViewPage.class);
+            intent.putExtra("topicId", topicId);
+            intent.putExtra("token", token);
+            intent.putExtra("notEmpty", true);
+            startActivity(intent);
+        }
+        else{
+            // go to empty quiz page and put a button "add quiz"
+            Intent intent = new Intent(this, CommentViewPage.class);
+            intent.putExtra("topicId", topicId);
+            intent.putExtra("token", token);
+            intent.putExtra("notEmpty",false);
+            startActivity(intent);
+        }
     }
 
 }
