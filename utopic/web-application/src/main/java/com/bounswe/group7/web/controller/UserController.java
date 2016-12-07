@@ -72,25 +72,4 @@ public class UserController {
         return modelAndView;
     }
     
-    @RequestMapping(value = "/addreview", method = RequestMethod.PUT,
-           produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public String addReview(HttpServletRequest request,@RequestBody Reviews review){
-        ReviewServiceClient reviewClient = new ReviewServiceClient((String) request.getSession().getAttribute("token"));
-        UserServiceClient userClient = new UserServiceClient((String) request.getSession().getAttribute("token"));
-        try{
-            ObjectMapper mapper = new ObjectMapper();
-            List<ProfileReview> profileReviewList = new ArrayList<ProfileReview>();
-            reviewClient.createReview(review);
-            List <Reviews> reviewList = reviewClient.getUserReviews(review.getUserId());
-            for(Reviews temp: reviewList){
-                String username = userClient.getUser(temp.getReviewerId()).getUsername();
-                profileReviewList.add(new ProfileReview(temp.getReviewId(), temp.getReviewerId(), username, temp.getDateCreated(), temp.getText()));
-            }
-            String profileReviews = mapper.writeValueAsString(profileReviewList);
-            return profileReviews;
-            
-        }catch(Exception ex){
-            return ex.getMessage();
-        }
-    }
 }

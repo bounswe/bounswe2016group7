@@ -16,6 +16,7 @@ import com.bounswe.group7.web.domain.SaveQuizOption;
 import com.bounswe.group7.web.domain.SaveQuizQuestion;
 import com.bounswe.group7.web.domain.SaveTopic;
 import com.bounswe.group7.web.domain.TopicComment;
+import com.bounswe.group7.web.domain.UserTopicPack;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -119,6 +120,13 @@ public class TopicController {
             topicToBeAdded.setDescription(topic.description);
             topicToBeAdded.setTags(topic.tags);
             topicToBeAdded.setHeader(topic.header);
+            UserTopicPack addedPack = topic.topicPack;
+            if(addedPack.topicPackId == -1){
+                TopicPacks pack = topicClient.createTopickPackByName(addedPack.topicPackName);
+                topicToBeAdded.setTopicPackId(pack.getTopicPackId());
+            }else{
+                topicToBeAdded.setTopicPackId(topic.topicPack.topicPackId);
+            }
             topicCreated = topicClient.createTopic(topicToBeAdded);
             
             Quizes quiz = new Quizes();
@@ -193,4 +201,29 @@ public class TopicController {
         }
         return topicComments;
     }
+    
+    @RequestMapping(value = "/gettopicpacks", method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public String getTopicPacks(HttpServletRequest request){
+        HttpSession session = request.getSession();
+        TopicServiceClient client =new TopicServiceClient((String) session.getAttribute("token"));
+        ObjectMapper mapper = new ObjectMapper();
+        try{
+            Long userId = (Long) request.getAttribute("userId");
+            List<TopicPacks> topicPacks = client.getUserTopicPacks(userId);
+            List<UserTopicPack> userTopicPacks = new ArrayList();
+            for(TopicPacks pack : topicPacks){
+                String packName = pack.getName();
+                Long packId = pack.getTopicPackId();
+                UserTopicPack userPack = new UserTopicPack(packName, packId);
+                userTopicPacks.add(userPack);
+            }
+            String topicPacksJson = mapper.writeValueAsString(userTopicPacks);
+            return topicPacksJson;
+        }catch(Exception ex){
+            return ex.getMessage();
+        }
+    }
+            
 }
