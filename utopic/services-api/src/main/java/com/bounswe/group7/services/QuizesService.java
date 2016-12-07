@@ -44,7 +44,7 @@ public class QuizesService {
     }
 
     public SolvedQuizes solveQuiz(Quizes quiz) {
-        List<Questions> trueAnswers = getQuiz(quiz.getTopicId()).getQuestions();
+        List<Questions> trueAnswers = quizesRepository.findOne(quiz.getQuizId()).getQuestions();
         List<Questions> userAnswers = quiz.getQuestions();
         Collections.sort(userAnswers, new Comparator<Questions>() {
             public int compare(Questions a, Questions b) {
