@@ -28,7 +28,7 @@ public class DBpediaIntegration {
 
     public static void main(String[] args) {
         DBpediaIntegration integ = new DBpediaIntegration();
-        Results res = integ.keywordSearch("apple");
+        Results res = integ.keywordSearch("mocha");
         System.out.println();
     }
 
