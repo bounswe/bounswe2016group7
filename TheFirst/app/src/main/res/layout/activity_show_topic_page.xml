@@ -16,8 +16,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/topicHeader"
         android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentTop="true" />
+        android:layout_alignParentTop="true"
+        android:layout_alignEnd="@+id/button22" />
 
     <TextView
         android:text="TextView"
@@ -26,7 +26,7 @@
         android:id="@+id/topicCreator"
         android:layout_below="@+id/topicHeader"
         android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignEnd="@+id/topicHeader" />
 
     <TextView
         android:text="TextView"
@@ -35,18 +35,7 @@
         android:id="@+id/topicDate"
         android:layout_below="@+id/topicCreator"
         android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textMultiLine"
-        android:ems="10"
-        android:layout_below="@+id/topicDate"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="12dp"
-        android:id="@+id/topicDescription"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignEnd="@+id/topicCreator" />
 
     <TextView
         android:text="TextView"
@@ -56,54 +45,6 @@
         android:layout_alignParentStart="true"
         android:id="@+id/topicRate"
         android:layout_alignParentEnd="true" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textMultiLine"
-        android:ems="10"
-        android:layout_below="@+id/topicRate"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="15dp"
-        android:id="@+id/topicContent"
-        android:layout_alignParentEnd="true" />
-
-    <Button
-        android:text="Discussion"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/button21"
-        android:layout_below="@+id/topicContent"
-        android:layout_alignParentStart="true"
-        android:onClick="showDiscussion"/>
-
-    <Button
-        android:text="Rate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/button22"
-        android:layout_below="@+id/topicContent"
-        android:layout_centerHorizontal="true"
-        android:onClick="rateTopic"/>
-
-    <Button
-        android:text="Quiz"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/button23"
-        android:layout_below="@+id/topicContent"
-        android:layout_alignParentEnd="true"
-        android:onClick="showQuiz"/>
-
-    <Button
-        android:text="Home"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/button21"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="57dp"
-        android:id="@+id/button24"
-        android:onClick="goHOme"/>
 
     <Button
         android:text="Profile"
@@ -126,14 +67,104 @@
         android:onClick="logOut"/>
 
     <Button
+        android:text="+ Follow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:id="@+id/followButton"
+        android:layout_alignParentEnd="true"
+        android:layout_toEndOf="@+id/topicHeader" />
+
+    <Button
+        android:text="Home"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button24"
+        android:onClick="goHOme"
+        android:layout_alignParentStart="true"
+        android:layout_above="@+id/button17" />
+
+    <Button
+        android:text="Rate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button22"
+        android:onClick="rateTopic"
+        android:layout_alignBaseline="@+id/button21"
+        android:layout_alignBottom="@+id/button21"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:text="Quiz"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button23"
+        android:onClick="showQuiz"
+        android:layout_alignBaseline="@+id/button22"
+        android:layout_alignBottom="@+id/button22"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:text=""
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:id="@+id/topicPackName"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/topicRate" />
+
+    <Button
         android:text="Creator Profile Page"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="39dp"
         android:id="@+id/button17"
-        android:layout_alignParentEnd="true"
+        android:onClick="goCreatorPage"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
-        android:onClick="goCreatorPage"/>
+        android:layout_alignParentEnd="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textMultiLine"
+        android:ems="10"
+        android:id="@+id/topicDescription"
+        android:layout_below="@+id/topicDate"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:text="Discussion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button21"
+        android:onClick="showDiscussion"
+        android:layout_above="@+id/button24"
+        android:layout_alignParentStart="true" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/topicPackName"
+        android:layout_alignParentStart="true"
+        android:weightSum="1"
+        android:layout_above="@+id/button22">
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="107dp"
+            android:id="@+id/tagListView"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:inputType="textMultiLine"
+            android:ems="10"
+            android:id="@+id/topicContent"
+            android:layout_above="@+id/button21"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true" />
+    </LinearLayout>
 
 </RelativeLayout>

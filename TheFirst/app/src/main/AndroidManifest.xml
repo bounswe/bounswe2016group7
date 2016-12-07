@@ -32,7 +32,8 @@
         <activity android:name=".QuizCreatePage" />
         <activity android:name=".RateTopicPage" />
         <activity android:name=".CommentViewPage" />
-        <activity android:name=".CommentCreatePage"></activity>
+        <activity android:name=".CommentCreatePage" />
+        <activity android:name=".SemanticTagResultsView"></activity>
     </application>
 
 </manifest>

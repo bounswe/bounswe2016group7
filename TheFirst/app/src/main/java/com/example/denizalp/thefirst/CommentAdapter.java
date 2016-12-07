@@ -2,6 +2,7 @@ package com.example.denizalp.thefirst;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,8 +14,11 @@ import android.widget.TextView;
 import com.bounswe.group7.api.client.CommentServiceClient;
 import com.bounswe.group7.api.client.UserServiceClient;
 import com.bounswe.group7.model.Comments;
+import com.bounswe.group7.model.Users;
 import com.bounswe.group7.model.VotedComments;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import static android.content.Context.MODE_PRIVATE;
@@ -27,8 +31,10 @@ public class CommentAdapter extends BaseAdapter {
     private LayoutInflater mInflater;
     private List<Comments> mCommentList;
     private String currentToken;
+    private Activity activity;
 
     public CommentAdapter(Activity activity, List<Comments> commentList, String currentToken){
+        this.activity = activity;
         mInflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         mCommentList = commentList;
         this.currentToken = currentToken;
@@ -59,16 +65,19 @@ public class CommentAdapter extends BaseAdapter {
         TextView ratingText = (TextView) commentView.findViewById(R.id.commentRating);
         Button plusButton = (Button) commentView.findViewById(R.id.plusButton);
         Button minusButton = (Button) commentView.findViewById(R.id.minusButton);
+        Button deleteButton = (Button) commentView.findViewById(R.id.deleteButton);
 
 
         Comments comment = mCommentList.get(position);
         //SharedPreferences sharPref = getSharedPreferences("tokenInfo",MODE_PRIVATE);
         String token = currentToken;
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
         UserServiceClient userServiceClient = new UserServiceClient(token);
         try {
+            Long currentUserId = userServiceClient.getLoggedInUser().getId();
             String commentorUsername = userServiceClient.getUser(comment.getUserId()).getUsername();
             usernameText.setText(commentorUsername);
-            dateText.setText(comment.getDateCreated().toString());
+            dateText.setText(dateFormat.format(comment.getDateCreated()));
             commentText.setText(comment.getText());
             String rating = ""+comment.getRate();
             ratingText.setText(rating);
@@ -117,6 +126,28 @@ public class CommentAdapter extends BaseAdapter {
                 }
             }
             );
+
+            deleteButton.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v){
+                   CommentServiceClient commentServiceClient = new CommentServiceClient(token);
+                   Long deletedCommentId = comment.getCommentId();
+                   try {
+                       mCommentList.remove(comment);
+                       commentServiceClient.deleteComment(deletedCommentId);
+                       System.out.println("Comment has been deleted successfully.");
+                       activity.recreate();
+                   }
+                   catch(Exception e){
+                       e.printStackTrace();
+                   }
+                }
+            }
+            );
+
+            if(currentUserId != comment.getUserId()){
+                //System.out.println("Sen silemezsin, sen mi yazdın lan!");
+                deleteButton.setOnClickListener(null);
+            }
         }
         catch(Exception e){
             e.printStackTrace();

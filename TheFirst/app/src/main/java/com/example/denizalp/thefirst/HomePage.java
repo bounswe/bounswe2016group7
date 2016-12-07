@@ -47,4 +47,10 @@ public class HomePage extends AppCompatActivity {
         Intent intent = new Intent(this,MainActivity.class);
         startActivity(intent);
     }
+
+    public void goFollowedTopics(View v){
+        Intent intent = new Intent(this, TopicListPage.class);
+        intent.putExtra("option",4);
+        startActivity(intent);
+    }
 }

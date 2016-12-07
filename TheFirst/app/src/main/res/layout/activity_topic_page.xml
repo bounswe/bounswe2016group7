@@ -34,30 +34,6 @@
         android:layout_alignParentStart="true"
         android:layout_marginTop="12dp" />
 
-    <Button
-        android:text="Profile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/button11"
-        android:layout_alignBaseline="@+id/button10"
-        android:layout_alignBottom="@+id/button10"
-        android:layout_toRightOf="@+id/button10"
-        android:layout_toEndOf="@+id/button10"
-        android:layout_marginLeft="17dp"
-        android:layout_marginStart="17dp" />
-
-    <Button
-        android:text="Logout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/button12"
-        android:layout_marginLeft="25dp"
-        android:layout_marginStart="25dp"
-        android:layout_alignBaseline="@+id/button11"
-        android:layout_alignBottom="@+id/button11"
-        android:layout_toRightOf="@+id/button11"
-        android:layout_toEndOf="@+id/button11" />
-
     <TextView
         android:text="Header"
         android:layout_width="wrap_content"
@@ -74,7 +50,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:text="Name"
+        android:text=""
         android:ems="10"
         android:id="@+id/editText2"
         android:layout_alignLeft="@+id/button11"
@@ -84,6 +60,7 @@
 
     <TextView
         android:text="Description"
+        android:inputType="textMultiLine"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView7"
@@ -111,35 +88,106 @@
         android:layout_height="wrap_content"
         android:inputType="textMultiLine"
         android:ems="10"
-        android:layout_above="@+id/button13"
         android:layout_alignParentStart="true"
         android:id="@+id/editText"
         android:layout_below="@+id/textView7"
         android:layout_alignParentEnd="true" />
 
-    <Button
-        android:text="Add File"
+    <TextView
+        android:text="Topic Package"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/button15"
-        android:layout_marginBottom="15dp"
-        android:layout_above="@+id/button16"
-        android:layout_alignParentStart="true" />
+        android:layout_below="@+id/editText"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="18dp"
+        android:id="@+id/tPack"
+        android:layout_alignEnd="@+id/textView7" />
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinnerTopicPack"
+        android:layout_alignTop="@+id/tPack"
+        android:layout_alignParentEnd="true"
+        android:layout_toEndOf="@+id/tPack" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="Name"
+        android:ems="10"
+        android:layout_below="@+id/tPack"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="24dp"
+        android:id="@+id/editText14" />
 
     <Button
-        android:text="Add URL"
+        android:text="Search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/editText14"
+        android:layout_alignStart="@+id/button12"
+        android:id="@+id/searchSemantic"
+        android:layout_alignParentEnd="true"
+        android:onClick="listSemanticResult"
+        android:layout_alignBottom="@+id/editText14" />
+
+    <Button
+        android:text="Add"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/button14"
-        android:layout_above="@+id/button15"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentEnd="true"
+        android:layout_alignStart="@+id/searchSemantic"
+        android:layout_below="@+id/searchSemantic"
+        android:onClick="addTag"/>
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinnerSemantic"
+        android:layout_alignParentStart="true"
+        android:layout_toStartOf="@+id/button14"
+        android:layout_below="@+id/editText14"
+        android:layout_alignBottom="@+id/button14" />
+
+    <GridView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/button14"
+        android:layout_alignParentStart="true"
+        android:layout_above="@+id/button16"
+        android:numColumns="auto_fit"
+        android:gravity="center"
+        android:stretchMode="columnWidth"
+        android:id="@+id/tagGridView"/>
 
     <Button
-        android:text="Add Image"
+        android:text="Logout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/button13"
-        android:layout_above="@+id/button14"
-        android:layout_alignParentStart="true" />
+        android:id="@+id/button12"
+        android:layout_marginLeft="25dp"
+        android:layout_alignBaseline="@+id/button11"
+        android:layout_alignBottom="@+id/button11"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:text="Profile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button11"
+        android:layout_marginLeft="17dp"
+        android:layout_alignBaseline="@+id/button10"
+        android:layout_alignBottom="@+id/button10"
+        android:layout_centerHorizontal="true" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignTop="@+id/button10"
+        android:layout_alignEnd="@+id/editText2"></LinearLayout>
 
 </RelativeLayout>

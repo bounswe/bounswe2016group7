@@ -9,11 +9,15 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 
+import com.bounswe.group7.api.client.TagServiceClient;
 import com.bounswe.group7.api.client.TopicServiceClient;
 import com.bounswe.group7.api.client.UserServiceClient;
+import com.bounswe.group7.model.Tags;
 import com.bounswe.group7.model.Topics;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class TopicAddMaterialQuiz extends AppCompatActivity {
 
@@ -30,6 +34,7 @@ public class TopicAddMaterialQuiz extends AppCompatActivity {
         String token = sharPref.getString("currentToken","boşHocamBu");
         TopicServiceClient topicServiceClient = new TopicServiceClient(token);
         UserServiceClient userServiceClient = new UserServiceClient(token);
+        TagServiceClient tagServiceClient = new TagServiceClient(token);
 
         try
         {
@@ -41,6 +46,22 @@ public class TopicAddMaterialQuiz extends AppCompatActivity {
             String topicDescription = intent.getExtras().getString("topicDescription");
             Date topicDate = (Date) intent.getExtras().getSerializable("topicDate");
             Long userId = userServiceClient.getLoggedInUser().getId();
+            Long topicPackId = intent.getExtras().getLong("topicPackId");
+            ArrayList<String> selectedTags = intent.getExtras().getStringArrayList("topicTags");
+            List<Tags> tagsList = new ArrayList<Tags>();
+            for(String s:selectedTags){
+                Tags tag = new Tags();
+                int index = s.indexOf('(');
+                String label = s.substring(0,index-1);
+                String description = s.substring(index);
+                int refCount = 0;
+                tag.setCategory(description);
+                tag.setLabel(label);
+                tag.setRefCount(refCount);
+                Tags newTag = tagServiceClient.createTag(tag);
+                tagsList.add(newTag);
+                tagServiceClient.addTag(newTag);
+            }
 
             Topics newTopic = new Topics();
             newTopic.setContent(topicContent);
@@ -48,6 +69,8 @@ public class TopicAddMaterialQuiz extends AppCompatActivity {
             newTopic.setDescription(topicDescription);
             newTopic.setCreateDate(topicDate);
             newTopic.setUserId(userId);
+            newTopic.setTags(tagsList);
+            if(topicPackId != -1) newTopic.setTopicPackId(topicPackId);
 
             topicServiceClient.createTopic(newTopic);
 

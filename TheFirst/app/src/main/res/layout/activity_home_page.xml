@@ -68,4 +68,15 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:onClick="goToCreateTopic"/>
+
+    <Button
+        android:text="Followed Topics"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/button30"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="26dp"
+        android:id="@+id/button13"
+        android:layout_alignParentEnd="true"
+        android:onClick="goFollowedTopics"/>
 </RelativeLayout>

@@ -60,6 +60,14 @@ public class TopicListPage extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
+        else if(recentOrTop == 4){
+            try{
+               topicList = topicServiceClient.getUserFollowedTopics();
+            }
+            catch(Exception e){
+                e.printStackTrace();
+            }
+        }
         if (topicList != null) {
             for(Topics topic : topicList) {
                 Button button = new Button(this);

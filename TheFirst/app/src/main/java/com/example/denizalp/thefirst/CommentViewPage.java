@@ -31,6 +31,7 @@ public class CommentViewPage extends AppCompatActivity {
             if(notEmpty) {
                 CommentAdapter commentAdapter = new CommentAdapter(this, commentList, token);
                 commentListView.setAdapter(commentAdapter);
+                commentListView.setClickable(true);
             }
 
         }

@@ -14,14 +14,22 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:id="@+id/commentor"
-            android:layout_weight="0.50" />
+            android:layout_weight="0.35" />
 
         <TextView
             android:text="TextView"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:id="@+id/dateComment"
-            android:layout_weight="0.50" />
+            android:layout_weight="0.45" />
+
+        <Button
+            android:text="Del"
+            android:layout_width="34dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/deleteButton"
+            android:layout_weight="0.16" />
+
     </LinearLayout>
 
     <LinearLayout
