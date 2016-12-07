@@ -5,10 +5,22 @@
  */
 package com.bounswe.group7.web.domain;
 
+import java.util.List;
+
 /**
  *
  * @author Batuhan
  */
 public class Quiz {
+    public List<SaveQuizQuestion> questionList;
+    public Long quizId;
+
+    public Quiz() {
+    }
+
+    public Quiz(List<SaveQuizQuestion> questionList, Long quizId) {
+        this.questionList = questionList;
+        this.quizId = quizId;
+    }
     
 }
