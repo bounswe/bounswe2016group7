@@ -176,31 +176,6 @@ public class TopicController {
         return tagCreated.getTagId();
     }
     
-    @RequestMapping(value = "/addcomment", method = RequestMethod.PUT,
-           produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseBody
-    public String addComment(HttpServletRequest request,@RequestBody Comments comment) {
-        HttpSession session = request.getSession();
-        CommentServiceClient commentClient = new CommentServiceClient((String) session.getAttribute("token"));
-        UserServiceClient userClient = new UserServiceClient((String) session.getAttribute("token"));
-        ObjectMapper mapper = new ObjectMapper();
-        List <TopicComment> topicCommentList = new ArrayList<TopicComment>();
-        String topicComments = "";
-        try{
-            commentClient.createComment(comment);
-            List <Comments> comments = commentClient.getTopicComments(comment.getTopicId());
-            for(Comments temp: comments) {
-                String username = userClient.getUser(temp.getUserId()).getUsername();
-                TopicComment topicComment = new TopicComment(username, temp.getText(), temp.getDateCreated(), temp.getRate(), temp.getUserId(), temp.getCommentId());
-                topicCommentList.add(topicComment);
-            }
-            topicComments = mapper.writeValueAsString(topicCommentList);
-        }
-        catch(Exception ex){
-            return ex.getMessage();
-        }
-        return topicComments;
-    }
     
     @RequestMapping(value = "/gettopicpacks", method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
