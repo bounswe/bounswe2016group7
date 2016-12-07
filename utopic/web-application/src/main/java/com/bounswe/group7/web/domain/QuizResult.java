@@ -14,7 +14,7 @@ import java.util.List;
 public class QuizResult {
     public int correctAnswerNumber;
     public int wrongAnswerNumber;
-    List<QuestionAndAnswer> wrongAnswers;
+    public List<QuestionAndAnswer> wrongAnswers;
 
     public QuizResult(int correctAnswerNumber, int wrongAnswerNumber, List<QuestionAndAnswer> wrongAnswers) {
         this.correctAnswerNumber = correctAnswerNumber;

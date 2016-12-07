@@ -12,9 +12,11 @@ import java.util.List;
  * @author Batuhan
  */
 public class QuestionAnswers {
-    List<QuestionAndAnswer> questionList;
+    public List<QuestionAndAnswer> questionList;
+    public Long quizId;
 
-    public QuestionAnswers(List<QuestionAndAnswer> questionList) {
+    public QuestionAnswers(List<QuestionAndAnswer> questionList, Long quizId) {
         this.questionList = questionList;
+        this.quizId = quizId;
     }
 }
