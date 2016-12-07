@@ -12,6 +12,7 @@ import com.bounswe.group7.model.Tags;
 import com.bounswe.group7.model.TopicPacks;
 import com.bounswe.group7.model.Topics;
 import com.bounswe.group7.model.Users;
+import com.bounswe.group7.web.domain.Quiz;
 import com.bounswe.group7.web.domain.SaveQuizOption;
 import com.bounswe.group7.web.domain.SaveQuizQuestion;
 import com.bounswe.group7.web.domain.SaveTopic;
@@ -67,8 +68,10 @@ public class TopicController {
             List<Tags> tags = topic.getTags();
             
             Quizes quizBack = quizClient.getQuiz(id);
-          
-            List<SaveQuizQuestion> quiz = new ArrayList<SaveQuizQuestion>();
+            
+            Quiz quiz = new Quiz();
+            quiz.quizId = quizBack.getQuizId();
+            List<SaveQuizQuestion> questionList = new ArrayList<SaveQuizQuestion>();
             
             if(quizBack != null){
                 for(Questions question : quizBack.getQuestions()){
@@ -85,9 +88,10 @@ public class TopicController {
                         option.text = (String) temp;
                         quizQuestion.options.add(option);
                     }
-                    quiz.add(quizQuestion);
+                    questionList.add(quizQuestion);
                 }
             }
+            quiz.questionList = questionList;
             
             String tagsJson = mapper.writeValueAsString(tags);
             String commentsJson = mapper.writeValueAsString(topicCommentList);
