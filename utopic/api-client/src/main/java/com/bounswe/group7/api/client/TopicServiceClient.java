@@ -93,5 +93,10 @@ public class TopicServiceClient extends BaseClient {
         return post(getResource().path("checkFollowedTopic"), new TypeToken<Boolean>() {
         }, topicId);
     }
+    
+    public double getTopicRate(Long topicId) throws Exception{
+        return post(getResource().path("getTopicRate"), new TypeToken<Double>() {
+        }, topicId);
+    }
 
 }

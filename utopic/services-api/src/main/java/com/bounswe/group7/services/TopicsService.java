@@ -171,4 +171,9 @@ public class TopicsService {
            if(followedTopic != null) return true;
            else return false;
     }
+    
+    public double getTopicRate(Long topicId)
+    {
+        return topicsRepository.findOne(topicId).getRate();
+    }
 }

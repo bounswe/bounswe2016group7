@@ -115,5 +115,11 @@ public class TopicsController {
     public boolean checkFollowedTopic(@RequestBody Long topicId) {
         return topicsService.checkFollowedTopic(topicId);
     }
+    
+    @RequestMapping(path = "getTopicRate", method = RequestMethod.POST)
+    @ResponseBody
+    public double getTopicRate(@RequestBody Long topicId) {
+        return topicsService.getTopicRate(topicId);
+    }
 
 }
