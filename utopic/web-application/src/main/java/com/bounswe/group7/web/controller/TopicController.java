@@ -74,6 +74,7 @@ public class TopicController {
                 for(Questions question : quizBack.getQuestions()){
                     SaveQuizQuestion quizQuestion = new SaveQuizQuestion();
                     quizQuestion.text = question.getQuestion();
+                    quizQuestion.id = question.getQuizId();
                     quizQuestion.options = new ArrayList<SaveQuizOption>();
                     for(int i=0; i<4; i++){
                         SaveQuizOption option = new SaveQuizOption();
@@ -121,6 +122,12 @@ public class TopicController {
             topicToBeAdded.setTags(topic.tags);
             topicToBeAdded.setHeader(topic.header);
             UserTopicPack addedPack = topic.topicPack;
+            List<Tags> tagList = new ArrayList<Tags>();
+            for(Tags tag: topic.tags){
+                Tags tagToCreate = tagClient.createTag(tag);
+                tagList.add(tagToCreate);
+            }
+            topicToBeAdded.setTags(tagList);
             if(addedPack.topicPackId == -1){
                 TopicPacks pack = topicClient.createTopickPackByName(addedPack.topicPackName);
                 topicToBeAdded.setTopicPackId(pack.getTopicPackId());

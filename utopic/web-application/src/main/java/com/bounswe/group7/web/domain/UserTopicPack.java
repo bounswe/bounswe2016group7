@@ -12,7 +12,9 @@ package com.bounswe.group7.web.domain;
 public class UserTopicPack {
     public String topicPackName;
     public Long topicPackId;
-
+    
+    public UserTopicPack(){}
+    
     public UserTopicPack(String topicPackName, Long topicPackId) {
         this.topicPackName = topicPackName;
         this.topicPackId = topicPackId;

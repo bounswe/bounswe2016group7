@@ -3,6 +3,20 @@ mainModel.controller('topicController',function indexController($scope) {
     $scope.commentToAdd = '';
     $scope.repliedId = '';
     $scope.tags = topicTags;
+    $scope.quiz = quiz;
+    var size = $scope.quiz.length;
+    for(var i = 0; i< size; i++){
+        for(var j = 0; j<$scope.quiz[i].options.length; j++){
+            var option = $scope.quiz[i].options[j];
+            var index = $scope.quiz[i].options.indexOf(option)
+            $scope.quiz[i].options[j].number = j;
+            if(option.text=='Default_Choice'){
+                $scope.quiz[i].options.splice(index,1);
+                j--;
+            }
+        }
+    }
+    
     var scrollToBottom = function(selector){
         $(selector).scrollTop($(selector)[0].scrollHeight);
     };
@@ -17,9 +31,6 @@ mainModel.controller('topicController',function indexController($scope) {
                 break;
             replyUsername += content[i];
         }
-        console.log(content);
-        console.log($scope.repliedId);
-        console.log(replyUsername);
         return '<a class="show-replied" targetComment="#'+ $scope.repliedId +'" href="#">'+ replyUsername +'</a> ' + content.substring(i+1);
     };
     
@@ -31,7 +42,7 @@ mainModel.controller('topicController',function indexController($scope) {
             type: "PUT",
             contentType: "application/json; charset=utf-8",
             url: "/addcomment",
-            data: JSON.stringify(data),
+            data: JSON.stringify(data)
         }).done(function(data) {
             $scope.$apply(function (){
                $scope.comments = data;
@@ -41,7 +52,6 @@ mainModel.controller('topicController',function indexController($scope) {
         }).fail(function(data){
             console.log(data);
         });
-        console.log(content);
     };
     
     //reply functionality
@@ -64,6 +74,13 @@ mainModel.controller('topicController',function indexController($scope) {
             scrollTop: $('.message-container').offset().top -100
          });
     });
-    console.log($scope.tags);
+    
+    $scope.setAnswer = function(question, option){
+        console.log(question);
+        console.log(option);
+        
+    };
+    
+    
 });
 

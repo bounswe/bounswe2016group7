@@ -12,7 +12,7 @@
             <c:forEach items="${authorities}" var="stdn" varStatus="status">
                     auth.push('${stdn.name}');
             </c:forEach>
-                    var quiz = "${quiz}"
+                    var quiz = ${quiz};
                     var activeUsername = "${sessionScope.username}";
                     var activeId = "${sessionScope.id}";
                     var activeToken = "${sessionScope.token}";
@@ -83,7 +83,7 @@
                                     <a class="nav-link" data-toggle="tab" href="#profile" role="tab" aria-controls="profile">Discussion</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" data-toggle="tab" href="#messages" role="tab" aria-controls="messages">Quiz</a>
+                                    <a class="nav-link" data-toggle="tab" href="#quiz" role="tab" aria-controls="quiz">Quiz</a>
                                 </li>
                             </ul>
 
@@ -120,24 +120,15 @@
                                         <button class="button button-green send-button" ng-click="addComment()"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
                                     </div>
                                 </div>
-                                <div class="tab-pane" id="messages" role="tabpanel">
-                                    <div class="message question">
+                                <div class="tab-pane" id="quiz" role="tabpanel">
+                                    <div ng-repeat="question in quiz" class="message question">
                                         <div class="question-content">
-                                            <p><span class="question-number">Q1</span> Sample Question</p>
+                                            <p><span class="question-number">Q{{$index+1}} {{question.text}}</span></p>
                                         </div>
-                                        <div class="options">
+                                        <div  class="options">
                                             <div class="row">
-                                                <div class="col-xs-12 col-sm-6">
-                                                    <button class="button">option 1</button>
-                                                </div>
-                                                <div class="col-xs-12 col-sm-6">
-                                                    <button class="button selected">option 2</button>
-                                                </div>
-                                                <div class="col-xs-12 col-sm-6">
-                                                    <button class="button">option 3</button>
-                                                </div>
-                                                <div class="col-xs-12 col-sm-6">
-                                                    <button class="button">option 4</button>
+                                                <div ng-repeat="opt in question.options" class="col-xs-12 col-sm-6">
+                                                    <button class="button" ng-click="setAnswer($parent.question, opt)">{{opt.text}}</button>
                                                 </div>
                                             </div>
                                         </div>

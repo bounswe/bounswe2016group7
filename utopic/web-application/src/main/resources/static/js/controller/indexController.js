@@ -62,7 +62,7 @@ mainModel.controller('indexController',function indexController($scope,$filter) 
   
   $scope.saveTopic = function(){
       var topicPackToSend = {};
-      if($scope.topicPackSelected){
+      if(typeof $scope.topicPackSelected.topicPackName != 'undefined'){
           topicPackToSend = {
              topicPackName: $scope.topicPackSelected.topicPackName,
              topicPackId: $scope.topicPackSelected.topicPackId
@@ -79,7 +79,7 @@ mainModel.controller('indexController',function indexController($scope,$filter) 
           };
       }
       console.log($scope.tags );
-      console.log(topicPackToSend);
+      console.log($scope.questions);
       var data = {"topicPack": topicPackToSend ,"content": $scope.htmlContent, "header": $scope.titleInput, "tags": $scope.tags, "description": $scope.description, "questions": $scope.questions};
         $.ajax({
             type: "PUT",

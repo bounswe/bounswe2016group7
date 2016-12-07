@@ -16,6 +16,7 @@ import java.util.List;
 public class SaveQuizQuestion {
     public List <SaveQuizOption> options;
     public String text;
+    public Long id;
     
     public SaveQuizQuestion(){}
     
@@ -23,4 +24,10 @@ public class SaveQuizQuestion {
         this.text = text;
         this.options = options;
     }
+
+    public SaveQuizQuestion(List<SaveQuizOption> options, String text, Long id) {
+        this.options = options;
+        this.text = text;
+        this.id = id;
+    }    
 }
