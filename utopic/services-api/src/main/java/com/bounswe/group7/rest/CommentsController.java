@@ -57,4 +57,12 @@ public class CommentsController {
         return commentsService.voteComment(votedComment);
     }
     
+    @RequestMapping(path = "/getCommentRate", method = RequestMethod.POST)
+    @ResponseBody
+    @PreAuthorize("hasAnyRole('CREATOR', 'ADMIN', 'EXPLORER')")
+    public int getCommentRate(@RequestBody Long commentId)
+    {
+        return commentsService.getCommentRate(commentId);
+    }
+    
 }

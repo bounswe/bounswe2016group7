@@ -72,5 +72,9 @@ public class CommentsService {
             return true;
         }
     }
+    public int getCommentRate(Long commentId)
+    {
+        return commentsRepository.findOne(commentId).getRate();
+    }
     
 }

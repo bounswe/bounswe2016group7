@@ -43,4 +43,9 @@ public class CommentServiceClient extends BaseClient{
         return post(getResource().path("voteComment"), new TypeToken<Boolean>() {
         }, votedComment);
     }
+    
+    public int getCommentRate(Long commentId) throws Exception {
+        return post(getResource().path("getCommentRate"), new TypeToken<Integer>() {
+        }, commentId);
+    }
 }
