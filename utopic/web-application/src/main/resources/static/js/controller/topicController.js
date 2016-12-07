@@ -3,7 +3,7 @@ mainModel.controller('topicController',function indexController($scope) {
     $scope.commentToAdd = '';
     $scope.repliedId = '';
     $scope.tags = topicTags;
-    $scope.quiz = quiz;
+    $scope.quiz = quiz.questionList;//
     var size = $scope.quiz.length;
     for(var i = 0; i< size; i++){
         for(var j = 0; j<$scope.quiz[i].options.length; j++){
@@ -76,9 +76,29 @@ mainModel.controller('topicController',function indexController($scope) {
     });
     
     $scope.setAnswer = function(question, option){
-        console.log(question);
-        console.log(option);
+        question.optionId = option.number;
+        console.log(quiz);
+        $('#question'+question.id+' button').removeClass('selected');
+        $('#question'+question.id+' .option'+option.number+' button').addClass('selected');
+    };
+    
+    $scope.sendQuiz = function(){
+        var answers = [];
+        for(var i=0; i<$scope.quiz.length;i++){
+            answers.push({"questionId":$scope.quiz[i].id, "optionId": $scope.quiz[i].optionId})
+        };
         
+        var data = {"quizId": quiz.quizId,"questionList": answers};
+        $.ajax({
+            type: "PUT",
+            contentType: "application/json; charset=utf-8",
+            url: "/solvequiz",
+            data: JSON.stringify(data)
+        }).done(function(data) {
+            console.log(data);
+        }).fail(function(data){
+            console.log(data);
+        });
     };
     
     

@@ -44,7 +44,7 @@ public class QuizController {
             List<Questions> questions = new ArrayList();
             for(QuestionAndAnswer qna : questionAnswers.questionList){
                 Questions question = new Questions();
-                question.setQuestionId(qna.questionId);
+                question.setQuestionId(qna.questionId.longValue());
                 question.setChosenAnswer((char)('A' + qna.optionId.intValue()));
                 questions.add(question);
             }

@@ -13,6 +13,9 @@ public class QuestionAndAnswer {
     public Long questionId;
     public Long optionId;
 
+    public QuestionAndAnswer() {
+    }
+
     public QuestionAndAnswer(Long questionId, Long optionId) {
         this.questionId = questionId;
         this.optionId = optionId;

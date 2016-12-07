@@ -121,18 +121,19 @@
                                     </div>
                                 </div>
                                 <div class="tab-pane" id="quiz" role="tabpanel">
-                                    <div ng-repeat="question in quiz" class="message question">
+                                    <div ng-repeat="question in quiz" id="question{{question.id}}" class="message question">
                                         <div class="question-content">
                                             <p><span class="question-number">Q{{$index+1}} {{question.text}}</span></p>
                                         </div>
                                         <div  class="options">
                                             <div class="row">
-                                                <div ng-repeat="opt in question.options" class="col-xs-12 col-sm-6">
+                                                <div ng-repeat="opt in question.options" class="col-xs-12 col-sm-6 option{{opt.number}}">
                                                     <button class="button" ng-click="setAnswer($parent.question, opt)">{{opt.text}}</button>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+                                    <button ng-click="sendQuiz()" class="button button-green">SUBMIT</button>
                                 </div>
                             </div>
                         </div>
@@ -153,5 +154,5 @@
                                                     });
         </script>
     </body>
-    
+        
 </html>

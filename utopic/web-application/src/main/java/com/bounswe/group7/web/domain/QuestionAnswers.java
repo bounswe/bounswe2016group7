@@ -15,6 +15,9 @@ public class QuestionAnswers {
     public List<QuestionAndAnswer> questionList;
     public Long quizId;
 
+    public QuestionAnswers() {
+    }
+    
     public QuestionAnswers(List<QuestionAndAnswer> questionList, Long quizId) {
         this.questionList = questionList;
         this.quizId = quizId;
