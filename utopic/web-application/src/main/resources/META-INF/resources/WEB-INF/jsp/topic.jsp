@@ -12,6 +12,7 @@
             <c:forEach items="${authorities}" var="stdn" varStatus="status">
                     auth.push('${stdn.name}');
             </c:forEach>
+                    var quiz = "${quiz}"
                     var activeUsername = "${sessionScope.username}";
                     var activeId = "${sessionScope.id}";
                     var activeToken = "${sessionScope.token}";

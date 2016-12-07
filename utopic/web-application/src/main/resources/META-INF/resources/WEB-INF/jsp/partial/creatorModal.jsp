@@ -8,11 +8,16 @@
     <button  ng-if="auths.indexOf('ROLE_CREATOR')!=-1" data-remodal-action="close" class="remodal-close"></button>
     <br/>
         <input ng-model="titleInput" name="title" id="title" class="form-control" type="text" placeholder="Title" ng-model="createTopic.title"/>
-        <input ng-model="topicPackInput" name="topicpackname" id="topicpackname" class="form-control" type="text" placeholder="Topic Pack Name" ng-model="createTopic.topickPackName"/>
+        <div class="auto-complete">
+            <input ng-model="topicPackInput" name="topicpackname" id="topicpackname" class="form-control" type="text" placeholder="Topic Pack Name" ng-model="createTopic.topickPackName"/>
+            <ul style="width: calc(100%);" ng-show="topicPackShow.length > 0">
+                <li ng-repeat="topicPack in topicPackShow"><a ng-click="selectTopicPack(topicPack)"><span ng-bind="topicPack.topicPackName"></span></li>
+            </ul>
+        </div>
         <div class="row">
             <div class="col-xs-10 auto-complete">
                 <input ng-model="tagInput" name="tag" id="add-tag" class="form-control" type="text" placeholder="Add a Tag"/>
-                <ul ng-show="tagList.length > 1">
+                <ul ng-show="tagList.length > 1 && tagInput">
                     <li ng-repeat="tag in tagList"><a ng-click="selectTag(tag)"><span ng-bind="tag.text"></span></li>
                 </ul>
             </div>

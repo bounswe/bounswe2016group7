@@ -10,13 +10,26 @@ mainModel.controller('indexController',function indexController($scope,$filter) 
   $scope.auths = auth;
   $scope.tagList = [];
   $scope.tagSelected = {};
-  questionNum = 0;
+  $scope.topicPacks = [];
+  $scope.topicPackShow = [];
+  $scope.topicPackSelected = {};
   
+  var questionNum = 0;
+    var getTopicPacks = function(){
+        $.ajax({
+            type: "GET",
+            contentType: "application/json; charset=utf-8",
+            url: "/gettopicpacks",
+        }).done(function(data)
+        {
+            $scope.topicPacks = data;
+            console.log($scope.topicPacks);
+        }).fail(function(data){
+            console.log(data);
+        });
+    };
   $scope.addTag = function(){
-    console.log($scope.tagSelected);
-    console.log($scope.tags);
     for(var i = 0; i < $scope.tags.length; i++){
-        console.log($scope.tags[i].id + "-"+ $scope.tagSelected.id);
         if($scope.tags[i].id == $scope.tagSelected.id){
             $scope.tagInput = "";
             return;
@@ -35,7 +48,6 @@ mainModel.controller('indexController',function indexController($scope,$filter) 
   $scope.addOption = function(question){
     if(question.options.length < 4)
       question.options.push({text:"", isValid:0});
-    console.log($scope.questions);
   };
   
   $scope.deleteOption = function(question, option){
@@ -49,7 +61,26 @@ mainModel.controller('indexController',function indexController($scope,$filter) 
   };
   
   $scope.saveTopic = function(){
-      var data = {"content": $scope.htmlContent, "header": $scope.titleInput, "tags": $scope.tags, "description": $scope.description, "questions": $scope.questions};
+      var topicPackToSend = {};
+      if($scope.topicPackSelected){
+          topicPackToSend = {
+             topicPackName: $scope.topicPackSelected.topicPackName,
+             topicPackId: $scope.topicPackSelected.topicPackId
+          };
+      }else if($scope.topicPackInput){
+          topicPackToSend = {
+              topicPackName : $scope.topicPackInput,
+              topicPackId : -1
+          };
+      }else{
+          topicPackToSend = {
+              topicPackName : '',
+              topicPackId : -1
+          };
+      }
+      console.log($scope.tags );
+      console.log(topicPackToSend);
+      var data = {"topicPack": topicPackToSend ,"content": $scope.htmlContent, "header": $scope.titleInput, "tags": $scope.tags, "description": $scope.description, "questions": $scope.questions};
         $.ajax({
             type: "PUT",
             contentType: "application/json; charset=utf-8",
@@ -57,8 +88,8 @@ mainModel.controller('indexController',function indexController($scope,$filter) 
             data: JSON.stringify(data),
         }).done(function(data)
         {
-            console.log(data);
-            window.location.replace('/topic/'.concat(data))
+            if(data)
+                window.location.replace('/topic/'.concat(data))
         }).fail(function(data){
             console.log(data);
         });
@@ -86,8 +117,11 @@ mainModel.controller('indexController',function indexController($scope,$filter) 
     };
   
     $scope.$watch('tagInput', function(){
-        $.getJSON('https://www.wikidata.org/w/api.php?action=wbsearchentities&search=' +  $scope.tagInput + '&language=en&format=json&callback=?', function(data){
-          $scope.tagList = data.search.slice(0,10);
+        if(!$scope.tagInput)
+            return;
+        $.getJSON('https://www.wikidata.org/w/api.php?action=wbsearchentities&search=' +  $scope.tagInput + '&language=en&format=json&callback=?&limit=10', function(data){
+          if($scope.tagList)
+            $scope.tagList = data.search.slice(0,10);
           /*for(var i = 0; i < $scope.tags.length; i++){
               for(var j = 0; j < $scope.tagList.length; j++){
                   if($scope.tags[i].id == $scope.tagList[j].id)
@@ -99,9 +133,26 @@ mainModel.controller('indexController',function indexController($scope,$filter) 
               $scope.tagList[i].category = $scope.tagList[i].description;
           }
           $scope.$digest();
-
-          console.log($scope.tagList);
         });
     });
+    
+  getTopicPacks();
+ 
+  $scope.$watch('topicPackInput',function(){
+      $scope.topicPackShow = [];
+      if($scope.topicPackInput == '')
+          return;
+      for(var i = 0; i < $scope.topicPacks.length; i++){
+          if($scope.topicPacks[i].topicPackName.toLowerCase().indexOf($scope.topicPackInput.toLowerCase()) > -1)
+              $scope.topicPackShow.push($scope.topicPacks[i]);
+      }
+      if($scope.topicPackShow.length == 1 && $scope.topicPackShow[0] == $scope.topicPackSelected && $scope.topicPackInput == $scope.topicPackSelected.topicPackName)
+          $scope.topicPackShow = [];
+  });
+  
+  $scope.selectTopicPack = function(topicPack){
+      $scope.topicPackInput = topicPack.topicPackName;
+      $scope.topicPackSelected = topicPack;
+  };
 });
 

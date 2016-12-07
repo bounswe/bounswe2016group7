@@ -185,7 +185,8 @@ public class TopicController {
         TopicServiceClient client =new TopicServiceClient((String) session.getAttribute("token"));
         ObjectMapper mapper = new ObjectMapper();
         try{
-            Long userId = (Long) request.getAttribute("userId");
+            Users user = (Users)session.getAttribute("user");
+            Long userId = (Long) user.getId();
             List<TopicPacks> topicPacks = client.getUserTopicPacks(userId);
             List<UserTopicPack> userTopicPacks = new ArrayList();
             for(TopicPacks pack : topicPacks){
