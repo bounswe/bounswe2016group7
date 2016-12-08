@@ -7,6 +7,9 @@ mainModel.controller('topicController',function indexController($scope) {
     $scope.topicOwner = ownerId;
     $scope.activeUser = activeId;
     $scope.followText = '';
+    $scope.followingUsers = [];
+    $scope.showFollowing = false;
+    $scope.currentRate = initialRating;
     
     var size = $scope.quiz.length;
     for(var i = 0; i< size; i++){
@@ -81,7 +84,7 @@ mainModel.controller('topicController',function indexController($scope) {
     
     $scope.setAnswer = function(question, option){
         question.optionId = option.number;
-        console.log(quiz);
+        //console.log(quiz);
         $('#question'+question.id+' button').removeClass('selected');
         $('#question'+question.id+' .option'+option.number+' button').addClass('selected');
     };
@@ -99,9 +102,9 @@ mainModel.controller('topicController',function indexController($scope) {
             url: "/solvequiz",
             data: JSON.stringify(data)
         }).done(function(data) {
-            console.log(data);
+            //console.log(data);
         }).fail(function(data){
-            console.log(data);
+            //console.log(data);
         });
     };
     
@@ -113,11 +116,19 @@ mainModel.controller('topicController',function indexController($scope) {
             url: "/followtopic",
             data: JSON.stringify(data)
         }).done(function(data) {
-            console.log(data);
-            if($scope.followText == 'UNFOLLOW')
+            if($scope.followText == 'UNFOLLOW'){
                 $scope.followText = 'FOLLOW';
-            else
+                for(var i = 0; $scope.followingUsers.length; i++){
+                    if($scope.followingUsers[i].id = activeId){
+                        $scope.followingUsers.splice(i+1,1);
+                        break;
+                    }
+                }
+            }
+            else{
                 $scope.followText = 'UNFOLLOW';
+                $scope.followingUsers.push({"id":activeId,"username": activeUsername});
+            }
             $scope.$digest();
         }).fail(function(data){
             console.log(data);
@@ -132,7 +143,6 @@ mainModel.controller('topicController',function indexController($scope) {
             url: "/istopicfollowed",
             data: JSON.stringify(data)
         }).done(function(data) {
-            console.log(data);
             if(data == true)
                 $scope.followText = 'UNFOLLOW';
             if(data == false)
@@ -143,10 +153,52 @@ mainModel.controller('topicController',function indexController($scope) {
         });
     };
     
+    $scope.toggleFollowing = function(){
+        $scope.showFollowing = !$scope.showFollowing;
+    };
+    var updateRating = function(){
+        $.ajax({
+            type: "GET",
+            contentType: "application/json; charset=utf-8",
+            url: "/gettopicrate/"+topicId
+        }).done(function(data) {
+            console.log(data)
+            if(data != 0)
+                $scope.currentRate = data;
+            $scope.$digest();
+        }).fail(function(data){
+            console.log(data);
+        });
+    };
     $(document).ready(function(){
         isTopicFollowed();
+        $scope.followingUsers = followingUsers;
+        $scope.$digest();
+        
+        $(".topic-rating").starRating({
+            initialRating: initialRating,
+            callback: function(currentRating, $el){
+                $.ajax({
+                    type: "GET",
+                    contentType: "application/json; charset=utf-8",
+                    url: "/ratetopic/"+currentRating+"/"+topicId
+                }).done(function(data) {
+                    if(data)
+                        updateRating();
+                }).fail(function(data){
+                    console.log(data);
+                });
+            },
+            useFullStars: true,
+            hoverColor: "#0a6c8e",
+            useGradient: false,
+            activeColor: "#fec400",
+            starSize: 25,
+            disableAfterRate: false
+        });
     });
     
     
-});
+    
+}); 
 

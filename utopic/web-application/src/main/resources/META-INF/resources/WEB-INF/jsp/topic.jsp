@@ -12,6 +12,8 @@
             <c:forEach items="${authorities}" var="stdn" varStatus="status">
                     auth.push('${stdn.name}');
             </c:forEach>
+                    var initialRating = ${topic.rate}
+                    var followingUsers = ${followingUsers};
                     var quiz = ${quiz};
                     var activeUsername = "${sessionScope.username}";
                     var activeId = ${userId};
@@ -37,12 +39,25 @@
                                 <div class="col-xs-5 col-md-3">
                                     <div class="title-picture" style="background-image: url(/images/header1.jpg);"></div>
                                     <p>Creator: <a href="/profile/${owner.id}">${owner.username}</a><br/>
-                                        <div><a href="#">Interested people will be shown here.</a></div>
-                                        <button ng-if="topicOwner != activeUser" ng-click ="followTopic()" class="button button-orange" ng-bind="followText"></button>
-                                    <p>
+                                    <div class="show-following">
+                                        <a ng-click="toggleFollowing()">Followed (<span ng-bind="followingUsers.length"></span>)</a>
+                                        <ul ng-show="showFollowing" class="following-users panel">
+                                            <button ng-click="toggleFollowing()"><i class="fa fa-times" aria-hidden="true"></i></button>
+                                            <li ng-repeat="user1 in followingUsers">
+                                                <a href="/profile/{{user1.id}}" ng-bind="user1.username"></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <button ng-if="topicOwner != activeUser" ng-click ="followTopic()" class="button button-orange" ng-bind="followText"></button>
+                                    
                                 </div>
                                 <div class="col-xs-7 col-md-9">
-                                    <h3>${topic.header} <div class="topic-rating"></div></h3>
+                                    <h3>${topic.header} 
+                                        <span class="rate-text">
+                                            <div class="topic-rating"></div>
+                                            <span>({{currentRate}})</span>
+                                        </span>
+                                    </h3>
                                     <p>${topic.description}</p>
                                     <div class="tags">
                                         <div ng-repeat="tag in tags" class="topic-tag" id="tag{{tag.tagId}}">
@@ -144,16 +159,6 @@
         </div>
         <jsp:include page="partial/footer.jsp" />
         <script type="text/javascript" src="/js/controller/topicController.js"></script>
-        <script>
-                                                    $(".topic-rating").starRating({
-                                                        initialRating: ${topic.rate},
-                                                        hoverColor: "#0a6c8e",
-                                                        useGradient: false,
-                                                        activeColor: "#fec400",
-                                                        readOnly: true,
-                                                        starSize: 25
-                                                    });
-        </script>
     </body>
         
 </html>

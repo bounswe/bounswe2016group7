@@ -94,7 +94,8 @@ span.question-number {
 }
 
 .topic-rating {
-    float: right;
+    float: left;
+    margin-right: 5px;
 }
 
 /**************************** Navbar *******************************/
@@ -448,6 +449,44 @@ ul.categories li{
 
 .question-create-table input[type="text"]{
     margin-bottom: 0;
+}
+
+ul.following-users.panel {
+    position: absolute;
+    min-width: 150px;
+    list-style: none;
+    max-height: 250px;
+    overflow: auto;
+}
+
+.following-users button {
+    background: none;
+    border: none;
+    color: #b3b3b3;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.show-following > a {
+    margin-bottom: 15px;
+    display: block;
+    cursor: pointer;
+    color: #3771b5 !important;
+}
+
+.following-users a {
+    display: block;
+    padding: 5px 10px;
+}
+
+.rate-text{
+    float: right;
+}
+.rate-text span{
+    font-size: 18px;
+    margin-top: 5px;
+    float:right;
 }
 /**************************** Mobile CSS *******************************/
 @media only screen and (min-width: 641px){
