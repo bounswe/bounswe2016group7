@@ -195,4 +195,12 @@ public class TopicsService {
     public double getTopicRate(Long topicId) {
         return topicsRepository.findOne(topicId).getRate();
     }
+    
+    public int getTopicUserRate(Long topicId)
+    {
+        RatedTopics result = ratedTopicsRepository.findByUserIdAndTopicId(usersService.getLoggedInUserId(), topicId);
+        if(result != null) 
+            return result.getRate();
+        return 0;
+    }
 }
