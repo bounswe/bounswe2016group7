@@ -202,5 +202,6 @@ public class TopicsService {
         if(result != null) 
             return result.getRate();
         return 0;
+        
     }
 }
