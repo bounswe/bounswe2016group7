@@ -63,7 +63,6 @@ public class SearchService {
 
         keywordMap.values().parallelStream().forEach((key)->{
             topicsRepository.findByTags(key).parallelStream().forEach((topic)-> {
-                System.out.println(key);
                 searchResults.put(topic.getTopicId(), topic);
                 idWithFreq.putIfAbsent(topic.getTopicId(), 0);
                 idWithFreq.replace(topic.getTopicId(), idWithFreq.get(topic.getTopicId()) + 7);

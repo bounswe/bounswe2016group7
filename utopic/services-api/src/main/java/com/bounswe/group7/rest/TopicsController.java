@@ -6,6 +6,7 @@
 package com.bounswe.group7.rest;
 
 import com.bounswe.group7.model.FollowedTopics;
+import com.bounswe.group7.model.NextPrevTopic;
 import com.bounswe.group7.model.RatedTopics;
 import com.bounswe.group7.model.TopicPacks;
 import com.bounswe.group7.model.Topics;
@@ -43,7 +44,7 @@ public class TopicsController {
     public TopicPacks createTopicPack(@RequestBody TopicPacks topicPack) {
         return topicsService.createTopicPack(topicPack);
     }
-    
+
     @RequestMapping(path = "/createTopicPackByName", method = RequestMethod.POST)
     @ResponseBody
     @PreAuthorize("hasAnyRole('CREATOR', 'ADMIN')")
@@ -57,10 +58,24 @@ public class TopicsController {
         return topicsService.getTopic(topicId);
     }
 
+    @RequestMapping(path = "getNextPrev", method = RequestMethod.POST)
+    @ResponseBody
+    public NextPrevTopic getNextPrev(@RequestBody Long topicId) {
+        return topicsService.getNextPrev(topicId);
+    }
+    
     @RequestMapping(path = "getTopicPack", method = RequestMethod.POST)
     @ResponseBody
     public TopicPacks getTopicPack(@RequestBody Long topicPackId) {
         return topicsService.getTopicPack(topicPackId);
+    }
+    
+    
+
+    @RequestMapping(path = "getTopicsOfTopicPack", method = RequestMethod.POST)
+    @ResponseBody
+    public List<Topics> getTopicsOfTopicPack(@RequestBody Long topicPackId) {
+        return topicsService.getTopicsOfTopicPack(topicPackId);
     }
 
     @RequestMapping(path = "public/getRecentTopics", method = RequestMethod.GET)
@@ -92,37 +107,37 @@ public class TopicsController {
     public boolean rateTopic(@RequestBody RatedTopics ratedTopic) {
         return topicsService.rateTopic(ratedTopic);
     }
-    
+
     @RequestMapping(path = "getUserFollowedTopics", method = RequestMethod.GET)
     @ResponseBody
     public List<Topics> getUserFollowedTopics() {
         return topicsService.getUserFollowedTopics();
     }
-    
+
     @RequestMapping(path = "getTopicFollowers", method = RequestMethod.POST)
     @ResponseBody
     public List<Users> getTopicFollowers(@RequestBody Long topicId) {
         return topicsService.getTopicFollowers(topicId);
     }
-    
+
     @RequestMapping(path = "followTopic", method = RequestMethod.POST)
     @ResponseBody
     public boolean followTopic(@RequestBody Long topicId) {
         return topicsService.followTopic(topicId);
     }
-    
+
     @RequestMapping(path = "unfollowTopic", method = RequestMethod.POST)
     @ResponseBody
     public boolean unfollowTopic(@RequestBody Long topicId) {
         return topicsService.unfollowTopic(topicId);
     }
-    
+
     @RequestMapping(path = "checkFollowedTopic", method = RequestMethod.POST)
     @ResponseBody
     public boolean checkFollowedTopic(@RequestBody Long topicId) {
         return topicsService.checkFollowedTopic(topicId);
     }
-    
+
     @RequestMapping(path = "getTopicRate", method = RequestMethod.POST)
     @ResponseBody
     public double getTopicRate(@RequestBody Long topicId) {

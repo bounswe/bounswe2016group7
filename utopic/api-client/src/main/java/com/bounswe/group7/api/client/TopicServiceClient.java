@@ -5,6 +5,7 @@
  */
 package com.bounswe.group7.api.client;
 
+import com.bounswe.group7.model.NextPrevTopic;
 import com.bounswe.group7.model.RatedTopics;
 import com.bounswe.group7.model.TopicPacks;
 import com.bounswe.group7.model.Topics;
@@ -45,6 +46,11 @@ public class TopicServiceClient extends BaseClient {
         }, topicId);
     }
 
+    public NextPrevTopic getNextPrev(Long topicId) throws Exception {
+        return post(getResource().path("getNextPrev"), new TypeToken<NextPrevTopic>() {
+        }, topicId);
+    }
+
     public List<Topics> getUserTopics(Long userId) throws Exception {
         return post(getResource().path("public/getUserTopics"), new TypeToken<List<Topics>>() {
         }, userId);
@@ -57,6 +63,11 @@ public class TopicServiceClient extends BaseClient {
 
     public TopicPacks getTopicPack(Long topicPackId) throws Exception {
         return post(getResource().path("getTopicPack"), new TypeToken<TopicPacks>() {
+        }, topicPackId);
+    }
+
+    public List<Topics> getTopicsOfTopicPack(Long topicPackId) throws Exception {
+        return post(getResource().path("getTopicsOfTopicPack"), new TypeToken<List<Topics>>() {
         }, topicPackId);
     }
 

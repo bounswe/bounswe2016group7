@@ -31,7 +31,7 @@ public class WikidataIntegration {
         StringBuilder str = new StringBuilder();
         WikiResults wikiRes = new WikiResults();
         try {
-            URL url = new URL(API_URL + "?action=wbsearchentities&language=en&format=json&limit=10&search=" + keyword);
+            URL url = new URL(API_URL + "?action=wbsearchentities&language=en&format=json&search=" + keyword);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.addRequestProperty("Accept", "application/json");
             conn.setDoOutput(true);

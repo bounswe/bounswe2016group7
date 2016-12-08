@@ -6,6 +6,7 @@
 package com.bounswe.group7.services;
 
 import com.bounswe.group7.model.FollowedTopics;
+import com.bounswe.group7.model.NextPrevTopic;
 import com.bounswe.group7.model.RatedTopics;
 import com.bounswe.group7.model.Tags;
 import com.bounswe.group7.model.TopicPacks;
@@ -55,8 +56,26 @@ public class TopicsService {
         return topicsRepository.findOne(id);
     }
 
+    public NextPrevTopic getNextPrev(Long id) {
+        Topics theTopic = getTopic(id);
+        TopicPacks thePack = getTopicPack(theTopic.getTopicPackId());
+        NextPrevTopic nextPrev = new NextPrevTopic();
+        if (theTopic.getOrderBy() < thePack.getCount()) {
+            nextPrev.setNext(topicsRepository.findByOrderBy(theTopic.getOrderBy() + 1));
+        }
+        if (theTopic.getOrderBy() > 1) {
+            nextPrev.setPrev(topicsRepository.findByOrderBy(theTopic.getOrderBy() - 1));
+        }
+        
+        return nextPrev;
+    }
+
     public TopicPacks getTopicPack(Long id) {
         return topicPacksRepository.findOne(id);
+    }
+
+    public List<Topics> getTopicsOfTopicPack(Long topicPackId) {
+        return topicsRepository.findTopicsOfTopicPack(topicPackId);
     }
 
     public Topics createTopic(Topics topic) {

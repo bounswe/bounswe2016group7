@@ -19,6 +19,8 @@ public interface TopicsRepository extends CrudRepository<Topics, Long> {
 
     public List<Topics> findByUserId(Long userId);
 
+    public Topics findByOrderBy(int orderBy);
+    
     public List<Topics> findByUserIdOrderByCreateDateDesc(Long userId);
 
     public List<Topics> findTop10ByOrderByCreateDateDesc();
@@ -36,4 +38,7 @@ public interface TopicsRepository extends CrudRepository<Topics, Long> {
 
     @Query(value = "SELECT T.* from TOPICS T, FOLLOWED_TOPICS FT WHERE FT.USER_ID = :userId and FT.TOPIC_ID = T.TOPIC_ID", nativeQuery = true)
     public List<Topics> findAllByUserId(@Param("userId") Long userId);
+    
+    @Query(value = "SELECT T.* from TOPICS T, TOPIC_PACKS FT WHERE FT.TOPIC_PACK_ID = :topicPackId AND T.TOPIC_PACK_ID = FT.TOPIC_PACK_ID ORDER BY order_by asc", nativeQuery = true)
+    public List<Topics> findTopicsOfTopicPack(@Param("topicPackId") Long topicPackId);
 }
