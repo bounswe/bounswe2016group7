@@ -36,13 +36,13 @@ public class TopicsService {
 
     @Autowired
     UsersService usersService;
-    
+
     @Autowired
     RatedTopicsRepository ratedTopicsRepository;
-    
+
     @Autowired
     FollowedTopicsRepository followedTopicsRepository;
-    
+
     @Autowired
     TagsService tagsService;
 
@@ -70,8 +70,7 @@ public class TopicsService {
             topic.setOrderBy(pack.getCount());
             topicPacksRepository.save(pack);
         }
-        for(Tags tag: topic.getTags())
-        {
+        for (Tags tag : topic.getTags()) {
             Tags createdTag = tagsService.createTag(tag);
             tag.setRefCount(createdTag.getRefCount());
             tag.setTagId(createdTag.getTagId());
@@ -84,96 +83,93 @@ public class TopicsService {
         topicPack.setCreateDate(new Date());
         return topicPacksRepository.save(topicPack);
     }
-    
-    public TopicPacks createTopicPackByName(String name)
-    {
+
+    public TopicPacks createTopicPackByName(String name) {
         return createTopicPack(new TopicPacks(name));
     }
-    
-    public List<Topics> getUserTopics(Long userId)
-    {
+
+    public List<Topics> getUserTopics(Long userId) {
         return topicsRepository.findByUserIdOrderByCreateDateDesc(userId);
     }
-    
+
     public List<TopicPacks> getUserTopicPacks(Long userId) {
         return topicPacksRepository.findByUserIdOrderByCreateDateDesc(userId);
     }
 
-    public List<Topics> getRecentTopics(){
+    public List<Topics> getRecentTopics() {
         return topicsRepository.findTop10ByOrderByCreateDateDesc();
     }
-    
+
     public List<Topics> getTopTopics() {
         return topicsRepository.findTop10ByOrderByRateDesc();
     }
-    
-    public boolean rateTopic(RatedTopics ratedTopic)
-    {
+
+    public boolean rateTopic(RatedTopics ratedTopic) {
         RatedTopics temp = ratedTopicsRepository.findByUserIdAndTopicId(
                 usersService.getLoggedInUserId(), ratedTopic.getTopicId());
-        if(temp != null)
-        {
-            if(temp.getRate() == ratedTopic.getRate())
+        if (temp != null) {
+            if (temp.getRate() == ratedTopic.getRate()) {
                 return false;
+            }
             Topics topic = topicsRepository.findOne(ratedTopic.getTopicId());
-            Double rate = topic.getRate()*topic.getRateCounter();
+            Double rate = topic.getRate() * topic.getRateCounter();
             rate = rate - temp.getRate() + ratedTopic.getRate();
-            topic.setRate(rate/topic.getRateCounter());
+            topic.setRate(rate / topic.getRateCounter());
             temp.setRate(ratedTopic.getRate());
             topicsRepository.save(topic);
             ratedTopicsRepository.save(temp);
             return true;
-        }
-        else{
+        } else {
             ratedTopic.setUserId(usersService.getLoggedInUserId());
             Topics topic = topicsRepository.findOne(ratedTopic.getTopicId());
-            Double rate = topic.getRate()*topic.getRateCounter();
-            rate+=ratedTopic.getRate();
-            topic.setRateCounter(topic.getRateCounter()+1);
-            topic.setRate(rate/topic.getRateCounter());
+            Double rate = topic.getRate() * topic.getRateCounter();
+            rate += ratedTopic.getRate();
+            topic.setRateCounter(topic.getRateCounter() + 1);
+            topic.setRate(rate / topic.getRateCounter());
             topicsRepository.save(topic);
             ratedTopicsRepository.save(ratedTopic);
             return true;
         }
     }
-    
-    public List<Topics> getUserFollowedTopics()
-    {
+
+    public List<Topics> getUserFollowedTopics() {
         List<FollowedTopics> fList = followedTopicsRepository.findAllByUserId(usersService.getLoggedInUserId());
         List<Topics> followedTopics = new ArrayList<>();
-        for(FollowedTopics topic : fList)
+        for (FollowedTopics topic : fList) {
             followedTopics.add(topicsRepository.findOne(topic.getTopicId()));
+        }
         return followedTopics;
     }
-    
-    public boolean followTopic(Long topicId)
-    {
-        FollowedTopics followedTopic = followedTopicsRepository.findByUserIdAndTopicId(usersService.getLoggedInUserId(),topicId);
-        if(followedTopic != null) return false;
-        followedTopic = new FollowedTopics(usersService.getLoggedInUserId(), topicId);
-        followedTopicsRepository.save(followedTopic);
-        return true;
+
+    public boolean followTopic(Long topicId) {
+        if (checkFollowedTopic(topicId)) {
+            return unfollowTopic(topicId);
+        } else {
+            FollowedTopics followedTopic = new FollowedTopics(usersService.getLoggedInUserId(), topicId);
+            followedTopicsRepository.save(followedTopic);
+            return true;
+        }
     }
-    
-    public boolean unfollowTopic(Long topicId)
-    {
-        FollowedTopics followedTopic = followedTopicsRepository.findByUserIdAndTopicId(usersService.getLoggedInUserId(),topicId);
-        if(followedTopic != null){
+
+    public boolean unfollowTopic(Long topicId) {
+        FollowedTopics followedTopic = followedTopicsRepository.findByUserIdAndTopicId(usersService.getLoggedInUserId(), topicId);
+        if (followedTopic != null) {
             followedTopicsRepository.delete(followedTopic);
             return true;
         }
         return false;
     }
-    
-    public boolean checkFollowedTopic(Long topicId)
-    {
-           FollowedTopics followedTopic = followedTopicsRepository.findByUserIdAndTopicId(usersService.getLoggedInUserId(),topicId);
-           if(followedTopic != null) return true;
-           else return false;
+
+    public boolean checkFollowedTopic(Long topicId) {
+        FollowedTopics followedTopic = followedTopicsRepository.findByUserIdAndTopicId(usersService.getLoggedInUserId(), topicId);
+        if (followedTopic != null) {
+            return true;
+        } else {
+            return false;
+        }
     }
-    
-    public double getTopicRate(Long topicId)
-    {
+
+    public double getTopicRate(Long topicId) {
         return topicsRepository.findOne(topicId).getRate();
     }
 }
