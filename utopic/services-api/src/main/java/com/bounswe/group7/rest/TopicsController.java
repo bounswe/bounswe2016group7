@@ -143,12 +143,5 @@ public class TopicsController {
     public double getTopicRate(@RequestBody Long topicId) {
         return topicsService.getTopicRate(topicId);
     }
-    
-    @RequestMapping(path = "getTopicUserRate", method = RequestMethod.POST)
-    @ResponseBody
-    public int getTopicUserRate(@RequestBody Long topicId)
-    {
-        return topicsService.getTopicUserRate(topicId);
-    }
 
 }
