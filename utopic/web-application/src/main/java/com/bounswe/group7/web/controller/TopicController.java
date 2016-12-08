@@ -1,5 +1,6 @@
 package com.bounswe.group7.web.controller;
 
+
 import com.bounswe.group7.api.client.CommentServiceClient;
 import com.bounswe.group7.api.client.QuizServiceClient;
 import com.bounswe.group7.api.client.TagServiceClient;
@@ -8,6 +9,7 @@ import com.bounswe.group7.api.client.UserServiceClient;
 import com.bounswe.group7.model.Comments;
 import com.bounswe.group7.model.Questions;
 import com.bounswe.group7.model.Quizes;
+import com.bounswe.group7.model.RatedTopics;
 import com.bounswe.group7.model.Tags;
 import com.bounswe.group7.model.TopicPacks;
 import com.bounswe.group7.model.Topics;
@@ -17,11 +19,14 @@ import com.bounswe.group7.web.domain.SaveQuizOption;
 import com.bounswe.group7.web.domain.SaveQuizQuestion;
 import com.bounswe.group7.web.domain.SaveTopic;
 import com.bounswe.group7.web.domain.TopicComment;
+import com.bounswe.group7.web.domain.UserLink;
 import com.bounswe.group7.web.domain.UserTopicPack;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -34,6 +39,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 
 /**
  *
@@ -54,6 +60,11 @@ public class TopicController {
         List <TopicComment> topicCommentList = new ArrayList<TopicComment>();
         
         try {
+            List <UserLink> followingUsers = new ArrayList <UserLink>();
+            for(Users user :topicClient.getTopicFollowers(id) ){
+                UserLink userToSend = new UserLink(user.getId(), user.getUsername());
+                followingUsers.add(userToSend);
+            }
             Topics topic = topicClient.getTopic(id);
             Users owner = userClient.getUser(topic.getUserId());
             TopicPacks topicPack = topicClient.getTopicPack(topic.getTopicPackId());
@@ -96,7 +107,9 @@ public class TopicController {
             String tagsJson = mapper.writeValueAsString(tags);
             String commentsJson = mapper.writeValueAsString(topicCommentList);
             String quizJson = mapper.writeValueAsString(quiz);
+            String followingUsersJson = mapper.writeValueAsString(followingUsers);
             
+            modelAndView.addObject("followingUsers", followingUsersJson);
             modelAndView.addObject("pack",topicPack);
             modelAndView.addObject("topic", topic);
             modelAndView.addObject("tags", tagsJson);
@@ -257,5 +270,59 @@ public class TopicController {
             return "error while getting user followed topics";
         }
     }
+     @RequestMapping(value = "/gettopicfollowers/{id}", method = RequestMethod.GET)
+    public String getTopicFollowers(@PathVariable Long id, HttpServletRequest request, HttpServletResponse response, RedirectAttributes attributes){
+        HttpSession session = request.getSession();
+        TopicServiceClient topicClient = new TopicServiceClient((String) session.getAttribute("token"));
+        try {
+            List <UserLink> followingUsers = new ArrayList <UserLink>();
+            for(Users user :topicClient.getTopicFollowers(id) ){
+                UserLink userToSend = new UserLink(user.getId(), user.getUsername());
+                followingUsers.add(userToSend);
+            }
+            ObjectMapper mapper = new ObjectMapper();
+            return mapper.writeValueAsString(followingUsers);
+        } catch (Exception ex) {
+            Logger.getLogger(TopicController.class.getName()).log(Level.SEVERE, null, ex);
+            return ex.getMessage();
+        }
+    }
+    
+    @RequestMapping(value = "/ratetopic/{rate}/{topicId}", method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public boolean rateTopic(@PathVariable int rate, @PathVariable long topicId, HttpServletRequest request, HttpServletResponse response, RedirectAttributes attributes){
+        HttpSession session = request.getSession();
+        TopicServiceClient topicClient =new TopicServiceClient((String) session.getAttribute("token"));
+        ObjectMapper mapper = new ObjectMapper();
+        try{
+            RatedTopics topic = new RatedTopics();
+            topic.setRate(rate);
+            topic.setTopicId(topicId);
+            boolean result = topicClient.rateTopic(topic);
+            return result;
+        }catch(Exception ex){
+            Logger.getLogger(TopicController.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+    }
+    
+    @RequestMapping(value = "/gettopicrate/{topicId}", method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public double getTopicRate(@PathVariable long topicId, HttpServletRequest request, HttpServletResponse response, RedirectAttributes attributes){
+        HttpSession session = request.getSession();
+        TopicServiceClient topicClient =new TopicServiceClient((String) session.getAttribute("token"));
+        ObjectMapper mapper = new ObjectMapper();
+        try{
+            double result = topicClient.getTopicRate(topicId);
+            return result;
+        }catch(Exception ex){
+            Logger.getLogger(TopicController.class.getName()).log(Level.SEVERE, null, ex);
+            return 0;
+        }
+    }
             
 }
+
+
