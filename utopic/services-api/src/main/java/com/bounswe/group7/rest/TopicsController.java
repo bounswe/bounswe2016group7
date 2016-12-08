@@ -99,7 +99,7 @@ public class TopicsController {
         return topicsService.getUserFollowedTopics();
     }
     
-    @RequestMapping(path = "getTopicFollowers", method = RequestMethod.GET)
+    @RequestMapping(path = "getTopicFollowers", method = RequestMethod.POST)
     @ResponseBody
     public List<Users> getTopicFollowers(@RequestBody Long topicId) {
         return topicsService.getTopicFollowers(topicId);
