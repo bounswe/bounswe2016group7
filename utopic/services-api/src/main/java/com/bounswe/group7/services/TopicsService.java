@@ -10,6 +10,7 @@ import com.bounswe.group7.model.RatedTopics;
 import com.bounswe.group7.model.Tags;
 import com.bounswe.group7.model.TopicPacks;
 import com.bounswe.group7.model.Topics;
+import com.bounswe.group7.model.Users;
 import com.bounswe.group7.repository.FollowedTopicsRepository;
 import com.bounswe.group7.repository.RatedTopicsRepository;
 import com.bounswe.group7.repository.TopicPacksRepository;
@@ -133,12 +134,11 @@ public class TopicsService {
     }
 
     public List<Topics> getUserFollowedTopics() {
-        List<FollowedTopics> fList = followedTopicsRepository.findAllByUserId(usersService.getLoggedInUserId());
-        List<Topics> followedTopics = new ArrayList<>();
-        for (FollowedTopics topic : fList) {
-            followedTopics.add(topicsRepository.findOne(topic.getTopicId()));
-        }
-        return followedTopics;
+        return followedTopicsRepository.findAllByUserId(usersService.getLoggedInUserId());
+    }
+    
+    public List<Users> getTopicFollowers(Long topicId){
+        return followedTopicsRepository.findUsersByTopicId(topicId);
     }
 
     public boolean followTopic(Long topicId) {

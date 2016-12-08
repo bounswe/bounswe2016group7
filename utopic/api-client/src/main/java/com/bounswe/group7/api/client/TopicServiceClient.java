@@ -8,6 +8,7 @@ package com.bounswe.group7.api.client;
 import com.bounswe.group7.model.RatedTopics;
 import com.bounswe.group7.model.TopicPacks;
 import com.bounswe.group7.model.Topics;
+import com.bounswe.group7.model.Users;
 import com.google.gson.reflect.TypeToken;
 import java.util.List;
 
@@ -33,7 +34,7 @@ public class TopicServiceClient extends BaseClient {
         return post(getResource().path("createTopicPack"), new TypeToken<TopicPacks>() {
         }, request);
     }
-    
+
     public TopicPacks createTopickPackByName(String name) throws Exception {
         return post(getResource().path("createTopicPackByName"), new TypeToken<TopicPacks>() {
         }, name);
@@ -48,7 +49,7 @@ public class TopicServiceClient extends BaseClient {
         return post(getResource().path("public/getUserTopics"), new TypeToken<List<Topics>>() {
         }, userId);
     }
-    
+
     public List<TopicPacks> getUserTopicPacks(Long userId) throws Exception {
         return post(getResource().path("getUserTopicPacks"), new TypeToken<List<TopicPacks>>() {
         }, userId);
@@ -68,33 +69,38 @@ public class TopicServiceClient extends BaseClient {
         return get(getResource().path("public/getTopTopics"), new TypeToken<List<Topics>>() {
         });
     }
-    
+
     public boolean rateTopic(RatedTopics ratedTopic) throws Exception {
         return post(getResource().path("rateTopic"), new TypeToken<Boolean>() {
         }, ratedTopic);
     }
-    
+
     public List<Topics> getUserFollowedTopics() throws Exception {
         return get(getResource().path("getUserFollowedTopics"), new TypeToken<List<Topics>>() {
         });
     }
-    
+
+    public List<Users> getTopicFollowers(Long topicId) throws Exception {
+        return post(getResource().path("getTopicFollowers"), new TypeToken<List<Users>>() {
+        }, topicId);
+    }
+
     public boolean followTopic(Long topicId) throws Exception {
         return post(getResource().path("followTopic"), new TypeToken<Boolean>() {
         }, topicId);
     }
-    
+
     public boolean unfollowTopic(Long topicId) throws Exception {
         return post(getResource().path("unfollowTopic"), new TypeToken<Boolean>() {
         }, topicId);
     }
-    
+
     public boolean checkFollowedTopic(Long topicId) throws Exception {
         return post(getResource().path("checkFollowedTopic"), new TypeToken<Boolean>() {
         }, topicId);
     }
-    
-    public double getTopicRate(Long topicId) throws Exception{
+
+    public double getTopicRate(Long topicId) throws Exception {
         return post(getResource().path("getTopicRate"), new TypeToken<Double>() {
         }, topicId);
     }

@@ -9,6 +9,7 @@ import com.bounswe.group7.model.FollowedTopics;
 import com.bounswe.group7.model.RatedTopics;
 import com.bounswe.group7.model.TopicPacks;
 import com.bounswe.group7.model.Topics;
+import com.bounswe.group7.model.Users;
 import com.bounswe.group7.services.TopicsService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -96,6 +97,12 @@ public class TopicsController {
     @ResponseBody
     public List<Topics> getUserFollowedTopics() {
         return topicsService.getUserFollowedTopics();
+    }
+    
+    @RequestMapping(path = "getTopicFollowers", method = RequestMethod.GET)
+    @ResponseBody
+    public List<Users> getTopicFollowers(@RequestBody Long topicId) {
+        return topicsService.getTopicFollowers(topicId);
     }
     
     @RequestMapping(path = "followTopic", method = RequestMethod.POST)
