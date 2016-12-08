@@ -3,13 +3,15 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 24
     buildToolsVersion "24.0.3"
+    compileOptions.encoding = 'ISO-8859-1'
+    //compileOptions.encoding "windows-1254"
     defaultConfig {
         applicationId "com.example.denizalp.thefirst"
         minSdkVersion 21
         targetSdkVersion 24
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        //testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         jackOptions {
             enabled true
         }

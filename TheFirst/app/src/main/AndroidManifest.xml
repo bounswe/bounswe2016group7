@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.denizalp.thefirst">
 
@@ -33,7 +33,7 @@
         <activity android:name=".RateTopicPage" />
         <activity android:name=".CommentViewPage" />
         <activity android:name=".CommentCreatePage" />
-        <activity android:name=".SemanticTagResultsView"></activity>
+        <activity android:name=".SemanticTagResultsView" />
     </application>
 
 </manifest>
