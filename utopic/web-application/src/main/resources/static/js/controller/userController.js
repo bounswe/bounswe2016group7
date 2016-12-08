@@ -25,7 +25,8 @@ mainModel.controller('userController',function indexController($scope) {
         }).fail(function(data){
             console.log(data);
         });
-        console.log(content);
     };
+    
+    
 });
 

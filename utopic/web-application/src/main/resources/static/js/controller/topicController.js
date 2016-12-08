@@ -3,7 +3,11 @@ mainModel.controller('topicController',function indexController($scope) {
     $scope.commentToAdd = '';
     $scope.repliedId = '';
     $scope.tags = topicTags;
-    $scope.quiz = quiz.questionList;//
+    $scope.quiz = quiz.questionList;
+    $scope.topicOwner = ownerId;
+    $scope.activeUser = activeId;
+    $scope.followText = '';
+    
     var size = $scope.quiz.length;
     for(var i = 0; i< size; i++){
         for(var j = 0; j<$scope.quiz[i].options.length; j++){
@@ -100,6 +104,48 @@ mainModel.controller('topicController',function indexController($scope) {
             console.log(data);
         });
     };
+    
+    $scope.followTopic = function(){
+        data = {'topicId': topicId};
+        $.ajax({
+            type: "POST",
+            contentType: "application/json; charset=utf-8",
+            url: "/followtopic",
+            data: JSON.stringify(data)
+        }).done(function(data) {
+            console.log(data);
+            if($scope.followText == 'UNFOLLOW')
+                $scope.followText = 'FOLLOW';
+            else
+                $scope.followText = 'UNFOLLOW';
+            $scope.$digest();
+        }).fail(function(data){
+            console.log(data);
+        });
+    };
+    
+    var isTopicFollowed = function(){
+        data = {'topicId': topicId};
+        $.ajax({
+            type: "POST",
+            contentType: "application/json; charset=utf-8",
+            url: "/istopicfollowed",
+            data: JSON.stringify(data)
+        }).done(function(data) {
+            console.log(data);
+            if(data == true)
+                $scope.followText = 'UNFOLLOW';
+            if(data == false)
+                $scope.followText = 'FOLLOW';
+            $scope.$digest();
+        }).fail(function(data){
+            console.log(data);
+        });
+    };
+    
+    $(document).ready(function(){
+        isTopicFollowed();
+    });
     
     
 });

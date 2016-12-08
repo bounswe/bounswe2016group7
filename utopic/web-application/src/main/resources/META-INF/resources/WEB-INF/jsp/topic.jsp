@@ -14,7 +14,7 @@
             </c:forEach>
                     var quiz = ${quiz};
                     var activeUsername = "${sessionScope.username}";
-                    var activeId = "${sessionScope.id}";
+                    var activeId = ${userId};
                     var activeToken = "${sessionScope.token}";
                     var comments = ${comments};
                     var ownerId = ${owner.id};
@@ -37,7 +37,8 @@
                                 <div class="col-xs-5 col-md-3">
                                     <div class="title-picture" style="background-image: url(/images/header1.jpg);"></div>
                                     <p>Creator: <a href="/profile/${owner.id}">${owner.username}</a><br/>
-                                        <a href="#">Interested people will be shown here.</a>
+                                        <div><a href="#">Interested people will be shown here.</a></div>
+                                        <button ng-if="topicOwner != activeUser" ng-click ="followTopic()" class="button button-orange" ng-bind="followText"></button>
                                     <p>
                                 </div>
                                 <div class="col-xs-7 col-md-9">

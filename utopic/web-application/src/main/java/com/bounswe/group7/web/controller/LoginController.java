@@ -36,6 +36,7 @@ public class LoginController {
             user = client.login(new Users(username, password));
             HttpSession session = request.getSession();
             session.setAttribute("user", user);
+            session.setAttribute("userId", user.getId());
             session.setAttribute("token", user.getToken());
             session.setAttribute("username", user.getUsername());
             session.setAttribute("authorities", user.getAuthorities());

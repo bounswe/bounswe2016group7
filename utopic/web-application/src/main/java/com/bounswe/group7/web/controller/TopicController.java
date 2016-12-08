@@ -212,5 +212,50 @@ public class TopicController {
             return ex.getMessage();
         }
     }
+    
+    @RequestMapping(value = "/followtopic", method = RequestMethod.POST,
+            produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public boolean followTopic(HttpServletRequest request, @RequestBody Topics topic, RedirectAttributes attributes){
+        HttpSession session = request.getSession();
+        TopicServiceClient topicClient =new TopicServiceClient((String) session.getAttribute("token"));
+        try{
+            boolean resp = topicClient.followTopic(topic.getTopicId());
+            return resp;
+        }catch(Exception ex){
+            return false;
+        }
+    }
+    
+    @RequestMapping(value = "/istopicfollowed", method = RequestMethod.POST,
+            produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public boolean isTopicFollowed(HttpServletRequest request, HttpServletResponse response, @RequestBody Topics topic, RedirectAttributes attributes){
+        HttpSession session = request.getSession();
+        TopicServiceClient topicClient =new TopicServiceClient((String) session.getAttribute("token"));
+        try{
+            boolean resp = topicClient.checkFollowedTopic(topic.getTopicId());
+            return resp;
+        }catch(Exception ex){
+            return false;
+        }
+    }
+    
+    
+    @RequestMapping(value = "/getuserfollowedtopics", method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public String getFollowedTopics(HttpServletRequest request, RedirectAttributes attributes){
+        HttpSession session = request.getSession();
+        TopicServiceClient topicClient =new TopicServiceClient((String) session.getAttribute("token"));
+        ObjectMapper mapper = new ObjectMapper();
+        try{
+            List <Topics>topics = topicClient.getUserFollowedTopics();
+            String topicsJson = mapper.writeValueAsString(topics);
+            return topicsJson;
+        }catch(Exception ex){
+            return "error while getting user followed topics";
+        }
+    }
             
 }

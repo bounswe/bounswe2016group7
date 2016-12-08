@@ -1,4 +1,4 @@
-mainModel.controller('indexController',function indexController($scope,$filter) {
+mainModel.controller('indexController',function indexController($scope) {
   $scope.tagInput = '';
   $scope.titleInput = '';
   $scope.tags = [];
@@ -154,5 +154,8 @@ mainModel.controller('indexController',function indexController($scope,$filter) 
       $scope.topicPackInput = topicPack.topicPackName;
       $scope.topicPackSelected = topicPack;
   };
+  
+  if(typeof followedTopics != 'undefined')
+    $scope.getUserFollowedTopics = followedTopics;
 });
 

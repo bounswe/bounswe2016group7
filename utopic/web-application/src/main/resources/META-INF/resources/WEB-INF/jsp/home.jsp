@@ -5,7 +5,7 @@
     <head>
         <jsp:include page="partial/cssFiles.jsp" />
     </head>
-    <body ng-app="mainApp">
+    <body ng-app="mainApp" ng-controller="indexController">
         <% if(session.getAttribute("username") != null){
         %><script type="text/javascript">
             var auth = [];
@@ -17,6 +17,7 @@
             var activeToken = "${sessionScope.token}";
             var recentTopics = ${recentTopics};
             var topTopics = ${topTopics};
+            var followedTopics = ${interestedTopics};
         </script><%
             }else{
             response.setStatus(response.SC_MOVED_TEMPORARILY);
@@ -28,11 +29,29 @@
         <div class="content">
             <div class="container">
                 <div class="panel">
+                    <div class="row">
+                        <div class="col-md-6 col-xs-12">
+                            <div class="panel-header">
+                                <span class="title">Interested Topics</span>
+                            </div>
+                            <div ng-repeat="topic in getUserFollowedTopics">
+                                <a href="/topic/{{topic.topicId}}" class="interested-topics">
+                                    <h5 ng-bind="topic.header"></h5>
+                                    <p ng-bind="topic.description"></p>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-xs-12">
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="panel">
                     <div class="panel-header">
                         <span class="title">Recent Topics</span>
                         <a href="#">>> See all</a>
                     </div>
-                    <div class="row" ng-controller="indexController">
+                    <div class="row">
                         <div ng-repeat="topic in recentTopics" class="col-xs-6 col-sm-4 col-md-3 panel-column">
                             <div class="topic-thumb">
                                 <p class="topic-title">{{topic.topic_name}}</p>
@@ -49,7 +68,7 @@
                         <span class="title">Trending Topics</span>
                         <a href="#">>> See all</a>
                     </div>
-                    <div class="row" ng-controller="indexController">
+                    <div class="row">
                         <div ng-repeat="topic in topTopics" class="col-xs-6 col-sm-4 col-md-3 panel-column">
                             <div class="topic-thumb">
                                 <p class="topic-title">{{topic.topic_name}}</p>

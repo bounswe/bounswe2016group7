@@ -86,11 +86,15 @@ public class MainController {
                 int commentNumber = commentClient.getTopicComments(topicId).size();
                 topTopicStatisticsList.add(new TopicWithStatistics(temp.getTopicId(), temp.getHeader(), commentNumber, temp.getRate()));
             }
+            
+            List<Topics>  interestedTopicsList = client.getUserFollowedTopics();
             ObjectMapper mapper = new ObjectMapper();
             String recentTopics = mapper.writeValueAsString(recentTopicStatisticsList);
             String topTopics = mapper.writeValueAsString(topTopicStatisticsList);
+            String interestedTopics = mapper.writeValueAsString(interestedTopicsList);
             index.addObject("recentTopics", recentTopics);
             index.addObject("topTopics", topTopics);
+            index.addObject("interestedTopics", interestedTopics);
         } catch (Exception ex) {
             ex.printStackTrace();
             attributes.addFlashAttribute("error", ex.getMessage());
