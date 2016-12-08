@@ -33,4 +33,7 @@ public interface TopicsRepository extends CrudRepository<Topics, Long> {
 
     @Query(value = "SELECT T.* FROM topics T, TOPIC_TAGS TT, TAGS TG WHERE T.TOPIC_ID = TT.TOPIC_ID and TT.TAG_ID = TG.TAG_ID and TG.category like %:category%", nativeQuery = true)
     public List<Topics> findByTags(@Param("category") String category);
+
+    @Query(value = "SELECT T.* from TOPICS T, FOLLOWED_TOPICS FT WHERE FT.USER_ID = :userId and FT.TOPIC_ID = T.TOPIC_ID", nativeQuery = true)
+    public List<Topics> findAllByUserId(@Param("userId") Long userId);
 }

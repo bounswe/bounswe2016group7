@@ -15,6 +15,7 @@ import com.bounswe.group7.repository.FollowedTopicsRepository;
 import com.bounswe.group7.repository.RatedTopicsRepository;
 import com.bounswe.group7.repository.TopicPacksRepository;
 import com.bounswe.group7.repository.TopicsRepository;
+import com.bounswe.group7.repository.UsersRepository;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -43,6 +44,9 @@ public class TopicsService {
 
     @Autowired
     FollowedTopicsRepository followedTopicsRepository;
+
+    @Autowired
+    UsersRepository usersRepository;
 
     @Autowired
     TagsService tagsService;
@@ -134,11 +138,11 @@ public class TopicsService {
     }
 
     public List<Topics> getUserFollowedTopics() {
-        return followedTopicsRepository.findAllByUserId(usersService.getLoggedInUserId());
+        return topicsRepository.findAllByUserId(usersService.getLoggedInUserId());
     }
-    
-    public List<Users> getTopicFollowers(Long topicId){
-        return followedTopicsRepository.findUsersByTopicId(topicId);
+
+    public List<Users> getTopicFollowers(Long topicId) {
+        return usersRepository.findUsersByTopicId(topicId);
     }
 
     public boolean followTopic(Long topicId) {
