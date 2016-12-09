@@ -146,7 +146,11 @@ public class TopicController {
             }
             topicToBeAdded.setTags(tagList);
             if(addedPack.topicPackId == -1){
-                TopicPacks pack = topicClient.createTopickPackByName(addedPack.topicPackName);
+                String packName = addedPack.topicPackName;
+                if(packName.equals("")){
+                    packName = topic.header;
+                }
+                TopicPacks pack = topicClient.createTopickPackByName(packName);
                 topicToBeAdded.setTopicPackId(pack.getTopicPackId());
             }else{
                 topicToBeAdded.setTopicPackId(topic.topicPack.topicPackId);
