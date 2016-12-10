@@ -1,7 +1,6 @@
 mainModel.controller('topicController',function indexController($scope) {
     $scope.comments = comments;
     $scope.commentToAdd = '';
-    $scope.commentToVote = '';
     $scope.repliedId = '';
     $scope.tags = topicTags;
     $scope.quiz = quiz.questionList;
@@ -63,8 +62,8 @@ mainModel.controller('topicController',function indexController($scope) {
     };
     
     //function upvotes comment
-     $scope.upVote = function(){
-        var data = {"commentId": $scope.commentToVote, "updown": "1"};
+     $scope.vote = function(commentId, updown){
+        var data = {"commentId": commentId, "updown": updown};
         $.ajax({
             type: "POST",
             contentType: "application/json; charset=utf-8",

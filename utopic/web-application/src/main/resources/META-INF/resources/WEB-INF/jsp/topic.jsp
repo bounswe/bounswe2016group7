@@ -114,10 +114,9 @@
                                         </div>
                                         <div ng-repeat="comment in comments" class="message" id="comment{{comment.Id}}">
                                             <div class="message-point">
-                                                <input type="hidden" ng-model="commentToVote" value="{{comment.Id}}" class="form-control">
-                                                <button class="button" ng-click="upVote()"><i class="fa fa-chevron-up" aria-hidden="true"></i></button>
+                                                <button class="button" ng-click="vote(comment.Id, 1)"><i class="fa fa-chevron-up" aria-hidden="true"></i></button>
                                                 <span>{{comment.Rating}}</span>
-                                                <button class="button" ng-click="downVote()"><i class="fa fa-chevron-down" aria-hidden="true"></i></button>
+                                                <button class="button" ng-click="vote(comment.Id, -1)"><i class="fa fa-chevron-down" aria-hidden="true"></i></button>
                                             </div>
                                             <div class="message-content">
                                                 <a href="/profile/{{comment.UserId}}" class="title">
