@@ -8,6 +8,8 @@ package com.bounswe.group7.web.controller;
 import com.bounswe.group7.api.client.CommentServiceClient;
 import com.bounswe.group7.api.client.UserServiceClient;
 import com.bounswe.group7.model.Comments;
+import com.bounswe.group7.model.VotedComments;
+import com.bounswe.group7.web.domain.CommentVote;
 import com.bounswe.group7.web.domain.DeleteComment;
 import com.bounswe.group7.web.domain.TopicComment;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -78,5 +80,24 @@ public class CommentController {
             ex.printStackTrace();
         }
         return topicComments;
+    }
+    
+    @RequestMapping(value = "/votecomment", method = RequestMethod.POST,
+            produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public int voteComment(HttpServletRequest request, @RequestBody CommentVote commentVote){
+        HttpSession session = request.getSession();
+        CommentServiceClient commentClient = new CommentServiceClient((String) session.getAttribute("token"));
+        VotedComments votedComment = new VotedComments();
+        try{
+            votedComment.setCommentId(commentVote.commentId);
+            votedComment.setRate(commentVote.updown);
+            commentClient.voteComment(votedComment);
+            int votes = commentClient.getCommentRate(commentVote.commentId);
+            return votes;
+        }catch(Exception ex){
+            ex.printStackTrace();
+            return -1;
+        }
     }
 }
