@@ -17,6 +17,7 @@ import com.bounswe.group7.model.Topics;
 import com.bounswe.group7.model.Users;
 import com.bounswe.group7.web.domain.NextAndPrev;
 import com.bounswe.group7.web.domain.Quiz;
+import com.bounswe.group7.web.domain.ResultTopic;
 import com.bounswe.group7.web.domain.SaveQuizOption;
 import com.bounswe.group7.web.domain.SaveQuizQuestion;
 import com.bounswe.group7.web.domain.SaveTopic;
@@ -350,7 +351,42 @@ public class TopicController {
             return 0;
         }
     }
-            
+    
+    @RequestMapping(value = "/show/{type}", method = RequestMethod.GET)
+    @ResponseBody
+    public ModelAndView showAll(@PathVariable int type, HttpServletRequest request){
+        HttpSession session = request.getSession();
+        TopicServiceClient topicClient =new TopicServiceClient((String) session.getAttribute("token"));
+        CommentServiceClient commentClient =new CommentServiceClient((String) session.getAttribute("token"));
+        ModelAndView modelAndView = new ModelAndView("search");
+        try{
+           List<ResultTopic> topics = new ArrayList();
+           List<Topics> topicsToBeShown = new ArrayList();
+           if(type == 1){
+               topicsToBeShown = topicClient.getTopTopics();
+           }else if(type == 2){
+               topicsToBeShown = topicClient.getRecentTopics();
+           }else if(type == 3){
+               topicsToBeShown = topicClient.getUserFollowedTopics();
+           }
+           for(Topics temp: topicsToBeShown){
+               ResultTopic topic = new ResultTopic();
+               topic.commentNumber = commentClient.getTopicComments(temp.getTopicId()).size();
+               topic.description = temp.getDescription();
+               topic.header = temp.getHeader();
+               topic.id = temp.getTopicId();
+               topic.rate = temp.getRate();
+               topic.tags = temp.getTags();
+               topics.add(topic);
+           }
+           ObjectMapper mapper = new ObjectMapper();
+           String topicList = mapper.writeValueAsString(topics);
+           modelAndView.addObject("topics", topicList);
+        }catch(Exception ex){
+            ex.printStackTrace();
+        }
+        return modelAndView;
+    }
 }
 
 
