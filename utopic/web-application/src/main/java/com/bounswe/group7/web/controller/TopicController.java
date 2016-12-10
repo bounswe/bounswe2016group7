@@ -103,6 +103,9 @@ public class TopicController {
                 }
             }
             quiz.questionList = questionList;
+            if(quiz.questionList == null){
+                quiz.questionList = new ArrayList();
+            }
             
             String tagsJson = mapper.writeValueAsString(tags);
             String commentsJson = mapper.writeValueAsString(topicCommentList);
