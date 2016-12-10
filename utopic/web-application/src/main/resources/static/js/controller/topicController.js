@@ -10,6 +10,7 @@ mainModel.controller('topicController',function indexController($scope) {
     $scope.followingUsers = [];
     $scope.showFollowing = false;
     $scope.currentRate = initialRating;
+    $scope.nextPrev = nextPrev;
     
     var size = $scope.quiz.length;
     for(var i = 0; i< size; i++){

@@ -12,16 +12,17 @@
             <c:forEach items="${authorities}" var="stdn" varStatus="status">
                     auth.push('${stdn.name}');
             </c:forEach>
-                    var initialRating = ${topic.rate}
-                    var followingUsers = ${followingUsers};
-                    var quiz = ${quiz};
-                    var activeUsername = "${sessionScope.username}";
-                    var activeId = ${userId};
-                    var activeToken = "${sessionScope.token}";
-                    var comments = ${comments};
-                    var ownerId = ${owner.id};
-                    var topicId = ${topic.topicId};
-                    var topicTags = ${tags};
+                var initialRating = ${topic.rate}
+                var followingUsers = ${followingUsers};
+                var quiz = ${quiz};
+                var activeUsername = "${sessionScope.username}";
+                var activeId = ${userId};
+                var activeToken = "${sessionScope.token}";
+                var comments = ${comments};
+                var ownerId = ${owner.id};
+                var topicId = ${topic.topicId};
+                var topicTags = ${tags};
+                var nextPrev = ${nextPrev};
         </script><%
             }else{
             response.setStatus(response.SC_MOVED_TEMPORARILY);
@@ -74,11 +75,12 @@
                         <div class="panel">
                             <div class="current-topic">
                                 <a href="#" class="title">${pack.name}</a>
-                                <a href="#" class="nav">
+                                <a ng-if="nextPrev.prevId != -1" href="{{nextPrev.prevId}}" class="nav">
                                     <i style="margin-right:5px;" class="fa fa-chevron-left" aria-hidden="true"></i>
-                                    Previous Topic in Pack</a>
-                                <a href="#" class="nav">
-                                    Next Topic in Pack
+                                    <span ng-bind="nextPrev.prevName"></span>
+                                </a>
+                                <a ng-if="nextPrev.nextId != -1" href="/topic/{{nextPrev.nextId}}" class="nav">
+                                    <span ng-bind="nextPrev.nextName"></span>
                                     <i style="margin-left:5px;" class="fa fa-chevron-right" aria-hidden="true"></i>
                                 </a>
                             </div>
