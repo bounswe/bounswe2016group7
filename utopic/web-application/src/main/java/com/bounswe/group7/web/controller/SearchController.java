@@ -24,6 +24,7 @@ import org.springframework.web.servlet.ModelAndView;
  *
  * @author Batuhan
  */
+
 @RestController
 public class SearchController {
     
