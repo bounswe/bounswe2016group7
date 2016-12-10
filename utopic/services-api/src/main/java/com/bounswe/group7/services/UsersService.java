@@ -40,6 +40,10 @@ public class UsersService {
     public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+    
+    public Users updateUser(Users user){
+        return usersRepository.save(user);
+    }
 
     public Users getLoggedInUser() {
         String token = request.getHeader(tokenHeader);

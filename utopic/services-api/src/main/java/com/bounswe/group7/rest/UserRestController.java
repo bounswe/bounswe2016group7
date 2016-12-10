@@ -1,6 +1,7 @@
 package com.bounswe.group7.rest;
 
 import com.bounswe.group7.model.Users;
+import com.bounswe.group7.repository.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -19,19 +20,19 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @RestController
 public class UserRestController {
-
+    
     @Autowired
     private UsersService usersService;
-
+    
     @Value("${jwt.header}")
     private String tokenHeader;
-
+    
     @Autowired
     private JwtTokenUtil jwtTokenUtil;
-
+    
     @Autowired
     private UserDetailsService userDetailsService;
-
+    
     @RequestMapping(value = "user", method = RequestMethod.GET)
     public JwtUser getAuthenticatedUser(HttpServletRequest request) {
         String token = request.getHeader(tokenHeader);
@@ -39,23 +40,27 @@ public class UserRestController {
         JwtUser user = (JwtUser) userDetailsService.loadUserByUsername(username);
         return user;
     }
-
+    
     @RequestMapping(value = "getLoggedInUser", method = RequestMethod.GET)
     @ResponseBody
     public Users getLoggedInUser(HttpServletRequest request) {
         return usersService.getLoggedInUser();
     }
-
+    
     @RequestMapping(value = "changePassword", method = RequestMethod.POST)
     @ResponseBody
     @PreAuthorize("hasAnyRole('EXPLORER', 'CREATOR', 'ADMIN')")
     public String changePassword(@RequestBody Users changePasswordReq) {
         return usersService.changePassword(changePasswordReq);
     }
-
+    
     @RequestMapping(value = "public/getUser", method = RequestMethod.POST)
     public Users getUser(@RequestBody Long userId) {
         return usersService.getUser(userId);
     }
-
+    
+    @RequestMapping(value = "updateUser", method = RequestMethod.POST)
+    public Users getUser(@RequestBody Users theUser) {
+        return usersService.updateUser(theUser);
+    }
 }
