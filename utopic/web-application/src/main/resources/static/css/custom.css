@@ -306,13 +306,44 @@ ul.categories li{
   margin-bottom: 30px;
 }
 
-.title-picture{
-  height: 200px;
-  width: 100%;
-  background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
-  margin-bottom: 15px;
+.title-picture {
+    height: 200px;
+    width: 100%;
+    background-size: cover;
+    background-position: top center;
+    background-repeat: no-repeat;
+    margin-bottom: 15px;
+    position: relative;
+}
+.title-picture .change-picture {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    background: rgba(0,0,0,0.4);
+    color: #fff;
+    padding: 5px 0;
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+}
+
+.title-picture:hover .change-picture {
+    opacity: 1;
+}
+
+.title-picture .change-picture label{
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    cursor: pointer;
+}
+
+.title-picture .change-picture input{
+    display:none;
 }
 
 .tags > .topic-tag {

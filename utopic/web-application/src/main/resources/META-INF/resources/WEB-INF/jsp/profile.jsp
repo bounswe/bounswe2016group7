@@ -37,7 +37,17 @@
                         <div class="panel">
                             <div class="row">
                                 <div class="col-xs-5 col-md-3">
-                                    <div class="title-picture" style="background-image: url(/images/user.png);"></div>
+                                    <div class="title-picture" style="background-image: url({{profilePicture}});">
+                                        <div class="change-picture">
+                                            <i class="fa fa-camera" aria-hidden="true"></i>
+                                            <br/>
+                                            Change Picture
+                                            <form id="picture-form" enctype="multipart/form-data">
+                                                <label for="update-picture">yükle</label>
+                                                <input id="update-picture" type="file" name="file" accept="image/*">
+                                            </form>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="col-xs-7 col-md-9">
                                     <h3>${profiledUser.firstname} ${profiledUser.lastname}<span></span></h3>
@@ -52,7 +62,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="row" ng-controller="userController">
+                <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-3">
                         <div class="panel">
                             User information will be shown here.
@@ -98,7 +108,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div  ng-if="profiledAuths.indexOf('ROLE_CREATOR')!=-1" class="tab-pane message-tab" ng-controller="userController" id="messages" role="tabpanel">
+                                <div  ng-if="profiledAuths.indexOf('ROLE_CREATOR')!=-1" class="tab-pane message-tab" id="messages" role="tabpanel">
                                     <div class="message-container">
                                         <div ng-if="!reviews" class="centered">
                                             <p>There is no reviews yet<br/>Be the first</p>

@@ -43,7 +43,7 @@
                                     <span ng-bind="topic.header"></span>
                                     
                                     <span class="rate-text">
-                                    <div class="topic-rating" id="topic-rating-{{topic.id}}"></div>
+                                        <div class="topic-rating" id="topic-rating-{{topic.id}}"></div>
                                         <span>({{topic.rate}})</span>
                                     </span>
                                 </h4>

@@ -6,17 +6,23 @@
 package com.bounswe.group7.web.controller;
 
 import com.bounswe.group7.web.MultipartUtility;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -24,33 +30,24 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
  *
  * @author ugurbor
  */
-@Controller
+@RestController
 public class UploadController {
+    final String api = "http://localhost:8090/";
+    final String uploaderURL = api + "upload";
 
-    final String uploaderURL = "http://localhost:8090/upload";
-
-    @RequestMapping(value = "/upload", method = RequestMethod.POST)
-    public String handleFileUpload(@RequestParam("file") MultipartFile file,
-            @RequestParam("name") String name,
-            RedirectAttributes redirectAttributes, HttpServletRequest request) throws Exception {
+    @RequestMapping(value = "/upload", method = RequestMethod.POST,
+           produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @ResponseBody
+    public String handleFileUpload(RedirectAttributes redirectAttributes, HttpServletRequest request) throws Exception {
         HttpSession session = request.getSession();
-
         MultipartUtility multipart = new MultipartUtility(uploaderURL, "UTF-8");
-
+        Part file = request.getPart("file");
+        String name = file.getSubmittedFileName();
         multipart.addHeaderField("Authorization", (String) session.getAttribute("token"));
         multipart.addFormField("name", name);
         multipart.addFilePart("file", file.getInputStream());
-
-        List<String> response = multipart.finish();
-
-        System.out.println("SERVER REPLIED:");
-        for (String line : response) {
-            System.out.println(line);
-        }
-        redirectAttributes.addFlashAttribute("message",
-                "You successfully uploaded " + file.getOriginalFilename() + "!");
-
-        return "redirect:/";
+        List <String> res = multipart.finish();
+        
+        return api+"images/"+name;
     }
-
 }
