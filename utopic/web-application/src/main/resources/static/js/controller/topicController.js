@@ -62,15 +62,17 @@ mainModel.controller('topicController',function indexController($scope) {
     };
     
     //function upvotes comment
-     $scope.vote = function(commentId, updown){
-        var data = {"commentId": commentId, "updown": updown};
+     $scope.vote = function(comment, updown){
+        var data = {"commentId": comment.Id, "updown": updown};
         $.ajax({
             type: "POST",
             contentType: "application/json; charset=utf-8",
             url: "/votecomment",
             data: JSON.stringify(data)
         }).done(function(data) {
+            comment.Rating = data;
             console.log(data);
+            $scope.$digest();
         }).fail(function(data){
             console.log(data);
         });
