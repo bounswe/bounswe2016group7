@@ -7,11 +7,16 @@ package com.bounswe.group7.model;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
 /**
@@ -35,11 +40,23 @@ public class SolvedQuizes implements Serializable{
     private Double score;
     
     private Date solveDate;
+    
+    @OneToMany(fetch = FetchType.EAGER)
+    @JoinColumns({
+        @JoinColumn(name = "solved_quiz_id", referencedColumnName = "solved_quiz_id"),})
+    private List<SolvedQuestions> solvedQuestions;
 
-    public SolvedQuizes(Long userId, Long quizId, Double score, Date solveDate) {
+    public List<SolvedQuestions> getSolvedQuestions() {
+        return solvedQuestions;
+    }
+
+    public void setSolvedQuestions(List<SolvedQuestions> solvedQuestions) {
+        this.solvedQuestions = solvedQuestions;
+    }
+
+    public SolvedQuizes(Long userId, Long quizId, Date solveDate) {
         this.userId = userId;
         this.quizId = quizId;
-        this.score = score;
         this.solveDate = solveDate;
     }
 
