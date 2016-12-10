@@ -24,10 +24,11 @@ import org.springframework.web.servlet.ModelAndView;
  *
  * @author Batuhan
  */
+
 @RestController
 public class SearchController {
     
-    @RequestMapping(value = "/topic/{keyword}", method = RequestMethod.GET)
+    @RequestMapping(value = "/search/{keyword}", method = RequestMethod.GET)
     public ModelAndView search(@PathVariable String keyword, HttpServletRequest request){
         HttpSession session = request.getSession();
         ModelAndView modelAndView = new ModelAndView("search");
