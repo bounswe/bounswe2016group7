@@ -494,6 +494,28 @@ ul.following-users.panel {
     margin-top: 5px;
     float:right;
 }
+.search-image{
+  height: 150px;
+  background-size: cover;
+  background-position: center center;
+  width: 100%;
+}
+.search-item{
+  position: relative;
+  margin-bottom: 30px;
+}
+.search-item a{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+@media(max-width: 543px){
+  .search-image{
+    margin-bottom: 15px;
+  }
+}
 /**************************** Mobile CSS *******************************/
 @media only screen and (min-width: 641px){
   .remodal.landing-modal {

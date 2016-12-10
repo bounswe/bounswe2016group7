@@ -27,8 +27,9 @@ import org.springframework.web.servlet.ModelAndView;
 @RestController
 public class SearchController {
     
-    @RequestMapping(value = "/topic/{keyword}", method = RequestMethod.GET)
-    public ModelAndView search(@PathVariable String keyword, HttpServletRequest request){
+    @RequestMapping(value = "/search", method = RequestMethod.GET)
+    public ModelAndView search(HttpServletRequest request){
+        String keyword = request.getParameter("keyword");
         HttpSession session = request.getSession();
         ModelAndView modelAndView = new ModelAndView("search");
         SearchServiceClient searchClient = new SearchServiceClient((String) session.getAttribute("token"));
