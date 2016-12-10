@@ -88,7 +88,7 @@ public class TopicController {
                 for(Questions question : quizBack.getQuestions()){
                     SaveQuizQuestion quizQuestion = new SaveQuizQuestion();
                     quizQuestion.text = question.getQuestion();
-                    quizQuestion.id = question.getQuizId();
+                    quizQuestion.id = question.getQuestionId();
                     quizQuestion.options = new ArrayList<SaveQuizOption>();
                     for(int i=0; i<4; i++){
                         SaveQuizOption option = new SaveQuizOption();
