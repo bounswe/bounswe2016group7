@@ -5,6 +5,7 @@
  */
 package com.bounswe.group7.web.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,11 +15,15 @@ import java.util.List;
 public class QuizResult {
     public int correctAnswerNumber;
     public int wrongAnswerNumber;
-    public List<QuestionAndAnswer> wrongAnswers;
+    public List<SaveQuizQuestion> results;
 
-    public QuizResult(int correctAnswerNumber, int wrongAnswerNumber, List<QuestionAndAnswer> wrongAnswers) {
+    public QuizResult() {
+        results = new ArrayList();
+    }
+
+    public QuizResult(int correctAnswerNumber, int wrongAnswerNumber, List<SaveQuizQuestion> results) {
         this.correctAnswerNumber = correctAnswerNumber;
         this.wrongAnswerNumber = wrongAnswerNumber;
-        this.wrongAnswers = wrongAnswers;
+        this.results = results;
     }
 }

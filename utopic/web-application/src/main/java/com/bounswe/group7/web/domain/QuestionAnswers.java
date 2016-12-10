@@ -14,12 +14,15 @@ import java.util.List;
 public class QuestionAnswers {
     public List<QuestionAndAnswer> questionList;
     public Long quizId;
+    public Long topicId;
 
     public QuestionAnswers() {
     }
-    
-    public QuestionAnswers(List<QuestionAndAnswer> questionList, Long quizId) {
+
+    public QuestionAnswers(List<QuestionAndAnswer> questionList, Long quizId, Long topicId) {
         this.questionList = questionList;
         this.quizId = quizId;
+        this.topicId = topicId;
     }
+    
 }

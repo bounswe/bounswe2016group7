@@ -8,11 +8,15 @@ package com.bounswe.group7.web.controller;
 import com.bounswe.group7.api.client.QuizServiceClient;
 import com.bounswe.group7.model.Questions;
 import com.bounswe.group7.model.Quizes;
+import com.bounswe.group7.model.SolvedQuestions;
 import com.bounswe.group7.model.SolvedQuizes;
 import com.bounswe.group7.web.domain.QuestionAndAnswer;
 import com.bounswe.group7.web.domain.QuestionAnswers;
 import com.bounswe.group7.web.domain.QuizResult;
+import com.bounswe.group7.web.domain.SaveQuizOption;
+import com.bounswe.group7.web.domain.SaveQuizQuestion;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
@@ -50,12 +54,53 @@ public class QuizController {
             }
             quizToBeSolved.setQuestions(questions);
             SolvedQuizes solvedQuiz = quizClient.solveQuiz(quizToBeSolved);
-            double score = solvedQuiz.getScore();
-            int totalNumber = questions.size();
-            int correctNumber = (int)(totalNumber * (score / 100));
-            int wrongNumber = totalNumber - correctNumber;
-            //Third parameter will be changed, it is wrong now.
-            QuizResult result = new QuizResult(correctNumber, wrongNumber, questionAnswers.questionList);
+            List<SolvedQuestions> solvedQuestions = solvedQuiz.getSolvedQuestions();
+            QuizResult result = new QuizResult();
+            
+            int correctNumber = 0;
+            int wrongNumber = 0;
+            int questionNum = 0;
+            for(SolvedQuestions solvedQuestion: solvedQuestions){
+                SaveQuizQuestion question = new SaveQuizQuestion();
+                Questions questionTemp = quizToBeSolved.getQuestions().get(questionNum);
+                if(solvedQuestion.isTrueOrFalse()){
+                    correctNumber++;
+                    question.id = questionTemp.getQuestionId();
+                    question.options = new ArrayList();
+                    for(int i='A'; i<='D'; i++){
+                        SaveQuizOption option = new SaveQuizOption();
+                        if(solvedQuestion.getRightAnswer() == i){
+                            option.isValid = 1;
+                        }
+                        String methodName = "getChoice" + i; 
+                        Method method = questionTemp.getClass().getMethod(methodName);
+                        Object temp = method.invoke(questionTemp);
+                        option.text = (String) temp;
+                        question.options.add(option);
+                    }
+                }else{
+                    wrongNumber++;
+                    question.id = solvedQuestion.getQuestionId();
+                    question.options = new ArrayList();
+                    for(int i='A'; i<='D'; i++){
+                        SaveQuizOption option = new SaveQuizOption();
+                        if(solvedQuestion.getRightAnswer() == i){
+                            option.isValid = 1;
+                        }
+                        if(solvedQuestion.getChosenAnswer() == i){
+                            option.isValid = -1;
+                        }
+                        String methodName = "getChoice" + i; 
+                        Method method = questionTemp.getClass().getMethod(methodName);
+                        Object temp = method.invoke(questionTemp);
+                        option.text = (String) temp;
+                        question.options.add(option);
+                    }
+                }
+                questionNum++;
+            }
+            result.correctAnswerNumber = correctNumber;
+            result.wrongAnswerNumber = wrongNumber;
             String resultJson = mapper.writeValueAsString(result);
             return resultJson;
         }catch(Exception ex){
