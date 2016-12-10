@@ -19,7 +19,7 @@ public interface TopicsRepository extends CrudRepository<Topics, Long> {
 
     public List<Topics> findByUserId(Long userId);
 
-    public Topics findByOrderBy(int orderBy);
+    public Topics findByTopicPackIdAndOrderBy(Long topicPackId, int orderBy);
     
     public List<Topics> findByUserIdOrderByCreateDateDesc(Long userId);
 

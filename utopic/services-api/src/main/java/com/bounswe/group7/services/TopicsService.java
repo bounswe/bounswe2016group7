@@ -61,10 +61,10 @@ public class TopicsService {
         TopicPacks thePack = getTopicPack(theTopic.getTopicPackId());
         NextPrevTopic nextPrev = new NextPrevTopic();
         if (theTopic.getOrderBy() < thePack.getCount()) {
-            nextPrev.setNext(topicsRepository.findByOrderBy(theTopic.getOrderBy() + 1));
+            nextPrev.setNext(topicsRepository.findByTopicPackIdAndOrderBy(theTopic.getTopicPackId(),theTopic.getOrderBy() + 1));
         }
         if (theTopic.getOrderBy() > 1) {
-            nextPrev.setPrev(topicsRepository.findByOrderBy(theTopic.getOrderBy() - 1));
+            nextPrev.setPrev(topicsRepository.findByTopicPackIdAndOrderBy(theTopic.getTopicPackId(),theTopic.getOrderBy() - 1));
         }
         
         return nextPrev;
