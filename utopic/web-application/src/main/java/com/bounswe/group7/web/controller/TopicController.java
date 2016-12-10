@@ -111,10 +111,20 @@ public class TopicController {
             
             NextPrevTopic nextandPrev = topicClient.getNextPrev(id);
             NextAndPrev nextPrev = new NextAndPrev();
-            nextPrev.nextId = nextandPrev.getNext().getTopicId();
-            nextPrev.prevId = nextandPrev.getPrev().getTopicId();
-            nextPrev.nextName = nextandPrev.getNext().getHeader();
-            nextPrev.prevName = nextandPrev.getPrev().getHeader();
+            if(nextandPrev.getNext() != null){
+                nextPrev.nextId = nextandPrev.getNext().getTopicId();
+                nextPrev.nextName = nextandPrev.getNext().getHeader();
+            }else{
+                nextPrev.nextId = (long) -1;
+                nextPrev.nextName = "";
+            }
+            if(nextandPrev.getPrev() != null){
+                nextPrev.prevId = nextandPrev.getPrev().getTopicId();
+                nextPrev.prevName = nextandPrev.getPrev().getHeader();
+            }else{
+                nextPrev.prevId = (long) -1;
+                nextPrev.prevName = "";
+            }
             
             String tagsJson = mapper.writeValueAsString(tags);
             String commentsJson = mapper.writeValueAsString(topicCommentList);
