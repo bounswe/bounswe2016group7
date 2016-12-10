@@ -15,6 +15,7 @@ import com.bounswe.group7.model.Tags;
 import com.bounswe.group7.model.TopicPacks;
 import com.bounswe.group7.model.Topics;
 import com.bounswe.group7.model.Users;
+import com.bounswe.group7.web.domain.NextAndPrev;
 import com.bounswe.group7.web.domain.Quiz;
 import com.bounswe.group7.web.domain.SaveQuizOption;
 import com.bounswe.group7.web.domain.SaveQuizQuestion;
@@ -108,7 +109,12 @@ public class TopicController {
                 quiz.questionList = new ArrayList();
             }
             
-            NextPrevTopic nextPrev = topicClient.getNextPrev(id);
+            NextPrevTopic nextandPrev = topicClient.getNextPrev(id);
+            NextAndPrev nextPrev = new NextAndPrev();
+            nextPrev.nextId = nextandPrev.getNext().getTopicId();
+            nextPrev.prevId = nextandPrev.getPrev().getTopicId();
+            nextPrev.nextName = nextandPrev.getNext().getHeader();
+            nextPrev.prevName = nextandPrev.getPrev().getHeader();
             
             String tagsJson = mapper.writeValueAsString(tags);
             String commentsJson = mapper.writeValueAsString(topicCommentList);
