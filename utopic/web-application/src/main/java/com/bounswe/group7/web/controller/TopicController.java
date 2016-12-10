@@ -7,6 +7,7 @@ import com.bounswe.group7.api.client.TagServiceClient;
 import com.bounswe.group7.api.client.TopicServiceClient;
 import com.bounswe.group7.api.client.UserServiceClient;
 import com.bounswe.group7.model.Comments;
+import com.bounswe.group7.model.NextPrevTopic;
 import com.bounswe.group7.model.Questions;
 import com.bounswe.group7.model.Quizes;
 import com.bounswe.group7.model.RatedTopics;
@@ -107,10 +108,13 @@ public class TopicController {
                 quiz.questionList = new ArrayList();
             }
             
+            NextPrevTopic nextPrev = topicClient.getNextPrev(id);
+            
             String tagsJson = mapper.writeValueAsString(tags);
             String commentsJson = mapper.writeValueAsString(topicCommentList);
             String quizJson = mapper.writeValueAsString(quiz);
             String followingUsersJson = mapper.writeValueAsString(followingUsers);
+            String nextPrevJson = mapper.writeValueAsString(nextPrev);
             
             modelAndView.addObject("followingUsers", followingUsersJson);
             modelAndView.addObject("pack",topicPack);
@@ -119,6 +123,7 @@ public class TopicController {
             modelAndView.addObject("owner", owner);
             modelAndView.addObject("quiz", quizJson);
             modelAndView.addObject("comments", commentsJson);
+            modelAndView.addObject("nextPrev", nextPrevJson);
         } catch (Exception ex) {
             ex.printStackTrace();
             attributes.addAttribute("error", ex.getMessage());
