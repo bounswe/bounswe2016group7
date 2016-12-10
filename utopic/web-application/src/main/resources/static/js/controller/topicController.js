@@ -118,8 +118,8 @@ mainModel.controller('topicController',function indexController($scope) {
         }).done(function(data) {
             if($scope.followText == 'UNFOLLOW'){
                 $scope.followText = 'FOLLOW';
-                for(var i = 0; $scope.followingUsers.length; i++){
-                    if($scope.followingUsers[i].id = activeId){
+                for(var i = 0; i < $scope.followingUsers.length; i++){
+                    if($scope.followingUsers[i].id == activeId){
                         $scope.followingUsers.splice(i+1,1);
                         break;
                     }
