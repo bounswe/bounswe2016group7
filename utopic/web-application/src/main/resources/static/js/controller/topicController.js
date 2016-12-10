@@ -1,6 +1,7 @@
 mainModel.controller('topicController',function indexController($scope) {
     $scope.comments = comments;
     $scope.commentToAdd = '';
+    $scope.commentToVote = '';
     $scope.repliedId = '';
     $scope.tags = topicTags;
     $scope.quiz = quiz.questionList;
@@ -41,7 +42,7 @@ mainModel.controller('topicController',function indexController($scope) {
         return '<a class="show-replied" targetComment="#'+ $scope.repliedId +'" href="#">'+ replyUsername +'</a> ' + content.substring(i+1);
     };
     
-    //function sends commnet data do back-end
+    //function sends comment data to back-end
     $scope.addComment = function(){
         content = getContentWithReply($scope.commentToAdd);
         var data = {"topicId": topicId,"userId": ownerId, "text": content};
@@ -60,6 +61,24 @@ mainModel.controller('topicController',function indexController($scope) {
             console.log(data);
         });
     };
+    
+    //function upvotes comment
+     $scope.upVote = function(){
+        var data = {"commentId": $scope.commentToVote, "updown": "1"};
+        $.ajax({
+            type: "POST",
+            contentType: "application/json; charset=utf-8",
+            url: "/votecomment",
+            data: JSON.stringify(data)
+        }).done(function(data) {
+            console.log(data);
+        }).fail(function(data){
+            console.log(data);
+        });
+    };
+    
+    //duntion downvotes comment
+    
     
     //reply functionality
     $scope.reply = function($event){
