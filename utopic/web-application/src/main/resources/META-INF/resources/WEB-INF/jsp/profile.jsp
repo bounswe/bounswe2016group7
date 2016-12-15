@@ -13,7 +13,7 @@
                     auth.push('${stdn.name}');
             </c:forEach>
                     var activeUsername = "${sessionScope.username}";
-                    var activeId = "${sessionScope.id}";
+                    var activeId = ${userId};
                     var activeToken = "${sessionScope.token}";
                     var reviews = ${reviews};
                     var ownerId = ${profiledUser.id};
@@ -38,12 +38,12 @@
                             <div class="row">
                                 <div class="col-xs-5 col-md-3">
                                     <div class="title-picture" style="background-image: url({{profilePicture}});">
-                                        <div class="change-picture">
+                                        <div ng-if="ownerId == currentUserId"  class="change-picture">
                                             <i class="fa fa-camera" aria-hidden="true"></i>
                                             <br/>
                                             Change Picture
                                             <form id="picture-form" enctype="multipart/form-data">
-                                                <label for="update-picture">yükle</label>
+                                                <label for="update-picture">upload</label>
                                                 <input id="update-picture" type="file" name="file" accept="image/*">
                                             </form>
                                         </div>

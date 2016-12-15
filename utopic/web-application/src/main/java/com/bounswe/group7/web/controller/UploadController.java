@@ -5,6 +5,7 @@
  */
 package com.bounswe.group7.web.controller;
 
+import com.bounswe.group7.model.Users;
 import com.bounswe.group7.web.MultipartUtility;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.BufferedOutputStream;
@@ -40,9 +41,13 @@ public class UploadController {
     @ResponseBody
     public String handleFileUpload(RedirectAttributes redirectAttributes, HttpServletRequest request) throws Exception {
         HttpSession session = request.getSession();
+        Users user1 = (Users)session.getAttribute("user");
+        long userId = user1.getId();
         MultipartUtility multipart = new MultipartUtility(uploaderURL, "UTF-8");
         Part file = request.getPart("file");
-        String name = file.getSubmittedFileName();
+        String fileName = file.getSubmittedFileName();
+        String extension = fileName.substring(fileName.lastIndexOf("."));
+        String name = "user-" + userId + ".jpg";
         multipart.addHeaderField("Authorization", (String) session.getAttribute("token"));
         multipart.addFormField("name", name);
         multipart.addFilePart("file", file.getInputStream());

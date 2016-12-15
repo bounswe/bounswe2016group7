@@ -4,6 +4,8 @@ mainModel.controller('userController',function indexController($scope) {
     $scope.reviewToAdd = '';
     $scope.profiledAuths = profiledUserAuth;
     $scope.profilePicture = '/images/user.png';
+    $scope.currentUserId = activeId;
+    $scope.ownerId = ownerId;
     var scrollToBottom = function(selector){
         $(selector).scrollTop($(selector)[0].scrollHeight);
     };
@@ -48,6 +50,19 @@ mainModel.controller('userController',function indexController($scope) {
             }
         });
         $scope.$digest();
+    });
+    var imageUrl = "http://localhost:8090/images/user-";
+    $(document).ready(function(){
+        
+        $.ajax({
+            url: imageUrl + ownerId + '.jpg',
+            type: 'GET'
+        }).done(function(data) {
+            $scope.profilePicture = imageUrl + ownerId + '.jpg';
+            $scope.$digest();
+        }).fail(function(data){
+            console.log(data);
+        });
     });
 });
 
