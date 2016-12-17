@@ -30,7 +30,8 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:id="@+id/searchBar"
-        android:layout_alignBottom="@+id/textView2" />
+        android:layout_alignBottom="@+id/textView2"
+        />
 
     <Button
         android:text="Home"

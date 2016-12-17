@@ -39,8 +39,8 @@ public class TopicPage extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_topic_page);
-        Spinner topicPackSpinner = (Spinner) findViewById(R.id.spinnerTopicPack);
+        setContentView(R.layout.activity_topic_page_2);
+       /* Spinner topicPackSpinner = (Spinner) findViewById(R.id.spinnerTopicPack);
         SharedPreferences sharPref = getSharedPreferences("tokenInfo",MODE_PRIVATE);
         String token = sharPref.getString("currentToken","boşHocamBu");
         UserServiceClient userServiceClient = new UserServiceClient(token);
@@ -65,7 +65,7 @@ public class TopicPage extends AppCompatActivity {
         catch(Exception e){
             e.printStackTrace();
         }
-
+        */
     }
 
     public void goEditing(View v){

@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+<LinearLayout
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:weightSum="1">
@@ -11,7 +16,7 @@
         android:weightSum="1">
 
         <TextView
-            android:text="TextView"
+            android:text="LOGO"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:id="@+id/textView17"
@@ -31,21 +36,21 @@
         android:weightSum="1">
 
         <Button
-            android:text="Button"
+            android:text="Home"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:id="@+id/button15"
             android:layout_weight="0.33" />
 
         <Button
-            android:text="Button"
+            android:text="Profile"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:id="@+id/button35"
             android:layout_weight="0.33" />
 
         <Button
-            android:text="Button"
+            android:text="Logout"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:id="@+id/button34"
@@ -59,7 +64,7 @@
         android:weightSum="1">
 
         <TextView
-            android:text="TextView"
+            android:text="Header"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:id="@+id/textView18"
@@ -75,7 +80,7 @@
     </LinearLayout>
 
     <TextView
-        android:text="TextView"
+        android:text="Description"
         android:layout_width="132dp"
         android:layout_height="wrap_content"
         android:id="@+id/textView19" />
@@ -97,7 +102,7 @@
         android:weightSum="1">
 
         <TextView
-            android:text="TextView"
+            android:text="Topic Package"
             android:layout_width="wrap_content"
             android:layout_height="47dp"
             android:id="@+id/textView20"
@@ -120,13 +125,13 @@
             android:layout_width="147dp"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
-            android:text="Name"
+            android:text=""
             android:ems="10"
             android:id="@+id/editText17"
             android:layout_weight="0.90" />
 
         <Button
-            android:text="Button"
+            android:text="Search"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/button36" />
@@ -134,13 +139,35 @@
 
     <LinearLayout
         android:orientation="horizontal"
-        android:layout_width="286dp"
-        android:layout_height="41dp">
+        android:layout_width="match_parent"
+        android:layout_height="41dp"
+        android:layout_weight="0.05"
+        android:weightSum="1">
 
         <Spinner
-            android:layout_width="286dp"
-            android:layout_height="42dp"
+            android:layout_width="282dp"
+            android:layout_height="match_parent"
             android:id="@+id/spinner2" />
+
+        <Button
+            android:text="Add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/button39" />
+
     </LinearLayout>
 
+    <GridView
+        android:layout_width="match_parent"
+        android:layout_height="147dp"
+        android:layout_weight="0.06" />
+
+    <Button
+        android:text="Add Material and Quiz"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/button40" />
+
 </LinearLayout>
+
+</ScrollView>

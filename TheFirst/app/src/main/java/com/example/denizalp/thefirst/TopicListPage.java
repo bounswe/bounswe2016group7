@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
+import com.bounswe.group7.api.client.SearchServiceClient;
 import com.bounswe.group7.api.client.TopicServiceClient;
 import com.bounswe.group7.api.client.UserServiceClient;
 import com.bounswe.group7.model.Topics;
@@ -63,6 +64,21 @@ public class TopicListPage extends AppCompatActivity {
         else if(recentOrTop == 4){
             try{
                topicList = topicServiceClient.getUserFollowedTopics();
+            }
+            catch(Exception e){
+                e.printStackTrace();
+            }
+        }
+        else if(recentOrTop == 5){
+            try{
+               Intent previous = getIntent();
+                String keyword = previous.getStringExtra("keyword");
+                String currToken = previous.getStringExtra("token");
+                if(currToken.equalsIgnoreCase("")) System.out.println("Token boş gelmeyecek lan!");
+                else {
+                    SearchServiceClient searchServiceClient = new SearchServiceClient(currToken);
+                    topicList = searchServiceClient.searchTopics(keyword);
+                }
             }
             catch(Exception e){
                 e.printStackTrace();

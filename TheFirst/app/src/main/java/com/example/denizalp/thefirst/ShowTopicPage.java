@@ -4,11 +4,13 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Scroller;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -64,9 +66,18 @@ public class ShowTopicPage extends AppCompatActivity {
             TextView topicPack = (TextView) findViewById(R.id.topicPackName);
             EditText topicDescription = (EditText) findViewById(R.id.topicDescription);
             topicDescription.setKeyListener(null);
+            topicDescription.setScroller(new Scroller(this));
+            // topicContent.setMaxLines(1);
+            topicDescription.setVerticalScrollBarEnabled(true);
+            topicDescription.setMovementMethod(new ScrollingMovementMethod());
+            topicDescription.setKeyListener(null);
             TextView topicRate = (TextView) findViewById(R.id.topicRate);
             EditText topicContent = (EditText) findViewById(R.id.topicContent);
             topicContent.setKeyListener(null);
+            topicContent.setScroller(new Scroller(this));
+           // topicContent.setMaxLines(1);
+            topicContent.setVerticalScrollBarEnabled(true);
+            topicContent.setMovementMethod(new ScrollingMovementMethod());
             ListView tagView = (ListView) findViewById(R.id.tagListView);
             Button followButton = (Button) findViewById(R.id.followButton);
             followButton.setOnClickListener(new View.OnClickListener() {
@@ -118,7 +129,7 @@ public class ShowTopicPage extends AppCompatActivity {
                 List<Tags> tagsList = t.getTags();
                 ArrayList<String> tagStringList = new ArrayList<String>();
                 for(Tags tag:tagsList){
-                    tagStringList.add(tag.getLabel()+" "+tag.getCategory());
+                    tagStringList.add(tag.getLabel()+" "+"("+tag.getCategory()+")");
                 }
                 ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                         android.R.layout.simple_list_item_1, android.R.id.text1, tagStringList);

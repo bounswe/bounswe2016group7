@@ -1,19 +1,24 @@
 package com.example.denizalp.thefirst;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.SearchView;
 
 import com.bounswe.group7.api.client.LoginServiceClient;
+import com.bounswe.group7.api.client.SearchServiceClient;
 import com.bounswe.group7.api.client.UserServiceClient;
 import com.bounswe.group7.model.Users;
 import com.bounswe.group7.model.security.Authority;
 
+import org.glassfish.hk2.api.messaging.Topic;
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
@@ -32,6 +37,7 @@ public class UserPage extends AppCompatActivity {
         String currentToken = sharedPref.getString("currentToken","");
         String username = "";
         String password = "";
+        Activity activity = this;
         if(currentToken.equals(""))
         {
             Intent intent = getIntent();
@@ -55,12 +61,13 @@ public class UserPage extends AppCompatActivity {
                 userServiceClient = new UserServiceClient(currentToken);
                 Intent intent = getIntent();
                 Long creatorId = intent.getLongExtra("creatorID",-1);
+                System.out.println(creatorId);
                 if(creatorId != -1){
                     token = userServiceClient.getUser(creatorId);
                 }
                 else token = userServiceClient.getLoggedInUser();
             }
-            System.out.println(token.getToken());
+            System.out.println(currentToken);
             //System.out.println(firstname+" "+lastname);
             setContentView(R.layout.activity_user_page);
             TextView textView = (TextView) findViewById(R.id.textView4);
@@ -85,6 +92,30 @@ public class UserPage extends AppCompatActivity {
         catch (Exception e) {
             e.printStackTrace();
         }
+
+        //SearchServiceClient searchServiceClient = new SearchServiceClient(currentToken);
+        SearchView searchView = (SearchView) findViewById(R.id.searchBar);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            public boolean onQueryTextSubmit(String query) {
+                searchView.clearFocus();     // Close keyboard on pressing IME_ACTION_SEARCH option
+                //Log.d(TAG, "QueryTextSubmit : "+ query);
+                //load search query
+                //System.out.println("You have looked for "+query);
+                Intent intent = new Intent(activity,TopicListPage.class);
+                if(token.getToken() != null) intent.putExtra("token",token.getToken());
+                else intent.putExtra("token",currentToken);
+                intent.putExtra("option",5);
+                intent.putExtra("keyword",query);
+                startActivity(intent);
+                return true;
+            }
+
+            public boolean onQueryTextChange(String newText) {
+                //Log.d(TAG, "QueryTextChange: "+ newText);
+                //System.out.println("You have looked now for "+newText);
+                return false;
+            }
+        });
     }
 
     public void getUserInfo(View view) {
@@ -150,4 +181,5 @@ public class UserPage extends AppCompatActivity {
         intent.putExtra("reviewedID",token.getId());
         startActivity(intent);
     }
+
 }
