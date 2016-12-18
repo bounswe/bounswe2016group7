@@ -189,7 +189,7 @@ public class ShowTopicPage extends AppCompatActivity {
         Long topicId = getTopicID.getLongExtra("topicId",0);
         Quizes quizes = quizServiceClient.getQuiz(topicId);
         Long userId = userServiceClient.getLoggedInUser().getId();
-        if(quizes != null)
+        if(quizes != null && quizes.getQuestions().size() != 0)
         {
             Intent intent = new Intent(this, QuizViewPage.class);
             intent.putExtra("topicId", topicId);

@@ -51,4 +51,14 @@ public class CommentViewPage extends AppCompatActivity {
 
         startActivity(intent);
     }
+
+    public void homePage(View v){
+        Intent intent = new Intent(this, HomePage.class);
+        startActivity(intent);
+    }
+
+    public void profilePage(View v){
+        Intent intent = new Intent(this, UserPage.class);
+        startActivity(intent);
+    }
 }

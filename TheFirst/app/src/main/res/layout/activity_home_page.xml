@@ -79,4 +79,15 @@
         android:id="@+id/button13"
         android:layout_alignParentEnd="true"
         android:onClick="goFollowedTopics"/>
+
+    <Button
+        android:text="Recommened Topics"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/button13"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="26dp"
+        android:id="@+id/button37"
+        android:layout_alignParentEnd="true"
+        android:onClick="showRecommendedTopics"/>
 </RelativeLayout>
