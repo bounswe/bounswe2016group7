@@ -39,7 +39,7 @@ public class UploadController {
     @RequestMapping(value = "/upload", method = RequestMethod.POST,
            produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     @ResponseBody
-    public String handleFileUpload(RedirectAttributes redirectAttributes, HttpServletRequest request) throws Exception {
+    public String handleProfileFileUpload(RedirectAttributes redirectAttributes, HttpServletRequest request) throws Exception {
         HttpSession session = request.getSession();
         Users user1 = (Users)session.getAttribute("user");
         long userId = user1.getId();
@@ -48,6 +48,25 @@ public class UploadController {
         String fileName = file.getSubmittedFileName();
         String extension = fileName.substring(fileName.lastIndexOf("."));
         String name = "user-" + userId + ".jpg";
+        multipart.addHeaderField("Authorization", (String) session.getAttribute("token"));
+        multipart.addFormField("name", name);
+        multipart.addFilePart("file", file.getInputStream());
+        List <String> res = multipart.finish();
+        
+        return api+"images/"+name;
+    }
+    
+    @RequestMapping(value = "/uploadTopicPicture", method = RequestMethod.POST,
+           produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @ResponseBody
+    public String handleTopicFileUpload(RedirectAttributes redirectAttributes, HttpServletRequest request) throws Exception {
+        HttpSession session = request.getSession();
+        String topicId = request.getParameter("topicId");
+        MultipartUtility multipart = new MultipartUtility(uploaderURL, "UTF-8");
+        Part file = request.getPart("file");
+        String fileName = file.getSubmittedFileName();
+        String extension = fileName.substring(fileName.lastIndexOf("."));
+        String name = "topic-" + topicId + ".jpg";
         multipart.addHeaderField("Authorization", (String) session.getAttribute("token"));
         multipart.addFormField("name", name);
         multipart.addFilePart("file", file.getInputStream());
