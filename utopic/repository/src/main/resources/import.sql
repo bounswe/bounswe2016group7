@@ -50,3 +50,13 @@ INSERT INTO QUIZES (QUIZ_ID, USER_ID, TOPIC_ID, CREATE_DATE, NAME) VALUES (nextv
 
 INSERT INTO QUESTIONS (QUESTION_ID, QUIZ_ID, QUESTION, CHOICEA, CHOICEB, CHOICEC, CHOICED, right_answer, DATE_CREATED) VALUES (nextval('QUESTION_SEQ'), 1, 'naber', 'iyi', 'idare eder', 'asd', 'acasd', 'A', '01/01/2016');
 INSERT INTO QUESTIONS (QUESTION_ID, QUIZ_ID, QUESTION, CHOICEA, CHOICEB, CHOICEC, CHOICED, right_answer, DATE_CREATED) VALUES (nextval('QUESTION_SEQ'), 1, 'soru 2', 'idsadayi', 'idarsaddase eder', 'asd', 'acasaddad', 'B', '01/01/2016');
+
+INSERT INTO QUESTIONS (QUESTION_ID, QUIZ_ID, QUESTION, CHOICEA, CHOICEB, CHOICEC, CHOICED, right_answer, DATE_CREATED) VALUES (nextval('QUESTION_SEQ'), 2, 'naber', 'iyi', 'idare eder', 'asd', 'acasd', 'A', '01/01/2016');
+INSERT INTO QUESTIONS (QUESTION_ID, QUIZ_ID, QUESTION, CHOICEA, CHOICEB, CHOICEC, CHOICED, right_answer, DATE_CREATED) VALUES (nextval('QUESTION_SEQ'), 2, 'soru 2', 'idsadayi', 'idarsaddase eder', 'asd', 'acasaddad', 'B', '01/01/2016');
+
+
+INSERT INTO QUESTIONS (QUESTION_ID, QUIZ_ID, QUESTION, CHOICEA, CHOICEB, CHOICEC, CHOICED, right_answer, DATE_CREATED) VALUES (nextval('QUESTION_SEQ'), 3, 'naber', 'iyi', 'idare eder', 'asd', 'acasd', 'A', '01/01/2016');
+INSERT INTO QUESTIONS (QUESTION_ID, QUIZ_ID, QUESTION, CHOICEA, CHOICEB, CHOICEC, CHOICED, right_answer, DATE_CREATED) VALUES (nextval('QUESTION_SEQ'), 3, 'soru 2', 'idsadayi', 'idarsaddase eder', 'asd', 'acasaddad', 'B', '01/01/2016');
+
+INSERT INTO QUESTIONS (QUESTION_ID, QUIZ_ID, QUESTION, CHOICEA, CHOICEB, CHOICEC, CHOICED, right_answer, DATE_CREATED) VALUES (nextval('QUESTION_SEQ'), 10, 'naber', 'iyi', 'idare eder', 'asd', 'acasd', 'A', '01/01/2016');
+INSERT INTO QUESTIONS (QUESTION_ID, QUIZ_ID, QUESTION, CHOICEA, CHOICEB, CHOICEC, CHOICED, right_answer, DATE_CREATED) VALUES (nextval('QUESTION_SEQ'), 10, 'soru 2', 'idsadayi', 'idarsaddase eder', 'asd', 'acasaddad', 'B', '01/01/2016');

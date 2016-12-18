@@ -17,5 +17,7 @@ import org.springframework.data.repository.CrudRepository;
 public interface SolvedQuizesRepository extends CrudRepository<SolvedQuizes, Long>{
     
     public List<SolvedQuizes> findByUserId(Long userId);
+    
+    public SolvedQuizes findByUserIdAndQuizId(Long userId, Long quizId);
 
 }

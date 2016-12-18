@@ -44,4 +44,8 @@ public interface TopicsRepository extends CrudRepository<Topics, Long> {
     
     @Query(value = "SELECT T.* FROM topics T, topic_packs TP WHERE T.TOPIC_PACK_ID = TP.TOPIC_PACK_ID and lower(TP.name) like %:topicPackName%", nativeQuery = true)
     public List<Topics> findByTopicPack(@Param("topicPackName") String topicPackName);
+ 
+        
+    @Query(value = "select t.* from solved_quizes sq, quizes q, topics t, topic_packs tp where sq.user_id = :userId and t.topic_pack_id = :topicPackId and q.quiz_id = sq.quiz_id and q.topic_id = t.topic_id and t.topic_pack_id = tp.topic_pack_id group by t.topic_id", nativeQuery = true)
+    public List<Topics> findTopicsWithSolvedQuizes(@Param("userId") Long userId, @Param("topicPackId") Long topicPackId);
 }

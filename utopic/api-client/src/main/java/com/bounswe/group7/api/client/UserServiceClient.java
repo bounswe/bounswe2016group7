@@ -5,8 +5,10 @@
  */
 package com.bounswe.group7.api.client;
 
+import com.bounswe.group7.model.QuizProgress;
 import com.bounswe.group7.model.Users;
 import com.google.gson.reflect.TypeToken;
+import java.util.List;
 
 /**
  *
@@ -31,5 +33,10 @@ public class UserServiceClient extends BaseClient {
     public Users getUser(Long userId) throws Exception {
         return post(getResource().path("public/getUser"), new TypeToken<Users>() {
         }, userId);
+    }
+
+    public List<QuizProgress> getQuizProgress() throws Exception {
+        return get(getResource().path("getQuizProgress"), new TypeToken<List<QuizProgress>>() {
+        });
     }
 }

@@ -20,6 +20,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Transient;
 import javax.persistence.UniqueConstraint;
 
 /**
@@ -65,6 +66,17 @@ public class Topics implements Serializable {
             inverseJoinColumns = {
                 @JoinColumn(name = "tag_id", referencedColumnName = "tag_id")})
     private List<Tags> tags;
+
+    @Transient
+    private Double score;
+
+    public Double getScore() {
+        return score;
+    }
+
+    public void setScore(Double score) {
+        this.score = score;
+    }
 
     public Topics(Long topicId, Long topicPackId, Long userId, String header) {
         this.topicId = topicId;
