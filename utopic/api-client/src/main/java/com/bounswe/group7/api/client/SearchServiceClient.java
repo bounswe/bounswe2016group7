@@ -23,7 +23,7 @@ public class SearchServiceClient extends BaseClient {
     }
 
     public List<Topics> searchTopics(String keywords) throws Exception {
-        return post(getResource().path("searchTopics"), new TypeToken<List<Topics>>() {
+        return post(getResource().path("public/searchTopics"), new TypeToken<List<Topics>>() {
         }, keywords);
     }
 }

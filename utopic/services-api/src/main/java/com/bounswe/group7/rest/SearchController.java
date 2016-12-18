@@ -23,7 +23,7 @@ public class SearchController {
     @Autowired
     SearchService searchService;
     
-    @RequestMapping(path = "/searchTopics", method = RequestMethod.POST)
+    @RequestMapping(path = "public/searchTopics", method = RequestMethod.POST)
     public List<Topics> searchTopics(@RequestBody String keywords){
      return searchService.searchTopics(keywords);
     }
