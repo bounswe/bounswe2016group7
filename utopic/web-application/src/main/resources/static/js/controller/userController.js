@@ -32,7 +32,6 @@ mainModel.controller('userController',function indexController($scope) {
     
     $(document).on('change','#update-picture',function(){
         var formData = new FormData($('#picture-form')[0]);
-        var selam = '';
         console.log(formData);
         $.ajax({
             url: '/upload',

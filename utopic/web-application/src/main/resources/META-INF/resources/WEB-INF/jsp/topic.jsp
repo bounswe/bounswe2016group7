@@ -19,7 +19,7 @@
                 var activeId = ${userId};
                 var activeToken = "${sessionScope.token}";
                 var comments = ${comments};
-                var ownerId = ${owner.id};
+                var ownerId = ${topic.userId};
                 var topicId = ${topic.topicId};
                 var topicTags = ${tags};
                 var nextPrev = ${nextPrev};
@@ -38,7 +38,18 @@
                         <div class="panel">
                             <div class="row">
                                 <div class="col-xs-5 col-md-3">
-                                    <div class="title-picture" style="background-image: url(/images/header1.jpg);"></div>
+                                    <div class="title-picture" style="background-image: url({{profilePicture}});">
+                                        <div ng-if="topicOwner == activeUser"  class="change-picture">
+                                            <i class="fa fa-camera" aria-hidden="true"></i>
+                                            <br/>
+                                            Change Picture
+                                            <form id="picture-form" enctype="multipart/form-data">
+                                                <input type="hidden" name="topicId" value="{{topic.topicId}}">
+                                                <label for="update-picture">upload</label>
+                                                <input id="update-picture" type="file" name="file" accept="image/*">
+                                            </form>
+                                        </div>
+                                    </div>
                                     <p>Creator: <a href="/profile/${owner.id}">${owner.username}</a><br/>
                                     <div class="show-following">
                                         <a ng-click="toggleFollowing()">Followed (<span ng-bind="followingUsers.length"></span>)</a>
@@ -74,7 +85,7 @@
                     <div class="col-xs-12 col-sm-12 col-md-4">
                         <div class="panel">
                             <div class="current-topic">
-                                <a href="#" class="title">${pack.name}</a>
+                                <a href="/topicpack/${pack.topicPackId}" class="title">${pack.name}</a>
                                 <a ng-if="nextPrev.prevId != -1" href="{{nextPrev.prevId}}" class="nav">
                                     <i style="margin-right:5px;" class="fa fa-chevron-left" aria-hidden="true"></i>
                                     <span ng-bind="nextPrev.prevName"></span>

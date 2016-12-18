@@ -219,7 +219,38 @@ mainModel.controller('topicController',function indexController($scope) {
         });
     });
     
-    
-    
-}); 
+    $(document).on('change','#update-picture',function(){
+        var formData = new FormData($('#picture-form')[0]);
+        console.log(formData);
+        $.ajax({
+            url: '/uploadTopicPicture',
+            type: 'POST',
+            data: formData,
+            async: false,
+            cache: false,
+            contentType: false,
+            processData: false
+        }).done(function(data) {
+            $scope.profilePicture = data.responseText;
+        }).fail(function(data){
+            if(data.status == 200){
+                $scope.profilePicture = data.responseText;
+            }
+        });
+        $scope.$digest();
+    });
+    var imageUrl = "http://localhost:8090/images/topic-";
+    $(document).ready(function(){
+        
+        $.ajax({
+            url: imageUrl + topicId + '.jpg',
+            type: 'GET'
+        }).done(function(data) {
+            $scope.profilePicture = imageUrl + topicId + '.jpg';
+            $scope.$digest();
+        }).fail(function(data){
+            console.log(data);
+        });
+    });
+});
 
