@@ -46,7 +46,7 @@
                                             <form id="picture-form" enctype="multipart/form-data">
                                                 <input type="hidden" name="topicId" value="{{topic.topicId}}">
                                                 <label for="update-picture">upload</label>
-                                                <input id="update-picture" type="file" name="file" accept="image/*">
+                                                <input id="update-picture" type="file" name="file" accept="image/jpg">
                                             </form>
                                         </div>
                                     </div>

@@ -145,6 +145,7 @@ public class TopicController {
             modelAndView.addObject("comments", commentsJson);
             modelAndView.addObject("nextPrev", nextPrevJson);
             modelAndView.addObject("recTopic", recTopicsJson);
+            session.setAttribute("topicId", topic.getTopicId());
         } catch (Exception ex) {
             ex.printStackTrace();
             attributes.addAttribute("error", ex.getMessage());

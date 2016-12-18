@@ -61,7 +61,7 @@ public class UploadController {
     @ResponseBody
     public String handleTopicFileUpload(RedirectAttributes redirectAttributes, HttpServletRequest request) throws Exception {
         HttpSession session = request.getSession();
-        String topicId = request.getParameter("topicId");
+        String topicId = session.getAttribute("topicId").toString();
         MultipartUtility multipart = new MultipartUtility(uploaderURL, "UTF-8");
         Part file = request.getPart("file");
         String fileName = file.getSubmittedFileName();
