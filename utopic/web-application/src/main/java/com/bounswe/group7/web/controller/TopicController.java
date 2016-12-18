@@ -255,6 +255,34 @@ public class TopicController {
         }
     }
     
+    @RequestMapping(value = "/topicpack/{id}", method = RequestMethod.GET)
+    public ModelAndView topicPackPage(@PathVariable Long topicPackId, HttpServletRequest request){
+        HttpSession session = request.getSession();
+        TopicServiceClient topicClient = new TopicServiceClient((String) session.getAttribute("token"));
+        CommentServiceClient commentClient = new CommentServiceClient((String) session.getAttribute("token"));
+        ModelAndView modelAndView = new ModelAndView("search");
+        try{
+            List<Topics> topicList = topicClient.getTopicsOfTopicPack(topicPackId);
+            List<ResultTopic> topics = new ArrayList();
+            for(Topics topic : topicList){
+                ResultTopic resultTopic = new ResultTopic();
+                resultTopic.commentNumber = commentClient.getTopicComments(topic.getTopicId()).size();
+                resultTopic.description = topic.getDescription();
+                resultTopic.header = topic.getHeader();
+                resultTopic.id = topic.getTopicId();
+                resultTopic.rate = topic.getRate();
+                resultTopic.tags = topic.getTags();
+                topics.add(resultTopic);
+            }
+            ObjectMapper mapper = new ObjectMapper();
+            String packTopics = mapper.writeValueAsString(topics);
+            modelAndView.addObject("topics", packTopics);
+        }catch(Exception ex){
+            ex.printStackTrace();
+        }
+        return modelAndView;
+    }
+    
     @RequestMapping(value = "/followtopic", method = RequestMethod.POST,
             produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
