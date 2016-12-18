@@ -7,6 +7,7 @@ package com.bounswe.group7.services;
 
 import com.bounswe.group7.model.Tags;
 import com.bounswe.group7.repository.TagsRepository;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,6 +33,16 @@ public class TagsService {
             tag.setRefCount(tag.getRefCount()+1);
             return tagRepository.save(tag);
         }
+    }
+    
+    public Tags getTag(Tags tag)
+    {
+        return tagRepository.findByLabelAndCategory(tag.getLabel(), tag.getCategory());
+    }
+    
+    public List<Tags> getCategoryTags()
+    {
+        return tagRepository.findTop10ByOrderByRefCountDesc();
     }
    
 }

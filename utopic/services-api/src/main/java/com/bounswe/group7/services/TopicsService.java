@@ -95,7 +95,7 @@ public class TopicsService {
             topicPacksRepository.save(pack);
         }
         for (Tags tag : topic.getTags()) {
-            Tags createdTag = tagsService.createTag(tag);
+            Tags createdTag = tagsService.getTag(tag);
             tag.setRefCount(createdTag.getRefCount());
             tag.setTagId(createdTag.getTagId());
         }

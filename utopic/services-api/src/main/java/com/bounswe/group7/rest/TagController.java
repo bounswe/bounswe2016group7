@@ -8,6 +8,7 @@ package com.bounswe.group7.rest;
 import com.bounswe.group7.model.Tags;
 import com.bounswe.group7.model.TopicPacks;
 import com.bounswe.group7.services.TagsService;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -37,6 +38,13 @@ public class TagController {
     @ResponseBody
     @PreAuthorize("hasAnyRole('CREATOR', 'ADMIN')")
     public Tags addTag(@RequestBody Tags tag) {
-        return new Tags();//tagsService.addTag(tag);
+        return new Tags();
     }
+    
+    @RequestMapping(path = "/getCategoryTags", method = RequestMethod.GET)
+    @ResponseBody
+    public List<Tags> getCategoryTags() {
+        return tagsService.getCategoryTags();
+    }
+    
 }

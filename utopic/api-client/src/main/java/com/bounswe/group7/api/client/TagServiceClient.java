@@ -8,6 +8,7 @@ package com.bounswe.group7.api.client;
 import com.bounswe.group7.model.Tags;
 import com.bounswe.group7.model.Topics;
 import com.google.gson.reflect.TypeToken;
+import java.util.List;
 
 /**
  *
@@ -30,6 +31,10 @@ public class TagServiceClient extends BaseClient{
     public Tags addTag(Tags tag) throws Exception {
         return post(getResource().path("addTag"), new TypeToken<Tags>() {
         }, tag);
+    }
+    
+    public List<Tags> getCategoryTags() throws Exception {
+        return get(getResource().path("getCategoryTags"), new TypeToken<List<Tags>>(){});
     }
 
 }
