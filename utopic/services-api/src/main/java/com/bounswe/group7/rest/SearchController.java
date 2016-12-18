@@ -27,4 +27,9 @@ public class SearchController {
     public List<Topics> searchTopics(@RequestBody String keywords){
      return searchService.searchTopics(keywords);
     }
+    
+    @RequestMapping(path = "recommendedTopics", method = RequestMethod.POST)
+    public List<Topics> searchTopics(@RequestBody Long topicId) {
+        return searchService.recommendedTopics(topicId);
+    }
 }

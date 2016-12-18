@@ -41,4 +41,7 @@ public interface TopicsRepository extends CrudRepository<Topics, Long> {
     
     @Query(value = "SELECT T.* from TOPICS T, TOPIC_PACKS FT WHERE FT.TOPIC_PACK_ID = :topicPackId AND T.TOPIC_PACK_ID = FT.TOPIC_PACK_ID ORDER BY order_by asc", nativeQuery = true)
     public List<Topics> findTopicsOfTopicPack(@Param("topicPackId") Long topicPackId);
+    
+    @Query(value = "SELECT T.* FROM topics T, topic_packs TP WHERE T.TOPIC_PACK_ID = TP.TOPIC_PACK_ID and TP.name like %:topicPackName%", nativeQuery = true)
+    public List<Topics> findByTopicPack(@Param("topicPackName") String topicPackName);
 }
