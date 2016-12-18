@@ -43,7 +43,9 @@ public class SearchService {
         List<String> keywordListTemp = Arrays.asList(keywordArr);
         ArrayList<String> keywordList = new ArrayList<String>();
         keywordList.addAll(keywordListTemp);
-        keywordList.add(keywords);
+        if (keywordArr.length > 1) {
+            keywordList.add(keywords);
+        }
         ConcurrentHashMap<String, String> keywordMap = new ConcurrentHashMap<>();
 
         keywordList.parallelStream().forEach((key) -> {
