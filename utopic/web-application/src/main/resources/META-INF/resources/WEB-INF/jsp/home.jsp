@@ -33,6 +33,7 @@
                         <div class="col-md-6 col-xs-12">
                             <div class="panel-header">
                                 <span class="title">Interested Topics</span>
+                                <a href="/show/3">>> See all</a>
                             </div>
                             <div ng-repeat="topic in getUserFollowedTopics">
                                 <a href="/topic/{{topic.topicId}}" class="interested-topics">
@@ -49,7 +50,7 @@
                 <div class="panel">
                     <div class="panel-header">
                         <span class="title">Recent Topics</span>
-                        <a href="#">>> See all</a>
+                        <a href="/show/2">>> See all</a>
                     </div>
                     <div class="row">
                         <div ng-repeat="topic in recentTopics" class="col-xs-6 col-sm-4 col-md-3 panel-column">
@@ -66,7 +67,7 @@
                 <div class="panel">
                     <div class="panel-header">
                         <span class="title">Trending Topics</span>
-                        <a href="#">>> See all</a>
+                        <a href="/show/1">>> See all</a>
                     </div>
                     <div class="row">
                         <div ng-repeat="topic in topTopics" class="col-xs-6 col-sm-4 col-md-3 panel-column">

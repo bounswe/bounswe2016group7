@@ -30,7 +30,7 @@
         <div class="panel">
           <div class="panel-header">
             <span class="title">Recent Topics</span>
-            <a href="#">>> See all</a>
+            <a href="/show/2">>> See all</a>
           </div>
           <div class="row" ng-controller="indexController">
             <div ng-repeat="topic in recentTopics" class="col-xs-6 col-sm-4 col-md-3 panel-column">
@@ -47,7 +47,7 @@
         <div class="panel">
           <div class="panel-header">
             <span class="title">Trending Topics</span>
-            <a href="#">>> See all</a>
+            <a href="/show/1">>> See all</a>
           </div>
           <div class="row" ng-controller="indexController">
             <div ng-repeat="topic in topTopics" class="col-xs-6 col-sm-4 col-md-3 panel-column">
