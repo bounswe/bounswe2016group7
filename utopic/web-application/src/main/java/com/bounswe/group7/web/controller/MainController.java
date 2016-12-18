@@ -7,7 +7,9 @@ package com.bounswe.group7.web.controller;
 
 import com.bounswe.group7.api.client.CommentServiceClient;
 import com.bounswe.group7.api.client.LoginServiceClient;
+import com.bounswe.group7.api.client.TagServiceClient;
 import com.bounswe.group7.api.client.TopicServiceClient;
+import com.bounswe.group7.model.Tags;
 import com.bounswe.group7.model.Topics;
 import com.bounswe.group7.model.Users;
 import com.bounswe.group7.model.security.Authority;
@@ -38,6 +40,7 @@ public class MainController {
         HttpSession session = request.getSession();
         TopicServiceClient client = new TopicServiceClient((String) session.getAttribute("token"));
         CommentServiceClient commentClient = new CommentServiceClient((String) session.getAttribute("token"));
+        TagServiceClient tagClient = new TagServiceClient((String) session.getAttribute("token"));
         try {
             List<Topics> recentTopicsList = client.getRecentTopics();
             List<Topics> topTopicsList = client.getTopTopics();
@@ -54,10 +57,13 @@ public class MainController {
                 topTopicStatisticsList.add(new TopicWithStatistics(temp.getTopicId(), temp.getHeader(), commentNumber, temp.getRate()));
             }
             ObjectMapper mapper = new ObjectMapper();
+            List<Tags> categoryList = tagClient.getCategoryTags();
             String recentTopics = mapper.writeValueAsString(recentTopicStatisticsList);
             String topTopics = mapper.writeValueAsString(topTopicStatisticsList);
+            String categories = mapper.writeValueAsString(categoryList);
             index.addObject("recentTopics", recentTopics);
             index.addObject("topTopics", topTopics);
+            index.addObject("categories", categories);
         } catch (Exception ex) {
             ex.printStackTrace();
             attributes.addFlashAttribute("error", ex.getMessage());
@@ -71,6 +77,7 @@ public class MainController {
         HttpSession session = request.getSession();
         TopicServiceClient client = new TopicServiceClient((String) session.getAttribute("token"));
         CommentServiceClient commentClient = new CommentServiceClient((String) session.getAttribute("token"));
+        TagServiceClient tagClient = new TagServiceClient((String) session.getAttribute("token"));
         try {
             List<Topics> recentTopicsList = client.getRecentTopics();
             List<Topics> topTopicsList = client.getTopTopics();
@@ -86,15 +93,17 @@ public class MainController {
                 int commentNumber = commentClient.getTopicComments(topicId).size();
                 topTopicStatisticsList.add(new TopicWithStatistics(temp.getTopicId(), temp.getHeader(), commentNumber, temp.getRate()));
             }
-            
+            List<Tags> categoryList = tagClient.getCategoryTags();
             List<Topics>  interestedTopicsList = client.getUserFollowedTopics();
             ObjectMapper mapper = new ObjectMapper();
             String recentTopics = mapper.writeValueAsString(recentTopicStatisticsList);
             String topTopics = mapper.writeValueAsString(topTopicStatisticsList);
             String interestedTopics = mapper.writeValueAsString(interestedTopicsList);
+            String categories = mapper.writeValueAsString(categoryList);
             index.addObject("recentTopics", recentTopics);
             index.addObject("topTopics", topTopics);
             index.addObject("interestedTopics", interestedTopics);
+            index.addObject("categories", categories);
         } catch (Exception ex) {
             ex.printStackTrace();
             attributes.addFlashAttribute("error", ex.getMessage());
