@@ -39,10 +39,13 @@ public class SearchService {
 
     @Autowired
     private TopicsRepository topicsRepository;
-    
+
     @Autowired
     private TopicsService topicsService;
-    
+
+    @Autowired
+    private UsersService usersService;
+
     public List<Topics> searchTopics(String keywords) {
         String[] keywordArr = keywords.toLowerCase().split(" ");
         List<String> keywordListTemp = Arrays.asList(keywordArr);
@@ -135,12 +138,12 @@ public class SearchService {
         return res;
     }
 
-    public List<Topics> recommendedTopics(Long topicId) {
-        
+    public List<Topics> topicRecommendations(Long topicId) {
+
         Topics theTopic = topicsService.getTopic(topicId);
         TopicPacks thePack = topicsService.getTopicPack(theTopic.getTopicPackId());
         String keywords = theTopic.getHeader().toLowerCase() + " " + thePack.getName().toLowerCase();
-        for(Tags tag : theTopic.getTags()){
+        for (Tags tag : theTopic.getTags()) {
             keywords += " " + tag.getLabel().toLowerCase() + " " + tag.getCategory().toLowerCase();
         }
         String[] keywordArr = keywords.split(" ");
@@ -197,6 +200,92 @@ public class SearchService {
 
         searchResults.remove(topicId);
         idWithFreq.remove(topicId);
+
+        ArrayList<Pair<Integer, Topics>> listTest = new ArrayList<>();
+        for (Entry entry : idWithFreq.entrySet()) {
+            listTest.add(new Pair((Integer) entry.getValue(), searchResults.get(entry.getKey())));
+        }
+
+        Collections.sort(listTest, new Comparator<Pair>() {
+            public int compare(Pair a, Pair b) {
+                return (int) ((Integer) b.getKey() - (Integer) a.getKey());
+            }
+        });
+        ArrayList<Topics> res = new ArrayList<Topics>();
+
+        for (Pair p : listTest) {
+            res.add((Topics) p.getValue());
+        }
+        return res;
+    }
+
+    public List<Topics> userRecommendations() {
+        String keywords = "";
+        List<Topics> followed = topicsService.getUserFollowedTopics();
+        for (Topics theTopic : followed) {
+            TopicPacks thePack = topicsService.getTopicPack(theTopic.getTopicPackId());
+            keywords += theTopic.getHeader().toLowerCase() + " " + thePack.getName().toLowerCase();
+            for (Tags tag : theTopic.getTags()) {
+                keywords += " " + tag.getLabel().toLowerCase() + " " + tag.getCategory().toLowerCase();
+            }
+            keywords += " ";
+        }
+        String[] keywordArr = keywords.split(" ");
+        List<String> keywordListTemp = Arrays.asList(keywordArr);
+        ArrayList<String> keywordList = new ArrayList<String>();
+        keywordList.addAll(keywordListTemp);
+        if (keywordArr.length > 1) {
+            keywordList.add(keywords);
+        }
+        keywordList.removeAll(stopWords);
+
+        ConcurrentHashMap<Long, Topics> searchResults = new ConcurrentHashMap<>();
+        ConcurrentHashMap<Long, Integer> idWithFreq = new ConcurrentHashMap<Long, Integer>();
+
+        keywordList.parallelStream().forEach((key) -> {
+            topicsRepository.findByTags(key).parallelStream().forEach((topic) -> {
+                searchResults.put(topic.getTopicId(), topic);
+                idWithFreq.putIfAbsent(topic.getTopicId(), 0);
+                idWithFreq.replace(topic.getTopicId(), idWithFreq.get(topic.getTopicId()) + 7);
+            });
+        });
+
+        keywordList.parallelStream().forEach((key) -> {
+            topicsRepository.findByIgnoreCaseHeaderContaining(key).parallelStream().forEach((topic) -> {
+                searchResults.put(topic.getTopicId(), topic);
+                idWithFreq.putIfAbsent(topic.getTopicId(), 0);
+                idWithFreq.replace(topic.getTopicId(), idWithFreq.get(topic.getTopicId()) + 5);
+            });
+        });
+
+        keywordList.parallelStream().forEach((key) -> {
+            topicsRepository.findByTopicPack(key).parallelStream().forEach((topic) -> {
+                searchResults.put(topic.getTopicId(), topic);
+                idWithFreq.putIfAbsent(topic.getTopicId(), 0);
+                idWithFreq.replace(topic.getTopicId(), idWithFreq.get(topic.getTopicId()) + 4);
+            });
+        });
+
+        keywordList.parallelStream().forEach((key) -> {
+            topicsRepository.findByIgnoreCaseDescriptionContaining(key).parallelStream().forEach((topic) -> {
+                searchResults.put(topic.getTopicId(), topic);
+                idWithFreq.putIfAbsent(topic.getTopicId(), 0);
+                idWithFreq.replace(topic.getTopicId(), idWithFreq.get(topic.getTopicId()) + StringUtils.countMatches(topic.getDescription(), key) * 2);
+            });
+        });
+
+        keywordList.parallelStream().forEach((key) -> {
+            topicsRepository.findByIgnoreCaseContentContaining(key).parallelStream().forEach((topic) -> {
+                searchResults.put(topic.getTopicId(), topic);
+                idWithFreq.putIfAbsent(topic.getTopicId(), 0);
+                idWithFreq.replace(topic.getTopicId(), idWithFreq.get(topic.getTopicId()) + StringUtils.countMatches(topic.getContent(), key));
+            });
+        });
+
+        for(Topics topic : followed){
+            idWithFreq.remove(topic.getTopicId());
+            searchResults.remove(topic.getTopicId());
+        }
         
         ArrayList<Pair<Integer, Topics>> listTest = new ArrayList<>();
         for (Entry entry : idWithFreq.entrySet()) {

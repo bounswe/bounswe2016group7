@@ -28,8 +28,13 @@ public class SearchController {
      return searchService.searchTopics(keywords);
     }
     
-    @RequestMapping(path = "recommendedTopics", method = RequestMethod.POST)
-    public List<Topics> searchTopics(@RequestBody Long topicId) {
-        return searchService.recommendedTopics(topicId);
+    @RequestMapping(path = "topicRecommendations", method = RequestMethod.POST)
+    public List<Topics> topicRecommendations(@RequestBody Long topicId) {
+        return searchService.topicRecommendations(topicId);
+    }
+    
+    @RequestMapping(path = "userRecommendations", method = RequestMethod.GET)
+    public List<Topics> userRecommendations() {
+        return searchService.userRecommendations();
     }
 }

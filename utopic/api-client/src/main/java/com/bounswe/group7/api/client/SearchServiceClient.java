@@ -26,4 +26,14 @@ public class SearchServiceClient extends BaseClient {
         return post(getResource().path("public/searchTopics"), new TypeToken<List<Topics>>() {
         }, keywords);
     }
+
+    public List<Topics> topicRecommendations(Long topicId) throws Exception {
+        return post(getResource().path("topicRecommendations"), new TypeToken<List<Topics>>() {
+        }, topicId);
+    }
+    
+    public List<Topics> userRecommendations() throws Exception {
+        return get(getResource().path("topicRecommendations"), new TypeToken<List<Topics>>() {
+        });
+    }
 }
