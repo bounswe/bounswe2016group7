@@ -13,6 +13,7 @@ import java.io.InputStreamReader;
 import java.lang.reflect.Type;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLEncoder;
 
 /**
  *
@@ -31,7 +32,7 @@ public class WikidataIntegration {
         StringBuilder str = new StringBuilder();
         WikiResults wikiRes = new WikiResults();
         try {
-            URL url = new URL(API_URL + "?action=wbsearchentities&language=en&format=json&search=" + keyword);
+            URL url = new URL(API_URL + "?action=wbsearchentities&language=en&format=json&search=" + URLEncoder.encode(keyword, "UTF-8"));
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.addRequestProperty("Accept", "application/json");
             conn.setDoOutput(true);

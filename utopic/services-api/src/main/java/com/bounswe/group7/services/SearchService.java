@@ -12,6 +12,7 @@ import com.bounswe.group7.repository.TopicsRepository;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -20,6 +21,7 @@ import java.util.TreeMap;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentSkipListMap;
 import java.util.function.Predicate;
+import javafx.util.Pair;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -38,7 +40,10 @@ public class SearchService {
 
     public List<Topics> searchTopics(String keywords) {
         String[] keywordArr = keywords.split(" ");
-        List<String> keywordList = Arrays.asList(keywordArr);
+        List<String> keywordListTemp = Arrays.asList(keywordArr);
+        ArrayList<String> keywordList = new ArrayList<String>();
+        keywordList.addAll(keywordListTemp);
+        keywordList.add(keywords);
         ConcurrentHashMap<String, String> keywordMap = new ConcurrentHashMap<>();
 
         keywordList.parallelStream().forEach((key) -> {
@@ -61,14 +66,16 @@ public class SearchService {
         ConcurrentHashMap<Long, Topics> searchResults = new ConcurrentHashMap<>();
         ConcurrentHashMap<Long, Integer> idWithFreq = new ConcurrentHashMap<Long, Integer>();
 
-        keywordMap.values().parallelStream().forEach((key)->{
-            topicsRepository.findByTags(key).parallelStream().forEach((topic)-> {
+        for (String s : keywordList) {
+            keywordMap.put(s, s);
+        }
+        keywordMap.values().parallelStream().forEach((key) -> {
+            topicsRepository.findByTags(key).parallelStream().forEach((topic) -> {
                 searchResults.put(topic.getTopicId(), topic);
                 idWithFreq.putIfAbsent(topic.getTopicId(), 0);
                 idWithFreq.replace(topic.getTopicId(), idWithFreq.get(topic.getTopicId()) + 7);
             });
         });
-        
 
         keywordList.parallelStream().forEach((key) -> {
             topicsRepository.findByIgnoreCaseHeaderContaining(key).parallelStream().forEach((topic) -> {
@@ -94,14 +101,21 @@ public class SearchService {
             });
         });
 
-        TreeMap<Integer, Topics> finalRes = new TreeMap<Integer, Topics>();
-
+        ArrayList<Pair<Integer, Topics>> listTest = new ArrayList<>();
         for (Entry entry : idWithFreq.entrySet()) {
-            finalRes.put((Integer) entry.getValue(), searchResults.get(entry.getKey()));
+            listTest.add(new Pair((Integer) entry.getValue(), searchResults.get(entry.getKey())));
         }
 
-        ArrayList<Topics> res = new ArrayList<Topics>(finalRes.values());
-        Collections.reverse(res);
+        Collections.sort(listTest, new Comparator<Pair>() {
+            public int compare(Pair a, Pair b) {
+                return (int) ((Integer) b.getKey() - (Integer) a.getKey());
+            }
+        });
+        ArrayList<Topics> res = new ArrayList<Topics>();
+
+        for (Pair p : listTest) {
+            res.add((Topics) p.getValue());
+        }
         return res;
     }
 
