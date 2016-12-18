@@ -255,7 +255,7 @@ public class TopicController {
         }
     }
     
-    @RequestMapping(value = "/topicpack/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/topicpack/{topicPackId}", method = RequestMethod.GET)
     public ModelAndView topicPackPage(@PathVariable Long topicPackId, HttpServletRequest request){
         HttpSession session = request.getSession();
         TopicServiceClient topicClient = new TopicServiceClient((String) session.getAttribute("token"));
