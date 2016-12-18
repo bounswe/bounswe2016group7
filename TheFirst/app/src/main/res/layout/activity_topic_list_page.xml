@@ -8,6 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@drawable/wallpaper"
     tools:context="com.example.denizalp.thefirst.TopicListPage">
 
     <Button android:id="@+id/Button_Recent"
@@ -15,8 +16,9 @@
         android:layout_height="wrap_content"
         android:text="@string/recentTopics"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
         android:background="@color/yellow"
-        android:textColor="@color/white"
+        android:textColor="@android:color/black"
         />
 
     <Button android:id="@+id/Button_Trending"
@@ -25,7 +27,7 @@
         android:text="@string/trendingTopics"
         android:layout_centerHorizontal="true"
         android:background="@color/yellow"
-        android:textColor="@color/white"
+        android:textColor="@android:color/black"
         android:layout_below="@id/Button_Recent"
         android:layout_marginTop="2sp"
         />
@@ -46,7 +48,7 @@
         android:text="@string/Art"
         android:layout_centerHorizontal="true"
         android:background="@color/yellow"
-        android:textColor="@color/white"
+        android:textColor="@android:color/black"
         android:layout_below="@id/Categories"
         android:layout_marginTop="2sp"
         />
@@ -57,7 +59,7 @@
         android:text="@string/Sports"
         android:layout_centerHorizontal="true"
         android:background="@color/yellow"
-        android:textColor="@color/white"
+        android:textColor="@android:color/black"
         android:layout_below="@id/Button_Art"
         android:layout_marginTop="2sp"
         />
@@ -68,7 +70,7 @@
         android:text="@string/Technology"
         android:layout_centerHorizontal="true"
         android:background="@color/yellow"
-        android:textColor="@color/white"
+        android:textColor="@android:color/black"
         android:layout_below="@id/Button_Sports"
         android:layout_marginTop="2sp"
         />
@@ -79,7 +81,7 @@
         android:text="@string/Photography"
         android:layout_centerHorizontal="true"
         android:background="@color/yellow"
-        android:textColor="@color/white"
+        android:textColor="@android:color/black"
         android:layout_below="@id/Button_Technology"
         android:layout_marginTop="2sp"
         />
@@ -90,7 +92,7 @@
         android:text="@string/Music"
         android:layout_centerHorizontal="true"
         android:background="@color/yellow"
-        android:textColor="@color/white"
+        android:textColor="@android:color/black"
         android:layout_below="@id/Button_Photography"
         android:layout_marginTop="2sp"
         />
@@ -101,7 +103,7 @@
         android:text="@string/History"
         android:layout_centerHorizontal="true"
         android:background="@color/yellow"
-        android:textColor="@color/white"
+        android:textColor="@android:color/black"
         android:layout_below="@id/Button_Music"
         android:layout_marginTop="2sp"
         />
