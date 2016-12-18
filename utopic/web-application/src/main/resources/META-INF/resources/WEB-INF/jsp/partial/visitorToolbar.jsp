@@ -70,8 +70,8 @@
                 </div>
                 <a class="navbar-brand" href="/"><img src="/images/logo.png"/></a>
                 <div id="search-container">
-                    <form>
-                        <input type="text" placeholder="Search"/>
+                    <form method="GET" action="/search">
+                        <input name="keyword" type="text" placeholder="Search"/>
                         <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
                     </form>
                 </div>

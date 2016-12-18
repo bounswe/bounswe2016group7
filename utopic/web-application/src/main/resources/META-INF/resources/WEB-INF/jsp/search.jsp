@@ -14,7 +14,7 @@
         <jsp:include page="partial/cssFiles.jsp" />
     </head>
     <body ng-app="mainApp">
-       <% if(session.getAttribute("username") != null){%>
+       
        <script type="text/javascript">
             var auth = [];
             <c:forEach items="${authorities}" var="stdn" varStatus="status">
@@ -22,12 +22,7 @@
             </c:forEach>
             var topics = ${topics}
         </script>
-       <%
-        }else{
-            response.setStatus(response.SC_MOVED_TEMPORARILY);
-            response.setHeader("Location", "/"); 
-        }    
-        %>
+
     <jsp:include page="partial/getToolbar.jsp"/>
     <jsp:include page="partial/creatorModal.jsp"/>
     <div class="content" ng-controller="searchController">
