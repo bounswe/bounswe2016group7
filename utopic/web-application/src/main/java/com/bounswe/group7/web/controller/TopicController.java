@@ -3,6 +3,7 @@ package com.bounswe.group7.web.controller;
 
 import com.bounswe.group7.api.client.CommentServiceClient;
 import com.bounswe.group7.api.client.QuizServiceClient;
+import com.bounswe.group7.api.client.SearchServiceClient;
 import com.bounswe.group7.api.client.TagServiceClient;
 import com.bounswe.group7.api.client.TopicServiceClient;
 import com.bounswe.group7.api.client.UserServiceClient;
@@ -59,6 +60,7 @@ public class TopicController {
         CommentServiceClient commentClient = new CommentServiceClient((String) session.getAttribute("token"));
         UserServiceClient userClient = new UserServiceClient((String) session.getAttribute("token"));
         QuizServiceClient quizClient = new QuizServiceClient((String) session.getAttribute("token"));
+        SearchServiceClient searchClient = new SearchServiceClient((String) session.getAttribute("token"));
         ObjectMapper mapper = new ObjectMapper();
         List <TopicComment> topicCommentList = new ArrayList<TopicComment>();
         
@@ -80,7 +82,7 @@ public class TopicController {
             }
             
             List<Tags> tags = topic.getTags();
-            
+            List<Topics> recTopics = searchClient.topicRecommendations(id);
             Quizes quizBack = quizClient.getQuiz(id);
             
             Quiz quiz = new Quiz();
@@ -132,6 +134,7 @@ public class TopicController {
             String quizJson = mapper.writeValueAsString(quiz);
             String followingUsersJson = mapper.writeValueAsString(followingUsers);
             String nextPrevJson = mapper.writeValueAsString(nextPrev);
+            String recTopicsJson = mapper.writeValueAsString(recTopics);
             
             modelAndView.addObject("followingUsers", followingUsersJson);
             modelAndView.addObject("pack",topicPack);
@@ -141,6 +144,7 @@ public class TopicController {
             modelAndView.addObject("quiz", quizJson);
             modelAndView.addObject("comments", commentsJson);
             modelAndView.addObject("nextPrev", nextPrevJson);
+            modelAndView.addObject("recTopic", recTopicsJson);
         } catch (Exception ex) {
             ex.printStackTrace();
             attributes.addAttribute("error", ex.getMessage());
@@ -385,6 +389,7 @@ public class TopicController {
     public ModelAndView showAll(@PathVariable int type, HttpServletRequest request){
         HttpSession session = request.getSession();
         TopicServiceClient topicClient =new TopicServiceClient((String) session.getAttribute("token"));
+        SearchServiceClient searchClient =new SearchServiceClient((String) session.getAttribute("token"));
         CommentServiceClient commentClient =new CommentServiceClient((String) session.getAttribute("token"));
         ModelAndView modelAndView = new ModelAndView("search");
         try{
@@ -396,6 +401,8 @@ public class TopicController {
                topicsToBeShown = topicClient.getRecentTopics();
            }else if(type == 3){
                topicsToBeShown = topicClient.getUserFollowedTopics();
+           }else if(type == 4){
+               topicsToBeShown = searchClient.userRecommendations();
            }
            for(Topics temp: topicsToBeShown){
                ResultTopic topic = new ResultTopic();

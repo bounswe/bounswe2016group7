@@ -7,6 +7,7 @@ package com.bounswe.group7.web.controller;
 
 import com.bounswe.group7.api.client.CommentServiceClient;
 import com.bounswe.group7.api.client.LoginServiceClient;
+import com.bounswe.group7.api.client.SearchServiceClient;
 import com.bounswe.group7.api.client.TagServiceClient;
 import com.bounswe.group7.api.client.TopicServiceClient;
 import com.bounswe.group7.model.Tags;
@@ -77,10 +78,12 @@ public class MainController {
         HttpSession session = request.getSession();
         TopicServiceClient client = new TopicServiceClient((String) session.getAttribute("token"));
         CommentServiceClient commentClient = new CommentServiceClient((String) session.getAttribute("token"));
+        SearchServiceClient searchClient = new SearchServiceClient((String) session.getAttribute("token"));
         TagServiceClient tagClient = new TagServiceClient((String) session.getAttribute("token"));
         try {
             List<Topics> recentTopicsList = client.getRecentTopics();
             List<Topics> topTopicsList = client.getTopTopics();
+            List<Topics> recommendedTopicsList = searchClient.userRecommendations();
             List<TopicWithStatistics> recentTopicStatisticsList = new ArrayList<TopicWithStatistics>();
             for (Topics temp : recentTopicsList) {
                 Long topicId = temp.getTopicId();
@@ -93,16 +96,24 @@ public class MainController {
                 int commentNumber = commentClient.getTopicComments(topicId).size();
                 topTopicStatisticsList.add(new TopicWithStatistics(temp.getTopicId(), temp.getHeader(), commentNumber, temp.getRate()));
             }
+            List<TopicWithStatistics> recommendedTopicStatisticsList = new ArrayList<TopicWithStatistics>();
+            for (Topics temp : recommendedTopicsList) {
+                Long topicId = temp.getTopicId();
+                int commentNumber = commentClient.getTopicComments(topicId).size();
+                recommendedTopicStatisticsList.add(new TopicWithStatistics(temp.getTopicId(), temp.getHeader(), commentNumber, temp.getRate()));
+            }
             List<Tags> categoryList = tagClient.getCategoryTags();
             List<Topics>  interestedTopicsList = client.getUserFollowedTopics();
             ObjectMapper mapper = new ObjectMapper();
             String recentTopics = mapper.writeValueAsString(recentTopicStatisticsList);
             String topTopics = mapper.writeValueAsString(topTopicStatisticsList);
             String interestedTopics = mapper.writeValueAsString(interestedTopicsList);
+            String recommendedTopics = mapper.writeValueAsString(recommendedTopicsList);
             String categories = mapper.writeValueAsString(categoryList);
             index.addObject("recentTopics", recentTopics);
             index.addObject("topTopics", topTopics);
             index.addObject("interestedTopics", interestedTopics);
+            index.addObject("recommendedTopics", recommendedTopics);
             index.addObject("categories", categories);
         } catch (Exception ex) {
             ex.printStackTrace();
