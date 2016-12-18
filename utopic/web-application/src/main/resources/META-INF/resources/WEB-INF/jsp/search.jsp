@@ -31,7 +31,7 @@
                     <div ng-repeat="topic in topics" class="search-item panel">
                         <div class="row">
                             <div class="col-xs-12 col-sm-4 col-md-3">
-                                <div style="background-image:url('images/header1.jpg');" class="search-image"></div>
+                                <div style="background-image:url('/images/header1.jpg');" class="search-image"></div>
                             </div>
                             <div class="col-xs-12 col-sm-8 col-md-9">
                                 <h4>
