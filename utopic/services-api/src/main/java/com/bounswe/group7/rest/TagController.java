@@ -41,7 +41,7 @@ public class TagController {
         return new Tags();
     }
     
-    @RequestMapping(path = "/getCategoryTags", method = RequestMethod.GET)
+    @RequestMapping(path = "public/getCategoryTags", method = RequestMethod.GET)
     @ResponseBody
     public List<Tags> getCategoryTags() {
         return tagsService.getCategoryTags();

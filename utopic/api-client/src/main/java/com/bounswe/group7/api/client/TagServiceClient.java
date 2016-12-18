@@ -34,7 +34,7 @@ public class TagServiceClient extends BaseClient{
     }
     
     public List<Tags> getCategoryTags() throws Exception {
-        return get(getResource().path("getCategoryTags"), new TypeToken<List<Tags>>(){});
+        return get(getResource().path("public/getCategoryTags"), new TypeToken<List<Tags>>(){});
     }
 
 }
