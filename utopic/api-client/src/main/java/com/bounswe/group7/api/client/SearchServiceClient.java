@@ -33,7 +33,7 @@ public class SearchServiceClient extends BaseClient {
     }
     
     public List<Topics> userRecommendations() throws Exception {
-        return get(getResource().path("topicRecommendations"), new TypeToken<List<Topics>>() {
+        return get(getResource().path("userRecommendations"), new TypeToken<List<Topics>>() {
         });
     }
 }
