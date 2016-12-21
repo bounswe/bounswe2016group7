@@ -157,13 +157,19 @@
                                         <div  class="options">
                                             <div class="row">
                                                 <div ng-repeat="opt in question.options" class="col-xs-12 col-sm-6 option{{opt.number}}">
-                                                    <button class="button" ng-click="setAnswer($parent.question, opt)">{{opt.text}}</button>
+                                                    <button class="button" ng-click="setAnswer($parent.question, opt)">{{opt.text}}
+                                                        <i class="fa fa-check" aria-hidden="true"></i>
+                                                    </button>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <button ng-click="sendQuiz()" class="button button-green">SUBMIT</button>
-                                </div>
+                                    <button ng-show="!isQuizSolved" ng-click="sendQuiz()" class="button button-green">SUBMIT</button>
+                                    <div ng-show="isQuizSolved" class="showResult">
+                                        <p>Correct Answer: <span ng-bind="correctAnswers"></span><br>
+                                            Wrong Answer: <span ng-bind="wrongAnswers"></span>
+                                        </p>
+                                    </div>
                             </div>
                         </div>
                     </div>

@@ -41,6 +41,10 @@ body{
   position: relative; 
   padding-bottom: 50px;
 }
+.options .wrong button.selected {
+    color: #fff !important;
+    background: #d2343c;
+}
 
 span.question-number {
     font-weight: bold;
@@ -52,6 +56,20 @@ span.question-number {
   width: 100%;
   margin-bottom: 10px;
   text-align: left;
+  position: relative;
+}
+
+.options .correct button i.fa.fa-check{
+    display: block;
+}
+
+.options button i.fa.fa-check {
+    position: absolute;
+    top: -12px;
+    right: -9px;
+    font-size: 25px;
+    color: #7ab648;
+    display: none;
 }
 
 .options button.selected{
