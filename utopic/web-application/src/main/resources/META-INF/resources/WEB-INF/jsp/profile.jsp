@@ -51,7 +51,7 @@
                                 </div>
                                 <div class="col-xs-7 col-md-9">
                                     <h3>${profiledUser.firstname} ${profiledUser.lastname}<span></span></h3>
-                                    <p>Association will be shown here.</p>
+                                    <p ng-bind="association"></p>
                                     <div class="tags">
                                         <div class="topic-tag">Badge 1</div>
                                         <div class="topic-tag">Badge 2</div>

@@ -14,6 +14,7 @@ mainModel.controller('topicController',function indexController($scope) {
     $scope.isQuizSolved = false;
     $scope.correctAnswers = 0;
     $scope.wrongAnswers = 0;
+    $scope.profilePicture = '/images/topicDefault.png';
     
     var size = $scope.quiz.length;
     for(var i = 0; i< size; i++){

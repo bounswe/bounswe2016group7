@@ -167,7 +167,7 @@
                                     <button ng-show="!isQuizSolved" ng-click="sendQuiz()" class="button button-green">SUBMIT</button>
                                     <div ng-show="isQuizSolved" class="showResult">
                                         <p>Correct Answer: <span ng-bind="correctAnswers"></span><br>
-                                            Wrong Answer: <span ng-bind="wrongAnswers"></span>
+                                            Wrong Answer: <span ng-bind="wrong Answers"></span>
                                         </p>
                                     </div>
                             </div>
