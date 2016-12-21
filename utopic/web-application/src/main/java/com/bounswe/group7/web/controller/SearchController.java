@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.bounswe.group7.web.controller;
 
 import com.bounswe.group7.api.client.CommentServiceClient;
@@ -14,20 +9,28 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
- *
+ * Handles the search operations. Search bar's functionality is handled at
+ * that controller.
+ * 
  * @author Batuhan
  */
 
 @RestController
 public class SearchController {
-    
+    /**
+     * Searches for topics by the given keyword. When a keyword is given to the
+     * search bar, search request is sent. Search procedure is handled by the
+     * client methods and the results are given in the wanted format.
+     * 
+     * @param request -> keyword
+     * @return result_topics
+     */
     @RequestMapping(value = "/search", method = RequestMethod.GET)
     public ModelAndView search(HttpServletRequest request){
         String keyword = request.getParameter("keyword");

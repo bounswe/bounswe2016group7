@@ -12,12 +12,15 @@ import com.bounswe.group7.model.NextPrevTopic;
 import com.bounswe.group7.model.Questions;
 import com.bounswe.group7.model.Quizes;
 import com.bounswe.group7.model.RatedTopics;
+import com.bounswe.group7.model.SolvedQuestions;
+import com.bounswe.group7.model.SolvedQuizes;
 import com.bounswe.group7.model.Tags;
 import com.bounswe.group7.model.TopicPacks;
 import com.bounswe.group7.model.Topics;
 import com.bounswe.group7.model.Users;
 import com.bounswe.group7.web.domain.NextAndPrev;
 import com.bounswe.group7.web.domain.Quiz;
+import com.bounswe.group7.web.domain.QuizResult;
 import com.bounswe.group7.web.domain.ResultTopic;
 import com.bounswe.group7.web.domain.SaveQuizOption;
 import com.bounswe.group7.web.domain.SaveQuizQuestion;
@@ -46,14 +49,24 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 /**
- *
+ * Handles all topic functionalities. Adding, showing, rating etc. operations are
+ * example functionalities of this controller's capabilities. Topic pack and tag
+ * operations are also handled by this controller because they are related.
+ * 
+ * 
  * @author Batuhan
  */
 @RestController
 public class TopicController {
-    
+    /**
+     * 
+     * 
+     * @param id -> topic's id
+     * @param request
+     * @return topic_page
+     */
     @RequestMapping(value = "/topic/{id}", method = RequestMethod.GET)
-    public ModelAndView showTopic(@PathVariable Long id, HttpServletRequest request, HttpServletResponse response, RedirectAttributes attributes){
+    public ModelAndView showTopic(@PathVariable Long id, HttpServletRequest request){
         ModelAndView modelAndView = new ModelAndView("topic");
         HttpSession session = request.getSession();
         TopicServiceClient topicClient = new TopicServiceClient((String) session.getAttribute("token"));
@@ -83,6 +96,7 @@ public class TopicController {
             
             List<Tags> tags = topic.getTags();
             List<Topics> recTopics = searchClient.topicRecommendations(id);
+            
             Quizes quizBack = quizClient.getQuiz(id);
             
             Quiz quiz = new Quiz();
@@ -112,6 +126,59 @@ public class TopicController {
                 quiz.questionList = new ArrayList();
             }
             
+            SolvedQuizes solvedQuiz = quizClient.isQuizSolved(id);
+            QuizResult result = new QuizResult();
+            if(solvedQuiz.isSolved()){
+                List<SolvedQuestions> solvedQuestions = solvedQuiz.getSolvedQuestions();
+               
+                int correctNumber = 0;
+                int wrongNumber = 0;
+                int questionNum = 0;
+                for(SolvedQuestions solvedQuestion: solvedQuestions){
+                    SaveQuizQuestion question = new SaveQuizQuestion();
+                    Questions questionTemp = quizBack.getQuestions().get(questionNum);
+                    if(solvedQuestion.isTrueOrFalse()){
+                        correctNumber++;
+                        question.id = questionTemp.getQuestionId();
+                        question.options = new ArrayList();
+                        for(int i='A'; i<='D'; i++){
+                            SaveQuizOption option = new SaveQuizOption();
+                            if(solvedQuestion.getRightAnswer() == i){
+                                option.isValid = 1;
+                            }
+                            String methodName = "getChoice" + (char)i; 
+                            Method method = questionTemp.getClass().getMethod(methodName);
+                            Object temp = method.invoke(questionTemp);
+                            option.text = (String) temp;
+                            question.options.add(option);
+                        }
+                        result.results.add(question);
+                    }else{
+                        wrongNumber++;
+                        question.id = solvedQuestion.getQuestionId();
+                        question.options = new ArrayList();
+                        for(int i='A'; i<='D'; i++){
+                            SaveQuizOption option = new SaveQuizOption();
+                            if(solvedQuestion.getRightAnswer() == i){
+                                option.isValid = 1;
+                            }
+                            if(solvedQuestion.getChosenAnswer() == i){
+                                option.isValid = -1;
+                            }
+                            String methodName = "getChoice" + (char)i; 
+                            Method method = questionTemp.getClass().getMethod(methodName);
+                            Object temp = method.invoke(questionTemp);
+                            option.text = (String) temp;
+                            question.options.add(option);
+                        }
+                        result.results.add(question);
+                    }
+                    questionNum++;
+                }
+                result.correctAnswerNumber = correctNumber;
+                result.wrongAnswerNumber = wrongNumber;
+            }
+            
             NextPrevTopic nextandPrev = topicClient.getNextPrev(id);
             NextAndPrev nextPrev = new NextAndPrev();
             if(nextandPrev.getNext() != null){
@@ -132,6 +199,7 @@ public class TopicController {
             String tagsJson = mapper.writeValueAsString(tags);
             String commentsJson = mapper.writeValueAsString(topicCommentList);
             String quizJson = mapper.writeValueAsString(quiz);
+            String resultJson = mapper.writeValueAsString(result);
             String followingUsersJson = mapper.writeValueAsString(followingUsers);
             String nextPrevJson = mapper.writeValueAsString(nextPrev);
             String recTopicsJson = mapper.writeValueAsString(recTopics);
@@ -142,13 +210,14 @@ public class TopicController {
             modelAndView.addObject("tags", tagsJson);
             modelAndView.addObject("owner", owner);
             modelAndView.addObject("quiz", quizJson);
+            modelAndView.addObject("result", resultJson);
             modelAndView.addObject("comments", commentsJson);
             modelAndView.addObject("nextPrev", nextPrevJson);
             modelAndView.addObject("recTopic", recTopicsJson);
             session.setAttribute("topicId", topic.getTopicId());
         } catch (Exception ex) {
             ex.printStackTrace();
-            attributes.addAttribute("error", ex.getMessage());
+            modelAndView.addObject("error", ex.getMessage());
         }
         return modelAndView;
     }
