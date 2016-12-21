@@ -1,6 +1,6 @@
 # noinspection SqlNoDataSourceInspectionForFile
-INSERT INTO users (id, email, association, enabled, firstname, gender, last_password_reset_date, lastname, middlename, password, username) VALUES (nextval('USERS_SEQ'), 'ugur@admin.com', 'Bogazici University', true, 'Ugur', 'm', NULL, 'Bor', NULL, '$2a$10$xHrHghoH88RS1OZ7ovl1fO22Zmz4RmwETKrQe.SLz9hJQsiHZ4acy', 'ugurbor');
-INSERT INTO users (id, email, enabled, firstname, gender, last_password_reset_date, lastname, middlename, password, username) VALUES (nextval('USERS_SEQ'), 'one@admin.com', true, 'Osman', 'm', NULL, 'Kral', NULL, '$2a$10$OIgL3cS5enwzHk9WtFGp7uaQ085JTvxdrhiD.6n98SpHsmhdgHouK', 'userone');
+INSERT INTO users (id, email, association, enabled, firstname, gender, last_password_reset_date, lastname, middlename, password, username, bio) VALUES (nextval('USERS_SEQ'), 'ugur@admin.com', 'Bogazici University', true, 'Ugur', 'm', NULL, 'Bor', NULL, '$2a$10$xHrHghoH88RS1OZ7ovl1fO22Zmz4RmwETKrQe.SLz9hJQsiHZ4acy', 'ugurbor', 'meraba ben ugur kanalima hosgeldiniz');
+INSERT INTO users (id, email, enabled, firstname, gender, last_password_reset_date, lastname, middlename, password, username, bio) VALUES (nextval('USERS_SEQ'), 'one@admin.com', true, 'Osman', 'm', NULL, 'Kral', NULL, '$2a$10$OIgL3cS5enwzHk9WtFGp7uaQ085JTvxdrhiD.6n98SpHsmhdgHouK', 'userone', 'ben osman kral. herkes beni userone diye tanir.');
 
 INSERT INTO AUTHORITY (ID, NAME) VALUES (1, 'ROLE_EXPLORER');
 INSERT INTO AUTHORITY (ID, NAME) VALUES (2, 'ROLE_CREATOR');

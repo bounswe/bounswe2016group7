@@ -29,6 +29,9 @@ public class Users implements Serializable {
 
     @Column(name = "association", nullable = true)
     private String association;
+    
+    @Column(name = "bio", nullable = true)
+    private String bio;
 
     @Column(name = "email", nullable = false, unique = true)
     private String email;
