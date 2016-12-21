@@ -112,9 +112,6 @@ public class QuizesService {
         if(sq == null)
         {
             sq = new SolvedQuizes();
-            sq.setQuizId((long)1);
-            sq.setUserId((long)1);
-            sq.setSolvedQuizId((long)1);
             sq.setSolved(false);
         }
         else sq.setSolved(true);
