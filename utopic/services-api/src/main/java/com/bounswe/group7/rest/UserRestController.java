@@ -62,8 +62,18 @@ public class UserRestController {
     }
 
     @RequestMapping(value = "updateUser", method = RequestMethod.POST)
-    public Users getUser(@RequestBody Users theUser) {
+    public Users updateUser(@RequestBody Users theUser) {
         return usersService.updateUser(theUser);
+    }
+    
+    @RequestMapping(value = "updateUserBio", method = RequestMethod.POST)
+    public Users updateUserBio(@RequestBody String bio) {
+        return usersService.updateUserBio(bio);
+    }
+    
+    @RequestMapping(value = "updateUserAssociation", method = RequestMethod.POST)
+    public Users updateUserAssociation(@RequestBody String association) {
+        return usersService.updateUserAssociation(association);
     }
 
     @RequestMapping(value = "getQuizProgress", method = RequestMethod.GET)
