@@ -90,8 +90,11 @@ public class UserController {
     @RequestMapping(value = "/setassociation", method = RequestMethod.PUT,
            produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
+    public String setAssociation(HttpServletRequest request, @RequestBody String assoc){
         UserServiceClient userClient = new UserServiceClient((String) request.getSession().getAttribute("token"));
         try{
+            userClient.updateUserAssociation(assoc);
+            return assoc;
         }catch(Exception ex){
             ex.printStackTrace();
             return ex.getMessage();
