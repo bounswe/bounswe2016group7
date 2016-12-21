@@ -12,6 +12,8 @@
             <c:forEach items="${authorities}" var="stdn" varStatus="status">
                     auth.push('${stdn.name}');
             </c:forEach>
+                    var association = "${profiledUser.association}";
+                    var bio = "${profiledUser.bio}";
                     var activeUsername = "${sessionScope.username}";
                     var activeId = ${userId};
                     var activeToken = "${sessionScope.token}";
@@ -51,7 +53,16 @@
                                 </div>
                                 <div class="col-xs-7 col-md-9">
                                     <h3>${profiledUser.firstname} ${profiledUser.lastname}<span></span></h3>
-                                    <p ng-bind="association"></p>
+                                    <div class="association-input">
+                                        <p ng-show="!displayAssocInput && association">
+                                            Association: <span ng-bind="association"></span>
+                                            <button ng-if="ownerId == currentUserId" class="button-small" ng-click="showAssociationEdit()"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                                        </p>
+                                        <form ng-if="ownerId == currentUserId" ng-submit="changeAssociation()" ng-show="displayAssocInput" id="association-form">
+                                            <input type="text" class="form-control" ng-model="newAssociation" placeholder="Association">
+                                            <button type="submit" class="button-small"><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
+                                        </form>
+                                    </div>
                                     <div class="tags">
                                         <div class="topic-tag">Badge 1</div>
                                         <div class="topic-tag">Badge 2</div>
@@ -65,7 +76,16 @@
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-3">
                         <div class="panel">
-                            User information will be shown here.
+                            <div class="bio-input">
+                                <p ng-show="!displayBioInput && bio">
+                                    Bio: <span ng-bind="bio"></span>
+                                    <button ng-if="ownerId == currentUserId" class="button-small" ng-click="showBioEdit()"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                                </p>
+                                <form ng-if="ownerId == currentUserId" ng-submit="changeBio(newBio)" ng-show="displayBioInput" id="bio-form">
+                                    <input type="text" class="form-control" ng-model="newBio" placeholder="New Bio">
+                                    <button type="submit" class="button-small"><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
+                                </form>
+                            </div>
                         </div>	
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-9">
@@ -129,8 +149,10 @@
                                         </div>
                                     </div>
                                     <div class="input-container">
-                                        <input type="text" ng-model="reviewToAdd" placeholder="Your message" class="form-control">
-                                        <button class="button button-green send-button" ng-click="addReview()"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+                                        <form ng-submit="addReview(reviewToAdd)">
+                                            <input type="text" ng-model="reviewToAdd" placeholder="Your message" class="form-control">
+                                            <button class="button button-green send-button" type="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>

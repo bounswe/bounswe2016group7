@@ -198,6 +198,13 @@ d2343c
   margin-left: 15px;
 }
 
+button.button-small {
+    border: none;
+    background: none;
+    font-size: 20px;
+    color: #0a6c8e;
+}
+
 /**************************** Form *******************************/
 
 .form-control:focus {
@@ -560,6 +567,37 @@ ul.following-users.panel {
   right: 0;
   bottom: 0;
 }
+#association-form * {
+    display: inline;
+    max-width: 300px;
+}
+
+.association-input p{
+    display:inline-block;
+    padding: 10px 0;
+}
+.association-input p button,
+.bio-input p button{
+    opacity: 0;
+    mouse-events:none;
+}
+
+.association-input p button,
+.bio-input p:hover button{
+    opacity: 0;
+    pointer-events:none;
+    transition: 0.2s ease-in-out;
+}
+
+
+.association-input p:hover button,
+.bio-input p:hover button{
+    opacity: 1;
+    pointer-events:auto;
+}
+
+
+
 @media(max-width: 543px){
   .search-image{
     margin-bottom: 15px;
