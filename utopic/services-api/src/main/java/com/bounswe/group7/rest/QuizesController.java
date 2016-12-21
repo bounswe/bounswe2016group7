@@ -46,5 +46,12 @@ public class QuizesController {
     public SolvedQuizes solveQuiz(@RequestBody Quizes quiz) {
         return quizesService.solveQuiz(quiz);
     }
+    
+    @RequestMapping(path = "isQuizSolved", method = RequestMethod.POST)
+    @ResponseBody
+    @PreAuthorize("hasAnyRole('CREATOR', 'ADMIN', 'EXPLORER')")
+    public SolvedQuizes isQuizSolved(@RequestBody Long quizId) {
+        return quizesService.isQuizSolved(quizId);
+    }
 
 }

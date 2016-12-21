@@ -12,8 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
- *
- * @author myunu
+ * This is the service class of the questions of the quiz.
+ * @author Yunus Seker
  */
 @Service
 public class QuestionsService {
@@ -24,6 +24,12 @@ public class QuestionsService {
     @Autowired
     UsersService usersService;
     
+    /**
+     * This method takes a question
+     * and adds it to the database.
+     * @param question Questions object that holds question and options
+     * @return returns added question as object
+     */
     public Questions addQuestion(Questions question)
     {
         question.setDateCreated(new Date());

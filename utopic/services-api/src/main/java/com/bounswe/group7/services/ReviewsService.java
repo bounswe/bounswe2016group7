@@ -13,8 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
- *
- * @author myunu
+ * This is the service class of the Review Model.
+ * @author Yunus Seker
  */
 @Service
 public class ReviewsService {
@@ -25,6 +25,12 @@ public class ReviewsService {
     @Autowired
     ReviewsRepository reviewsRepository;
     
+    /**
+     * This method takes a review, assigns its date,
+     * and adds it to the database.
+     * @param review Reviews object that holds the text.
+     * @return returns the added review.
+     */
     public Reviews createReview(Reviews review)
     {
         review.setReviewerId(usersService.getLoggedInUserId());
@@ -32,11 +38,21 @@ public class ReviewsService {
         return reviewsRepository.save(review);
     }
     
+    /**
+     * This method takes a user id and returns the reviews written to that user.
+     * @param userId the id of the user that reviews written.
+     * @return returns the List of Reviews of the user.
+     */
     public List<Reviews> getUserReviews(Long userId)
     {
         return reviewsRepository.findByUserId(userId);
     }
     
+    /**
+     * This method takes a review id and deletes the review from database.
+     * @param reviewId the id of the review to be deleted.
+     * @return returns true if it can delete the review.
+     */
     public boolean deleteReview(Long reviewId)
     {        
         if(reviewsRepository.exists(reviewId))

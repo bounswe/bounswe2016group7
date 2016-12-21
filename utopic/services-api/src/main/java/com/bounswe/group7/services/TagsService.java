@@ -12,8 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
- *
- * @author ugurbor
+ * This is the service of the Tags Model
+ * @author Ugur Bor
  */
 @Service
 public class TagsService {

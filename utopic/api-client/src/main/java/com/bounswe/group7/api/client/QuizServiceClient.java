@@ -41,4 +41,9 @@ public class QuizServiceClient extends BaseClient{
         return post(getResource().path("addQuestion"), new TypeToken<Questions>() {
         }, question);
     }
+    
+    public SolvedQuizes isQuizSolved(Long quizId) throws Exception{
+        return post(getResource().path("isQuizSolved"), new TypeToken<SolvedQuizes>() {
+        }, quizId);
+    }
 }

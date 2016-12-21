@@ -21,8 +21,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
- *
- * @author myunu
+ * This is the service class of the quiz object.
+ * @author Yunus Seker
  */
 @Service
 public class QuizesService {
@@ -38,17 +38,36 @@ public class QuizesService {
 
     @Autowired
     UsersService usersService;
-
+    
+    /**
+     * This method takes a quiz object and 
+     * assigns its date. After that it is added to database.
+     * @param quiz quiz object that holds the userId,topicId,name and questions of the quiz.
+     * @return returns added quiz object.
+     */
     public Quizes createQuiz(Quizes quiz) {
         quiz.setUserId(usersService.getLoggedInUserId());
         quiz.setCreateDate(new Date());
         return quizesRepository.save(quiz);
     }
-
+    
+    /**
+     * This method returns the quiz of a topic.
+     * @param topicId the id of the topic
+     * @return returns the quiz object
+     */
     public Quizes getQuiz(Long topicId) {
         return quizesRepository.findByTopicId(topicId);
     }
-
+    
+    /**
+     * This method takes a quiz and solves it like this:
+     * It takes the answers from user, and takes the true
+     * answers from database. questions are sorted in order
+     * to their id's to be able to compare them.
+     * @param quiz the quiz that holds the user answers.
+     * @return returns a SolvedQuizes Object that has result and questions.
+     */
     public SolvedQuizes solveQuiz(Quizes quiz) {
         SolvedQuizes solvedQuiz = new SolvedQuizes(usersService.getLoggedInUserId(), quiz.getQuizId(), new Date());
         solvedQuiz = solvedQuizesRepository.save(solvedQuiz);
@@ -85,5 +104,17 @@ public class QuizesService {
         solvedQuiz.setScore(score);
         solvedQuiz.setSolvedQuestions(solvedQuestions);
         return solvedQuizesRepository.save(solvedQuiz);
+    }
+    
+    public SolvedQuizes isQuizSolved(Long quizId)
+    {
+        SolvedQuizes sq = solvedQuizesRepository.findByUserIdAndQuizId(usersService.getLoggedInUserId(), quizId);
+        if(sq == null)
+        {
+            sq = new SolvedQuizes();
+            sq.setSolved(false);
+        }
+        else sq.setSolved(true);
+        return sq;
     }
 }
