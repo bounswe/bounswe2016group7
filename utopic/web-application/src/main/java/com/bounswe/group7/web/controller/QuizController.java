@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.bounswe.group7.web.controller;
 
 import com.bounswe.group7.api.client.QuizServiceClient;
@@ -29,12 +24,23 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- *
+ * Handles the quiz operations. However, quiz is added in adding topic. So, this
+ * controller only handles quiz solving.
+ * 
  * @author Batuhan
  */
 @RestController
 public class QuizController {
-    
+    /**
+     * Shows the quiz result according to user's choices in quiz questions. 
+     * Quiz id, topic id and the question id list with their choices are got.
+     * According to these choices, this quiz is solved on back-end and a result
+     * is given. This result is transformed in a way that can be shown by a page.
+     * 
+     * @param request
+     * @param questionAnswers
+     * @return result
+     */
     @RequestMapping(value = "/solvequiz", method = RequestMethod.PUT,
            produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody

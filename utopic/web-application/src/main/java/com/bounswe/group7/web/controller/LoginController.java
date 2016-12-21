@@ -27,7 +27,7 @@ public class LoginController {
      * user is redirected to the home page.
      * 
      * @param request -> username and password
-     * @return home page or landing page
+     * @return home_page or landing_page
      * @throws IOException 
      */
     @RequestMapping(value = "/login", method = RequestMethod.POST)
@@ -57,7 +57,7 @@ public class LoginController {
      * saved to the session, is removed.
      * 
      * @param request
-     * @return landing page
+     * @return landing_page
      */
     @RequestMapping(value="/logout", method = RequestMethod.GET)
     public ModelAndView logout(HttpServletRequest request){

@@ -33,7 +33,7 @@ public class CommentController {
      * 
      * @param request
      * @param comment
-     * @return topic's comments
+     * @return topic's_comments
      */
     @RequestMapping(value = "/addcomment", method = RequestMethod.PUT,
            produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
@@ -66,7 +66,7 @@ public class CommentController {
      * 
      * @param request
      * @param comment -> comment_id and topic_id
-     * @return topic's comment
+     * @return topic's_comments
      */
     @RequestMapping(value = "/deletecomment", method = RequestMethod.DELETE,
            produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)

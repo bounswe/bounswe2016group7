@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.bounswe.group7.web.controller;
 
 import com.bounswe.group7.api.client.CommentServiceClient;
@@ -20,23 +15,29 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
- *
+ * Handles the functionalities that can be done at the start like landing, 
+ * registering and home page.
+ * 
  * @author ugurbor
  */
 @RestController
 public class MainController {
-
+    /**
+     * Gets the main landing page of the system. Also gets data which will be
+     * shown to guests are fetched by this method, using client methods.
+     * 
+     * @param request
+     * @return landing_page
+     */
     @RequestMapping("/")
-    public ModelAndView index(HttpServletRequest request, HttpServletResponse response, RedirectAttributes attributes) {
+    public ModelAndView index(HttpServletRequest request) {
         ModelAndView index = new ModelAndView("index");
         HttpSession session = request.getSession();
         TopicServiceClient client = new TopicServiceClient((String) session.getAttribute("token"));
@@ -67,13 +68,20 @@ public class MainController {
             index.addObject("categories", categories);
         } catch (Exception ex) {
             ex.printStackTrace();
-            attributes.addFlashAttribute("error", ex.getMessage());
+            index.addObject("error", ex.getMessage());
         }
         return index;
     }
-
+    /**
+     * Gets the home page for a logged in user. Special content for the user 
+     * like recommendations and following topics, are given to the page with
+     * guest-type data.
+     * 
+     * @param request
+     * @return home_page
+     */
     @RequestMapping("/home")
-    public ModelAndView home(HttpServletRequest request, HttpServletResponse response, RedirectAttributes attributes) {
+    public ModelAndView home(HttpServletRequest request) {
         ModelAndView index = new ModelAndView("home");
         HttpSession session = request.getSession();
         TopicServiceClient client = new TopicServiceClient((String) session.getAttribute("token"));
@@ -117,13 +125,20 @@ public class MainController {
             index.addObject("categories", categories);
         } catch (Exception ex) {
             ex.printStackTrace();
-            attributes.addFlashAttribute("error", ex.getMessage());
+            index.addObject("error", ex.getMessage());
         }
         return index;
     }
-
+    /**
+     * Handles the registration of a new user. According to user's choice, an
+     * authority is given to the user. User needs to log in after registration.
+     * 
+     * @param request
+     * @return landing_page
+     * @throws NullPointerException 
+     */
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public ModelAndView register(HttpServletRequest request, RedirectAttributes attributes) throws NullPointerException {
+    public ModelAndView register(HttpServletRequest request) throws NullPointerException {
         Users user = new Users();
         LoginServiceClient client = new LoginServiceClient();
         ModelAndView modelAndView = new ModelAndView("redirect:/");
@@ -148,7 +163,7 @@ public class MainController {
             //TODO mailing is needed after the registration
         } catch (Exception ex) {
             ex.printStackTrace();
-            attributes.addFlashAttribute("error", ex.getMessage());
+            modelAndView.addObject("error", ex.getMessage());
         }
         return modelAndView;
     }
