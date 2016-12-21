@@ -66,6 +66,20 @@ public class UsersService {
     public Users updateUser(Users user) {
         return usersRepository.save(user);
     }
+    
+    public Users updateUserBio(String bio)
+    {
+        Users user = usersRepository.findOne(getLoggedInUserId());
+        user.setBio(bio);
+        return usersRepository.save(user);
+    }
+    
+    public Users updateUserAssociation(String association)
+    {
+        Users user = usersRepository.findOne(getLoggedInUserId());
+        user.setAssociation(association);
+        return usersRepository.save(user);
+    }
 
     public Users getLoggedInUser() {
         String token = request.getHeader(tokenHeader);
