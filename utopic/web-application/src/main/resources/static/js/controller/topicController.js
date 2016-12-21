@@ -123,7 +123,7 @@ mainModel.controller('topicController',function indexController($scope) {
             url: "/solvequiz",
             data: JSON.stringify(data)
         }).done(function(data) {
-            //console.log(data);
+            console.log(data);
         }).fail(function(data){
             //console.log(data);
         });

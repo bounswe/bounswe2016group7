@@ -72,12 +72,13 @@ public class QuizController {
                         if(solvedQuestion.getRightAnswer() == i){
                             option.isValid = 1;
                         }
-                        String methodName = "getChoice" + i; 
+                        String methodName = "getChoice" + (char)i; 
                         Method method = questionTemp.getClass().getMethod(methodName);
                         Object temp = method.invoke(questionTemp);
                         option.text = (String) temp;
                         question.options.add(option);
                     }
+                    result.results.add(question);
                 }else{
                     wrongNumber++;
                     question.id = solvedQuestion.getQuestionId();
@@ -90,12 +91,13 @@ public class QuizController {
                         if(solvedQuestion.getChosenAnswer() == i){
                             option.isValid = -1;
                         }
-                        String methodName = "getChoice" + i; 
+                        String methodName = "getChoice" + (char)i; 
                         Method method = questionTemp.getClass().getMethod(methodName);
                         Object temp = method.invoke(questionTemp);
                         option.text = (String) temp;
                         question.options.add(option);
                     }
+                    result.results.add(question);
                 }
                 questionNum++;
             }
