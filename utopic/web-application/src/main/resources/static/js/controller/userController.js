@@ -12,6 +12,7 @@ mainModel.controller('userController',function indexController($scope) {
     $scope.bio = "Not entered";
     $scope.newBio = "";
     $scope.displayBioInput = false;
+    $scope.progress = progress;
     
     if(association){
         $scope.association = association;
@@ -54,8 +55,8 @@ mainModel.controller('userController',function indexController($scope) {
         });
     }
     
-    $scope.changeAssociation = function(){
-        if(!$scope.newAssociation){
+    $scope.changeAssociation = function(newAssociation){
+        if(!newAssociation){
             $scope.displayAssocInput = false;
             return;
         }
@@ -64,7 +65,7 @@ mainModel.controller('userController',function indexController($scope) {
             type: "PUT",
             contentType: "application/json; charset=utf-8",
             url: "/setassociation",
-            data: $scope.newAssociation,
+            data: newAssociation,
         }).done(function(data) {
             console.log(data);
             $scope.association = data.responseText;
@@ -120,7 +121,12 @@ mainModel.controller('userController',function indexController($scope) {
         $scope.$digest();
     });
     var imageUrl = "http://localhost:8090/images/user-";
+    var topicImageUrl = "http://localhost:8090/images/topic-";
     $(document).ready(function(){
+        var foundPictures = [];
+        for(var i = 0; i< $scope.topics.length; i++){
+            $scope.topics[i].picture =topicImageUrl+$scope.topics[i].topicId+".jpg";
+        }
         
         $.ajax({
             url: imageUrl + ownerId + '.jpg',

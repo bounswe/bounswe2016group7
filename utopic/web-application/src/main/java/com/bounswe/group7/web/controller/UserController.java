@@ -1,8 +1,10 @@
 package com.bounswe.group7.web.controller;
 
+import com.bounswe.group7.api.client.QuizServiceClient;
 import com.bounswe.group7.api.client.ReviewServiceClient;
 import com.bounswe.group7.api.client.TopicServiceClient;
 import com.bounswe.group7.api.client.UserServiceClient;
+import com.bounswe.group7.model.QuizProgress;
 import com.bounswe.group7.model.Reviews;
 import com.bounswe.group7.model.Topics;
 import javax.servlet.http.HttpServletRequest;
@@ -53,6 +55,7 @@ public class UserController {
         TopicServiceClient topicClient = new TopicServiceClient((String) request.getSession().getAttribute("token"));
         ReviewServiceClient reviewClient = new ReviewServiceClient((String) request.getSession().getAttribute("token"));
         try{
+            List<QuizProgress> progress = userClient.getQuizProgress();
             Users profiledUser = userClient.getUser(id);
             List<Topics> topicList = topicClient.getUserTopics(id);
             List<Reviews> reviewList = reviewClient.getUserReviews(id);
@@ -67,6 +70,7 @@ public class UserController {
             modelAndView.addObject("profiledUser", profiledUser);
             modelAndView.addObject("topics", listOfTopics);
             modelAndView.addObject("reviews", profileReviews);
+            modelAndView.addObject("progress",mapper.writeValueAsString(progress));
         }catch(Exception ex){
             ex.printStackTrace();
         }

@@ -12,6 +12,7 @@
             <c:forEach items="${authorities}" var="stdn" varStatus="status">
                     auth.push('${stdn.name}');
             </c:forEach>
+                    var progress = ${progress};
                     var association = "${profiledUser.association}";
                     var bio = "${profiledUser.bio}";
                     var activeUsername = "${sessionScope.username}";
@@ -58,15 +59,10 @@
                                             Association: <span ng-bind="association"></span>
                                             <button ng-if="ownerId == currentUserId" class="button-small" ng-click="showAssociationEdit()"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
                                         </p>
-                                        <form ng-if="ownerId == currentUserId" ng-submit="changeAssociation()" ng-show="displayAssocInput" id="association-form">
+                                        <form ng-if="ownerId == currentUserId" ng-submit="changeAssociation(newAssociation)" ng-show="displayAssocInput" id="association-form">
                                             <input type="text" class="form-control" ng-model="newAssociation" placeholder="Association">
                                             <button type="submit" class="button-small"><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
                                         </form>
-                                    </div>
-                                    <div class="tags">
-                                        <div class="topic-tag">Badge 1</div>
-                                        <div class="topic-tag">Badge 2</div>
-                                        <div class="topic-tag">Badge 3</div>		
                                     </div>
                                 </div>
                             </div>
@@ -104,7 +100,15 @@
 
                             <div class="tab-content">
                                 <div class="tab-pane active" id="home" role="tabpanel">
-                                    <p>QUIZ PROGRESS</p>
+                                    <div ng-repeat="pro in progress">
+                                        <p>Topic Pack:<span ng-bind="pro.topicPack.name"></span></p>
+                                        <div ng-repeat="topic1 in pro.topicPack.topics">
+                                            <p>Topic: <span ng-bind="topic1.header"></span><br>Topic Quiz: <span ng-bind="topic1.score"></span></p>
+                                        </div>
+                                        <p>Pack Score: <span ng-bind="pro.totalProgress"></span></p>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                        <div class="clearfix"></div>
                                 </div>
                                 <div  ng-if="profiledAuths.indexOf('ROLE_CREATOR')!=-1" class="tab-pane message-tab" id="profile" role="tabpanel">
                                     <div class="message-container">
@@ -112,17 +116,21 @@
                                             <p>There is no topics yet<br/>Create one!</p>
                                         </div>
                                         <div ng-repeat="topic in topics" class="message" id="topic{{topic.id}}">
-                                            <div class="message-point">
-                                                <i class="fa fa-picture-o fa-4x" aria-hidden="true"></i>
-                                            </div>
-                                            <div class="message-content">
-                                                <a href="/topic/{{topic.topicId}}" class="title">
-                                                    {{topic.header}}
-                                                </a>
-                                                <p ng-bind-html="topic.description | to_trusted"></p>
-                                                <span class="date">
-                                                    {{topic.createDate}}
-                                                </span>
+                                            <div class="row">
+                                                <div class="col-xs-12 col-sm-4 col-md-3">
+                                                     <div class="topic-thumb" style="background: url({{topic.picture}});"></div>
+                                                </div>
+                                                <div class="col-xs-12 col-sm-8 col-md-9">
+                                                    <div class="message-content">
+                                                        <a href="/topic/{{topic.topicId}}" class="title">
+                                                            {{topic.header}}
+                                                        </a>
+                                                        <p ng-bind-html="topic.description | to_trusted"></p>
+                                                        <span class="date">
+                                                            {{topic.createDate}}
+                                                        </span>
+                                                    </div>
+                                                </div>
                                             </div>
                                             <div class="clearfix"></div>
                                         </div>
@@ -149,7 +157,7 @@
                                         </div>
                                     </div>
                                     <div class="input-container">
-                                        <form ng-submit="addReview(reviewToAdd)">
+                                        <form ng-if="ownerId != currentUserId" ng-submit="addReview(reviewToAdd)">
                                             <input type="text" ng-model="reviewToAdd" placeholder="Your message" class="form-control">
                                             <button class="button button-green send-button" type="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
                                         </form>

@@ -596,7 +596,12 @@ ul.following-users.panel {
     pointer-events:auto;
 }
 
-
+.topic-thumb{
+    background-size: cover !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+    height: 180px;
+}
 
 @media(max-width: 543px){
   .search-image{
