@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -72,4 +73,28 @@ public class UserController {
         return modelAndView;
     }
     
+    @RequestMapping(value = "/setbio", method = RequestMethod.PUT,
+           produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public String setBio(HttpServletRequest request, @RequestBody String bio){
+        UserServiceClient userClient = new UserServiceClient((String) request.getSession().getAttribute("token"));
+        try{
+            userClient.updateUserBio(bio);
+            return bio;
+        }catch(Exception ex){
+            ex.printStackTrace();
+            return ex.getMessage();
+        }
+    }
+    
+    @RequestMapping(value = "/setassociation", method = RequestMethod.PUT,
+           produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+        UserServiceClient userClient = new UserServiceClient((String) request.getSession().getAttribute("token"));
+        try{
+        }catch(Exception ex){
+            ex.printStackTrace();
+            return ex.getMessage();
+        }
+    }
 }
