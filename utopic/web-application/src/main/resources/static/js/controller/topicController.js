@@ -1,5 +1,6 @@
 mainModel.controller('topicController',function indexController($scope) {
     $scope.comments = comments;
+    $scope.recommended = recommended;
     $scope.commentToAdd = '';
     $scope.repliedId = '';
     $scope.tags = topicTags;

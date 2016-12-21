@@ -12,7 +12,7 @@
             <c:forEach items="${authorities}" var="stdn" varStatus="status">
                     auth.push('${stdn.name}');
             </c:forEach>
-                var initialRating = ${topic.rate}
+                var initialRating = ${topic.rate};
                 var followingUsers = ${followingUsers};
                 var quiz = ${quiz};
                 var activeUsername = "${sessionScope.username}";
@@ -23,6 +23,7 @@
                 var topicId = ${topic.topicId};
                 var topicTags = ${tags};
                 var nextPrev = ${nextPrev};
+                var recommended = ${recTopic};
         </script><%
             }else{
             response.setStatus(response.SC_MOVED_TEMPORARILY);
@@ -97,8 +98,7 @@
                             </div>
                             <div class="recommended">
                                 <span class="title">Recommended</span>
-                                <a href="#" class="recommended-topic">Topic 1</a>
-                                <a href="#" class="recommended-topic">Topic 2</a>
+                                <a ng-repeat="topic in recommended" href="/topic/{{topic.topicId}}" class="recommended-topic">{{topic.header}}</a>
                             </div>
                         </div>
                     </div>

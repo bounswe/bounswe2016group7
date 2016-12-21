@@ -125,10 +125,10 @@ public class TopicController {
             if(quiz.questionList == null){
                 quiz.questionList = new ArrayList();
             }
-            
-            SolvedQuizes solvedQuiz = quizClient.isQuizSolved(id);
+            SolvedQuizes solvedQuiz = null;
             QuizResult result = new QuizResult();
-            if(solvedQuiz.isSolved()){
+            if(quizClient.isQuizSolved(quizBack.getQuizId()).isSolved()){
+                solvedQuiz = quizClient.isQuizSolved(quizBack.getQuizId());
                 List<SolvedQuestions> solvedQuestions = solvedQuiz.getSolvedQuestions();
                
                 int correctNumber = 0;
