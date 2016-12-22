@@ -32,13 +32,21 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+/*
+* This class is the TopicPage class which initiates the Topic page
+*
+* */
 public class TopicPage extends AppCompatActivity {
-
+    /*
+    * Topic Pack List holds the list of Topic packages
+    * topicPackNames holds the names of topic packages as Strings
+    * */
     List<TopicPacks> topicPacksList = new ArrayList<TopicPacks>();
     List<String> topicPackNames = new ArrayList<String>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //set view from activity_topic_page_2.xml
         setContentView(R.layout.activity_topic_page_2);
        /* Spinner topicPackSpinner = (Spinner) findViewById(R.id.spinnerTopicPack);
         SharedPreferences sharPref = getSharedPreferences("tokenInfo",MODE_PRIVATE);
@@ -67,7 +75,10 @@ public class TopicPage extends AppCompatActivity {
         }
         */
     }
-
+    /*
+     *goEditing method
+     * This method enables Topic editing feature
+     */
     public void goEditing(View v){
         EditText header = (EditText) findViewById(R.id.editText2);
         EditText description = (EditText) findViewById(R.id.editText);
@@ -78,23 +89,26 @@ public class TopicPage extends AppCompatActivity {
         String topicDescription = description.getText().toString();
         String topicPackName = (String) spinner.getSelectedItem();
         Long topicPackId = (long) -1;
+        //if a topic page is selected
         if(!topicPackName.equalsIgnoreCase("Not Selected")) {
+            //get the index of the topic from the topicPackNames
             int index = topicPackNames.indexOf(topicPackName);
             TopicPacks topicPacks = topicPacksList.get(index);
             topicPackId = topicPacks.getTopicPackId();
         }
-
+       //create new buddle
         Bundle topicBundle = new Bundle();
-        topicBundle.putString("topicHeader",topicHeader);
-        topicBundle.putString("topicDescription",topicDescription);
-        topicBundle.putSerializable("topicDate",createDate);
-        topicBundle.putLong("topicPackId",topicPackId);
-        topicBundle.putStringArrayList("topicTags",allSelected);
+        topicBundle.putString("topicHeader",topicHeader);  //set topicheader
+        topicBundle.putString("topicDescription",topicDescription);   //set topicDescription
+        topicBundle.putSerializable("topicDate",createDate);  //set topicDate
+        topicBundle.putLong("topicPackId",topicPackId);   //set topicPackId
+        topicBundle.putStringArrayList("topicTags",allSelected);  //set topicTags
 
         Intent intent = new Intent(this, TopicAddMaterialQuiz.class);
         intent.putExtras(topicBundle);
         startActivity(intent);
     }
+   //listSemanticResult method
 
     public void listSemanticResult(View v){
         EditText editText = (EditText) findViewById(R.id.editText14);
@@ -113,8 +127,13 @@ public class TopicPage extends AppCompatActivity {
        // startActivity(intent);
     }
 
-    List<String> allTags = new ArrayList<String>();
+    List<String> allTags = new ArrayList<String>();  //holds the tags
     ArrayList<String> allSelected = new ArrayList<String>();
+
+   /*
+   * addTag method
+   * this method enables putting tags to topic
+   * */
     public void addTag(View v){
         Spinner semanticSpinner = (Spinner) findViewById(R.id.spinnerSemantic);
         //TextView tagView = (TextView) findViewById(R.id.tags);
@@ -129,6 +148,7 @@ public class TopicPage extends AppCompatActivity {
         //tagView.setText(allTags);
     }
 
+    //getSemanticResults method
     public List<String> getSemanticResults(String url) {
         List<String> results = new ArrayList<String>();
         try {

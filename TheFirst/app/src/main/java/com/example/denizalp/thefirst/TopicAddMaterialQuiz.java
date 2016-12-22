@@ -19,12 +19,16 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+/*
+* TopicAddMaterialQuiz class
+*
+* */
 public class TopicAddMaterialQuiz extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_topic_add_material_quiz);
+        setContentView(R.layout.activity_topic_add_material_quiz);  //set view as a activity_topic_add_material_quiz.xml
         SharedPreferences sharPref = getSharedPreferences("tokenInfo",MODE_PRIVATE);
         String token = sharPref.getString("currentToken","boşHocamBu");
     }
@@ -42,11 +46,11 @@ public class TopicAddMaterialQuiz extends AppCompatActivity {
             EditText content = (EditText) findViewById(R.id.editText5);
 
             String topicContent = content.getText().toString();
-            String topicHeader = intent.getExtras().getString("topicHeader");
-            String topicDescription = intent.getExtras().getString("topicDescription");
-            Date topicDate = (Date) intent.getExtras().getSerializable("topicDate");
+            String topicHeader = intent.getExtras().getString("topicHeader");  //topic header
+            String topicDescription = intent.getExtras().getString("topicDescription");  //topic description
+            Date topicDate = (Date) intent.getExtras().getSerializable("topicDate"); //topic date
             Long userId = userServiceClient.getLoggedInUser().getId();
-            Long topicPackId = intent.getExtras().getLong("topicPackId");
+            Long topicPackId = intent.getExtras().getLong("topicPackId"); //topic pack id
             ArrayList<String> selectedTags = intent.getExtras().getStringArrayList("topicTags");
             List<Tags> tagsList = new ArrayList<Tags>();
             for(String s:selectedTags){

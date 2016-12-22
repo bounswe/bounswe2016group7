@@ -18,7 +18,11 @@ import android.support.v7.app.ActionBar.*;
 import org.glassfish.hk2.api.messaging.Topic;
 
 import java.util.List;
-
+/*
+* TopicListPage class
+* Lists the topicPages
+*
+* */
 public class TopicListPage extends AppCompatActivity {
 
     @Override
@@ -26,17 +30,18 @@ public class TopicListPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         SharedPreferences sharPref = getSharedPreferences("tokenInfo",MODE_PRIVATE);
         String token = sharPref.getString("currentToken","boşHocamBu");
-        TopicServiceClient topicServiceClient = new TopicServiceClient(token);
-        UserServiceClient userServiceClient = new UserServiceClient(token);
-        LinearLayout linearLayout = new LinearLayout(this);
-        linearLayout.setOrientation(LinearLayout.VERTICAL);
+        TopicServiceClient topicServiceClient = new TopicServiceClient(token);  // create topicServiceClient
+        UserServiceClient userServiceClient = new UserServiceClient(token);   //create UserServiceClient
+        LinearLayout linearLayout = new LinearLayout(this);   //set layout
+        linearLayout.setBackgroundResource(R.drawable.wallpaper);
+        linearLayout.setOrientation(LinearLayout.VERTICAL);   //set vertical layout
         Intent intent = getIntent();
         Intent toTopic = new Intent(this,ShowTopicPage.class);
         int recentOrTop = intent.getIntExtra("option",1);
         List<Topics> topicList = null;
         if(recentOrTop == 1) {
             try {
-                topicList = topicServiceClient.getRecentTopics();
+                topicList = topicServiceClient.getRecentTopics(); //list of Recent topics
             }
             catch(Exception e){
                 e.printStackTrace();
@@ -44,7 +49,7 @@ public class TopicListPage extends AppCompatActivity {
         }
         else if(recentOrTop == 2){
             try {
-                topicList = topicServiceClient.getTopTopics();
+                topicList = topicServiceClient.getTopTopics();  //list of popular topics
             }
             catch(Exception e){
                 e.printStackTrace();
@@ -63,7 +68,7 @@ public class TopicListPage extends AppCompatActivity {
         }
         else if(recentOrTop == 4){
             try{
-               topicList = topicServiceClient.getUserFollowedTopics();
+               topicList = topicServiceClient.getUserFollowedTopics();   //the topics that are followed by the user
             }
             catch(Exception e){
                 e.printStackTrace();
@@ -72,12 +77,12 @@ public class TopicListPage extends AppCompatActivity {
         else if(recentOrTop == 5){
             try{
                Intent previous = getIntent();
-                String keyword = previous.getStringExtra("keyword");
-                String currToken = previous.getStringExtra("token");
+                String keyword = previous.getStringExtra("keyword");  //get keyword
+                String currToken = previous.getStringExtra("token");   //get token
                 if(currToken.equalsIgnoreCase("")) System.out.println("Token boş gelmeyecek lan!");
                 else {
                     SearchServiceClient searchServiceClient = new SearchServiceClient(currToken);
-                    topicList = searchServiceClient.searchTopics(keyword);
+                    topicList = searchServiceClient.searchTopics(keyword);  //search the keyword among topics
                 }
             }
             catch(Exception e){
@@ -98,7 +103,7 @@ public class TopicListPage extends AppCompatActivity {
                         startActivity(toTopic);
                     }
                 });
-                linearLayout.addView(button);
+                linearLayout.addView(button); //list the topics as buttons
             }
         }
         setContentView(linearLayout);

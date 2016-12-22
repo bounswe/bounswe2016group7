@@ -25,6 +25,11 @@ import java.util.ArrayList;
 import java.util.List;
 //import com.example.denizalp.UtopicApplication;
 
+/*
+* Login page functional implementation.
+* Geth password and username from user and check if they are correct,
+* if so enter the system.
+* */
 public class UserPage extends AppCompatActivity {
 
     Users token = new Users();
@@ -35,8 +40,8 @@ public class UserPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         SharedPreferences sharedPref = getSharedPreferences("tokenInfo",MODE_PRIVATE);
         String currentToken = sharedPref.getString("currentToken","");
-        String username = "";
-        String password = "";
+        String username = "";  //username
+        String password = "";  //password
         Activity activity = this;
         if(currentToken.equals(""))
         {
@@ -44,12 +49,14 @@ public class UserPage extends AppCompatActivity {
             username = intent.getStringExtra("username");
             password = intent.getStringExtra("password");
         }
+        //get login servive client
         LoginServiceClient loginServiceClient = new LoginServiceClient();
         UserServiceClient userServiceClient = null;
 
         try {
             if(currentToken.equals(""))
             {
+                //create user with username and password
                 Users user = new Users(username, password);
                 token = loginServiceClient.login(user);
                 // SharedPreferences sharedPref = getSharedPreferences("tokenInfo",MODE_PRIVATE);
@@ -69,6 +76,8 @@ public class UserPage extends AppCompatActivity {
             }
             System.out.println(currentToken);
             //System.out.println(firstname+" "+lastname);
+
+            //set view by activity_user_page
             setContentView(R.layout.activity_user_page);
             TextView textView = (TextView) findViewById(R.id.textView4);
             TextView authority = (TextView) findViewById(R.id.textView6);
@@ -78,10 +87,12 @@ public class UserPage extends AppCompatActivity {
             for(Authority a:userAuthorities){
                 authorityNames.add(a.getName().getName());
             }
+            //if not Creator, then assign user as Explorer
             if(!authorityNames.contains("ROLE_CREATOR")) {
                 author = "Explorer";
             }
             else{
+                //if creator, assign user as creator
                 author = "Creator";
             }
             System.out.println(token.getUsername());
@@ -117,7 +128,7 @@ public class UserPage extends AppCompatActivity {
             }
         });
     }
-
+//getUserInfo method
     public void getUserInfo(View view) {
         Intent intent = new Intent(this, EditUserInformationPage.class);
         Bundle bundle = new Bundle();
@@ -125,7 +136,7 @@ public class UserPage extends AppCompatActivity {
         intent.putExtras(bundle);
         startActivityForResult(intent, 1);
     }
-
+//onActivityResult method
     public void onActivityResult(int req, int res, Intent data){
         super.onActivityResult(req,res,data);
         if (req==1) {
@@ -150,11 +161,14 @@ public class UserPage extends AppCompatActivity {
             }
         }
     }
+    //goHome method
+    //displays the Home page of user
     public void goHome(View v) {
         Intent intent = new Intent(this, HomePage.class);
         startActivity(intent);
     }
-
+    //logout method
+    //if user is logged in, log him out
     public void logout(View v){
         SharedPreferences sharedPref = getSharedPreferences("tokenInfo",MODE_PRIVATE);
         SharedPreferences.Editor prefEditor = sharedPref.edit();
@@ -163,19 +177,19 @@ public class UserPage extends AppCompatActivity {
         Intent intent = new Intent(this,MainActivity.class);
         startActivity(intent);
     }
-
+ //goLoggedInUserPage method
     public void goLoggedInUserPage(View v){
         Intent intent = new Intent(this,UserPage.class);
         startActivity(intent);
     }
-
+ //listTopics method
     public void listTopics(View v){
         Intent intent = new Intent(this, TopicListPage.class);
         intent.putExtra("option",3);
         intent.putExtra("creatorID",token.getId());
         startActivity(intent);
     }
-
+  //goToReviews method
     public void goToReviews(View v){
         Intent intent = new Intent(this, ReviewPage.class);
         intent.putExtra("reviewedID",token.getId());
