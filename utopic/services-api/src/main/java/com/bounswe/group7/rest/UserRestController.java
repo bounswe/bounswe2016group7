@@ -76,8 +76,8 @@ public class UserRestController {
         return usersService.updateUserAssociation(association);
     }
 
-    @RequestMapping(value = "getQuizProgress", method = RequestMethod.GET)
-    public List<QuizProgress> getQuizProgress() {
-        return usersService.getQuizProgress();
+    @RequestMapping(value = "getQuizProgress", method = RequestMethod.POST)
+    public List<QuizProgress> getQuizProgress(@RequestBody Long userId) {
+        return usersService.getQuizProgress(userId);
     }
 }

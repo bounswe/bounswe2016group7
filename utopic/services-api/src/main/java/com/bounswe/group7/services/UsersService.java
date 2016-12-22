@@ -107,8 +107,7 @@ public class UsersService {
         return "not changed";
     }
 
-    public List<QuizProgress> getQuizProgress() {
-        Long userId = getLoggedInUserId();
+    public List<QuizProgress> getQuizProgress(Long userId) {
         List<QuizProgress> quizProgresses = new ArrayList<QuizProgress>();
         List<TopicPacks> topicPacks = topicPacksRepository.findTopicPacksWithSolvedQuizes(userId);
         for (TopicPacks thePack : topicPacks) {

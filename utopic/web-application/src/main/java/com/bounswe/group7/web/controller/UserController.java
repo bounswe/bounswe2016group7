@@ -55,7 +55,7 @@ public class UserController {
         TopicServiceClient topicClient = new TopicServiceClient((String) request.getSession().getAttribute("token"));
         ReviewServiceClient reviewClient = new ReviewServiceClient((String) request.getSession().getAttribute("token"));
         try{
-            List<QuizProgress> progress = userClient.getQuizProgress();
+            List<QuizProgress> progress = userClient.getQuizProgress(id);
             Users profiledUser = userClient.getUser(id);
             List<Topics> topicList = topicClient.getUserTopics(id);
             List<Reviews> reviewList = reviewClient.getUserReviews(id);

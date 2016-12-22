@@ -35,9 +35,9 @@ public class UserServiceClient extends BaseClient {
         }, userId);
     }
 
-    public List<QuizProgress> getQuizProgress() throws Exception {
-        return get(getResource().path("getQuizProgress"), new TypeToken<List<QuizProgress>>() {
-        });
+    public List<QuizProgress> getQuizProgress(Long userId) throws Exception {
+        return post(getResource().path("getQuizProgress"), new TypeToken<List<QuizProgress>>() {
+        }, userId);
     }
     
     public Users updateUser(Users user) throws Exception {
