@@ -69,7 +69,6 @@ public class CommentAdapter extends BaseAdapter {
 
 
         Comments comment = mCommentList.get(position);
-        //SharedPreferences sharPref = getSharedPreferences("tokenInfo",MODE_PRIVATE);
         String token = currentToken;
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
         UserServiceClient userServiceClient = new UserServiceClient(token);
@@ -134,7 +133,6 @@ public class CommentAdapter extends BaseAdapter {
                    try {
                        mCommentList.remove(comment);
                        commentServiceClient.deleteComment(deletedCommentId);
-                       System.out.println("Comment has been deleted successfully.");
                        activity.recreate();
                    }
                    catch(Exception e){
@@ -145,8 +143,7 @@ public class CommentAdapter extends BaseAdapter {
             );
 
             if(currentUserId != comment.getUserId()){
-                //System.out.println("Sen silemezsin, sen mi yazdın lan!");
-                deleteButton.setOnClickListener(null);
+                deleteButton.setVisibility(Button.GONE);
             }
         }
         catch(Exception e){

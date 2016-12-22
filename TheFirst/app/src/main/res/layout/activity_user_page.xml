@@ -11,28 +11,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.denizalp.thefirst.UserPage">
 
-    <TextView
-        android:text="LOGO"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:id="@+id/textView2" />
-
-    <SearchView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/textView2"
-        android:layout_marginLeft="15dp"
-        android:layout_marginStart="15dp"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:id="@+id/searchBar"
-        android:layout_alignBottom="@+id/textView2"
-        />
-
     <Button
         android:text="Home"
         android:layout_width="wrap_content"
@@ -110,63 +88,33 @@
         android:layout_alignStart="@+id/textView3"
         android:layout_marginTop="13dp" />
 
-    <RatingBar
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/ratingBar"
-        android:layout_below="@+id/textView6"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <Button
-        android:text="Quiz"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/button6"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
     <Button
         android:text="Topics"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/button7"
-        android:layout_alignParentBottom="true"
-        android:layout_alignLeft="@+id/textView6"
-        android:layout_alignStart="@+id/textView6"
-        android:onClick="listTopics"/>
+        android:onClick="listTopics"
+        android:layout_below="@+id/textView6"
+        android:layout_alignStart="@+id/textView6" />
 
     <Button
         android:text="Reviews"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/button5"
-        android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/textView4"
-        android:layout_alignEnd="@+id/textView4"
-        android:onClick="goToReviews"/>
-
-    <TextView
-        android:text="TextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:id="@+id/textView9"
-        android:layout_above="@+id/button6"
-        android:layout_below="@+id/ratingBar"
-        android:layout_toStartOf="@+id/button5"
-        android:layout_alignEnd="@+id/button5" />
+        android:onClick="goToReviews"
+        android:layout_below="@+id/textView6"
+        android:layout_alignEnd="@+id/textView4" />
 
     <Button
-        android:text="Edit Info"
+        android:text="Quiz"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/button18"
-        android:layout_alignTop="@+id/textView3"
-        android:layout_alignEnd="@+id/textView4"
-        android:onClick="getUserInfo"/>
+        android:id="@+id/button6"
+        android:onClick="showQuizProgress"
+        android:layout_alignBaseline="@+id/button7"
+        android:layout_alignBottom="@+id/button7"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>
 

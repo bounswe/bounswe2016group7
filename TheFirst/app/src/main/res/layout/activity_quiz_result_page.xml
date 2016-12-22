@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_quiz_result_page"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="1">
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="match_parent"
+        android:layout_height="108dp"
+        android:textSize="32dp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:id="@+id/textView21" />
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+        android:id="@+id/quizResultView"/>
+
+    <Button
+        android:text="Back to the Topic"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/button44"
+        android:onClick="backToTopic"/>
+</LinearLayout>

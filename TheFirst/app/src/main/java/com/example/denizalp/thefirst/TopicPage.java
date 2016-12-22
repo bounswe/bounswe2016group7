@@ -40,7 +40,7 @@ public class TopicPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_topic_page_2);
-       /* Spinner topicPackSpinner = (Spinner) findViewById(R.id.spinnerTopicPack);
+        Spinner topicPackSpinner = (Spinner) findViewById(R.id.spinner);
         SharedPreferences sharPref = getSharedPreferences("tokenInfo",MODE_PRIVATE);
         String token = sharPref.getString("currentToken","boşHocamBu");
         UserServiceClient userServiceClient = new UserServiceClient(token);
@@ -65,13 +65,13 @@ public class TopicPage extends AppCompatActivity {
         catch(Exception e){
             e.printStackTrace();
         }
-        */
+
     }
 
     public void goEditing(View v){
-        EditText header = (EditText) findViewById(R.id.editText2);
-        EditText description = (EditText) findViewById(R.id.editText);
-        Spinner spinner = (Spinner) findViewById(R.id.spinnerTopicPack);
+        EditText header = (EditText) findViewById(R.id.editText15);
+        EditText description = (EditText) findViewById(R.id.editText16);
+        Spinner spinner = (Spinner) findViewById(R.id.spinner);
         Date createDate = new Date();
 
         String topicHeader = header.getText().toString();
@@ -97,8 +97,8 @@ public class TopicPage extends AppCompatActivity {
     }
 
     public void listSemanticResult(View v){
-        EditText editText = (EditText) findViewById(R.id.editText14);
-        Spinner semanticSpinner = (Spinner) findViewById(R.id.spinnerSemantic);
+        EditText editText = (EditText) findViewById(R.id.editText17);
+        Spinner semanticSpinner = (Spinner) findViewById(R.id.spinner2);
         String param = editText.getText().toString();
         String url = "https://www.wikidata.org/w/api.php?action=wbsearchentities&search=" + param +
                 "&language=en&format=json&callback=?'";
@@ -116,17 +116,36 @@ public class TopicPage extends AppCompatActivity {
     List<String> allTags = new ArrayList<String>();
     ArrayList<String> allSelected = new ArrayList<String>();
     public void addTag(View v){
-        Spinner semanticSpinner = (Spinner) findViewById(R.id.spinnerSemantic);
+        Spinner semanticSpinner = (Spinner) findViewById(R.id.spinner2);
         //TextView tagView = (TextView) findViewById(R.id.tags);
         String selected = (String) semanticSpinner.getSelectedItem();
         allSelected.add(selected);
         int indexOfSpace = selected.indexOf('(');
         String label = selected.substring(0,indexOfSpace);
         allTags.add(label);
-        GridView gridView = (GridView) findViewById(R.id.tagGridView);
+        GridView gridView = (GridView) findViewById(R.id.tagGridView2);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,allTags);
         gridView.setAdapter(adapter);
         //tagView.setText(allTags);
+    }
+
+    public void gogoHome(View v){
+        Intent intent = new Intent(this, HomePage.class);
+        startActivity(intent);
+    }
+
+    public void gogoProfile(View v){
+        Intent intent = new Intent(this, UserPage.class);
+        startActivity(intent);
+    }
+
+    public void logOUT(View v){
+        SharedPreferences sharedPref = getSharedPreferences("tokenInfo",MODE_PRIVATE);
+        SharedPreferences.Editor prefEditor = sharedPref.edit();
+        prefEditor.clear();
+        prefEditor.apply();
+        Intent intent = new Intent(this,MainActivity.class);
+        startActivity(intent);
     }
 
     public List<String> getSemanticResults(String url) {

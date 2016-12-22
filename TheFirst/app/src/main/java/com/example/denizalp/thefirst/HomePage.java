@@ -87,4 +87,9 @@ public class HomePage extends AppCompatActivity {
         intent.putExtra("option",6);
         startActivity(intent);
     }
+
+    public void searchTopic(View v){
+        Intent intent = new Intent(this, SearchTopicPage.class);
+        startActivity(intent);
+    }
 }

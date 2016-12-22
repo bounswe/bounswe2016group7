@@ -74,10 +74,21 @@ public class QuizAdapter extends BaseAdapter {
         );
         Questions question = mQuiz.getQuestions().get(position);
         quizQuestion.setText(question.getQuestion());
-        choiceA.setText(question.getChoiceA());
-        choiceB.setText(question.getChoiceB());
-        choiceC.setText(question.getChoiceC());
-        choiceD.setText(question.getChoiceD());
+        if(!question.getChoiceA().equals("Default_Choice")) choiceA.setText(question.getChoiceA());
+        else choiceA.setVisibility(RadioButton.GONE);
+
+        if(!question.getChoiceB().equals("Default_Choice")) choiceB.setText(question.getChoiceB());
+        else choiceB.setVisibility(RadioButton.GONE);
+
+        if(!question.getChoiceC().equals("Default_Choice")) choiceC.setText(question.getChoiceC());
+        else choiceC.setVisibility(RadioButton.GONE);
+
+        if(!question.getChoiceD().equals("Default_Choice")) choiceD.setText(question.getChoiceD());
+        else choiceD.setVisibility(RadioButton.GONE);
+
+       // choiceB.setText(question.getChoiceB());
+       // choiceC.setText(question.getChoiceC());
+       // choiceD.setText(question.getChoiceD());
 
         return quizView;
     }

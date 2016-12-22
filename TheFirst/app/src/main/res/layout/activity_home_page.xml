@@ -40,18 +40,18 @@
         android:text="Recent Topics"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/button8"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="24dp"
         android:id="@+id/button28"
-        android:layout_alignParentEnd="true"
+        android:onClick="showRecentTopics"
+        android:layout_below="@+id/button8"
         android:layout_alignParentStart="true"
-        android:onClick="showRecentTopics"/>
+        android:layout_alignParentEnd="true" />
 
     <Button
         android:text="Top Topics"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="21dp"
+        android:layout_marginTop="24dp"
         android:id="@+id/button29"
         android:onClick="showTopTopics"
         android:layout_below="@+id/button28"
@@ -62,32 +62,43 @@
         android:text="New Topic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="26dp"
+        android:layout_marginTop="24dp"
         android:id="@+id/button30"
+        android:onClick="goToCreateTopic"
         android:layout_below="@+id/button29"
         android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:onClick="goToCreateTopic"/>
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:text="Search Topic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/searchTopic"
+        android:onClick="searchTopic"
+        android:layout_below="@+id/button37"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="24dp"
+        android:layout_alignParentEnd="true" />
 
     <Button
         android:text="Followed Topics"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:id="@+id/button13"
+        android:onClick="goFollowedTopics"
         android:layout_below="@+id/button30"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="26dp"
-        android:id="@+id/button13"
-        android:layout_alignParentEnd="true"
-        android:onClick="goFollowedTopics"/>
+        android:layout_alignParentEnd="true" />
 
     <Button
         android:text="Recommened Topics"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:id="@+id/button37"
+        android:onClick="showRecommendedTopics"
         android:layout_below="@+id/button13"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="26dp"
-        android:id="@+id/button37"
-        android:layout_alignParentEnd="true"
-        android:onClick="showRecommendedTopics"/>
+        android:layout_alignParentEnd="true" />
 </RelativeLayout>

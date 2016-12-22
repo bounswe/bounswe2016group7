@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Html;
+import android.text.Spanned;
 import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -13,12 +15,14 @@ import android.widget.ListView;
 import android.widget.Scroller;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bounswe.group7.api.client.CommentServiceClient;
 import com.bounswe.group7.api.client.QuizServiceClient;
 import com.bounswe.group7.api.client.TopicServiceClient;
 import com.bounswe.group7.api.client.UserServiceClient;
 import com.bounswe.group7.model.Comments;
+import com.bounswe.group7.model.NextPrevTopic;
 import com.bounswe.group7.model.Quizes;
 import com.bounswe.group7.model.Tags;
 import com.bounswe.group7.model.Topics;
@@ -72,12 +76,12 @@ public class ShowTopicPage extends AppCompatActivity {
             topicDescription.setMovementMethod(new ScrollingMovementMethod());
             topicDescription.setKeyListener(null);
             TextView topicRate = (TextView) findViewById(R.id.topicRate);
-            EditText topicContent = (EditText) findViewById(R.id.topicContent);
-            topicContent.setKeyListener(null);
-            topicContent.setScroller(new Scroller(this));
+            //EditText topicContent = (EditText) findViewById(R.id.topicContent);
+           // topicContent.setKeyListener(null);
+           // topicContent.setScroller(new Scroller(this));
            // topicContent.setMaxLines(1);
-            topicContent.setVerticalScrollBarEnabled(true);
-            topicContent.setMovementMethod(new ScrollingMovementMethod());
+           // topicContent.setVerticalScrollBarEnabled(true);
+           // topicContent.setMovementMethod(new ScrollingMovementMethod());
             ListView tagView = (ListView) findViewById(R.id.tagListView);
             Button followButton = (Button) findViewById(R.id.followButton);
             followButton.setOnClickListener(new View.OnClickListener() {
@@ -120,8 +124,9 @@ public class ShowTopicPage extends AppCompatActivity {
                 System.out.println(rate);
                 topicRate.setText(rate);
 
-                System.out.println(t.getContent());
-                topicContent.setText(t.getContent());
+                //System.out.println(t.getContent());
+                //Spanned spanned = fromHtml(t.getContent());
+                //topicContent.setText(spanned);
 
                 System.out.println(topicPackName);
                 topicPack.setText(topicPackName);
@@ -139,6 +144,21 @@ public class ShowTopicPage extends AppCompatActivity {
             catch(Exception e){
                 e.printStackTrace();
             }
+        }
+    }
+
+    public void seeMaterial(View v){
+        Intent intent = new Intent(this, TopicMaterialPage.class);
+        Intent previous = getIntent();
+        Long topicId = previous.getLongExtra("topicId",0);
+        try {
+            Topics topic = topicServiceClient.getTopic(topicId);
+            String content = topic.getContent();
+            intent.putExtra("content",content);
+            startActivity(intent);
+        }
+        catch(Exception e){
+            e.printStackTrace();
         }
     }
 
@@ -189,7 +209,7 @@ public class ShowTopicPage extends AppCompatActivity {
         Long topicId = getTopicID.getLongExtra("topicId",0);
         Quizes quizes = quizServiceClient.getQuiz(topicId);
         Long userId = userServiceClient.getLoggedInUser().getId();
-        if(quizes != null && quizes.getQuestions().size() != 0)
+        if(quizes != null)
         {
             Intent intent = new Intent(this, QuizViewPage.class);
             intent.putExtra("topicId", topicId);
@@ -241,4 +261,80 @@ public class ShowTopicPage extends AppCompatActivity {
         }
     }
 
+    public void topicPackPage(View v){
+        SharedPreferences sharPref = getSharedPreferences("tokenInfo",MODE_PRIVATE);
+        String token = sharPref.getString("currentToken","boşHocamBu");
+        topicServiceClient = new TopicServiceClient(token);
+        Intent previous = getIntent();
+        Long topicId = previous.getLongExtra("topicId",0);
+        try {
+            Topics topic = topicServiceClient.getTopic(topicId);
+            Intent intent = new Intent(this, TopicListPage.class);
+            intent.putExtra("option",7);
+            intent.putExtra("topicPackId",topic.getTopicPackId());
+            startActivity(intent);
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public void goNextTopic(View v){
+        SharedPreferences sharPref = getSharedPreferences("tokenInfo",MODE_PRIVATE);
+        String token = sharPref.getString("currentToken","boşHocamBu");
+        topicServiceClient = new TopicServiceClient(token);
+        Intent previous = getIntent();
+        Long topicId = previous.getLongExtra("topicId",0);
+        try {
+            NextPrevTopic nextPrevTopic = topicServiceClient.getNextPrev(topicId);
+            if(nextPrevTopic.getNext() != null){
+                Topics nextTopic = nextPrevTopic.getNext();
+                Intent intent = new Intent(this, ShowTopicPage.class);
+                intent.putExtra("topicId",nextTopic.getTopicId());
+                startActivity(intent);
+            }
+            else{
+                Toast.makeText(this, "This is the last topic in this package.",
+                        Toast.LENGTH_LONG).show();
+            }
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public void goPrevTopic(View v){
+        SharedPreferences sharPref = getSharedPreferences("tokenInfo",MODE_PRIVATE);
+        String token = sharPref.getString("currentToken","boşHocamBu");
+        topicServiceClient = new TopicServiceClient(token);
+        Intent previous = getIntent();
+        Long topicId = previous.getLongExtra("topicId",0);
+        try {
+            NextPrevTopic nextPrevTopic = topicServiceClient.getNextPrev(topicId);
+            if(nextPrevTopic.getPrev() != null){
+                Topics prevTopic = nextPrevTopic.getPrev();
+                Intent intent = new Intent(this, ShowTopicPage.class);
+                intent.putExtra("topicId",prevTopic.getTopicId());
+                startActivity(intent);
+            }
+            else{
+                Toast.makeText(this, "This is the first topic in this package",
+                        Toast.LENGTH_LONG).show();
+            }
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    @SuppressWarnings("deprecation")
+    public Spanned fromHtml(String html){
+        Spanned result;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+            result = Html.fromHtml(html,Html.FROM_HTML_MODE_LEGACY);
+        } else {
+            result = Html.fromHtml(html);
+        }
+        return result;
+    }
 }

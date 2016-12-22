@@ -78,8 +78,11 @@ public class ReviewPage extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void goHOMe(View v){
-        Intent intent = new Intent(this, HomePage.class);
+    public void backToProfile(View v){
+        Intent getReviewedID = getIntent();
+        Long reviewedId = getReviewedID.getLongExtra("reviewedID", 0);
+        Intent intent = new Intent(this, UserPage.class);
+        intent.putExtra("creatorID",reviewedId);
         startActivity(intent);
     }
 }

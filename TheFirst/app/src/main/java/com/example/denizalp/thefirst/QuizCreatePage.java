@@ -21,13 +21,13 @@ public class QuizCreatePage extends AppCompatActivity {
 
     List<Questions> quizQuestions = new ArrayList<Questions>();
     List<Integer> questionNumbers = new ArrayList<Integer>();
+    List<Character> answers = new ArrayList<Character>();
     int questionNumber = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz_create_page);
         Spinner spinnerAnswers = (Spinner) findViewById(R.id.sAnswer);
-        List<Character> answers = new ArrayList<Character>();
         answers.add('A'); answers.add('B'); answers.add('C'); answers.add('D');
         ArrayAdapter<Character> adapter = new ArrayAdapter<Character>(
                 this, android.R.layout.simple_spinner_item, answers);
@@ -54,19 +54,20 @@ public class QuizCreatePage extends AppCompatActivity {
         Spinner spinnerQNumbers = (Spinner) findViewById(R.id.sQuestionNumber);
 
         String question = questionText.getText().toString();
+
         String choiceA = choiceTextA.getText().toString();
         String choiceB = choiceTextB.getText().toString();
         String choiceC = choiceTextC.getText().toString();
         String choiceD = choiceTextD.getText().toString();
-        char trueAnswer = (Character) spinnerAnswers.getSelectedItem();
-        questionNumber = (Integer) spinnerQNumbers.getSelectedItem();
-
         Questions aQuestion = new Questions();
         aQuestion.setQuestion(question);
-        aQuestion.setChoiceA(choiceA);
-        aQuestion.setChoiceB(choiceB);
-        aQuestion.setChoiceC(choiceC);
-        aQuestion.setChoiceD(choiceD);
+        if(!choiceA.equals("")) aQuestion.setChoiceA(choiceA);
+        if(!choiceB.equals("")) aQuestion.setChoiceB(choiceB);
+        if(!choiceC.equals("")) aQuestion.setChoiceC(choiceC);
+        if(!choiceD.equals("")) aQuestion.setChoiceD(choiceD);
+
+        char trueAnswer = (Character) spinnerAnswers.getSelectedItem();
+        questionNumber = (Integer) spinnerQNumbers.getSelectedItem();
         aQuestion.setRightAnswer(trueAnswer);
         aQuestion.setDateCreated(new Date());
 
@@ -105,7 +106,7 @@ public class QuizCreatePage extends AppCompatActivity {
         System.out.println(topicId);
         newQuiz.setTopicId(topicId);
 
-        //newQuiz.setQuestions(readyQuestions);
+   //     newQuiz.setQuestions(readyQuestions);
 
         System.out.println(userId);
         newQuiz.setUserId(userId);

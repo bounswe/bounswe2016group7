@@ -87,7 +87,7 @@ public class ReviewAdapter extends BaseAdapter {
             );
 
             if(currentUserId != review.getReviewerId()) {
-                deleteButton.setOnClickListener(null);
+                deleteButton.setVisibility(Button.GONE);
             }
 
         }

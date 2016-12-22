@@ -52,8 +52,11 @@ public class CommentViewPage extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void homePage(View v){
-        Intent intent = new Intent(this, HomePage.class);
+    public void backTopic(View v){
+        Intent previous = getIntent();
+        Long topicId = previous.getLongExtra("topicId",-1);
+        Intent intent = new Intent(this, ShowTopicPage.class);
+        intent.putExtra("topicId",topicId);
         startActivity(intent);
     }
 

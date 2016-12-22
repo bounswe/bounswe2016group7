@@ -36,12 +36,12 @@
         android:onClick="goProfile"/>
 
     <Button
-        android:text="Home"
+        android:text="Back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/button31"
         android:layout_alignParentTop="true"
         android:layout_toStartOf="@+id/button33"
         android:layout_marginEnd="31dp"
-        android:onClick="goHOMe"/>
+        android:onClick="backToProfile"/>
 </RelativeLayout>

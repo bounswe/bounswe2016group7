@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.denizalp.thefirst">
 
@@ -34,6 +34,11 @@
         <activity android:name=".CommentViewPage" />
         <activity android:name=".CommentCreatePage" />
         <activity android:name=".SemanticTagResultsView" />
+        <activity android:name=".QuizProgressPage" />
+        <activity android:name=".QuizProgressDetailedPage" />
+        <activity android:name=".QuizResultPage" />
+        <activity android:name=".SearchTopicPage" />
+        <activity android:name=".TopicMaterialPage"></activity>
     </application>
 
 </manifest>

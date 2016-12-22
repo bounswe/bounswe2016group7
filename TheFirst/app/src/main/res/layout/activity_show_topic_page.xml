@@ -44,27 +44,8 @@
         android:layout_below="@+id/topicDescription"
         android:layout_alignParentStart="true"
         android:id="@+id/topicRate"
+        android:layout_toStartOf="@+id/button22"
         android:layout_alignParentEnd="true" />
-
-    <Button
-        android:text="Profile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/button25"
-        android:layout_alignBaseline="@+id/button24"
-        android:layout_alignBottom="@+id/button24"
-        android:layout_alignStart="@+id/button22"
-        android:onClick="goUSerPage"/>
-
-    <Button
-        android:text="Logout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/button26"
-        android:layout_alignBaseline="@+id/button25"
-        android:layout_alignBottom="@+id/button25"
-        android:layout_alignParentEnd="true"
-        android:onClick="logOut"/>
 
     <Button
         android:text="+ Follow"
@@ -74,25 +55,6 @@
         android:id="@+id/followButton"
         android:layout_alignParentEnd="true"
         android:layout_toEndOf="@+id/topicHeader" />
-
-    <Button
-        android:text="Home"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/button24"
-        android:onClick="goHOme"
-        android:layout_alignParentStart="true"
-        android:layout_above="@+id/button17" />
-
-    <Button
-        android:text="Rate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/button22"
-        android:onClick="rateTopic"
-        android:layout_alignBaseline="@+id/button21"
-        android:layout_alignBottom="@+id/button21"
-        android:layout_centerHorizontal="true" />
 
     <Button
         android:text="Quiz"
@@ -110,17 +72,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:id="@+id/topicPackName"
-        android:layout_alignParentEnd="true"
-        android:layout_below="@+id/topicRate" />
-
-    <Button
-        android:text="Creator Profile Page"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/button17"
-        android:onClick="goCreatorPage"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
+        android:layout_below="@+id/topicRate"
         android:layout_alignParentEnd="true" />
 
     <EditText
@@ -154,17 +106,82 @@
         <ListView
             android:layout_width="match_parent"
             android:layout_height="107dp"
-            android:id="@+id/tagListView"/>
+            android:id="@+id/tagListView"
+            android:layout_weight="0.37" />
 
-        <EditText
+        <Button
+            android:text="See Material"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:inputType="textMultiLine"
-            android:ems="10"
-            android:id="@+id/topicContent"
-            android:layout_above="@+id/button21"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentEnd="true" />
+            android:layout_height="wrap_content"
+            android:id="@+id/button"
+            android:onClick="seeMaterial"/>
+
     </LinearLayout>
+
+    <Button
+        android:text="Next"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:id="@+id/button43"
+        android:onClick="goNextTopic"
+        android:layout_alignTop="@+id/button26" />
+
+    <Button
+        android:text="Prev"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignEnd="@+id/button24"
+        android:layout_marginEnd="6dp"
+        android:id="@+id/button45"
+        android:onClick="goPrevTopic"/>
+
+    <Button
+        android:text="Profile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button25"
+        android:onClick="goUSerPage"
+        android:layout_below="@+id/button23"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:text="Topic Pack Page"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button26"
+        android:onClick="topicPackPage"
+        android:layout_below="@+id/button17"
+        android:layout_alignStart="@+id/button17" />
+
+    <Button
+        android:text="Rate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button22"
+        android:onClick="rateTopic"
+        android:layout_above="@+id/button17"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:text="Home"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button24"
+        android:onClick="goHOme"
+        android:layout_alignBaseline="@+id/button17"
+        android:layout_alignBottom="@+id/button17"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:text="Creator's Page"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button17"
+        android:onClick="goCreatorPage"
+        android:layout_above="@+id/button45"
+        android:layout_toStartOf="@+id/button25"
+        android:layout_marginEnd="23dp" />
 
 </RelativeLayout>

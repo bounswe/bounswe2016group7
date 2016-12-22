@@ -27,13 +27,13 @@
         android:id="@+id/commentList"/>
 
     <Button
-        android:text="Home"
+        android:text="Back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
         android:id="@+id/button41"
-        android:onClick="homePage"/>
+        android:onClick="backTopic"/>
 
     <Button
         android:text="Profile"

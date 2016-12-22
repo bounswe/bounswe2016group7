@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/quizQuestionn"
+        android:layout_weight="0.21" />
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/choicess">
+
+        <RadioButton
+            android:text="A"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/choiceAA" />
+
+        <RadioButton
+            android:text="B"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/choiceBB" />
+
+        <RadioButton
+            android:text="C"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/choiceCC"
+            />
+
+        <RadioButton
+            android:text="D"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/choiceDD" />
+    </RadioGroup>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/questionExplanation"
+        android:layout_weight="0.17" />
+</LinearLayout>

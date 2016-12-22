@@ -88,6 +88,15 @@ public class TopicListPage extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
+        else if(recentOrTop == 7){
+            try{
+                Intent previous = getIntent();
+                Long topicPackId = previous.getLongExtra("topicPackId",0);
+                topicList = topicServiceClient.getTopicsOfTopicPack(topicPackId);
+            } catch(Exception e){
+                e.printStackTrace();
+            }
+        }
         if (topicList != null) {
 
             ListView listView = (ListView) findViewById(R.id.topicListView);
