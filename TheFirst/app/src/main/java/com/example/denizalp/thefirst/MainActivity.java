@@ -14,7 +14,10 @@ import android.widget.EditText;
 import com.bounswe.group7.api.client.LoginServiceClient;
 import com.bounswe.group7.api.client.TopicServiceClient;
 import com.bounswe.group7.model.Users;
-
+/*
+* MainActivity class
+* to start up the whole program,this is the first page to be seen by the users
+* */
 public class MainActivity extends AppCompatActivity {
 
 
@@ -23,12 +26,12 @@ public class MainActivity extends AppCompatActivity {
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main);  //set view as activity_main.xml from resources
         SharedPreferences sharedPref = getSharedPreferences("tokenInfo",MODE_PRIVATE);
         SharedPreferences.Editor prefEditor = sharedPref.edit();
         prefEditor.clear();
         prefEditor.apply();
-        TopicServiceClient tsc = new TopicServiceClient();
+        TopicServiceClient tsc = new TopicServiceClient();  //create new topic service client
         try {
             System.out.println(tsc.getRecentTopics().size());
         }
@@ -36,44 +39,47 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
-
+  /*
+  * loginUser method
+  * this method is for a valid user to enter the application in order to see the documents
+  * */
     public void loginUser(View view){
         Intent intent = new Intent(this, UserPage.class);
         Bundle bundle = new Bundle();
         try {
             LoginServiceClient loginservice = new LoginServiceClient();
-            EditText editText1 = (EditText) findViewById(R.id.username);
-            EditText editText2 = (EditText) findViewById(R.id.password);
+            EditText editText1 = (EditText) findViewById(R.id.username);  //to set username
+            EditText editText2 = (EditText) findViewById(R.id.password);   //to set password
             String username = editText1.getText().toString();
             String password = editText2.getText().toString();
 
-            Users user = new Users(username, password);
+            Users user = new Users(username, password); //create new user
 
             Users token = new Users();
             try {
                 token = loginservice.login(user);
 
                 if(token != null) {
-                    intent.putExtra("username", username);
-                    intent.putExtra("password", password);
+                    intent.putExtra("username", username); //get username
+                    intent.putExtra("password", password); //get password
                     // System.out.println(token.getFirstname() + " " + token.getLastname());
                     startActivity(intent);
                 }
                 else {
-                    System.out.println("Username or password is incorrect!!!");
+                    System.out.println("Username or password is incorrect!!!");  //if username or password is not entered
                 }
             } catch (Exception e) {
                 //System.out.println("Username or password is incorrect!!!");
                 AlertDialog alertDialog = new AlertDialog.Builder(this).create();
-                alertDialog.setTitle("Error");
-                alertDialog.setMessage("Username or password is incorrect!!!");
+                alertDialog.setTitle("Error");  //set error message for not valid credentials
+                alertDialog.setMessage("Username or password is incorrect!!!");   //?f the username or password not valid
                 alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 dialog.dismiss();
                             }
                         });
-                alertDialog.show();
+                alertDialog.show(); //show the error
                 e.printStackTrace();
             }
             //token.getToken();
@@ -83,7 +89,8 @@ public class MainActivity extends AppCompatActivity {
         }
         //startActivity(intent);
     }
-
+//  getInfo method
+//    this method is to obtain information
     public void getInfo(View view) {
         //move to obtain info page
         Intent intent = new Intent(this, ObtainInfo.class);

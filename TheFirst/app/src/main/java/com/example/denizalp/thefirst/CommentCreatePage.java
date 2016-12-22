@@ -13,22 +13,27 @@ import com.bounswe.group7.model.Users;
 
 import java.util.Date;
 
+/*
+* CommentCreatePage class
+* Add comment to a topic
+* */
 public class CommentCreatePage extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_comment_create_page);
+        setContentView(R.layout.activity_comment_create_page); //set layout as activity_comment_create_page
     }
-
+//addCmment method
+//to add comment to a topic
     public void addComment(View v) throws Exception{
         Intent previous = getIntent();
-        Long topicId = previous.getLongExtra("topicId",0);
-        String token = previous.getStringExtra("token");
+        Long topicId = previous.getLongExtra("topicId",0);  //get topic id
+        String token = previous.getStringExtra("token"); //get token
         EditText editText = (EditText) findViewById(R.id.editComment);
 
-        CommentServiceClient commentServiceClient = new CommentServiceClient(token);
-        UserServiceClient userServiceClient = new UserServiceClient(token);
+        CommentServiceClient commentServiceClient = new CommentServiceClient(token); //create new comment service client
+        UserServiceClient userServiceClient = new UserServiceClient(token);  //create new user service client
         Users user = userServiceClient.getLoggedInUser();
 
         Comments theComment = new Comments();
@@ -40,7 +45,7 @@ public class CommentCreatePage extends AppCompatActivity {
 
         Comments created = commentServiceClient.createComment(theComment);
         if(created != null){
-            Intent intent = new Intent(this, CommentViewPage.class);
+            Intent intent = new Intent(this, CommentViewPage.class);  //gather this and form as comment view page
             intent.putExtra("topicId",created.getTopicId());
             intent.putExtra("notEmpty",true);
             intent.putExtra("token",token);

@@ -12,22 +12,26 @@ import com.bounswe.group7.model.Comments;
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+* .commentViewpage class
+* to viewing the comments of a topic
+* */
 public class CommentViewPage extends AppCompatActivity {
 
-    List<Comments> commentList = new ArrayList<Comments>();
+    List<Comments> commentList = new ArrayList<Comments>(); //get comments
     CommentServiceClient commentServiceClient = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_comment_view_page);
+        setContentView(R.layout.activity_comment_view_page); //set view as activity_comment_view_page.xml under resources layout
         try{
             Intent previous = getIntent();
-            Long topicId = previous.getLongExtra("topicId",-1);
+            Long topicId = previous.getLongExtra("topicId",-1); //the topic that we want to see the comments
             String token = previous.getStringExtra("token");
             Boolean notEmpty = previous.getBooleanExtra("notEmpty",false);
             commentServiceClient = new CommentServiceClient(token);
-            commentList = commentServiceClient.getTopicComments(topicId);
-            ListView commentListView = (ListView) findViewById(R.id.commentList);
+            commentList = commentServiceClient.getTopicComments(topicId); // fill comment list
+            ListView commentListView = (ListView) findViewById(R.id.commentList); //show comment list
             if(notEmpty) {
                 CommentAdapter commentAdapter = new CommentAdapter(this, commentList, token);
                 commentListView.setAdapter(commentAdapter);
@@ -39,7 +43,8 @@ public class CommentViewPage extends AppCompatActivity {
             e.printStackTrace();
         }
     }
-
+   //newComment method
+//   this method is to create new comments,and available on comment view page
     public void newComment(View view){
         Intent previous = getIntent();
         Long topicId = previous.getLongExtra("topicId",-1);
