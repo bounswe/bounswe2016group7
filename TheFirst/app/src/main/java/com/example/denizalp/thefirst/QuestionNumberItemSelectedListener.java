@@ -10,15 +10,16 @@ import java.util.List;
 
 /**
  * Created by denizalp on 30/11/16.
+ * QuestionNumberItemSelectedListener class
  */
 
 public class QuestionNumberItemSelectedListener implements AdapterView.OnItemSelectedListener {
     private List<Questions> quizQuestions;
-    private EditText questionText;
-    private EditText choiceTextA;
-    private EditText choiceTextB;
-    private EditText choiceTextC;
-    private EditText choiceTextD;
+    private EditText questionText;  //question
+    private EditText choiceTextA;   //option A
+    private EditText choiceTextB;   //option B
+    private EditText choiceTextC;   //option C
+    private EditText choiceTextD;   //option D
 
 
     public QuestionNumberItemSelectedListener(List<Questions> lq,

@@ -16,16 +16,19 @@ import com.bounswe.group7.model.Quizes;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
+/*
+* QuizCreatePage class
+* This method is for authors to add quizzes to ther topics.
+* */
 public class QuizCreatePage extends AppCompatActivity {
 
-    List<Questions> quizQuestions = new ArrayList<Questions>();
-    List<Integer> questionNumbers = new ArrayList<Integer>();
+    List<Questions> quizQuestions = new ArrayList<Questions>();  //list of questions
+    List<Integer> questionNumbers = new ArrayList<Integer>();  //list of question numbers
     int questionNumber = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_quiz_create_page);
+        setContentView(R.layout.activity_quiz_create_page); //set view activity_quiz_create_page.xml from resources
         Spinner spinnerAnswers = (Spinner) findViewById(R.id.sAnswer);
         List<Character> answers = new ArrayList<Character>();
         answers.add('A'); answers.add('B'); answers.add('C'); answers.add('D');
@@ -36,14 +39,14 @@ public class QuizCreatePage extends AppCompatActivity {
         Spinner spinnerQNumbers = (Spinner) findViewById(R.id.sQuestionNumber);
         //questionNumbers.add(1);
         //questionNumbers.add(2);
-        questionNumbers.add(questionNumber);
+        questionNumbers.add(questionNumber);  //add question number to the list
         ArrayAdapter<Integer> adapter2 = new ArrayAdapter<Integer>(
                 this, android.R.layout.simple_spinner_item, questionNumbers);
         adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerQNumbers.setAdapter(adapter2);
         //spinnerQNumbers.setOnItemSelectedListener(new QuestionNumberItemSelectedListener());
     }
-
+  //add question method enables to add new questions
     public void addQuestion(View v){
         EditText questionText = (EditText) findViewById(R.id.quizQ);
         EditText choiceTextA = (EditText) findViewById(R.id.optionA);
