@@ -42,6 +42,7 @@ public class QuizViewPage extends AppCompatActivity {
         ListView quizView = (ListView) findViewById(R.id.quizList);
         QuizAdapter quizAdapter = (QuizAdapter) quizView.getAdapter();
         ArrayList<Integer> checkedList = quizAdapter.getCheckedList();
+        ArrayList<Integer> optionOrder = new ArrayList<Integer>();
         Quizes quizes = quiz;
         for(int i=0; i<quizes.getQuestions().size(); i++)
         {
@@ -53,21 +54,35 @@ public class QuizViewPage extends AppCompatActivity {
             //View button = radioGroup.findViewById(checked);
             char chosenAnswer =' ';
             switch (checkedID){
-                case R.id.choiceA: chosenAnswer = 'A';
+                case R.id.choiceA:
+                    chosenAnswer = 'A';
+                    optionOrder.add(i,1);
                     break;
 
-                case R.id.choiceB: chosenAnswer = 'B';
+                case R.id.choiceB:
+                    chosenAnswer = 'B';
+                    optionOrder.add(i,2);
                     break;
 
-                case R.id.choiceC: chosenAnswer = 'C';
+                case R.id.choiceC:
+                    chosenAnswer = 'C';
+                    optionOrder.add(i,3);
                     break;
 
-                case R.id.choiceD: chosenAnswer = 'D';
+                case R.id.choiceD:
+                    chosenAnswer = 'D';
+                    optionOrder.add(i,4);
                     break;
             }
-            questions.setChosenAnswer(chosenAnswer);
+            //questions.setChosenAnswer(chosenAnswer);
         }
-        SolvedQuizes result = quizServiceClient.solveQuiz(quiz);
-        System.out.println(result.getScore());
+
+       // SolvedQuizes result = quizServiceClient.solveQuiz(quiz);
+        Intent previous = getIntent();
+        Intent intent = new Intent(this, QuizResultPage.class);
+        intent.putExtra("optionOrder",optionOrder);
+        intent.putExtra("topicId",previous.getLongExtra("topicId",-1));
+        intent.putExtra("token",previous.getStringExtra("token"));
+        startActivity(intent);
     }
 }

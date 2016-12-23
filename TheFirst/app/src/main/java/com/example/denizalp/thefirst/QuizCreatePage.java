@@ -1,36 +1,37 @@
+
 package com.example.denizalp.thefirst;
 
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.EditText;
-import android.widget.Spinner;
+        import android.content.Intent;
+        import android.support.v7.app.AppCompatActivity;
+        import android.os.Bundle;
+        import android.view.View;
+        import android.widget.ArrayAdapter;
+        import android.widget.EditText;
+        import android.widget.Spinner;
 
-import com.bounswe.group7.api.client.QuizServiceClient;
-import com.bounswe.group7.api.client.UserServiceClient;
-import com.bounswe.group7.model.Questions;
-import com.bounswe.group7.model.Quizes;
+        import com.bounswe.group7.api.client.QuizServiceClient;
+        import com.bounswe.group7.api.client.UserServiceClient;
+        import com.bounswe.group7.model.Questions;
+        import com.bounswe.group7.model.Quizes;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+        import java.util.ArrayList;
+        import java.util.Date;
+        import java.util.List;
 /*
 * QuizCreatePage class
 * This method is for authors to add quizzes to ther topics.
 * */
 public class QuizCreatePage extends AppCompatActivity {
 
-    List<Questions> quizQuestions = new ArrayList<Questions>();  //list of questions
-    List<Integer> questionNumbers = new ArrayList<Integer>();  //list of question numbers
+    List<Questions> quizQuestions = new ArrayList<Questions>();
+    List<Integer> questionNumbers = new ArrayList<Integer>();
+    List<Character> answers = new ArrayList<Character>();
     int questionNumber = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_quiz_create_page); //set view activity_quiz_create_page.xml from resources
+        setContentView(R.layout.activity_quiz_create_page);
         Spinner spinnerAnswers = (Spinner) findViewById(R.id.sAnswer);
-        List<Character> answers = new ArrayList<Character>();
         answers.add('A'); answers.add('B'); answers.add('C'); answers.add('D');
         ArrayAdapter<Character> adapter = new ArrayAdapter<Character>(
                 this, android.R.layout.simple_spinner_item, answers);
@@ -39,14 +40,14 @@ public class QuizCreatePage extends AppCompatActivity {
         Spinner spinnerQNumbers = (Spinner) findViewById(R.id.sQuestionNumber);
         //questionNumbers.add(1);
         //questionNumbers.add(2);
-        questionNumbers.add(questionNumber);  //add question number to the list
+        questionNumbers.add(questionNumber);
         ArrayAdapter<Integer> adapter2 = new ArrayAdapter<Integer>(
                 this, android.R.layout.simple_spinner_item, questionNumbers);
         adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerQNumbers.setAdapter(adapter2);
         //spinnerQNumbers.setOnItemSelectedListener(new QuestionNumberItemSelectedListener());
     }
-  //add question method enables to add new questions
+    //add question method enables to add new questions
     public void addQuestion(View v){
         EditText questionText = (EditText) findViewById(R.id.quizQ);
         EditText choiceTextA = (EditText) findViewById(R.id.optionA);
@@ -57,19 +58,20 @@ public class QuizCreatePage extends AppCompatActivity {
         Spinner spinnerQNumbers = (Spinner) findViewById(R.id.sQuestionNumber);
 
         String question = questionText.getText().toString();
+
         String choiceA = choiceTextA.getText().toString();
         String choiceB = choiceTextB.getText().toString();
         String choiceC = choiceTextC.getText().toString();
         String choiceD = choiceTextD.getText().toString();
-        char trueAnswer = (Character) spinnerAnswers.getSelectedItem();
-        questionNumber = (Integer) spinnerQNumbers.getSelectedItem();
-
         Questions aQuestion = new Questions();
         aQuestion.setQuestion(question);
-        aQuestion.setChoiceA(choiceA);
-        aQuestion.setChoiceB(choiceB);
-        aQuestion.setChoiceC(choiceC);
-        aQuestion.setChoiceD(choiceD);
+        if(!choiceA.equals("")) aQuestion.setChoiceA(choiceA);
+        if(!choiceB.equals("")) aQuestion.setChoiceB(choiceB);
+        if(!choiceC.equals("")) aQuestion.setChoiceC(choiceC);
+        if(!choiceD.equals("")) aQuestion.setChoiceD(choiceD);
+
+        char trueAnswer = (Character) spinnerAnswers.getSelectedItem();
+        questionNumber = (Integer) spinnerQNumbers.getSelectedItem();
         aQuestion.setRightAnswer(trueAnswer);
         aQuestion.setDateCreated(new Date());
 
@@ -108,7 +110,7 @@ public class QuizCreatePage extends AppCompatActivity {
         System.out.println(topicId);
         newQuiz.setTopicId(topicId);
 
-        //newQuiz.setQuestions(readyQuestions);
+        //     newQuiz.setQuestions(readyQuestions);
 
         System.out.println(userId);
         newQuiz.setUserId(userId);

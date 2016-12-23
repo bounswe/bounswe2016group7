@@ -1,5 +1,6 @@
 mainModel.controller('topicController',function indexController($scope) {
     $scope.comments = comments;
+    $scope.recommended = recommended;
     $scope.commentToAdd = '';
     $scope.repliedId = '';
     $scope.tags = topicTags;
@@ -11,6 +12,10 @@ mainModel.controller('topicController',function indexController($scope) {
     $scope.showFollowing = false;
     $scope.currentRate = initialRating;
     $scope.nextPrev = nextPrev;
+    $scope.isQuizSolved = false;
+    $scope.correctAnswers = 0;
+    $scope.wrongAnswers = 0;
+    $scope.profilePicture = '/images/topicDefault.png';
     
     var size = $scope.quiz.length;
     for(var i = 0; i< size; i++){
@@ -123,7 +128,23 @@ mainModel.controller('topicController',function indexController($scope) {
             url: "/solvequiz",
             data: JSON.stringify(data)
         }).done(function(data) {
-            //console.log(data);
+            console.log(data);
+            var result = data.results;
+            for(var i = 0; i < result.length; i++){
+                var options = result[i].options;
+                questionId = result[i].id;
+                for(var j = 0; j<options.length; j++){
+                    if(options[j].isValid == 1){
+                        $('#question'+questionId+' .option'+(j)).addClass('correct');
+                    }else{
+                        $('#question'+questionId+' .option'+(j)).addClass('wrong');
+                    }
+                }
+            }
+            $scope.correctAnswers = data.correctAnswerNumber;
+            $scope.wrongAnswers = data.wrongAnswerNumber;
+            $scope.isQuizSolved = true;
+            $scope.$digest();
         }).fail(function(data){
             //console.log(data);
         });

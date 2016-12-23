@@ -35,8 +35,23 @@ public class UserServiceClient extends BaseClient {
         }, userId);
     }
 
-    public List<QuizProgress> getQuizProgress() throws Exception {
-        return get(getResource().path("getQuizProgress"), new TypeToken<List<QuizProgress>>() {
-        });
+    public List<QuizProgress> getQuizProgress(Long userId) throws Exception {
+        return post(getResource().path("getQuizProgress"), new TypeToken<List<QuizProgress>>() {
+        }, userId);
+    }
+    
+    public Users updateUser(Users user) throws Exception {
+        return post(getResource().path("updateUser"),new TypeToken<Users>(){
+        }, user);
+    }
+    
+    public Users updateUserBio(String bio) throws Exception {
+        return post(getResource().path("updateUserBio"),new TypeToken<Users>(){
+        }, bio);
+    }
+    
+    public Users updateUserAssociation(String association) throws Exception {
+        return post(getResource().path("updateUserAssociation"),new TypeToken<Users>(){
+        }, association);
     }
 }

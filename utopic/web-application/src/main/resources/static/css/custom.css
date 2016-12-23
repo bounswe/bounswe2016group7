@@ -41,6 +41,10 @@ body{
   position: relative; 
   padding-bottom: 50px;
 }
+.options .wrong button.selected {
+    color: #fff !important;
+    background: #d2343c;
+}
 
 span.question-number {
     font-weight: bold;
@@ -52,6 +56,20 @@ span.question-number {
   width: 100%;
   margin-bottom: 10px;
   text-align: left;
+  position: relative;
+}
+
+.options .correct button i.fa.fa-check{
+    display: block;
+}
+
+.options button i.fa.fa-check {
+    position: absolute;
+    top: -12px;
+    right: -9px;
+    font-size: 25px;
+    color: #7ab648;
+    display: none;
 }
 
 .options button.selected{
@@ -178,6 +196,13 @@ div#search-container {
 d2343c
 .navbar .button-orange{
   margin-left: 15px;
+}
+
+button.button-small {
+    border: none;
+    background: none;
+    font-size: 20px;
+    color: #0a6c8e;
 }
 
 /**************************** Form *******************************/
@@ -310,7 +335,7 @@ ul.categories li{
     height: 200px;
     width: 100%;
     background-size: cover;
-    background-position: top center;
+    background-position: center center;
     background-repeat: no-repeat;
     margin-bottom: 15px;
     position: relative;
@@ -542,6 +567,42 @@ ul.following-users.panel {
   right: 0;
   bottom: 0;
 }
+#association-form * {
+    display: inline;
+    max-width: 300px;
+}
+
+.association-input p{
+    display:inline-block;
+    padding: 10px 0;
+}
+.association-input p button,
+.bio-input p button{
+    opacity: 0;
+    mouse-events:none;
+}
+
+.association-input p button,
+.bio-input p:hover button{
+    opacity: 0;
+    pointer-events:none;
+    transition: 0.2s ease-in-out;
+}
+
+
+.association-input p:hover button,
+.bio-input p:hover button{
+    opacity: 1;
+    pointer-events:auto;
+}
+
+.topic-thumb{
+    background-size: cover !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+    height: 180px;
+}
+
 @media(max-width: 543px){
   .search-image{
     margin-bottom: 15px;

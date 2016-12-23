@@ -11,7 +11,9 @@
     android:background="@drawable/wallpaper"
     tools:context="com.example.denizalp.thefirst.TopicListPage">
 
-    <Button android:id="@+id/Button_Recent"
+
+
+  <!--  <Button android:id="@+id/Button_Recent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/recentTopics"
@@ -106,6 +108,10 @@
         android:textColor="@android:color/black"
         android:layout_below="@id/Button_Music"
         android:layout_marginTop="2sp"
-        />
+        /> -->
 
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/topicListView"/>
 </RelativeLayout>

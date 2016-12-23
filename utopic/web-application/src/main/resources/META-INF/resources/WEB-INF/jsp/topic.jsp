@@ -12,7 +12,7 @@
             <c:forEach items="${authorities}" var="stdn" varStatus="status">
                     auth.push('${stdn.name}');
             </c:forEach>
-                var initialRating = ${topic.rate}
+                var initialRating = ${topic.rate};
                 var followingUsers = ${followingUsers};
                 var quiz = ${quiz};
                 var activeUsername = "${sessionScope.username}";
@@ -23,6 +23,7 @@
                 var topicId = ${topic.topicId};
                 var topicTags = ${tags};
                 var nextPrev = ${nextPrev};
+                var recommended = ${recTopic};
         </script><%
             }else{
             response.setStatus(response.SC_MOVED_TEMPORARILY);
@@ -97,8 +98,7 @@
                             </div>
                             <div class="recommended">
                                 <span class="title">Recommended</span>
-                                <a href="#" class="recommended-topic">Topic 1</a>
-                                <a href="#" class="recommended-topic">Topic 2</a>
+                                <a ng-repeat="topic in recommended" href="/topic/{{topic.topicId}}" class="recommended-topic">{{topic.header}}</a>
                             </div>
                         </div>
                     </div>
@@ -157,13 +157,19 @@
                                         <div  class="options">
                                             <div class="row">
                                                 <div ng-repeat="opt in question.options" class="col-xs-12 col-sm-6 option{{opt.number}}">
-                                                    <button class="button" ng-click="setAnswer($parent.question, opt)">{{opt.text}}</button>
+                                                    <button class="button" ng-click="setAnswer($parent.question, opt)">{{opt.text}}
+                                                        <i class="fa fa-check" aria-hidden="true"></i>
+                                                    </button>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <button ng-click="sendQuiz()" class="button button-green">SUBMIT</button>
-                                </div>
+                                    <button ng-show="!isQuizSolved" ng-click="sendQuiz()" class="button button-green">SUBMIT</button>
+                                    <div ng-show="isQuizSolved" class="showResult">
+                                        <p>Correct Answer: <span ng-bind="correctAnswers"></span><br>
+                                            Wrong Answer: <span ng-bind="wrong Answers"></span>
+                                        </p>
+                                    </div>
                             </div>
                         </div>
                     </div>

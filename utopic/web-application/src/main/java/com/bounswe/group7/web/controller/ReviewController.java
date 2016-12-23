@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.bounswe.group7.web.controller;
 
 import com.bounswe.group7.api.client.ReviewServiceClient;
@@ -14,19 +9,29 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- *
+ * Handles the user review functionalities. In the profile page, there is a
+ * reviews section which can be edited by other user's review additions. This
+ * controller handles these operations.
+ * 
  * @author Batuhan
  */
 @RestController
 public class ReviewController {
-    
+    /**
+     * Adds the review by another user into the user's profile. Gets an AJAX
+     * request that includes the whole data about the review. Returns the review
+     * list of the profiled user to show.
+     * 
+     * @param request
+     * @param review
+     * @return reviews of the profiled user
+     */
     @RequestMapping(value = "/addreview", method = RequestMethod.PUT,
            produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public String addReview(HttpServletRequest request,@RequestBody Reviews review){

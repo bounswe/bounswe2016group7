@@ -29,6 +29,9 @@ public class Users implements Serializable {
 
     @Column(name = "association", nullable = true)
     private String association;
+    
+    @Column(name = "bio", nullable = true)
+    private String bio;
 
     @Column(name = "email", nullable = false, unique = true)
     private String email;
@@ -70,6 +73,14 @@ public class Users implements Serializable {
 
     public String getNewPassReq() {
         return newPassReq;
+    }
+
+    public String getBio() {
+        return bio;
+    }
+
+    public void setBio(String bio) {
+        this.bio = bio;
     }
 
     public void setNewPassReq(String newPassReq) {

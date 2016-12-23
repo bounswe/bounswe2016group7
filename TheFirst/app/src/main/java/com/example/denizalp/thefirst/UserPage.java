@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.SearchView;
 
@@ -52,7 +53,7 @@ public class UserPage extends AppCompatActivity {
         //get login servive client
         LoginServiceClient loginServiceClient = new LoginServiceClient();
         UserServiceClient userServiceClient = null;
-
+        boolean isOther = false;
         try {
             if(currentToken.equals(""))
             {
@@ -70,6 +71,7 @@ public class UserPage extends AppCompatActivity {
                 Long creatorId = intent.getLongExtra("creatorID",-1);
                 System.out.println(creatorId);
                 if(creatorId != -1){
+                    isOther = true;
                     token = userServiceClient.getUser(creatorId);
                 }
                 else token = userServiceClient.getLoggedInUser();
@@ -79,6 +81,10 @@ public class UserPage extends AppCompatActivity {
 
             //set view by activity_user_page
             setContentView(R.layout.activity_user_page);
+            if(isOther) {
+                Button button = (Button) findViewById(R.id.button6);
+                button.setVisibility(Button.GONE);
+            }
             TextView textView = (TextView) findViewById(R.id.textView4);
             TextView authority = (TextView) findViewById(R.id.textView6);
             String author = "";
@@ -105,7 +111,8 @@ public class UserPage extends AppCompatActivity {
         }
 
         //SearchServiceClient searchServiceClient = new SearchServiceClient(currentToken);
-        SearchView searchView = (SearchView) findViewById(R.id.searchBar);
+       /* SearchView searchView = (SearchView) findViewById(R.id.searchBar);
+        if(searchView==null) System.out.println("bo?um abi");
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             public boolean onQueryTextSubmit(String query) {
                 searchView.clearFocus();     // Close keyboard on pressing IME_ACTION_SEARCH option
@@ -126,7 +133,7 @@ public class UserPage extends AppCompatActivity {
                 //System.out.println("You have looked now for "+newText);
                 return false;
             }
-        });
+        });*/
     }
 //getUserInfo method
     public void getUserInfo(View view) {
@@ -155,9 +162,9 @@ public class UserPage extends AppCompatActivity {
                 String companyname = data.getStringExtra("cn");
                 tw2.setText(companyname);
 
-                TextView tw3 = (TextView) findViewById(R.id.textView9);
+               /* TextView tw3 = (TextView) findViewById(R.id.textView9);
                 String bio = data.getStringExtra("bio");
-                tw3.setText(bio);
+                tw3.setText(bio);*/
             }
         }
     }
@@ -193,6 +200,11 @@ public class UserPage extends AppCompatActivity {
     public void goToReviews(View v){
         Intent intent = new Intent(this, ReviewPage.class);
         intent.putExtra("reviewedID",token.getId());
+        startActivity(intent);
+    }
+
+    public void showQuizProgress(View v){
+        Intent intent = new Intent(this, QuizProgressPage.class);
         startActivity(intent);
     }
 

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/activity_search_topic_page"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="1">
+
+    <SearchView
+        android:layout_width="match_parent"
+        android:layout_height="111dp"
+        android:layout_weight="0.06"
+        android:id="@+id/searchView" />
+</LinearLayout>

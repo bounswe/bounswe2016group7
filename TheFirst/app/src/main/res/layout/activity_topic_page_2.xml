@@ -12,26 +12,6 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="31dp"
-        android:weightSum="1">
-
-        <TextView
-            android:text="LOGO"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/textView17"
-            android:layout_weight="0.06" />
-
-        <SearchView
-            android:layout_width="244dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.94" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
         android:layout_height="53dp"
         android:weightSum="1">
 
@@ -40,21 +20,24 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:id="@+id/button15"
-            android:layout_weight="0.33" />
+            android:layout_weight="0.33"
+            android:onClick="gogoHome"/>
 
         <Button
             android:text="Profile"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:id="@+id/button35"
-            android:layout_weight="0.33" />
+            android:layout_weight="0.33"
+            android:onClick="gogoProfie"/>
 
         <Button
             android:text="Logout"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:id="@+id/button34"
-            android:layout_weight="0.33" />
+            android:layout_weight="0.33"
+            android:onClick="logOUT"/>
     </LinearLayout>
 
     <LinearLayout
@@ -134,7 +117,8 @@
             android:text="Search"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/button36" />
+            android:id="@+id/button36"
+            android:onClick="listSemanticResult"/>
     </LinearLayout>
 
     <LinearLayout
@@ -153,20 +137,23 @@
             android:text="Add"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/button39" />
+            android:id="@+id/button39"
+            android:onClick="addTag"/>
 
     </LinearLayout>
 
     <GridView
         android:layout_width="match_parent"
         android:layout_height="147dp"
-        android:layout_weight="0.06" />
+        android:layout_weight="0.06"
+        android:id="@+id/tagGridView2"/>
 
     <Button
         android:text="Add Material and Quiz"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/button40" />
+        android:id="@+id/button40"
+        android:onClick="goEditing"/>
 
 </LinearLayout>
 

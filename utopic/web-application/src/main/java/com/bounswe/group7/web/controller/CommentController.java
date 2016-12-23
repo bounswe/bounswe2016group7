@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.bounswe.group7.web.controller;
 
 import com.bounswe.group7.api.client.CommentServiceClient;
@@ -25,12 +20,21 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- *
+ * Handles comment functionalities like adding, deleting and voting comment.
  * @author Batuhan
  */
 @RestController
 public class CommentController {
     
+    /**
+     * Receives comment from AJAX request. Adds it to the database using
+     * client methods. After addition, gets every comment of that topic and
+     * returns them in the wanted form.
+     * 
+     * @param request
+     * @param comment
+     * @return topic's_comments
+     */
     @RequestMapping(value = "/addcomment", method = RequestMethod.PUT,
            produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
@@ -56,7 +60,14 @@ public class CommentController {
         }
         return topicComments;
     }
-    
+    /**
+     * Receives comment id and topic id in a domain called DeleteComment from
+     * AJAX request. Deletes that comment and returns the comments of that topic
+     * 
+     * @param request
+     * @param comment -> comment_id and topic_id
+     * @return topic's_comments
+     */
     @RequestMapping(value = "/deletecomment", method = RequestMethod.DELETE,
            produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
@@ -81,7 +92,15 @@ public class CommentController {
         }
         return topicComments;
     }
-    
+    /**
+     * Receives the type of vote (up/down) and comment id in a domain called
+     * CommentVote by an AJAX request. Updates the votes of the comment and
+     * returns total vote of that comment.
+     * 
+     * @param request
+     * @param commentVote -> type and comment_id
+     * @return vote
+     */
     @RequestMapping(value = "/votecomment", method = RequestMethod.POST,
             produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody

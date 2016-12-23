@@ -25,8 +25,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
- *
- * @author myunu
+ * This is the service class of the Topic Model.
+ * @author Yunus Seker
  */
 @Service
 public class TopicsService {
@@ -52,10 +52,22 @@ public class TopicsService {
     @Autowired
     TagsService tagsService;
 
+    /**
+     * This method takes a topic id and returns the related topic.
+     * @param id id of the topic 
+     * @return returns Topic object.
+     */
     public Topics getTopic(Long id) {
         return topicsRepository.findOne(id);
     }
 
+    /**
+     * This method takes an id of a topic and
+     * finds the previous and next topic on the topic pack.
+     * OrderBy is used to sort the topic pack.
+     * @param id id of the topic.
+     * @return returns NextPrevTopic if there is a previous topic it returns it, otherwise null. Same for next.
+     */
     public NextPrevTopic getNextPrev(Long id) {
         Topics theTopic = getTopic(id);
         TopicPacks thePack = getTopicPack(theTopic.getTopicPackId());
@@ -69,15 +81,32 @@ public class TopicsService {
         
         return nextPrev;
     }
-
+    
+    /**
+     * This method returns the topic pack
+     * @param id id of the topic pack
+     * @return returns the Topic pack object.
+     */
     public TopicPacks getTopicPack(Long id) {
         return topicPacksRepository.findOne(id);
     }
-
+    
+    /**
+     * This method returns the topics of a topic pack.
+     * @param topicPackId id of the topic pack
+     * @return returns a list of the topics of topic pack
+     */
     public List<Topics> getTopicsOfTopicPack(Long topicPackId) {
         return topicsRepository.findTopicsOfTopicPack(topicPackId);
     }
 
+    /**
+     * this takes a topic object and creates the topic.
+     * It sets the userId, rate as zero, rate counter as zero
+     * If there is no topic pack given, it is created.
+     * @param topic the object that holds the header, material description, tags.
+     * @return returns the created topic.
+     */
     public Topics createTopic(Topics topic) {
         topic.setUserId(usersService.getLoggedInUserId());
         topic.setCreateDate(new Date());
@@ -101,33 +130,71 @@ public class TopicsService {
         }
         return topicsRepository.save(topic);
     }
-
+    
+    /**
+     * This method creates a topic pack.
+     * It gives userId, date.
+     * @param topicPack topic pack that holds id.
+     * @return returns the created topic pack.
+     */
     public TopicPacks createTopicPack(TopicPacks topicPack) {
         topicPack.setUserId(usersService.getLoggedInUserId());
         topicPack.setCreateDate(new Date());
         return topicPacksRepository.save(topicPack);
     }
-
+    
+    /**
+     * This method creates a topic pack by name
+     * @param name name of the topic pack
+     * @return returns the created topic pack.
+     */
     public TopicPacks createTopicPackByName(String name) {
         return createTopicPack(new TopicPacks(name));
     }
 
+    /**
+     * This method returns the topics of a creator
+     * @param userId creator id
+     * @return returns the topic list of the user.
+     */
     public List<Topics> getUserTopics(Long userId) {
         return topicsRepository.findByUserIdOrderByCreateDateDesc(userId);
     }
-
+    
+    /**
+     * This method returns the topic packs of the creator
+     * @param userId creator id
+     * @return returns the topic pack list of the user.
+     */
     public List<TopicPacks> getUserTopicPacks(Long userId) {
         return topicPacksRepository.findByUserIdOrderByCreateDateDesc(userId);
     }
-
+    
+    /**
+     * This method returns the most 10 recent topics.
+     * @return returns the recent topic list
+     */
     public List<Topics> getRecentTopics() {
         return topicsRepository.findTop10ByOrderByCreateDateDesc();
     }
 
+    /**
+     * This method returns the most rated 10 topics.
+     * @return returns the most rated topic list
+     */
     public List<Topics> getTopTopics() {
         return topicsRepository.findTop10ByOrderByRateDesc();
     }
 
+    /**
+     * This method takes a RatedTopics object and rates the topic.
+     * If the user never rated, it is added to calculation.
+     * If the user rated before and vote changed, previous vote
+     * is taken back and calculations made for the new vote.
+     * If the user rated before and the vote is the same, fails
+     * @param ratedTopic the object that holds topic id and vote.
+     * @return returns true if succeed. false otherwise.
+     */
     public boolean rateTopic(RatedTopics ratedTopic) {
         RatedTopics temp = ratedTopicsRepository.findByUserIdAndTopicId(
                 usersService.getLoggedInUserId(), ratedTopic.getTopicId());
@@ -155,15 +222,29 @@ public class TopicsService {
             return true;
         }
     }
-
+    
+    /**
+     * this method returns the followed topics of the user
+     * @return returns the list of topics
+     */
     public List<Topics> getUserFollowedTopics() {
         return topicsRepository.findAllByUserId(usersService.getLoggedInUserId());
     }
-
+    
+    /**
+     * this method returns the users that followed a topic.
+     * @param topicId the topic id
+     * @return returns the users list that following the topic
+     */
     public List<Users> getTopicFollowers(Long topicId) {
         return usersRepository.findUsersByTopicId(topicId);
     }
 
+    /**
+     * This method follows a topic if it is un-followed, un-follows it if it followed.
+     * @param topicId the topic to be followed
+     * @return returns true if it can follow, false otherwise.
+     */
     public boolean followTopic(Long topicId) {
         if (checkFollowedTopic(topicId)) {
             return unfollowTopic(topicId);
@@ -173,7 +254,12 @@ public class TopicsService {
             return true;
         }
     }
-
+    
+    /**
+     * This method un-follows a topic
+     * @param topicId the topic id to be followed
+     * @return returns true if can be un-followed
+     */
     public boolean unfollowTopic(Long topicId) {
         FollowedTopics followedTopic = followedTopicsRepository.findByUserIdAndTopicId(usersService.getLoggedInUserId(), topicId);
         if (followedTopic != null) {
@@ -182,7 +268,12 @@ public class TopicsService {
         }
         return false;
     }
-
+    
+    /**
+     * This method returns that a topic is followed or not.
+     * @param topicId the topic to be checked
+     * @return returns true if followed, false if un followed.
+     */
     public boolean checkFollowedTopic(Long topicId) {
         FollowedTopics followedTopic = followedTopicsRepository.findByUserIdAndTopicId(usersService.getLoggedInUserId(), topicId);
         if (followedTopic != null) {
@@ -192,10 +283,20 @@ public class TopicsService {
         }
     }
 
+    /**
+     * This method returns the rate of the topic
+     * @param topicId the topic id
+     * @return returns the rate of the topic. Between 1-5.
+     */
     public double getTopicRate(Long topicId) {
         return topicsRepository.findOne(topicId).getRate();
     }
     
+    /**
+     * This method returns the rate of the user on a topic.
+     * @param topicId the topic
+     * @return returns the rate of the user to the topic. between 1-5.
+     */
     public int getTopicUserRate(Long topicId)
     {
         RatedTopics result = ratedTopicsRepository.findByUserIdAndTopicId(usersService.getLoggedInUserId(), topicId);

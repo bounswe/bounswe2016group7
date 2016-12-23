@@ -1,8 +1,10 @@
 package com.bounswe.group7.web.controller;
 
+import com.bounswe.group7.api.client.QuizServiceClient;
 import com.bounswe.group7.api.client.ReviewServiceClient;
 import com.bounswe.group7.api.client.TopicServiceClient;
 import com.bounswe.group7.api.client.UserServiceClient;
+import com.bounswe.group7.model.QuizProgress;
 import com.bounswe.group7.model.Reviews;
 import com.bounswe.group7.model.Topics;
 import javax.servlet.http.HttpServletRequest;
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -52,6 +55,7 @@ public class UserController {
         TopicServiceClient topicClient = new TopicServiceClient((String) request.getSession().getAttribute("token"));
         ReviewServiceClient reviewClient = new ReviewServiceClient((String) request.getSession().getAttribute("token"));
         try{
+            List<QuizProgress> progress = userClient.getQuizProgress(id);
             Users profiledUser = userClient.getUser(id);
             List<Topics> topicList = topicClient.getUserTopics(id);
             List<Reviews> reviewList = reviewClient.getUserReviews(id);
@@ -66,10 +70,38 @@ public class UserController {
             modelAndView.addObject("profiledUser", profiledUser);
             modelAndView.addObject("topics", listOfTopics);
             modelAndView.addObject("reviews", profileReviews);
+            modelAndView.addObject("progress",mapper.writeValueAsString(progress));
         }catch(Exception ex){
             ex.printStackTrace();
         }
         return modelAndView;
     }
     
+    @RequestMapping(value = "/setbio", method = RequestMethod.PUT,
+           produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public String setBio(HttpServletRequest request, @RequestBody String bio){
+        UserServiceClient userClient = new UserServiceClient((String) request.getSession().getAttribute("token"));
+        try{
+            userClient.updateUserBio(bio);
+            return bio;
+        }catch(Exception ex){
+            ex.printStackTrace();
+            return ex.getMessage();
+        }
+    }
+    
+    @RequestMapping(value = "/setassociation", method = RequestMethod.PUT,
+           produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public String setAssociation(HttpServletRequest request, @RequestBody String assoc){
+        UserServiceClient userClient = new UserServiceClient((String) request.getSession().getAttribute("token"));
+        try{
+            userClient.updateUserAssociation(assoc);
+            return assoc;
+        }catch(Exception ex){
+            ex.printStackTrace();
+            return ex.getMessage();
+        }
+    }
 }

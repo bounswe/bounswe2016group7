@@ -1,5 +1,5 @@
     <script src="/js/jquery-3.1.0.min.js" type="text/javascript"></script>
-    <script src="/js/angular.js" type="text/javascript"></script>
+    <script src="/js/angular.min.js" type="text/javascript"></script>
     <script src="/jsPlugins/valdr/valdr.min.js" type="text/javascript"></script>
     <script src="/jsPlugins/valdr/valdr-message.min.js" type="text/javascript"></script>
     <script src="/jsPlugins/angularwysiwyg/textAngular-rangy.min.js" type="text/javascript"></script>

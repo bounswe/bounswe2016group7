@@ -23,7 +23,6 @@ import java.util.TreeMap;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentSkipListMap;
 import java.util.function.Predicate;
-import javafx.util.Pair;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -282,11 +281,11 @@ public class SearchService {
             });
         });
 
-        for(Topics topic : followed){
+        for (Topics topic : followed) {
             idWithFreq.remove(topic.getTopicId());
             searchResults.remove(topic.getTopicId());
         }
-        
+
         ArrayList<Pair<Integer, Topics>> listTest = new ArrayList<>();
         for (Entry entry : idWithFreq.entrySet()) {
             listTest.add(new Pair((Integer) entry.getValue(), searchResults.get(entry.getKey())));
@@ -303,6 +302,30 @@ public class SearchService {
             res.add((Topics) p.getValue());
         }
         return res;
+    }
+
+    public static class Pair<K, V> {
+
+        private final K key;
+        private final V value;
+
+        public static <K, V> Pair<K, V> createPair(K element0, V element1) {
+            return new Pair<K, V>(element0, element1);
+        }
+
+        public Pair(K element0, V element1) {
+            this.key = element0;
+            this.value = element1;
+        }
+
+        public K getKey() {
+            return key;
+        }
+
+        public V getValue() {
+            return value;
+        }
+
     }
 
 }

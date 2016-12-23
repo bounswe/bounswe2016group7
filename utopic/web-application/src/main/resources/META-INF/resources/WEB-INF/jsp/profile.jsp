@@ -12,6 +12,9 @@
             <c:forEach items="${authorities}" var="stdn" varStatus="status">
                     auth.push('${stdn.name}');
             </c:forEach>
+                    var progress = ${progress};
+                    var association = "${profiledUser.association}";
+                    var bio = "${profiledUser.bio}";
                     var activeUsername = "${sessionScope.username}";
                     var activeId = ${userId};
                     var activeToken = "${sessionScope.token}";
@@ -51,11 +54,15 @@
                                 </div>
                                 <div class="col-xs-7 col-md-9">
                                     <h3>${profiledUser.firstname} ${profiledUser.lastname}<span></span></h3>
-                                    <p>Association will be shown here.</p>
-                                    <div class="tags">
-                                        <div class="topic-tag">Badge 1</div>
-                                        <div class="topic-tag">Badge 2</div>
-                                        <div class="topic-tag">Badge 3</div>		
+                                    <div class="association-input">
+                                        <p ng-show="!displayAssocInput && association">
+                                            Association: <span ng-bind="association"></span>
+                                            <button ng-if="ownerId == currentUserId" class="button-small" ng-click="showAssociationEdit()"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                                        </p>
+                                        <form ng-if="ownerId == currentUserId" ng-submit="changeAssociation(newAssociation)" ng-show="displayAssocInput" id="association-form">
+                                            <input type="text" class="form-control" ng-model="newAssociation" placeholder="Association">
+                                            <button type="submit" class="button-small"><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -65,7 +72,16 @@
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-3">
                         <div class="panel">
-                            User information will be shown here.
+                            <div class="bio-input">
+                                <p ng-show="!displayBioInput && bio">
+                                    Bio: <span ng-bind="bio"></span>
+                                    <button ng-if="ownerId == currentUserId" class="button-small" ng-click="showBioEdit()"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                                </p>
+                                <form ng-if="ownerId == currentUserId" ng-submit="changeBio(newBio)" ng-show="displayBioInput" id="bio-form">
+                                    <input type="text" class="form-control" ng-model="newBio" placeholder="New Bio">
+                                    <button type="submit" class="button-small"><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
+                                </form>
+                            </div>
                         </div>	
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-9">
@@ -84,7 +100,15 @@
 
                             <div class="tab-content">
                                 <div class="tab-pane active" id="home" role="tabpanel">
-                                    <p>QUIZ PROGRESS</p>
+                                    <div ng-repeat="pro in progress">
+                                        <p>Topic Pack:<span ng-bind="pro.topicPack.name"></span></p>
+                                        <div ng-repeat="topic1 in pro.topicPack.topics">
+                                            <p>Topic: <span ng-bind="topic1.header"></span><br>Topic Quiz: <span ng-bind="topic1.score"></span></p>
+                                        </div>
+                                        <p>Pack Score: <span ng-bind="pro.totalProgress"></span></p>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                        <div class="clearfix"></div>
                                 </div>
                                 <div  ng-if="profiledAuths.indexOf('ROLE_CREATOR')!=-1" class="tab-pane message-tab" id="profile" role="tabpanel">
                                     <div class="message-container">
@@ -92,17 +116,21 @@
                                             <p>There is no topics yet<br/>Create one!</p>
                                         </div>
                                         <div ng-repeat="topic in topics" class="message" id="topic{{topic.id}}">
-                                            <div class="message-point">
-                                                <i class="fa fa-picture-o fa-4x" aria-hidden="true"></i>
-                                            </div>
-                                            <div class="message-content">
-                                                <a href="/topic/{{topic.topicId}}" class="title">
-                                                    {{topic.header}}
-                                                </a>
-                                                <p ng-bind-html="topic.description | to_trusted"></p>
-                                                <span class="date">
-                                                    {{topic.createDate}}
-                                                </span>
+                                            <div class="row">
+                                                <div class="col-xs-12 col-sm-4 col-md-3">
+                                                     <div class="topic-thumb" style="background: url({{topic.picture}});"></div>
+                                                </div>
+                                                <div class="col-xs-12 col-sm-8 col-md-9">
+                                                    <div class="message-content">
+                                                        <a href="/topic/{{topic.topicId}}" class="title">
+                                                            {{topic.header}}
+                                                        </a>
+                                                        <p ng-bind-html="topic.description | to_trusted"></p>
+                                                        <span class="date">
+                                                            {{topic.createDate}}
+                                                        </span>
+                                                    </div>
+                                                </div>
                                             </div>
                                             <div class="clearfix"></div>
                                         </div>
@@ -129,8 +157,10 @@
                                         </div>
                                     </div>
                                     <div class="input-container">
-                                        <input type="text" ng-model="reviewToAdd" placeholder="Your message" class="form-control">
-                                        <button class="button button-green send-button" ng-click="addReview()"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+                                        <form ng-if="ownerId != currentUserId" ng-submit="addReview(reviewToAdd)">
+                                            <input type="text" ng-model="reviewToAdd" placeholder="Your message" class="form-control">
+                                            <button class="button button-green send-button" type="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>

@@ -25,4 +25,22 @@
         android:layout_below="@+id/newComment"
         android:layout_centerHorizontal="true"
         android:id="@+id/commentList"/>
+
+    <Button
+        android:text="Back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/button41"
+        android:onClick="backTopic"/>
+
+    <Button
+        android:text="Profile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button42"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:onClick="profilePage"/>
 </RelativeLayout>

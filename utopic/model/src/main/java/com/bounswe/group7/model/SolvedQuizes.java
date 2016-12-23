@@ -18,6 +18,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Transient;
 
 /**
  *
@@ -49,7 +50,18 @@ public class SolvedQuizes implements Serializable{
     public List<SolvedQuestions> getSolvedQuestions() {
         return solvedQuestions;
     }
+    
+    @Transient
+    boolean solved;
 
+    public boolean isSolved() {
+        return solved;
+    }
+
+    public void setSolved(boolean solved) {
+        this.solved = solved;
+    }
+    
     public void setSolvedQuestions(List<SolvedQuestions> solvedQuestions) {
         this.solvedQuestions = solvedQuestions;
     }
