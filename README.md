@@ -3,4 +3,10 @@
 <p>This is a group project developed by Boğaziçi University Computer Engineering students.</p>
 <p>You can check our <a href="https://github.com/bounswe/bounswe2016group7/wiki">Wiki Page </a> for more details and information.</p>
 <p>You can see our  <a href="https://github.com/bounswe/bounswe2016group7/wiki/Project-Description">Project Information </a>,<a href="https://github.com/bounswe/bounswe2016group7/wiki/Sequence-Diagrams">Sequence Diagrams</a>, <a href="https://github.com/bounswe/bounswe2016group7/wiki/>Activity-Diagrams">Activity Diagrams</a>, <a href="https://github.com/bounswe/bounswe2016group7/wiki/Class-Diagrams">Class Diagrams</a>, and <a href="https://github.com/bounswe/bounswe2016group7/wiki/Use-Case-Diagrams">Use Case Diagrams </a>here.</p>
-<p>If you want to get to know us or contact with is us, you are welcome <a href="https://github.com/bounswe/bounswe2016group7/wiki#developers">here</a> !
+</p>
+<br><br>
+You can see our final milestone report
+<a href="https://github.com/bounswe/bounswe2016group7/wiki/Milestone-3-%22Final-Demo%22-22-12-2016">Final Milestone</a>
+</p>
+<p>
+<br>If you want to get to know us or contact with is us, you are welcome <a href="https://github.com/bounswe/bounswe2016group7/wiki#developers">here</a> !
