@@ -260,7 +260,7 @@ mainModel.controller('topicController',function indexController($scope) {
         });
         $scope.$digest();
     });
-    var imageUrl = "http://localhost:8090/images/topic-";
+    var imageUrl = "http://52.59.227.63:8090/images/topic-";
     $(document).ready(function(){
         
         $.ajax({

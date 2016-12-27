@@ -120,8 +120,8 @@ mainModel.controller('userController',function indexController($scope) {
         });
         $scope.$digest();
     });
-    var imageUrl = "http://localhost:8090/images/user-";
-    var topicImageUrl = "http://localhost:8090/images/topic-";
+    var imageUrl = "http://52.59.227.63:8090/images/user-";
+    var topicImageUrl = "http://52.59.227.63:8090/images/topic-";
     $(document).ready(function(){
         var foundPictures = [];
         for(var i = 0; i< $scope.topics.length; i++){

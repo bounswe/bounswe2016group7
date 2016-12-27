@@ -38,8 +38,7 @@ import javax.ws.rs.core.FeatureContext;
  * @author ugurbor
  */
 public class BaseClient {
-
-    //private String API_URL = "http://54.93.106.33:8090/";
+    //private String API_URL = "http://52.59.227.63:8090/";
     private String API_URL = "http://localhost:8090/"; // To Practice backend on Local, activate this line. 
 
     protected Client client;

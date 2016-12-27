@@ -33,7 +33,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
  */
 @RestController
 public class UploadController {
-    final String api = "http://localhost:8090/";
+    final String api = "http://52.59.227.63:8090/";
     final String uploaderURL = api + "upload";
 
     @RequestMapping(value = "/upload", method = RequestMethod.POST,
